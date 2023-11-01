@@ -1,0 +1,81 @@
+// An implementation of big_atomic using a shared lock pool.
+//
+//  Supports:
+//  - Blocking loads
+//  - Blocking stores
+//  - Blocking CAS
+//
+// No additional space usage
+//
+
+#ifndef PARLAYATOMIC_H_
+#define PARLAYATOMIC_H_
+
+#include <atomic>
+#include <functional>
+
+#include <parlay/primitives.h>
+#include <parlay/sequence.h>
+
+#include <common/lock.h>
+
+namespace parlay {
+
+template<typename V, class KeyEqual = std::equal_to<V>>
+struct big_atomic {
+
+  V val;
+
+  /* implicit */ big_atomic(const V& v) : val(v) {}  // NOLINT(google-explicit-constructor)
+  big_atomic() = default;
+
+  V load() {
+    V result;
+    int delay = 5000;
+    while (true) {
+      if (get_locks().try_lock((long)this, [&] {
+            result = val;
+            return true;
+          }))
+        return result;
+      delay = std::min(2 * delay, 20000);
+      for (volatile int i = 0; i < delay; i++)
+        ;
+    }
+  }
+
+  void store(const V& v) {
+    int delay = 5000;
+    while (true) {
+      if (get_locks().try_lock((long)this, [&] {
+            val = v;
+            return true;
+          }))
+        return;
+      delay = std::min(2 * delay, 20000);
+      for (volatile int i = 0; i < delay; i++)
+        ;
+    }
+  }
+
+  bool cas(const V& expected_v, const V& v) {
+    bool result = true;
+    int delay = 5000;
+    while (true) {
+      if (get_locks().try_lock((long)this, [&] {
+            if (!(val == expected_v))
+              result = false;
+            else
+              val = v;
+            return true;
+          }))
+        return result;
+      delay = std::min(2 * delay, 20000);
+      for (volatile int i = 0; i < delay; i++)
+        ;
+    }
+  }
+};
+
+}  // namespace parlay
+#endif  // PARLAYATOMIC_H_
