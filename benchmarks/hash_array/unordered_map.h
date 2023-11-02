@@ -1,7 +1,8 @@
 
-#ifndef PARLAYHASH_H_
-#define PARLAYHASH_H_
+#ifndef PARLAY_BIGATOMIC_HASH_ARRAY
+#define PARLAY_BIGATOMIC_HASH_ARRAY
 
+#include <functional>
 #include <optional>
 
 #include <parlay/primitives.h>
@@ -64,4 +65,4 @@ struct unordered_map {
 };
 
 }  // namespace parlay
-#endif  // PARLAYHASH_H_
+#endif  // PARLAY_BIGATOMIC_HASH_ARRAY
