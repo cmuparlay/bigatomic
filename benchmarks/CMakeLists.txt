@@ -1,6 +1,6 @@
 set(BENCHMARK_SOURCES bench_map.cpp)
 
-set(BENCHMARK_BIG_ATOMICS "wf_loadonly" "seqlock" "simplock" "wf_epoch" "wf_hazard" "wf_lowmem" "wf_daniel" "wf_indirect" "std" "lf_lowmem")
+set(BENCHMARK_BIG_ATOMICS "wf_loadonly" "seqlock" "simplock" "wf_epoch" "wf_hazard" "wf_lowmem" "wf_daniel" "wf_indirect" "std" "lf_lowmem" "wf_lowmem_safe")
 set(BENCHMARK_TABLES "hash_array" "hash_list")
 
 foreach(ATOMIC_NAME ${BENCHMARK_BIG_ATOMICS})

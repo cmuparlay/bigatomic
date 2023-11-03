@@ -8,9 +8,10 @@
 // Guaranteed at most O(P^2) extra space, and no heap allocations after warmup.
 //
 // Note: This version currently has an unfortunate extra requirement:  Any memory that is used for a big_atomic
-// should not be reclaimed and re-used, because a slow thread might try to write to a big_atomic after it gets
-// freed and possibly re-used.  Fixing this would be good, but probably requires making the destructor of
-// big_atomic blocking to avoid this.
+// must be reclaimed phase-synchronously (i.e., there can be no ongoing writes to any existing big_atomic while
+// any other big_atomic is being destroyed), and if re-used, the memory must be re-used for a big_atomic of the
+// same type.  Fixing this would be good, but probably requires making the destructor of big_atomic blocking to
+// avoid this.
 //
 
 #pragma once
