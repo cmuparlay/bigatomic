@@ -327,7 +327,7 @@ public:
     alignas(T) char buffer[sizeof(T)];
     atomic_load_per_byte_memcpy(&buffer, &fast_value, sizeof(T));
     auto p = backup_value.load();
-    if (!p.is_marked() && ver == version.load(std::memory_order_relaxed)) [[likely]]
+    if (p.get_ptr() == nullptr && ver == version.load(std::memory_order_relaxed)) [[likely]]
       return bits_to_object<T>(buffer);
 
     return load_indirect(p);
