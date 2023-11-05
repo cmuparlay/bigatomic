@@ -52,7 +52,7 @@ struct big_atomic_node {
     big_atomic_node* next_;  // Intrusive link for free list
     T value;
   };
-  std::atomic<big_atomic<T, Equal>*> src_;                        // Ptr to big_atomic most recently installed in
+  std::atomic<big_atomic < T, Equal>*> src_{ nullptr };               // Ptr to big_atomic currently installed in
   const unsigned owner{node_manager<T, Equal>().my_thread_id()};  // ID of the owning thread
   std::atomic<bool> owns_refcount{false};
   std::atomic<bool> pending_delayed_operation{false};
@@ -60,6 +60,7 @@ struct big_atomic_node {
   bool is_protected{false};
 
   big_atomic_node() noexcept : next_() {}
+
   ~big_atomic_node() = default;
 };
 
@@ -86,10 +87,12 @@ class NodeManager {
     IntrusiveFreeList() : head(nullptr) {}
 
     void push(node_type* node) noexcept { node->next_ = std::exchange(head, node); }
+
     node_type* pop() noexcept {
       assert(!empty());
       return std::exchange(head, head->next_);
     }
+
     [[nodiscard]] bool empty() const noexcept { return head == nullptr; }
 
     template<typename F>
@@ -182,6 +185,7 @@ class NodeManager {
   }
 
   NodeManager(const NodeManager&) = delete;
+
   NodeManager& operator=(const NodeManager&) = delete;
 
   ~NodeManager() = delete;
@@ -212,9 +216,9 @@ class NodeManager {
 
   // Announce a given node.  The caller needs to guarantee that the node has not
   // been made eligible for reclamation before this point.
-  void announce(marked_node_ptr_type p) noexcept {
-    assert(p.get_ptr() != nullptr);
-    local_data.my_slot->protected_node.exchange(p.unmark());
+  void announce(node_type* p) noexcept {
+    assert(p != nullptr);
+    local_data.my_slot->protected_node.exchange(p);
   }
 
   void release() {
@@ -249,14 +253,20 @@ class NodeManager {
       for_each_slot([&](auto& announcement) { protected_srcs.insert(announcement.protected_src.load()); });
 
       for_each_node([&](auto* node) {
-        if (node->src_.load() != nullptr) {
+        big_atomic_type* src = node->src_.load();
+        if (src != nullptr) {
+          assert(node->pending_delayed_operation.load() == false);
+          assert(node->owns_refcount.load() == false);
 
+          node->was_installed = true;
           node->pending_delayed_operation.store(true);  // <-- Tell the destructor to block
-          big_atomic_type* src = node->src_.load();
-          if (src != nullptr) {
+
+          // Double-check that the node is still installed so that once we start reading/writing the source node,
+          // the write to pending_delayed_operation is definitely observed by a thread that concurrently uninstalls
+          if (src == node->src_.load()) {
             // The big_atomic src_ is now guaranteed to be alive.  Its destructor will block
             // until we complete this operation and unset pending_delayed_operation.
-            auto ver = src->version.load();
+            auto ver = src->version.load(std::memory_order_acquire);
             auto current = src->backup_value.load();
 
             if (current.get_ptr() == node && current.is_marked() &&
@@ -267,18 +277,17 @@ class NodeManager {
             if (current.get_ptr() == node && !current.is_marked() && !protected_srcs.count(src)) {
               // Uninstall the node since it is in the cache and the source is not announced.
               auto empty_ptr = marked_node_ptr_type::create_ptr(nullptr);
-              src->backup_value.compare_exchange_strong(current, empty_ptr);
-              node->was_installed = false;
-            }
-
-            node->pending_delayed_operation.store(false);
-            if (node->owns_refcount.load(std::memory_order_relaxed) == true &&
-                node->owns_refcount.exchange(false) == true) {
-              src->refcount.fetch_sub(1);
+              if (src->backup_value.compare_exchange_strong(current, empty_ptr)) {
+                node->src_.store(nullptr);
+                node->was_installed = false;
+              }
             }
           }
-          else {
-            node->pending_delayed_operation.store(false);
+
+          node->pending_delayed_operation.store(false);  // Unblock the destructor
+          if (node->owns_refcount.load(std::memory_order_relaxed) == true &&
+              node->owns_refcount.exchange(false) == true) {
+            src->refcount.fetch_sub(1);
           }
 
         } else {
@@ -297,6 +306,9 @@ class NodeManager {
 
       for_each_node([&](auto node) {
         if (!node->was_installed && !node->is_protected) {
+          assert(node->src_.load() == nullptr);
+          assert(node->pending_delayed_operation.load() == false);
+          assert(node->owns_refcount.load() == false);
           slot.free_nodes.push(node);
         }
         node->is_protected = false;
@@ -315,7 +327,7 @@ class NodeManager {
   void grow_nodes(AnnouncementSlot& slot) {
     auto new_slab = new NodeMemorySlab{{}, slot.my_nodes};
     slot.my_nodes = new_slab;
-    for (auto& node : new_slab->nodes) {
+    for (auto& node: new_slab->nodes) {
       slot.free_nodes.push(&node);
     }
   }
@@ -330,7 +342,7 @@ class NodeManager {
   template<typename F>
   void for_each_node(F&& f) noexcept(std::is_nothrow_invocable_v<F&, node_type*>) {
     for (auto slab = local_data.my_slot->my_nodes; slab != nullptr; slab = slab->next_) {
-      for (auto& node : slab->nodes) {
+      for (auto& node: slab->nodes) {
         f(&node);
       }
     }
@@ -345,7 +357,7 @@ class NodeManager {
 template<typename T, typename Equal>
 NodeManager<T, Equal>& node_manager() {
   alignas(NodeManager<T, Equal>) static char buffer[sizeof(NodeManager<T, Equal>)];
-  static auto* list = new (&buffer) NodeManager<T, Equal>{};
+  static auto* list = new(&buffer) NodeManager<T, Equal>{};
   return *list;
 }
 
@@ -365,20 +377,20 @@ struct big_atomic {
   friend node_type;
   friend node_manager_type;
 
- public:
+public:
   using value_type = T;
   using version_type = int64_t;
 
   big_atomic() : backup_value(marked_node_ptr_type::create_ptr(nullptr)), version(0), fast_value{}, refcount{0} {
     static_assert(std::is_default_constructible_v<T>);
     node_manager();
-    new (static_cast<void*>(&fast_value)) T{};
+    new(static_cast<void*>(&fast_value)) T{};
   }
 
   /* implicit */ big_atomic(const T& t) :  // NOLINT(google-explicit-constructor)
-      version(0), backup_value(marked_node_ptr_type::create_ptr(nullptr)), fast_value{}, refcount{0} {
+    version(0), backup_value(marked_node_ptr_type::create_ptr(nullptr)), fast_value{}, refcount{0} {
     node_manager();
-    new (static_cast<void*>(&fast_value)) T{t};
+    new(static_cast<void*>(&fast_value)) T{t};
   }
 
   PARLAY_INLINE T load() noexcept {
@@ -421,6 +433,7 @@ struct big_atomic {
     if (Equal{}(expected, desired)) return true;
 
     auto new_p = make_node(desired).mark();
+    assert(new_p->src_.load() == this);
     auto old_p = p;
 
     if ((backup_value.load(std::memory_order_relaxed) == p && backup_value.compare_exchange_strong(p, new_p)) ||
@@ -428,6 +441,7 @@ struct big_atomic {
          backup_value.compare_exchange_strong(p, new_p))) {
 
       if (p.get_ptr() != nullptr) {
+        assert(p->src_.load() == this);
         uninstall_backup(p);
       }
 
@@ -444,21 +458,26 @@ struct big_atomic {
     if (p.get_ptr() != nullptr) {
       announce(p);
       p->src_.store(nullptr);
-      while (p->pending_delayed_operation.load() == true) { }
+      while (p->pending_delayed_operation.load() == true) {}
     }
-    if (refcount.load() > 0) { std::cerr << "Waiting on refcount" << std::endl; }
-    while (refcount.load() > 0) { }
+    while (refcount.load() > 0) {}
   }
 
- private:
+private:
   marked_node_ptr_type make_node(const T& desired) noexcept {
     auto new_node = node_manager().get_free_node();
+    assert(new_node->src_.load() == nullptr);
+    assert(new_node->owns_refcount.load() == false);
+    assert(new_node->pending_delayed_operation.load() == false);
     new_node->value = desired;
     new_node->src_.store(this, std::memory_order_relaxed);
     return marked_node_ptr_type::create_ptr(new_node);
   }
 
-  static void free_node(marked_node_ptr_type ptr) noexcept { node_manager().free_node(ptr.get_ptr()); }
+  static void free_node(marked_node_ptr_type ptr) noexcept {
+    ptr->src_.store(nullptr, std::memory_order_relaxed);
+    node_manager().free_node(ptr.get_ptr());
+  }
 
   struct release_guard {
     ~release_guard() { release(); }
@@ -470,7 +489,7 @@ struct big_atomic {
 
   void protect_this() noexcept { node_manager().protect_src(this); }
 
-  void announce(marked_node_ptr_type p) const noexcept { node_manager().announce(p); }
+  void announce(node_type* p) const noexcept { node_manager().announce(p); }
 
   // Requires protect_this() has already been called by the caller
   PARLAY_INLINE T load_indirect(marked_node_ptr_type& p) noexcept {
@@ -499,15 +518,17 @@ struct big_atomic {
 
   void uninstall_backup(marked_node_ptr_type p) noexcept {
     assert(p.get_ptr() != nullptr);
+    assert(p->src_.load() == this);
+    assert(p->src_.load()->backup_value.load() != p);
+    assert(p->owns_refcount.load() == false);
     announce(p);
     p->src_.store(nullptr);
     if (p->pending_delayed_operation.load() == true) {
-      assert(p->owns_refcount.load() == false);
       refcount.fetch_add(1);
       p->owns_refcount.store(true);
     }
-    if (p->pending_delayed_operation.load() == false && p->owns_refcount.load(std::memory_order_relaxed) == true &&
-        p->owns_refcount.exchange(false) == true) {
+    if (p->pending_delayed_operation.load() == false &&
+        p->owns_refcount.load(std::memory_order_relaxed) == true && p->owns_refcount.exchange(false) == true) {
       refcount.fetch_sub(1);
     }
   }
