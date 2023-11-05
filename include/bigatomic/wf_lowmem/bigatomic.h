@@ -1,6 +1,6 @@
 // An implementation of big_atomic using SeqLocks and short-lived indirect backup values.
 //
-//  Simple:
+//  Supports:
 //  - Wait-free load
 //  - Wait-free store
 //  - Wait-free CAS (with spurious failures in the presence of stores)

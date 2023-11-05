@@ -1,16 +1,14 @@
 // An implementation of big_atomic using SeqLocks and short-lived indirect backup values.
 //
-//  Simple:
+//  Supports:
 //  - Wait-free load
 //  - Wait-free store
 //  - Wait-free CAS (with spurious failures in the presence of stores)
 //
 // Guaranteed at most O(P^2) extra space, and no heap allocations after warmup.
 //
-// Note: This version currently has an unfortunate extra requirement:  Any memory that is used for a big_atomic
-// should not be reclaimed and re-used, because a slow thread might try to write to a big_atomic after it gets
-// freed and possibly re-used.  Fixing this would be good, but probably requires making the destructor of
-// big_atomic blocking to avoid this.
+// Note: This version has no memory requirements, but in exchange, its destructor is not lock free. It will
+//       wait on any pending in-flight CAS operation from a delayed cleanup.
 //
 
 #pragma once
