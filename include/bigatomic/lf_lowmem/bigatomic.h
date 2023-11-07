@@ -24,6 +24,7 @@
 
 #include <parlay/portability.h>
 
+#include <common/free_list.h>
 #include <common/marked_ptr.h>
 #include <common/utility.h>
 
@@ -72,29 +73,6 @@ class NodeManager {
     NodeMemorySlab* next_;
   };
 
-  // A basic single-thread private linked list.  The values are required to expose a public next_ field.
-  class IntrusiveFreeList {
-  public:
-    IntrusiveFreeList() : head(nullptr) {}
-
-    void push(node_type* node) noexcept { node->next_ = std::exchange(head, node); }
-    node_type* pop() noexcept {
-      assert(!empty());
-      return std::exchange(head, head->next_);
-    }
-    [[nodiscard]] bool empty() const noexcept { return head == nullptr; }
-
-    template<typename F>
-    void for_each(F&& f) {
-      for (auto current = head; current != nullptr; current = current->next_) {
-        f(current);
-      }
-    }
-
-  private:
-    node_type* head;
-  };
-
   // The slots are linked together to form a linked list so that threads can scan
   // for the set of currently protected pointers.
   //
@@ -108,7 +86,7 @@ class NodeManager {
     std::atomic<AnnouncementSlot*> next{nullptr};
 
     // Private linked lists of free (available) nodes
-    IntrusiveFreeList free_nodes{};
+    IntrusiveFreeList<node_type> free_nodes{};
 
     // Private slab allocated nodes.  Slabs are connected in a linked list
     NodeMemorySlab* my_nodes{nullptr};
