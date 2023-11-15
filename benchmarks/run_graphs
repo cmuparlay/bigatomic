@@ -54,7 +54,7 @@ class hash_list_update(parameters) :
 
 run_all(hash_list_update)
 
-s_all_array = ["_simplock","_seqlock","_wf_indirect","_lf_lowmem","_wf_daniel"]
+s_all_array = ["_std","_simplock","_seqlock","_wf_indirect","_lf_lowmem","_wf_daniel"]
 
 class hash_array_threads(parameters) :
     file_suffix = "graphs"
