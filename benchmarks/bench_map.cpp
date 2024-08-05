@@ -2,6 +2,7 @@
 #include <iostream>
 #include <chrono>
 #include <tuple>
+#include <array>
 
 #include <parlay/primitives.h>
 #include <parlay/io.h>
@@ -10,13 +11,14 @@
 #include "zipfian.h"
 #include "parse_command_line.h"
 
-#ifdef BIG_VALUE
-using V = __int128;
-#else
-using V = uint64_t;
+#ifndef NUM_WORDS
+#define NUM_WORDS 3
 #endif
 
-using K = uint64_t;
+constexpr int num_value_words = NUM_WORDS * 2 - 1;
+
+using V = std::array<uint32_t,num_value_words>;
+using K = uint32_t;
 
 using namespace parlay;
 
@@ -98,6 +100,11 @@ std::tuple<double, double> test_loop(
   parlay::sequence<double> insert_times;
   parlay::sequence<double> bench_times;
 
+  V default_value;
+  for (int i = 0; i < num_value_words; i++) {
+    default_value[i] = 123;
+  }
+
   for (int i = 0; i < rounds + warmup; i++) {
     {
       map_type map = grow ? map_type(1) : map_type(n);
@@ -115,7 +122,7 @@ std::tuple<double, double> test_loop(
             long s = i * block_size;
             long e = std::min(s + block_size, n);
             for (int j = s; j < e; j++)
-              map.insert(HANDLE a[j], 123);
+              map.insert(HANDLE a[j], default_value);
           },
           1, true);
 #else
@@ -123,7 +130,7 @@ std::tuple<double, double> test_loop(
           0, n,
           [&](size_t i) {
             // if (i%100 == 0) std::cout << i << std::endl;
-            map.insert(a[i], 123);
+            map.insert(a[i], default_value);
           },
           1000);
 #endif
@@ -192,11 +199,11 @@ std::tuple<double, double> test_loop(
                 if (duration.count() * 1000000 < latency_cutoff) latency_count++;
 #else
                 auto foo = map.find(HANDLE b[j]);
-                if (foo.has_value()) query_success_count += (*foo > 0);
+                if (foo.has_value()) query_success_count += ((*foo) == default_value);
               // query_success_count += map.find(HANDLE b[j]).has_value();
 #endif
               } else if (op_types[k] == Insert) {
-                if (map.insert(HANDLE b[j], 123)) {
+                if (map.insert(HANDLE b[j], default_value)) {
                   added++;
                   update_success_count++;
                 }

@@ -4,6 +4,7 @@
 
 #include <cassert>
 #include <cstddef>
+#include <sys/mman.h>
 
 #include <algorithm>
 #include <atomic>
@@ -73,12 +74,13 @@ struct pool_allocator {
 
     // Alloc size must be a multiple of the alignment
     // Round up to the next multiple.
-    if (alloc_size % max_alignment != 0) {
-      alloc_size += (max_alignment - (alloc_size % max_alignment));
+    size_t max_alignment_ = 1l << 21;
+    if (alloc_size % max_alignment_ != 0) {
+      alloc_size += (max_alignment_ - (alloc_size % max_alignment_));
     }
-
-    void* a = ::operator new(alloc_size, std::align_val_t{max_alignment});
-
+    void* a = ::operator new(alloc_size, std::align_val_t{max_alignment_});
+    madvise(a, alloc_size, MADV_HUGEPAGE);
+        
     large_allocated += n;
     return a;
   }

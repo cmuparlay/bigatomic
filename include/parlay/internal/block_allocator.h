@@ -14,6 +14,7 @@
 #ifndef PARLAY_INTERNAL_BLOCK_ALLOCATOR_H_
 #define PARLAY_INTERNAL_BLOCK_ALLOCATOR_H_
 
+#include <sys/mman.h>
 #include <cassert>
 #include <cstddef>
 
@@ -39,7 +40,7 @@ namespace internal {
 struct block_allocator {
  private:
 
-  static inline constexpr size_t default_list_bytes = (1 << 18) - 64;  // in bytes
+  static inline constexpr size_t default_list_bytes = (1 << 21) - 64;  // in bytes
   static inline constexpr size_t min_alignment = 128;  // for cache line padding
 
   struct block {
@@ -98,7 +99,11 @@ struct block_allocator {
   }
 
   auto allocate_blocks(size_t num_blocks) -> std::byte* {
-    auto buffer = static_cast<std::byte*>(::operator new(num_blocks * block_size, block_align));
+    size_t allignment = 1ul << 21;
+    //auto buffer = static_cast<std::byte*>(::operator new(num_blocks * block_size, block_align));
+    long total_bytes = num_blocks * block_size;
+    auto buffer = static_cast<std::byte*>(::operator new(total_bytes, std::align_val_t{allignment}));
+    madvise(buffer, num_blocks * block_size, MADV_HUGEPAGE);
     assert(buffer != nullptr);
 
     blocks_allocated.fetch_add(num_blocks);

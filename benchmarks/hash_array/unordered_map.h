@@ -19,6 +19,7 @@ struct unordered_map {
     bool flag{false};
     V value{0};
     Voption(bool flag, const V& value) : flag(flag), value(value) {}
+    Voption(bool flag) : flag(flag) {}
     Voption() = default;
     bool operator==(const Voption& o) const { return flag == o.flag && value == o.value; };
   };
@@ -29,7 +30,7 @@ struct unordered_map {
 
   parlay::sequence<entry> values;
 
-  explicit unordered_map(std::size_t n) : values(parlay::sequence<entry>(2 * n)) {}
+  explicit unordered_map(std::size_t n) : values(parlay::sequence<entry>(2 * n)) { }
 
   std::optional<V> find(const K& k) {
     Voption x = values[k].v.load();
@@ -54,7 +55,7 @@ struct unordered_map {
       Voption old_v = values[k].v.load();
       if (!old_v.flag)
         return false;
-      else if (values[k].v.cas(old_v, Voption(false, 0)))
+      else if (values[k].v.cas(old_v, Voption(false)))
         return true;
     }
   }
