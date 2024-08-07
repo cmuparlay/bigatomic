@@ -6,6 +6,15 @@ import sys
 sys.path.insert(1, '.')
 from runtests import *
 
+default_processors = maxcpus
+processor_range = [16, 32, 64, 96, 128, 256, 384]
+
+default_size = 10000000
+sizes = [1000, 10000, 100000, 1000000, 10000000, 100000000]
+
+operation_mix = [[0, 0, 0, 0], [5, 0, 0, 0],[10, 0, 0, 0],[20, 0, 0, 0],[50, 0, 0, 0],[100, 0, 0, 0]]
+zipfians_all = [0,.5,.75,.9,.99]
+
 compile_clear("graphs")
 
 s_all_array = ["_std","_simplock","_seqlock","_wf_indirect","_lf_lowmem","_wf_daniel","_wf_hazard"]
@@ -13,10 +22,10 @@ s_all_array = ["_std","_simplock","_seqlock","_wf_indirect","_lf_lowmem","_wf_da
 class hash_array_updates(parameters) :
     file_suffix = "graphs"
     trees = ["bench_hash_array_4"]
-    tree_sizes = [10000000]
+    tree_sizes = [default_size]
     zipfians = [0]
-    mix_percents = [[0, 0, 0, 0], [5, 0, 0, 0],[10, 0, 0, 0],[20, 0, 0, 0],[50, 0, 0, 0],[100, 0, 0, 0]]
-    processors = [128]
+    mix_percents = operation_mix
+    processors = [default_processors]
     suffixes_all = s_all_array
 
 run_all(hash_array_updates)
@@ -24,10 +33,10 @@ run_all(hash_array_updates)
 class hash_array_threads(parameters) :
     file_suffix = "graphs"
     trees = ["bench_hash_array_4"]
-    tree_sizes = [10000000]
+    tree_sizes = [default_size]
     zipfians = [0]
     mix_percents = [[50, 0, 0, 0]]
-    processors = [16, 32, 64, 128, 256, 384]
+    processors = processor_range
     suffixes_all = s_all_array
 
 run_all(hash_array_threads)
@@ -35,10 +44,10 @@ run_all(hash_array_threads)
 class hash_array_threads(parameters) :
     file_suffix = "graphs"
     trees = ["bench_hash_array_4"]
-    tree_sizes = [10000000]
+    tree_sizes = [default_size]
     zipfians = [.99]
     mix_percents = [[5, 0, 0, 0]]
-    processors = [16, 32, 64, 128, 256, 384]
+    processors = processor_range
     suffixes_all = s_all_array
 
 run_all(hash_array_threads)
@@ -46,10 +55,10 @@ run_all(hash_array_threads)
 class hash_array_sizes(parameters) :
     file_suffix = "graphs"
     trees = ["bench_hash_array_4"]
-    tree_sizes = [1000, 10000, 100000, 1000000, 10000000, 100000000]
+    tree_sizes = sizes
     zipfians = [0]
     mix_percents = [[5, 0, 0, 0]]
-    processors = [128]
+    processors = [default_processors]
     suffixes_all = s_all_array
 
 run_all(hash_array_sizes)
@@ -57,10 +66,10 @@ run_all(hash_array_sizes)
 class hash_array_zipfians(parameters) :
     file_suffix = "graphs"
     trees = ["bench_hash_array_4"]
-    tree_sizes = [10000000]
-    zipfians = [0,.5,.75,.9,.99]
+    tree_sizes = [default_size]
+    zipfians = zipfians_all
     mix_percents = [[5, 0, 0, 0]]
-    processors = [128]
+    processors = [default_processors]
     suffixes_all = s_all_array
 
 run_all(hash_array_zipfians)
@@ -72,7 +81,7 @@ for num_words in [1, 2, 4, 8, 16] :
         tree_sizes = [100000, 10000000]
         zipfians = [0, .99]
         mix_percents = [[5, 0, 0, 0], [50, 0, 0, 0]]
-        processors = [128]
+        processors = [default_processors]
         suffixes_all = s_all_array
     run_all(hash_array_words)
 
@@ -81,10 +90,21 @@ s_all_list = ["_simplock","_seqlock","_wf_indirect","_lf_lowmem","_wf_daniel","_
 class hash_list_threads(parameters) :
     file_suffix = "graphs"
     trees = ["bench_hash_list"]
-    tree_sizes = [10000000]
+    tree_sizes = [default_size]
     zipfians = [0]
+    mix_percents = [[50, 0, 0, 0]]
+    processors = processor_range
+    suffixes_all = s_all_list
+
+run_all(hash_list_threads)
+
+class hash_list_threads(parameters) :
+    file_suffix = "graphs"
+    trees = ["bench_hash_list"]
+    tree_sizes = [default_size]
+    zipfians = [.99]
     mix_percents = [[5, 0, 0, 0]]
-    processors = [16, 32, 64, 128, 256, 384]
+    processors = processor_range
     suffixes_all = s_all_list
 
 run_all(hash_list_threads)
@@ -92,10 +112,10 @@ run_all(hash_list_threads)
 class hash_list_sizes(parameters) :
     file_suffix = "graphs"
     trees = ["bench_hash_list"]
-    tree_sizes = [1000, 10000, 100000, 1000000, 10000000, 100000000]
+    tree_sizes = sizes
     zipfians = [0]
     mix_percents = [[5, 0, 0, 0]]
-    processors = [128]
+    processors = [default_processors]
     suffixes_all = s_all_list
 
 run_all(hash_list_sizes)
@@ -103,10 +123,10 @@ run_all(hash_list_sizes)
 class hash_list_zipfians(parameters) :
     file_suffix = "graphs"
     trees = ["bench_hash_list"]
-    tree_sizes = [10000000]
-    zipfians = [0,.5,.75,.9,.99]
+    tree_sizes = [default_size]
+    zipfians = zipfians_all
     mix_percents = [[5, 0, 0, 0]]
-    processors = [128]
+    processors = [default_processors]
     suffixes_all = s_all_list
 
 run_all(hash_list_zipfians)
@@ -114,10 +134,10 @@ run_all(hash_list_zipfians)
 class hash_list_updates(parameters) :
     file_suffix = "graphs"
     trees = ["bench_hash_list"]
-    tree_sizes = [10000000]
+    tree_sizes = [default_size]
     zipfians = [0]
-    mix_percents = [[0, 0, 0, 0], [5, 0, 0, 0],[10, 0, 0, 0],[20, 0, 0, 0],[50, 0, 0, 0],[100, 0, 0, 0]]
-    processors = [128]
+    mix_percents = operation_mix
+    processors = [default_processors]
     suffixes_all = s_all_list
 
 run_all(hash_list_updates)
