@@ -42,7 +42,7 @@ struct unordered_map {
       return &table[idx].v;
     }
     explicit Table(size_t n) {
-      unsigned bits = 1 + parlay::log2_up(n);
+      unsigned bits = parlay::log2_up(n);
       size = 1ul << bits;
       table = parlay::sequence<bucket>(size);
     }

@@ -5,7 +5,8 @@ set(BENCHMARK_TABLES "hash_array" "hash_list")
 set(BENCHMARK_SIZES "1" "2" "4" "8" "16")
 
 if(BENCHMARK_HTM)
-    list(APPEND BENCHMARK_BIG_ATOMICS "htm")
+  list(APPEND BENCHMARK_BIG_ATOMICS "htm")
+  target_compile_options(bigatomic INTERFACE -mrtm)
 endif()
 
 foreach(ATOMIC_NAME ${BENCHMARK_BIG_ATOMICS})
