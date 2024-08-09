@@ -89,7 +89,7 @@ for num_words in [1, 2, 4, 8, 16] :
         suffixes_all = s_all_array
     run_all(hash_array_words)
 
-s_all_list = ["_simplock","_seqlock","_wf_indirect","_lf_lowmem","_wf_daniel","_wf_hazard"]
+s_all_list = ["","_simplock","_seqlock","_wf_indirect","_lf_lowmem","_wf_daniel","_wf_hazard"]
 
 class hash_list_threads(parameters) :
     file_suffix = "graphs"

@@ -11,16 +11,20 @@
 #include "zipfian.h"
 #include "parse_command_line.h"
 
-#ifndef NUM_WORDS
-#define NUM_WORDS 3
-#endif
-
+#ifdef NUM_WORDS
 constexpr int num_value_words = NUM_WORDS * 2 - 1;
 
 using V = std::array<uint32_t,num_value_words>;
 using K = uint32_t;
 
+#else
+constexpr int num_value_words = 1;
+using V = std::array<uint64_t,num_value_words>;
+using K = uint64_t;
+
+#endif
 using namespace parlay;
+
 
 #include "unordered_map.h"
 
