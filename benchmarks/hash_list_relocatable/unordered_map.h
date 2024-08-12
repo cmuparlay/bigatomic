@@ -6,6 +6,7 @@
 #include <optional>
 #include <tuple>
 #include <array>
+#include <type_traits>
 
 #include <parlay/primitives.h>
 #include <parlay/sequence.h>
@@ -30,9 +31,14 @@ struct unordered_map {
   }
 
   // translate back to orginal type and retire (delayed)
+  // Note this does not free memory, but just calls the destructors
   static void retire_kv(const K_& k, const V_& v) { // reloc
-    epoch::get_default_retire_pool<K>().Retire((K*) (&k));
-    epoch::get_default_retire_pool<V>().Retire((V*) (&v));
+    if constexpr (!std::is_trivially_destructible_v<K>) {
+      epoch::get_default_retire_pool<K>().Retire((K*) (&k));
+    }
+    if constexpr (!std::is_trivially_destructible_v<V>) {
+      epoch::get_default_retire_pool<V>().Retire((V*) (&v));
+    }
   }
 
   // translate to internal type with a copy

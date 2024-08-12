@@ -75,6 +75,8 @@
 #define USE_STEPPING 1
 //#define USE_UNDO 1
 
+#define USE_PARLAY_ALLOC
+
 #ifdef USE_PARLAY_ALLOC
 #include "parlay/alloc.h"
 #endif
