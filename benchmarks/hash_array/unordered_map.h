@@ -16,7 +16,7 @@ template<typename K, typename V, class Hash = std::hash<K>, class KeyEqual = std
 struct unordered_map {
 
   struct Voption {
-    bool flag{false};
+    uint32_t flag{false};
     V value{0};
     Voption(bool flag, const V& value) : flag(flag), value(value) {}
     Voption(bool flag) : flag(flag) {}
@@ -34,30 +34,20 @@ struct unordered_map {
 
   std::optional<V> find(const K& k) {
     Voption x = values[k].v.load();
-    if (x.flag)
-      return x.value;
-    else
-      return {};
+    if (x.flag) return x.value;
+    else return {};
   }
 
   bool insert(const K& k, const V& v) {
-    while (true) {
-      Voption old_v = values[k].v.load();
-      if (old_v.flag)
-        return false;
-      else if (values[k].v.cas(old_v, Voption(true, v)))
-        return true;
-    }
+    Voption old_v = values[k].v.load();
+    if (old_v.flag) return false;
+    else return values[k].v.cas(old_v, Voption(true, v));
   }
 
   bool remove(const K& k) {
-    while (true) {
-      Voption old_v = values[k].v.load();
-      if (!old_v.flag)
-        return false;
-      else if (values[k].v.cas(old_v, Voption(false)))
-        return true;
-    }
+    Voption old_v = values[k].v.load();
+    if (!old_v.flag) return false;
+    else return values[k].v.cas(old_v, Voption(false));
   }
 
   long size() {
