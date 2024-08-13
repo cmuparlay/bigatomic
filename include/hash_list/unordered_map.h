@@ -37,7 +37,7 @@ namespace parlay {
 	return &table[idx];
       }
       Table(size_t n) {
-	int bits = 1 + parlay::log2_up(n);
+	int bits = parlay::log2_up(n);
 	size = 1ul << bits;
 	table = parlay::sequence<bucket>(size);
       }

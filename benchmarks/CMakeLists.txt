@@ -26,7 +26,7 @@ foreach(ATOMIC_NAME ${BENCHMARK_BIG_ATOMICS})
 endforeach()
 
 foreach(ATOMIC_NAME ${BENCHMARK_BIG_ATOMICS})
-  foreach(TABLE_NAME hash_list_relocatable)
+  foreach(TABLE_NAME hash_list)
     set(BENCH_NAME "bench_${TABLE_NAME}_${ATOMIC_NAME}")
     add_executable(${BENCH_NAME} ${BENCHMARK_SOURCES})
     target_link_libraries(${BENCH_NAME} PRIVATE atomic bigatomic)
