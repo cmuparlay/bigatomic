@@ -16,7 +16,9 @@ sizes = [1000, 10000, 100000, 1000000, 10000000, 100000000]
 operation_mix = [[0, 0, 0, 0], [5, 0, 0, 0],[10, 0, 0, 0],[20, 0, 0, 0],[50, 0, 0, 0],[100, 0, 0, 0]]
 zipfians_all = [0,.5,.75,.9,.99]
 
-compile_clear("graphs")
+name = "graphs"
+
+compile_clear(name)
 
 s_all_array = ["_std","_simplock","_seqlock","_wf_indirect","_lf_lowmem","_wf_daniel","_wf_hazard"]
 
@@ -24,7 +26,7 @@ if (maxcpus == 144) :
     s_all_array = ["_htm"] + s_all_array
 
 class hash_array_updates(parameters) :
-    file_suffix = "graphs"
+    file_suffix = name
     trees = ["bench_hash_array_4"]
     tree_sizes = [default_size]
     zipfians = [0]
@@ -35,7 +37,7 @@ class hash_array_updates(parameters) :
 run_all(hash_array_updates)
 
 class hash_array_threads(parameters) :
-    file_suffix = "graphs"
+    file_suffix = name
     trees = ["bench_hash_array_4"]
     tree_sizes = [default_size]
     zipfians = [0]
@@ -46,7 +48,7 @@ class hash_array_threads(parameters) :
 run_all(hash_array_threads)
 
 class hash_array_threads(parameters) :
-    file_suffix = "graphs"
+    file_suffix = name
     trees = ["bench_hash_array_4"]
     tree_sizes = [default_size]
     zipfians = [.99]
@@ -57,7 +59,7 @@ class hash_array_threads(parameters) :
 run_all(hash_array_threads)
 
 class hash_array_sizes(parameters) :
-    file_suffix = "graphs"
+    file_suffix = name
     trees = ["bench_hash_array_4"]
     tree_sizes = sizes
     zipfians = [0]
@@ -68,7 +70,7 @@ class hash_array_sizes(parameters) :
 run_all(hash_array_sizes)
 
 class hash_array_zipfians(parameters) :
-    file_suffix = "graphs"
+    file_suffix = name
     trees = ["bench_hash_array_4"]
     tree_sizes = [default_size]
     zipfians = zipfians_all
@@ -80,7 +82,7 @@ run_all(hash_array_zipfians)
 
 for num_words in [1, 2, 4, 8, 16] :
     class hash_array_words(parameters) :
-        file_suffix = "graphs"
+        file_suffix = name
         trees = ["bench_hash_array_" + str(num_words)]
         tree_sizes = [100000, 10000000]
         zipfians = [0, .99]
@@ -92,7 +94,7 @@ for num_words in [1, 2, 4, 8, 16] :
 s_all_list = ["","_simplock","_seqlock","_wf_indirect","_lf_lowmem","_wf_daniel","_wf_hazard"]
 
 class hash_list_threads(parameters) :
-    file_suffix = "graphs"
+    file_suffix = name
     trees = ["bench_hash_list"]
     tree_sizes = [default_size]
     zipfians = [0]
@@ -103,7 +105,7 @@ class hash_list_threads(parameters) :
 run_all(hash_list_threads)
 
 class hash_list_threads(parameters) :
-    file_suffix = "graphs"
+    file_suffix = name
     trees = ["bench_hash_list"]
     tree_sizes = [default_size]
     zipfians = [.99]
@@ -114,7 +116,7 @@ class hash_list_threads(parameters) :
 run_all(hash_list_threads)
 
 class hash_list_sizes(parameters) :
-    file_suffix = "graphs"
+    file_suffix = name
     trees = ["bench_hash_list"]
     tree_sizes = sizes
     zipfians = [0]
@@ -125,7 +127,7 @@ class hash_list_sizes(parameters) :
 run_all(hash_list_sizes)
 
 class hash_list_zipfians(parameters) :
-    file_suffix = "graphs"
+    file_suffix = name
     trees = ["bench_hash_list"]
     tree_sizes = [default_size]
     zipfians = zipfians_all
@@ -136,7 +138,7 @@ class hash_list_zipfians(parameters) :
 run_all(hash_list_zipfians)
 
 class hash_list_updates(parameters) :
-    file_suffix = "graphs"
+    file_suffix = name
     trees = ["bench_hash_list"]
     tree_sizes = [default_size]
     zipfians = [0]
