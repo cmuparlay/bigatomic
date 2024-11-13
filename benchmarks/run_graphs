@@ -6,8 +6,9 @@ import sys
 sys.path.insert(1, '.')
 from runtests import *
 
-default_processors = maxcpus
-processor_nums = [16, 32, 64, 96, 128, 256, 384]
+default_rounds = 3
+default_processors = [maxcpus, 384]
+processor_nums = [1, 2, 4, 8, 16, 32, 64, 96, 128, 256, 384]
 processor_range = sorted(list(set(processor_nums) | set([maxcpus])))
 
 default_size = 10000000
@@ -26,17 +27,19 @@ if (maxcpus == 144) :
     s_all_array = ["_htm"] + s_all_array
 
 class hash_array_updates(parameters) :
+    rounds = default_rounds
     file_suffix = name
     trees = ["bench_hash_array_4"]
     tree_sizes = [default_size]
     zipfians = [0]
     mix_percents = operation_mix
-    processors = [default_processors]
+    processors = default_processors
     suffixes_all = s_all_array
 
 run_all(hash_array_updates)
 
 class hash_array_threads(parameters) :
+    rounds = default_rounds
     file_suffix = name
     trees = ["bench_hash_array_4"]
     tree_sizes = [default_size]
@@ -48,6 +51,7 @@ class hash_array_threads(parameters) :
 run_all(hash_array_threads)
 
 class hash_array_threads(parameters) :
+    rounds = default_rounds
     file_suffix = name
     trees = ["bench_hash_array_4"]
     tree_sizes = [default_size]
@@ -59,41 +63,45 @@ class hash_array_threads(parameters) :
 run_all(hash_array_threads)
 
 class hash_array_sizes(parameters) :
+    rounds = default_rounds
     file_suffix = name
     trees = ["bench_hash_array_4"]
     tree_sizes = sizes
     zipfians = [0]
     mix_percents = [[5, 0, 0, 0]]
-    processors = [default_processors]
+    processors = default_processors
     suffixes_all = s_all_array
 
 run_all(hash_array_sizes)
 
 class hash_array_zipfians(parameters) :
+    rounds = default_rounds
     file_suffix = name
     trees = ["bench_hash_array_4"]
     tree_sizes = [default_size]
     zipfians = zipfians_all
     mix_percents = [[5, 0, 0, 0]]
-    processors = [default_processors]
+    processors = default_processors
     suffixes_all = s_all_array
 
 run_all(hash_array_zipfians)
 
 for num_words in [1, 2, 4, 8, 16] :
     class hash_array_words(parameters) :
+        rounds = default_rounds
         file_suffix = name
         trees = ["bench_hash_array_" + str(num_words)]
         tree_sizes = [100000, 10000000]
         zipfians = [0, .99]
         mix_percents = [[5, 0, 0, 0], [50, 0, 0, 0]]
-        processors = [default_processors]
+        processors = default_processors
         suffixes_all = s_all_array
     run_all(hash_array_words)
 
 s_all_list = ["","_simplock","_seqlock","_wf_indirect","_lf_lowmem","_wf_daniel","_wf_hazard"]
 
 class hash_list_threads(parameters) :
+    rounds = default_rounds
     file_suffix = name
     trees = ["bench_hash_list"]
     tree_sizes = [default_size]
@@ -105,6 +113,7 @@ class hash_list_threads(parameters) :
 run_all(hash_list_threads)
 
 class hash_list_threads(parameters) :
+    rounds = default_rounds
     file_suffix = name
     trees = ["bench_hash_list"]
     tree_sizes = [default_size]
@@ -116,34 +125,37 @@ class hash_list_threads(parameters) :
 run_all(hash_list_threads)
 
 class hash_list_sizes(parameters) :
+    rounds = default_rounds
     file_suffix = name
     trees = ["bench_hash_list"]
     tree_sizes = sizes
     zipfians = [0]
     mix_percents = [[5, 0, 0, 0]]
-    processors = [default_processors]
+    processors = default_processors
     suffixes_all = s_all_list
 
 run_all(hash_list_sizes)
 
 class hash_list_zipfians(parameters) :
+    rounds = default_rounds
     file_suffix = name
     trees = ["bench_hash_list"]
     tree_sizes = [default_size]
     zipfians = zipfians_all
     mix_percents = [[5, 0, 0, 0]]
-    processors = [default_processors]
+    processors = default_processors
     suffixes_all = s_all_list
 
 run_all(hash_list_zipfians)
 
 class hash_list_updates(parameters) :
+    rounds = default_rounds
     file_suffix = name
     trees = ["bench_hash_list"]
     tree_sizes = [default_size]
     zipfians = [0]
     mix_percents = operation_mix
-    processors = [default_processors]
+    processors = default_processors
     suffixes_all = s_all_list
 
 run_all(hash_list_updates)
