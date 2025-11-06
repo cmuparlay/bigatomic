@@ -134,7 +134,9 @@ struct big_atomic {
     if (!Equal{}(current, expected)) return false;
     if (Equal{}(expected, desired)) return true;
 
-    auto new_p = mark_ptr(allocator::create(desired));
+    auto xx = allocator::create(desired);
+    hazptr.protect_direct(xx);
+    auto new_p = mark_ptr(xx);
     auto old_p = p;
 
     if ((indirect_value.load(std::memory_order_relaxed) == p && indirect_value.compare_exchange_strong(p, new_p))
@@ -142,10 +144,12 @@ struct big_atomic {
 
       retire(unmark_ptr(p));
       try_seqlock_and_store(ver, desired, new_p);
+      hazptr.unprotect_direct(xx);
       return true;
     }
     else {
       allocator::destroy(unmark_ptr(new_p));
+      hazptr.unprotect_direct(xx);
       return false;
     }
   }
@@ -170,6 +174,12 @@ struct big_atomic {
   struct hazptr_holder {
     indirect_holder* protect(const std::atomic<indirect_holder*>& src) const {
       return hazptr_instance().protect(src);
+    }
+    void protect_direct(indirect_holder* src) const {
+      hazptr_instance().protect_direct(src);
+    }
+    void unprotect_direct(indirect_holder* src) const {
+      hazptr_instance().unprotect_direct(src);
     }
   };
 

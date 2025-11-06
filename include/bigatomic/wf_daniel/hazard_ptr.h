@@ -118,6 +118,7 @@ class HazardPointers {
     // The *actual* "Hazard Pointer" that protects the object that it points to.
     // Other threads scan for the set of all such pointers before they clean up.
     std::atomic<garbage_type*> protected_ptr{nullptr};
+    std::atomic<garbage_type*> protected_ptr_2{nullptr};
 
     // Link together all existing slots into a big global linked list
     std::atomic<HazardSlot*> next{nullptr};
@@ -199,6 +200,14 @@ class HazardPointers {
     }
   }
 
+  void protect_direct(garbage_type* src) {
+    local_slot.my_slot->protected_ptr_2.exchange(src, std::memory_order_seq_cst);
+  }
+
+  void unprotect_direct(garbage_type* src) {
+    local_slot.my_slot->protected_ptr_2.exchange(nullptr, std::memory_order_seq_cst);
+  }
+      
   // Protect the object pointed to by the pointer currently stored at src.
   //
   // The second argument allows the protected pointer to be deduced from
@@ -267,6 +276,10 @@ class HazardPointers {
       auto p = slot.protected_ptr.load();
       if (p) {
         f(p);
+      }
+      auto p2 = slot.protected_ptr_2.load();
+      if (p2) {
+        f(p2);
       }
     });
   }
