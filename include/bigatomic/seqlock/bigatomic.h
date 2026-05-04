@@ -98,6 +98,47 @@ struct big_atomic {
       delay = std::min(2 * delay, 1000);
     }
   }
+
+  using tag = vtype;
+
+  void store_sequential(const V& v) { val = v; }
+
+  std::pair<V,tag> ll_speculative() {
+    vtype ver = version.load(std::memory_order_acquire);
+    V v = val;
+    std::atomic_thread_fence(std::memory_order_acquire);
+    return std::pair(v, ver);
+  }
+
+  std::pair<V,tag> ll() {
+    while (true) {
+      int delay = 100;
+      vtype ver = version.load(std::memory_order_acquire);
+      V v = val;
+      std::atomic_thread_fence(std::memory_order_acquire);
+      if ((ver & 1) == 0 && version.load(std::memory_order_relaxed) == ver)
+	return std::pair(v,ver);
+      for (volatile int i = 0; i < delay; i++);
+      delay = std::min(2 * delay, 1000);
+    }
+  }
+
+  bool lv(tag tg) {
+    return version.load() == tg;
+  }
+
+  bool sc(tag expected_tag, const V& v) {
+    vtype ver = version.load();
+    if (ver != expected_tag) return false;
+    if (ver == expected_tag &&
+        version.compare_exchange_strong(ver, ver + 1, std::memory_order_relaxed)) {
+      std::atomic_thread_fence(std::memory_order_release);
+      val = v;
+      version.store(ver + 2, std::memory_order_release);
+      return true;
+    } else return false;
+  }
+
 };
 
 }  // namespace parlay

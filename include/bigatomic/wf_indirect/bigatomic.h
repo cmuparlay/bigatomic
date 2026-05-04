@@ -58,6 +58,38 @@ struct big_atomic {
       return false;
     });
   }
+
+  using tag = V*;
+
+  void store_sequential(const V& v) {
+    V* old_v = ptr.load();
+    if (old_v != nullptr) epoch::Retire(old_v);
+    ptr = epoch::New<V>(v); }
+
+  std::pair<V,tag> ll() {
+    return epoch::with_epoch([&] {
+      V* old_v = ptr.load();
+      return std::pair<V,tag>(*old_v, old_v); });
+  }
+
+  bool lv(tag tg) {
+    return ptr.load() == tg;
+  }
+
+  bool sc(tag expected_tag, const V& v) {
+    return epoch::with_epoch([&] {
+      V* old_v = ptr.load();
+      if (old_v != expected_tag) return false;
+      V* new_v = epoch::New<V>(v);
+      if (ptr.compare_exchange_strong(old_v, new_v)) {
+        epoch::Retire(old_v);
+        return true;
+      }
+      epoch::Delete(new_v);
+      return false;
+    });
+  }
+
 };
 
 }  // namespace parlay

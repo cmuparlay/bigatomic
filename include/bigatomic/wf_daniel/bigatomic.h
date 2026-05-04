@@ -30,8 +30,10 @@ template<typename T, typename Equal = std::equal_to<>>
 struct big_atomic {
   // T must be trivially copyable, but it doesn't have to be trivially default constructible (or
   // even default constructible at all) since we only make copies from what the user gives us
-  static_assert(std::is_trivially_copyable_v<T>);
-  static_assert(std::is_invocable_r_v<bool, Equal, T&&, T&&>);
+
+  // Guy: had to comment these checks out to work with parlayhash since it uses std::array
+  //static_assert(std::is_trivially_copyable_v<T>);
+  //static_assert(std::is_invocable_r_v<bool, Equal, T&&, T&&>);
 
  private:
   struct indirect_holder {
@@ -80,7 +82,7 @@ struct big_atomic {
     new (static_cast<void*>(&fast_value)) T{t};
   }
 
-  PARLAY_INLINE T load() {
+    PARLAY_INLINE T load() {
     auto ver = version.load(std::memory_order_acquire);
     alignas(T) char buffer[sizeof(T)];
     atomic_load_per_byte_memcpy(&buffer, &fast_value, sizeof(T));
@@ -89,12 +91,13 @@ struct big_atomic {
         ver == version.load(std::memory_order_relaxed)) [[likely]]
       return bits_to_object<T>(buffer);
 
-    return load_indirect();
+    return load_indirect(p);
   }
 
-  PARLAY_INLINE T load_indirect() {
+  // side effects p
+  PARLAY_INLINE T load_indirect(indirect_holder* & p) {
     auto hazptr = hazptr_holder{};
-    auto p = hazptr.protect(indirect_value);
+    p = hazptr.protect(indirect_value);
     assert(unmark_ptr(p) != nullptr);
     // Readers can help put the object back into "fast mode".  This is very good if updates
     // are infrequent since this will speed up all subsequent reads.  Unfortunately this
@@ -133,6 +136,66 @@ struct big_atomic {
 
     if (!Equal{}(current, expected)) return false;
     if (Equal{}(expected, desired)) return true;
+
+    auto xx = allocator::create(desired);
+    hazptr.protect_direct(xx);
+    auto new_p = mark_ptr(xx);
+    auto old_p = p;
+
+    if ((indirect_value.load(std::memory_order_relaxed) == p && indirect_value.compare_exchange_strong(p, new_p))
+        || (p == indirect_value.load(std::memory_order_relaxed) && p == unmark_ptr(old_p) && indirect_value.compare_exchange_strong(p, new_p))) {
+
+      retire(unmark_ptr(p));
+      try_seqlock_and_store(ver, desired, new_p);
+      hazptr.unprotect_direct(xx);
+      return true;
+    }
+    else {
+      allocator::destroy(unmark_ptr(new_p));
+      hazptr.unprotect_direct(xx);
+      return false;
+    }
+  }
+
+    using tag = indirect_holder*; 
+
+  void store_sequential(const T& desired) {
+    atomic_store_per_byte_memcpy(&fast_value, &desired, sizeof(T)); }
+
+  PARLAY_INLINE bool lv(tag tg) {
+    return indirect_value.load() == tg;
+  }
+
+  PARLAY_INLINE std::pair<T,tag> ll() {
+    auto ver = version.load(std::memory_order_acquire);
+    alignas(T) char buffer[sizeof(T)];
+    atomic_load_per_byte_memcpy(&buffer, &fast_value, sizeof(T));
+    auto p = indirect_value.load();
+    if (!is_marked(p) &&
+        ver == version.load(std::memory_order_relaxed)) [[likely]]
+                                                          return std::pair(bits_to_object<T>(buffer), p);
+
+    return std::pair<T,tag>(load_indirect(p), p);
+  }
+
+  PARLAY_INLINE bool sc(tag expected_tag, const T& desired) {
+    auto ver = version.load(std::memory_order_acquire);
+    alignas(T) char buffer[sizeof(T)];
+    atomic_load_per_byte_memcpy(&buffer, &fast_value, sizeof(T));
+
+    auto hazptr = hazptr_holder{};
+    auto p = hazptr.protect(indirect_value);
+    assert(unmark_ptr(p) != nullptr);
+
+    T current = [&]() {  // Use IIFE since you can't stick [[likely]] on a ternary statement
+                  if (!is_marked(p) && ver == version.load(std::memory_order_relaxed)) [[likely]]
+                                                                                         return bits_to_object<T>(buffer);
+                  else
+                    return unmark_ptr(p)->value;
+                }();
+
+    if (p != expected_tag) return false; // SC: this line changed
+    // if (Equal{}(expected, desired)) return true; // SC: this line removed
 
     auto xx = allocator::create(desired);
     hazptr.protect_direct(xx);

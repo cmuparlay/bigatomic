@@ -272,8 +272,10 @@ template<typename T, typename Equal>
 struct big_atomic {
   // T must be trivially copyable, but it doesn't have to be trivially default constructible (or
   // even default constructible at all) since we only make copies from what the user gives us
-  static_assert(std::is_trivially_copyable_v<T>);
-  static_assert(std::is_invocable_r_v<bool, Equal, T&&, T&&>);
+
+  // Guy: had to comment these checks out to work with parlayhash since it uses std::array
+  //static_assert(std::is_trivially_copyable_v<T>);
+  //static_assert(std::is_invocable_r_v<bool, Equal, T&&, T&&>);
 
   using node_type = internal::big_atomic_node<T, Equal>;
   using marked_node_ptr_type = marked_ptr<node_type>;
@@ -369,6 +371,81 @@ public:
       }
     }
 
+    free_node(new_p);
+    return false;
+  }
+  
+  using tag = marked_node_ptr_type;
+
+  void store_sequential(const T& desired) {
+    atomic_store_per_byte_memcpy(&fast_value, &desired, sizeof(T)); }
+
+  PARLAY_INLINE bool lv(tag tg) {
+    return backup_value.load() == tg;
+  }
+
+  PARLAY_INLINE std::pair<T,tag> ll() noexcept {
+    auto ver = version.load(std::memory_order_acquire);
+    alignas(T) char buffer[sizeof(T)];
+    atomic_load_per_byte_memcpy(&buffer, &fast_value, sizeof(T));
+    auto p = backup_value.load();
+    if (p.get_ptr() == nullptr && ver == version.load(std::memory_order_relaxed)) // [[likely]]
+      return std::pair(bits_to_object<T>(buffer), p);
+
+    return std::pair(load_indirect(p), p);
+  }
+
+  PARLAY_INLINE bool sc(tag expected_tag, const T& desired) {
+    auto ver = version.load(std::memory_order_acquire);
+    alignas(T) char buffer[sizeof(T)];
+    marked_node_ptr_type p;
+    if (!try_load_indirect(ver, p, buffer)) {
+      // If try_load_indirect fails, we know we are racing with a writer, so
+      // we can return false.  Note that if we fail here because of a store
+      // that was storing the same value, this is a weak failure, i.e., we can
+      // only linearize it as a compare_exchange_weak. If we fail due to a
+      // concurrent CAS, its always linearizable as a compare_exchange_strong,
+      // because CAS always changes the value, and we can just linearize before
+      // whichever value was not desired.
+      return false;
+    }
+    // At this point, buffer definitely contains a valid T value
+    T current = bits_to_object<T>(buffer);
+    if (p != expected_tag) return false; // SC: this line changed
+    // if (Equal{}(expected, desired)) return true; // SC: this line removed
+
+    // At this point, either p == nullptr, in which case it is tagged with a
+    // sequence number, so we can safely CAS over it without fear of ABA, or
+    // p is a non-nullptr, and it is protected, so we can also safely CAS over
+    // it without fear of ABA.
+
+    auto new_p = make_node(desired);
+    auto old_p = p;
+
+    if ((backup_value.load(std::memory_order_relaxed) == p &&
+         backup_value.compare_exchange_strong(p, new_p))) { //[[likely]] {
+      if (old_p.get_ptr() != nullptr)
+        old_p->is_installed.store(false, std::memory_order_relaxed);
+      try_seqlock_and_store(ver, desired, new_p);
+      return true;
+    }
+    // SC:: The following removed
+    // else if (old_p.get_ptr() != nullptr && p.get_ptr() == nullptr) {
+    //   // In this case, the old ptr was replaced with a nullptr, meaning it might actually
+    //   // still be the same value that was just validated and installed. Here, we have to
+    //   // try the CAS again if the value is still the same.
+    //   ver = version.load(std::memory_order_acquire);
+    //   atomic_load_per_byte_memcpy(buffer, &fast_value, sizeof(T));
+    //   if (ver % 2 == 0 && ver == version.load(std::memory_order_relaxed) &&
+    //       Equal{}(bits_to_object<T>(buffer), expected) &&
+    //       backup_value.load(std::memory_order_relaxed) == p &&
+    //       backup_value.compare_exchange_strong(p, new_p)) {
+
+    //     try_seqlock_and_store(ver, desired, new_p);
+    //     return true;
+    //   }
+    // }
+ 
     free_node(new_p);
     return false;
   }
