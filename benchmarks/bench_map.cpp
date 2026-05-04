@@ -25,8 +25,11 @@ using K = uint64_t;
 #endif
 using namespace parlay;
 
-
+#ifdef Ordered
+#include "ordered_map.h"
+#else
 #include "unordered_map.h"
+#endif
 
 // leave undefined if measuring througput since measuring latency will slow down throughput
 // #define Latency 1
@@ -38,6 +41,9 @@ using namespace parlay;
 #define HANDLE
 #endif
 
+#ifdef Ordered
+using map_type = ordered_map<K, V>;
+#else
 struct IntHash {
   std::size_t operator()(K const& k) const noexcept {
     auto x = k * UINT64_C(0xbf58476d1ce4e5b9);  // linear transform
@@ -46,6 +52,7 @@ struct IntHash {
 };
 
 using map_type = unordered_map<K, V, IntHash>;
+#endif
 
 double geometric_mean(const parlay::sequence<double>& vals) {
   double product = 1;
