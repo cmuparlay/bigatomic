@@ -57,6 +57,31 @@ add_executable(${BENCH_NAME} ${BENCHMARK_SOURCES})
 target_link_libraries(${BENCH_NAME} PRIVATE atomic bigatomic)
 target_include_directories(${BENCH_NAME} PRIVATE "${PARLAY_BIGATOMIC_INCLUDE_DIR}/hash_list")
 
+# Setbench is used is for natarajan-mittal trees
+set(SET_BENCH_DIR ${CMAKE_CURRENT_SOURCE_DIR}/setbench/setbench)
+
+set(SET_BENCH "natarajan_ext_bst_lf")
+
+message(${SET_BENCH_DIR})
+
+# A hack to get a list of include directories
+execute_process(COMMAND find ${SET_BENCH_DIR}/common -type d OUTPUT_VARIABLE INCL_STRING)
+
+message("hello: ${INCL_STRING}")
+
+string(REPLACE "\n" ";" INCL_LIST ${INCL_STRING})
+set(DEBRA_OPTIONS -DUSE_TREE_STATS) # tree stats used for size
+
+foreach(bench ${SET_BENCH})
+  add_executable(${bench} ${BENCHMARK_SOURCES})
+  target_link_libraries(${bench} PRIVATE atomic bigatomic)
+  target_compile_definitions(${bench} PRIVATE "Ordered")
+  target_include_directories(${bench} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/setbench")
+  target_include_directories(${bench} PRIVATE ${SET_BENCH_DIR}/ds/${bench})
+  target_include_directories(${bench} PRIVATE ${INCL_LIST})
+  target_compile_options(${bench} PRIVATE -fpermissive ${DEBRA_OPTIONS})
+endforeach()
+
 set(BENCH_FILES "runtests.py" "run_graphs")
 
 function(copy_bench_file NAME)
