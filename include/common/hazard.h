@@ -57,11 +57,9 @@ struct alignas(64) hazard_s {
   std::pair<T*, int> announce(std::atomic<T*>* ptr) {
     size_t id = worker_id();
     while (true) {
-      auto x = ptr->load();
-      auto y = x;
+      auto y = ptr->load();
+      auto x = y;
       announcements[id].hold.exchange((void*)x, std::memory_order_seq_cst);
-      // announcements[id].hold.store((void*) x, std::memory_order_relaxed);
-      // folly::asymmetric_thread_fence_light(std::memory_order_seq_cst);
       if (ptr->load() == y) return std::pair(y, id);
     }
   }
@@ -347,6 +345,12 @@ static auto with_announced(std::atomic<T*>* ptr, Thunk f) {
   auto v = f(p);
   internal::get_hazard().unannounce(id);
   return v;
+}
+
+template<typename T>
+PARLAY_INLINE
+static auto acquire(std::atomic<T*>& ptr) {
+  return internal::get_hazard().announce(&ptr).first;
 }
 
 }  // end namespace hazard

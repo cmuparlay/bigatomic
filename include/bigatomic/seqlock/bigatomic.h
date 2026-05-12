@@ -32,84 +32,12 @@ struct big_atomic {
   big_atomic(const V& v) : version(0), val(v) {}
   big_atomic() : version(0) {}
 
-  V load() {
-    while (true) {
-      vtype ver = version.load(std::memory_order_acquire);
-      V v = val;
-      std::atomic_thread_fence(std::memory_order_acquire);
-      if ((ver & 1) == 0 && version.load(std::memory_order_relaxed) == ver) return v;
-    }
-  }
-
-  void store(const V& v) {
-    vtype ver = version.load();
-    int delay = 100;
-    if (ver & 1) {
-      while (ver == version.load())
-        ;
-      return;
-    }
-    while (true) {
-      if (get_locks().try_lock((long)this, [&] {
-            if (version.load() == ver) {
-              version.store(ver + 1, std::memory_order_relaxed);
-              std::atomic_thread_fence(std::memory_order_release);
-              val = v;
-              version.store(ver + 2, std::memory_order_release);
-            }
-            return true;
-          }))
-        return;
-      if (version.load() > ver + 1) return;
-      for (volatile int i = 0; i < delay; i++)
-        ;
-      delay = std::min(2 * delay, 1000);
-    }
-  }
-
-  bool cas(const V& expected_v, const V& v) {
-    vtype ver = version.load();
-    bool result = true;
-    int delay = 100;
-    if (ver & 1) {
-      while (ver == version.load(std::memory_order_acquire))
-        ;
-      return false;
-    }
-    while (true) {
-      if (get_locks().try_lock((long)this, [&] {
-            V current_v = val;
-            if (version.load(std::memory_order_acquire) != ver || !(current_v == expected_v))
-              result = false;
-            else if (expected_v == v)
-              return true;
-            else {
-              version.store(ver + 1, std::memory_order_relaxed);
-              std::atomic_thread_fence(std::memory_order_release);
-              val = v;
-              version.store(ver + 2, std::memory_order_release);
-            }
-            return true;
-          }))
-        return result;
-      if (version.load() > ver + 1) return false;
-      for (volatile int i = 0; i < delay; i++)
-        ;
-      delay = std::min(2 * delay, 1000);
-    }
-  }
-
   using tag = vtype;
 
+  PARLAY_INLINE
   void store_sequential(const V& v) { val = v; }
 
-  std::pair<V,tag> ll_speculative() {
-    vtype ver = version.load(std::memory_order_acquire);
-    V v = val;
-    std::atomic_thread_fence(std::memory_order_acquire);
-    return std::pair(v, ver);
-  }
-
+  PARLAY_INLINE
   std::pair<V,tag> ll() {
     while (true) {
       int delay = 100;
@@ -123,10 +51,12 @@ struct big_atomic {
     }
   }
 
+  PARLAY_INLINE
   bool lv(tag tg) {
     return version.load() == tg;
   }
 
+  PARLAY_INLINE
   bool sc(tag expected_tag, const V& v) {
     vtype ver = version.load();
     if (ver != expected_tag) return false;
@@ -137,6 +67,15 @@ struct big_atomic {
       version.store(ver + 2, std::memory_order_release);
       return true;
     } else return false;
+  }
+
+  PARLAY_INLINE V load() { return ll().first; }
+
+  PARLAY_INLINE bool cas(const V& expected, const V& desired) {
+    auto [current, tag] = ll();
+    if (!KeyEqual{}(current, expected)) return false;
+    if (KeyEqual{}(expected, desired)) return true;
+    return sc(tag, desired);
   }
 
 };

@@ -315,7 +315,11 @@ int main(int argc, char* argv[]) {
   auto insert_times = parlay::map(results, [](auto x) { return std::get<0>(x); });
   auto bench_times = parlay::map(results, [](auto x) { return std::get<1>(x); });
   if (print_means) {
-    std::cout << "benchmark geometric mean of mops = " << geometric_mean(bench_times) << std::endl;
-    std::cout << "initial insert geometric mean of mops = " << geometric_mean(insert_times) << std::endl;
+    std::cout << P.commandName()
+              << " benchmark geometric mean of mops = "
+              << geometric_mean(bench_times) << std::endl;
+    std::cout << P.commandName()
+              << " initial insert geometric mean of mops = "
+              << geometric_mean(insert_times) << std::endl;
   }
 }

@@ -14,6 +14,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
+#include <limits>
 
 #include <atomic>
 #include <functional>
@@ -40,18 +41,9 @@ struct big_atomic {
     explicit indirect_holder(const T& value_) : value(value_) { }
     T value;
     indirect_holder* next_;    // Intrusive link for hazard pointers
-
-    indirect_holder* get_next() {
-      return next_;
-    }
-
-    void set_next(indirect_holder* next) {
-      next_ = next;
-    }
-
-    void destroy() {
-      allocator::destroy(this);
-    }
+    indirect_holder* get_next() { return next_; }
+    void set_next(indirect_holder* next) { next_ = next; }
+    void destroy() {  allocator::destroy(this); }
   };
 
   static_assert(alignof(indirect_holder) >= 2, "Need a spare bit to mark pointers");
@@ -59,11 +51,12 @@ struct big_atomic {
  public:
 
   using value_type = T;
-  using version_type = long;
+  using version_type = int64_t;
 
   using allocator = type_allocator<indirect_holder>;
 
-  big_atomic() : indirect_value(allocator::create(T{})), version(0), fast_value{} {
+  big_atomic() : indirect_value(allocator::create(T{})),
+                 version(std::numeric_limits<int64_t>::min()), fast_value{} {
     static_assert(std::is_default_constructible_v<T>);
 
     // force correct static initialization order
@@ -73,7 +66,7 @@ struct big_atomic {
     new (static_cast<void*>(&fast_value)) T{};
   }
 
-  /* implicit */ big_atomic(const T& t) : version(0),       // NOLINT(google-explicit-constructor)
+  /* implicit */ big_atomic(const T& t) : version(std::numeric_limits<int64_t>::min()),       // NOLINT(google-explicit-constructor)
       indirect_value(allocator::create(t)), fast_value{} {
     // force correct static initialization order
     allocator::init();
@@ -82,90 +75,14 @@ struct big_atomic {
     new (static_cast<void*>(&fast_value)) T{t};
   }
 
-    PARLAY_INLINE T load() {
-    auto ver = version.load(std::memory_order_acquire);
-    alignas(T) char buffer[sizeof(T)];
-    atomic_load_per_byte_memcpy(&buffer, &fast_value, sizeof(T));
-    auto p = indirect_value.load();
-    if (!is_marked(p) &&
-        ver == version.load(std::memory_order_relaxed)) [[likely]]
-      return bits_to_object<T>(buffer);
-
-    return load_indirect(p);
-  }
-
-  // side effects p
-  PARLAY_INLINE T load_indirect(indirect_holder* & p) {
-    auto hazptr = hazptr_holder{};
-    p = hazptr.protect(indirect_value);
-    assert(unmark_ptr(p) != nullptr);
-    // Readers can help put the object back into "fast mode".  This is very good if updates
-    // are infrequent since this will speed up all subsequent reads.  Unfortunately this
-    // could be a severe slowdown if updates are very frequent, since many reads will try
-    // to help and waste work here...  Might be nice to optimize this so that it doesn't
-    // try to help every time, but only every once in a while.
-    //if (is_marked(p)) {
-    //  try_seqlock_and_store(version.load(std::memory_order_relaxed), unmark_ptr(p)->value, p);
-    //}
-    return unmark_ptr(p)->value;
-  }
-
-  PARLAY_INLINE void store(const T& desired) {
-    auto num = version.load(std::memory_order_acquire);
-    auto new_p = mark_ptr(allocator::create(desired));
-    auto old_p = indirect_value.exchange(new_p);
-    retire(unmark_ptr(old_p));
-    try_seqlock_and_store(num, desired, new_p);
-  }
-
-  PARLAY_INLINE bool cas(const T& expected, const T& desired) {
-    auto ver = version.load(std::memory_order_acquire);
-    alignas(T) char buffer[sizeof(T)];
-    atomic_load_per_byte_memcpy(&buffer, &fast_value, sizeof(T));
-
-    auto hazptr = hazptr_holder{};
-    auto p = hazptr.protect(indirect_value);
-    assert(unmark_ptr(p) != nullptr);
-
-    T current = [&]() {  // Use IIFE since you can't stick [[likely]] on a ternary statement
-      if (!is_marked(p) && ver == version.load(std::memory_order_relaxed)) [[likely]]
-        return bits_to_object<T>(buffer);
-      else
-        return unmark_ptr(p)->value;
-    }();
-
-    if (!Equal{}(current, expected)) return false;
-    if (Equal{}(expected, desired)) return true;
-
-    auto xx = allocator::create(desired);
-    hazptr.protect_direct(xx);
-    auto new_p = mark_ptr(xx);
-    auto old_p = p;
-
-    if ((indirect_value.load(std::memory_order_relaxed) == p && indirect_value.compare_exchange_strong(p, new_p))
-        || (p == indirect_value.load(std::memory_order_relaxed) && p == unmark_ptr(old_p) && indirect_value.compare_exchange_strong(p, new_p))) {
-
-      retire(unmark_ptr(p));
-      try_seqlock_and_store(ver, desired, new_p);
-      hazptr.unprotect_direct(xx);
-      return true;
-    }
-    else {
-      allocator::destroy(unmark_ptr(new_p));
-      hazptr.unprotect_direct(xx);
-      return false;
-    }
-  }
-
-    using tag = indirect_holder*; 
-
+  // can be either a version_type or an indirect_holder*
+  // if a version type then negative
+  using tag = int64_t; 
+  
   void store_sequential(const T& desired) {
     atomic_store_per_byte_memcpy(&fast_value, &desired, sizeof(T)); }
 
-  PARLAY_INLINE bool lv(tag tg) {
-    return indirect_value.load() == tg;
-  }
-
+  // result tag to the indirect version is protected with a hazard pointer
   PARLAY_INLINE std::pair<T,tag> ll() {
     auto ver = version.load(std::memory_order_acquire);
     alignas(T) char buffer[sizeof(T)];
@@ -173,38 +90,43 @@ struct big_atomic {
     auto p = indirect_value.load();
     if (!is_marked(p) &&
         ver == version.load(std::memory_order_relaxed)) [[likely]]
-                                                          return std::pair(bits_to_object<T>(buffer), p);
+      return std::pair(bits_to_object<T>(buffer), ver);
+    // reload with protection
+    p = hazptr_holder{}.protect(indirect_value);
+    return std::pair<T,tag>(unmark_ptr(p)->value, (int64_t) p);
+  }
 
-    return std::pair<T,tag>(load_indirect(p), p);
+  PARLAY_INLINE bool lv(tag expected_tag) {
+    indirect_holder* p = indirect_value.load();
+    if (expected_tag < 0) [[likely]] { // i.e. a version
+      auto ver = version.load(std::memory_order_acquire);
+      return (!is_marked(p) && ver == expected_tag);
+      } else return (p == (indirect_holder*) expected_tag);
   }
 
   PARLAY_INLINE bool sc(tag expected_tag, const T& desired) {
-    auto ver = version.load(std::memory_order_acquire);
-    alignas(T) char buffer[sizeof(T)];
-    atomic_load_per_byte_memcpy(&buffer, &fast_value, sizeof(T));
-
+    version_type ver;
+    indirect_holder* p;
     auto hazptr = hazptr_holder{};
-    auto p = hazptr.protect(indirect_value);
-    assert(unmark_ptr(p) != nullptr);
-
-    T current = [&]() {  // Use IIFE since you can't stick [[likely]] on a ternary statement
-                  if (!is_marked(p) && ver == version.load(std::memory_order_relaxed)) [[likely]]
-                                                                                         return bits_to_object<T>(buffer);
-                  else
-                    return unmark_ptr(p)->value;
-                }();
-
-    if (p != expected_tag) return false; // SC: this line changed
-    // if (Equal{}(expected, desired)) return true; // SC: this line removed
+    if (expected_tag < 0) [[likely]] { // i.e. a version
+      p = hazptr.protect(indirect_value);
+      ver = version.load(std::memory_order_acquire);
+      if (is_marked(p) || ver != expected_tag) [[unlikely]] return false;
+    } else {
+      p = (indirect_holder*) expected_tag;
+      ver = version.load(std::memory_order_acquire);
+    }
 
     auto xx = allocator::create(desired);
     hazptr.protect_direct(xx);
     auto new_p = mark_ptr(xx);
     auto old_p = p;
 
-    if ((indirect_value.load(std::memory_order_relaxed) == p && indirect_value.compare_exchange_strong(p, new_p))
-        || (p == indirect_value.load(std::memory_order_relaxed) && p == unmark_ptr(old_p) && indirect_value.compare_exchange_strong(p, new_p))) {
-
+    if ((indirect_value.load(std::memory_order_relaxed) == p &&
+         indirect_value.compare_exchange_strong(p, new_p))
+        || (p == indirect_value.load(std::memory_order_relaxed) &&
+            p == unmark_ptr(old_p) &&
+            indirect_value.compare_exchange_strong(p, new_p))) {
       retire(unmark_ptr(p));
       try_seqlock_and_store(ver, desired, new_p);
       hazptr.unprotect_direct(xx);
@@ -215,6 +137,24 @@ struct big_atomic {
       hazptr.unprotect_direct(xx);
       return false;
     }
+  }
+
+  PARLAY_INLINE T load() { return ll().first; }
+
+  PARLAY_INLINE bool cas(const T& expected, const T& desired) {
+    auto [current, tag] = ll();
+    if (!Equal{}(current, expected)) return false;
+    if (Equal{}(expected, desired)) return true;
+    return sc(tag, desired);
+  }
+
+  // not safe if concurrent with cas
+  PARLAY_INLINE void store(const T& desired) {
+    auto num = version.load(std::memory_order_acquire);
+    auto new_p = mark_ptr(allocator::create(desired));
+    auto old_p = indirect_value.exchange(new_p);
+    retire(unmark_ptr(old_p));
+    try_seqlock_and_store(num, desired, new_p);
   }
 
   ~big_atomic() {
