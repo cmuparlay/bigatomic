@@ -2,7 +2,7 @@
 
 head="numactl -i all"
 
-# print various imformation about the machine/compiler/date at head of file
+# print various information about the machine/compiler/date at head of file
 procs=`nproc`
 today=`date +"%m-%d-%Y"`
 machine=`lscpu | grep 'Model name' | rev | cut -c 1-5 | rev`
@@ -47,6 +47,7 @@ do
     for block_size in ${block_sizes}
     do
         ${head} ./bench_hash_array_${block_size}_${scheme} >> ${filename}
+        echo "" >> ${filename}
     done
 done
 
@@ -55,6 +56,7 @@ do
     for block_size in ${block_sizes_more}
     do
         ${head} ./bench_hash_array_${block_size}_${scheme} -n ${default_size} -u ${default_update} -z ${default_zipfian} >> ${filename}>> ${filename}
+        echo "" >> ${filename}
     done
 done
 
@@ -63,6 +65,7 @@ do
     for block_size in ${block_sizes}
     do
         ${head} ./bench_hash_array_${block_size}_${scheme} >> ${filename}
+        echo "" >> ${filename}
     done
 done
 
@@ -70,18 +73,21 @@ echo -e "\nparlay_hash geomean over schemes\n" >> ${filename}
 for scheme in ${schemes}
 do
     ${head} ./bench_parlay_hash_${scheme} >> ${filename}
+    echo "" >> ${filename}
 done
 
 echo -e "\nhash_list geomean over schemes\n" >> ${filename}
 for scheme in ${schemes}
 do
-        ${head} ./bench_hash_list_${scheme} >> ${filename}
+    ${head} ./bench_hash_list_${scheme} >> ${filename}
+    echo "" >> ${filename}
 done
 
 echo -e "\nleaf_tree geomean over schemes\n" >> ${filename}
 for scheme in ${schemes}
 do
-        ${head} ./bench_leaf_tree_${scheme} >> ${filename}
+    ${head} ./bench_leaf_tree_${scheme} >> ${filename}
+    echo "" >> ${filename}
 done
 
 echo -e "\nGo over applications varying various parameters\n" >> ${filename}
@@ -94,15 +100,17 @@ do
         for size in ${sizes}
         do
             ${head} ./${application}_${scheme} -n ${size} -u ${default_update} -z ${default_zipfian} >> ${filename}
+            echo "" >> ${filename}
         done
     done
 
-    echo -e "\n${application} varying upsates\n" >> ${filename}
+    echo -e "\n${application} varying updates\n" >> ${filename}
     for scheme in ${schemes}
     do
         for update in ${updates}
         do
             ${head} ./${application}_${scheme} -n ${default_size} -u ${update} -z ${default_zipfian} >> ${filename}
+            echo "" >> ${filename}
         done
     done
 
@@ -112,6 +120,7 @@ do
         for zipfian in ${zipfians}
         do
             ${head} ./${application}_${scheme} -n ${default_size} -u ${default_update} -z ${zipfian} >> ${filename}
+            echo "" >> ${filename}
         done
     done
 
@@ -121,6 +130,7 @@ do
         for thread in ${threads}
         do
             PARLAY_NUM_THREADS=${thread} ${head} ./${application}_${scheme} -n ${default_size} -u ${default_update} -z ${default_zipfian} >> ${filename}
+            echo "" >> ${filename}
         done
     done
 done
