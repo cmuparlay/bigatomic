@@ -51,6 +51,8 @@ do
     done
 done
 
+echo -e "\nbigatomic array over schemes (including slow ones) and sizes\n" >> ${filename}
+
 for scheme in ${schemes} ${slow_schemes}
 do
     for block_size in ${block_sizes_more}
