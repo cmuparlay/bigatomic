@@ -60,15 +60,6 @@ do
     done
 done
 
-for scheme in ${schemes} 
-do
-    for block_size in ${block_sizes}
-    do
-        ${head} ./bench_hash_array_${block_size}_${scheme} >> ${filename}
-        echo "" >> ${filename}
-    done
-done
-
 echo -e "\nparlay_hash geomean over schemes\n" >> ${filename}
 for scheme in ${schemes}
 do
