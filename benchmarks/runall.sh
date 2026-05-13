@@ -65,7 +65,7 @@ do
     echo -e "\n${application} geomean over schemes\n" >> ${filename}
     for scheme in ${schemes}
     do
-        ${head} ./bench_parlay_hash_${scheme} >> ${filename}
+        ${head} ./${application}_${scheme} >> ${filename}
         echo "" >> ${filename}
     done
 done
