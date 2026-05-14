@@ -182,7 +182,8 @@ struct big_atomic {
       // Write desired value to cache
       store_sequential(desired);
       // hazard pointer slots
-      while (!header.compare_exchange_strong((tag&) new_hdr, new_tag)) {
+      while (header.load(std::memory_order_relaxed) != (tag) new_hdr ||
+          !header.compare_exchange_weak((tag&) new_hdr, new_tag)) {
         // Failed to install new tag
         // Load current header and try to cache that instead
         // TODO is this correct?
@@ -203,7 +204,8 @@ struct big_atomic {
         auto* hdr_ptr = (indirect_holder*) hdr;
         auto curr_version = hdr_ptr->version;
         auto* new_hdr = allocator::create(desired, 1 + curr_version);
-        if (!header.compare_exchange_strong(hdr, (tag) new_hdr)) {
+        if (header.load(std::memory_order_relaxed) != hdr ||
+            !header.compare_exchange_strong(hdr, (tag) new_hdr)) {
           // failed to install new slot
           allocator::destroy(new_hdr);
           return false;
@@ -217,7 +219,8 @@ struct big_atomic {
           // different sequnum than in object
           return false;
         auto* new_hdr = allocator::create(desired, 1 + hdr);
-        return header.compare_exchange_strong(hdr, (tag) new_hdr);
+        return header.load(std::memory_order_relaxed) == hdr &&
+          header.compare_exchange_strong(hdr, (tag) new_hdr);
       }
     }
   }
