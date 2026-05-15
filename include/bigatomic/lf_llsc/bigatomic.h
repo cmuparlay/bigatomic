@@ -239,6 +239,7 @@ struct big_atomic {
           retire(new_hdr);
           return true;
         }
+        allocator::destroy(new_hdr);
         return false;
       }
     }
