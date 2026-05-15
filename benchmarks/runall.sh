@@ -23,7 +23,7 @@ echo "Hugepage:" `cat /sys/kernel/mm/transparent_hugepage/enabled` >> ${filename
 schemes="seqlock seqlocklock wf_indirect wf_hazard wf_daniel lf_lowmem"
 slow_schemes="simplock std"
 
-threads="8 16 32 64 96 192 384 512"
+threads="8 16 32 64 96 192 384 512 1024"
 
 default_block_size=4
 block_sizes="1 4 16"
@@ -37,8 +37,6 @@ zipfians="0.0 0.5 0.8 0.9 .95 .99"
 
 default_update=20
 updates="0 5 10 20 50 100"
-
-applications="bench_hash_array_${default_block_size} bench_parlay_hash bench_hash_list bench_leaf_tree"
 
 echo -e "\nbigatomic array geomean over schemes and sizes\n" >> ${filename}
 
@@ -62,31 +60,18 @@ do
     done
 done
 
-echo -e "\nparlay_hash geomean over schemes\n" >> ${filename}
-for scheme in ${schemes}
+for application in bench_parlay_hash bench_hash_list bench_leaf_tree
 do
-    ${head} ./bench_parlay_hash_${scheme} >> ${filename}
-    echo "" >> ${filename}
+    echo -e "\n${application} geomean over schemes\n" >> ${filename}
+    for scheme in ${schemes}
+    do
+        ${head} ./${application}_${scheme} >> ${filename}
+        echo "" >> ${filename}
+    done
 done
 
-echo -e "\nhash_list geomean over schemes\n" >> ${filename}
-for scheme in ${schemes}
+for application in bench_hash_array_${default_block_size} bench_parlay_hash bench_hash_list bench_leaf_tree
 do
-    ${head} ./bench_hash_list_${scheme} >> ${filename}
-    echo "" >> ${filename}
-done
-
-echo -e "\nleaf_tree geomean over schemes\n" >> ${filename}
-for scheme in ${schemes}
-do
-    ${head} ./bench_leaf_tree_${scheme} >> ${filename}
-    echo "" >> ${filename}
-done
-
-echo -e "\nGo over applications varying various parameters\n" >> ${filename}
-for application in ${applications}
-do
-
     echo -e "\n${application} varying size\n" >> ${filename}
     for scheme in ${schemes}
     do
