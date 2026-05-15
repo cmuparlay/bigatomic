@@ -111,7 +111,7 @@ struct big_atomic {
           return {p->value, slot};
           // still a pointer
         }
-      } else if (fst_hdr == snd_hdr) {
+      } else if (fst_hdr == snd_hdr) [[likely]] {
         // matching seqnums
         return {bits_to_object<T>(buffer), fst_hdr};
       }
@@ -159,8 +159,8 @@ struct big_atomic {
     // version_type ver;
     // indirect_holder* p;
     auto hazptr = hazptr_holder{};
-    tag hdr = hazptr.protect(header);
     if (is_version(expected_tag)) [[likely]] { // i.e. a version number
+      tag hdr = hazptr.protect(header);
       // load current tag
       if (hdr != expected_tag)
         // store in meantime, LL fails
@@ -175,7 +175,7 @@ struct big_atomic {
           !header.compare_exchange_strong(hdr, (tag) new_hdr)) {
         // Failed to install new header, free it
         // No other thread maintains a reference to it
-        hazptr.unprotect_direct(new_hdr);
+        //hazptr.unprotect_direct(new_hdr);
         allocator::destroy(new_hdr);
         return false;
       }
@@ -196,6 +196,7 @@ struct big_atomic {
       return true;
     } else {
       // expected_tag is pointer
+      tag hdr = header.load();
       if (is_pointer(hdr)) {
         // current tag also pointer
         if (expected_tag != hdr)
@@ -219,8 +220,26 @@ struct big_atomic {
           // different sequnum than in object
           return false;
         auto* new_hdr = allocator::create(desired, 1 + hdr);
-        return header.load(std::memory_order_relaxed) == hdr &&
-          header.compare_exchange_strong(hdr, (tag) new_hdr);
+        if (header.load(std::memory_order_relaxed) == hdr &&
+            header.compare_exchange_strong(hdr, (tag) new_hdr)) {
+          // Write desired value to cache
+          store_sequential(desired);
+          auto new_tag = new_hdr->version;
+          // hazard pointer slots
+          while (header.load(std::memory_order_relaxed) != (tag) new_hdr ||
+                 !header.compare_exchange_weak((tag&) new_hdr, new_tag)) {
+            // Failed to install new tag
+            // Load current header and try to cache that instead
+            // TODO is this correct?
+            new_hdr = (indirect_holder*) hazptr.protect(header);
+            // assert(is_pointer(new_hdr) && "Got seqnum during sc");
+            store_sequential(new_hdr->value);
+            new_tag = new_hdr->version;
+          }
+          retire(new_hdr);
+          return true;
+        }
+        return false;
       }
     }
   }
