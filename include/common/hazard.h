@@ -32,11 +32,14 @@ inline int num_workers() {
   return parlay::num_workers();
 }
 
+
+#define NumSlots 2
+  
 struct alignas(64) hazard_s {
 
   struct alignas(64) announce_slot {
-    std::atomic<void*> hold;
-    announce_slot() : hold(nullptr) {}
+    std::array<std::atomic<void*>, NumSlots> hold {};
+    announce_slot() {}
   };
 
   std::vector<announce_slot> announcements;
@@ -44,27 +47,37 @@ struct alignas(64) hazard_s {
   hazard_s() : announcements(std::vector<announce_slot>(num_workers())) {}
 
   std::vector<void*> get_announced() {
-    // folly::asymmetric_thread_fence_heavy(std::memory_order_seq_cst);
     std::vector<void*> announced;
     for (int i = 0; i < num_workers(); i++) {
-      void* a = announcements[i].hold;
-      if (a != nullptr) announced.push_back(a);
+      for (int j = 0; j < NumSlots; j++) {
+        void* a = announcements[i].hold[j];
+        if (a != nullptr) announced.push_back(a);
+      }
     }
     return announced;
   }
 
   template<typename T>
-  std::pair<T*, int> announce(std::atomic<T*>* ptr) {
+  std::pair<T*, int> loadProtected(std::atomic<T*>* ptr, int slot_id) {
     size_t id = worker_id();
     while (true) {
       auto y = ptr->load();
-      auto x = y;
-      announcements[id].hold.exchange((void*)x, std::memory_order_seq_cst);
+      // mask off lowest bit
+      auto x = (void*) (((size_t) y) & ~1ul);
+      announcements[id].hold[slot_id].exchange(x, std::memory_order_seq_cst);
       if (ptr->load() == y) return std::pair(y, id);
     }
   }
 
-  void unannounce(size_t id) { announcements[id].hold.store(nullptr, std::memory_order_relaxed); }
+  template<typename T>
+  int protect(T* ptr, int slot_id) {
+    size_t id = worker_id();
+    announcements[id].hold[slot_id].exchange((void*) ptr, std::memory_order_seq_cst);
+    return id;
+  }
+
+  void unprotect(size_t id, int slot_id) {
+    announcements[id].hold[slot_id].store(nullptr, std::memory_order_relaxed); }
 };
 
 extern inline hazard_s& get_hazard() {
@@ -273,14 +286,14 @@ struct alignas(64) memory_pool_ {
 };
 
 template<typename T, typename Thunk>
-auto with_announced(std::atomic<T*>* ptr, Thunk f) {
-  auto [p, id] = get_hazard().announce(ptr);
+auto with_protection(std::atomic<T*>* ptr, int slot_id, Thunk f) {
+  auto [p, id] = get_hazard().loadProtected(ptr);
   // if constexpr (std::is_void_v<std::invoke_result_t<Thunk>>) {
   //   f(p);
   //   get_hazard().unannounce(id);
   // } else {
   auto v = f(p);
-  get_hazard().unannounce(id);
+  get_hazard().unprotect(id, slot_id);
   return v;
 }
 
@@ -340,17 +353,24 @@ static void stats() {
 }
 
 template<typename T, typename Thunk>
-static auto with_announced(std::atomic<T*>* ptr, Thunk f) {
-  auto [p, id] = internal::get_hazard().announce(ptr);
+static auto with_protection(std::atomic<T*>* ptr, int slot_id, Thunk fb) {
+  auto [p, id] = internal::get_hazard().loadProtected(ptr, slot_id);
   auto v = f(p);
-  internal::get_hazard().unannounce(id);
+  internal::get_hazard().unprotect(id, slot_id);
   return v;
 }
 
 template<typename T>
 PARLAY_INLINE
-static auto acquire(std::atomic<T*>& ptr) {
-  return internal::get_hazard().announce(&ptr).first;
+static auto load_protected(std::atomic<T*>& ptr, int slot_id) {
+  return internal::get_hazard().loadProtected(&ptr, slot_id).first;
+}
+
+template<typename T>
+PARLAY_INLINE
+static T* protect(T* ptr, int slot_id) {
+  internal::get_hazard().protect(&ptr, slot_id);
+  return ptr;
 }
 
 }  // end namespace hazard

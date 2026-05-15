@@ -39,7 +39,7 @@ struct big_atomic {
 
   PARLAY_INLINE std::pair<V,tag> ll() {
     __builtin_prefetch(this);
-    auto old_v = hazard::acquire(ptr);
+    auto old_v = hazard::load_protected(ptr, 0);
     return std::pair<V,tag>(*old_v, old_v);
   }
 

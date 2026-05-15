@@ -68,7 +68,7 @@ struct big_atomic {
   // pointer (consistent with the old value), and ver the current
   // version.
   bool try_update(V new_v, V* old_p, vtype ver) {
-    V* new_p = mark_invalid(hazard::New<V>(new_v));
+    V* new_p = mark_invalid(hazard::protect(hazard::New<V>(new_v), 1));
     if (try_install(old_p, new_p)) {
       hazard::Retire(remove_mark(old_p));
       try_update_cache(new_v, new_p, ver);
@@ -94,8 +94,7 @@ struct big_atomic {
     std::atomic_thread_fence(std::memory_order_acquire);
     // check if value in the cache is valid
     if (is_valid(p) && version.load(std::memory_order_relaxed) == ver) return v;
-    return *remove_mark(hazard::acquire(ptr));
-    //return hazard::with_announced(&ptr, [&](V* p) { return *remove_mark(p); });
+    return *remove_mark(hazard::load_protected(ptr, 0));
   }
 
   void store(const V& new_v) { return try_update(new_v, ptr.load(), version.load()); }
@@ -104,7 +103,7 @@ struct big_atomic {
     vtype ver = version.load(std::memory_order_acquire);
     __builtin_prefetch(ptr.load());
     V old_v = cache;
-    return hazard::with_announced(&ptr, [&](V* old_p) {
+    return hazard::with_protection(&ptr, 0, [&](V* old_p) {
       std::atomic_thread_fence(std::memory_order_acquire);
       // check if value in the cache is valid
       if (!(is_valid(old_p) && version.load(std::memory_order_relaxed) == ver))
@@ -129,7 +128,7 @@ struct big_atomic {
     // check if value in the cache is valid
     if (is_valid(p) && version.load(std::memory_order_relaxed) == ver) [[likely]] 
         return std::pair(v, ver);
-    p = hazard::acquire(ptr);
+    p = hazard::load_protected(ptr, 0); 
     return std::pair(*remove_mark(p), (int64_t) p);
   }
 
@@ -146,7 +145,7 @@ struct big_atomic {
     vtype ver;
     V* p;
     if (expected_tag < 0) [[likely]] { // i.e. a version
-      p = hazard::acquire(ptr);
+      p = hazard::load_protected(ptr, 0);
       ver = version.load(std::memory_order_acquire);
       if (!is_valid(p) || ver != expected_tag) [[unlikely]] return false;
     } else {
