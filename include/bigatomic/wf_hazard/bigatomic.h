@@ -85,7 +85,7 @@ struct big_atomic {
                            cache(v) {}
   big_atomic() : ptr(hazard::New<V>()),
                  version(std::numeric_limits<int64_t>::min()) {}
-  ~big_atomic() { hazard::Retire(remove_mark(ptr.load())); }
+  ~big_atomic() { hazard::Delete(remove_mark(ptr.load())); }
 
   V load_() {
     vtype ver = version.load(std::memory_order_acquire);

@@ -29,7 +29,9 @@ struct big_atomic {
 
   big_atomic(const V& v) : ptr(hazard::New<V>(v)) {}
   big_atomic() : ptr(hazard::New<V>(V{})) {}
+  ~big_atomic() { hazard::Delete(ptr.load()); }
 
+  
   using tag = V*;
 
   PARLAY_INLINE void store_sequential(const V& v) {
