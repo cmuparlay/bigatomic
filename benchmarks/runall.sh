@@ -20,10 +20,10 @@ echo "Hugepage:" `cat /sys/kernel/mm/transparent_hugepage/enabled` >> ${filename
 
 # Experiments start here
 
-schemes="seqlock seqlocklock wf_indirect wf_hazard wf_daniel lf_lowmem"
+schemes="seqlock seqlocklock wf_indirect wf_hazard wf_daniel lf_llsc"
 slow_schemes="simplock std"
 
-threads="8 16 32 64 96 192 384 512 1024"
+threads="8 16 32 64 96 192 384 512 768
 
 default_block_size=4
 block_sizes="1 4 16"
