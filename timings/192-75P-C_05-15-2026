@@ -1,0 +1,3321 @@
+Date: 05-15-2026
+Model name: Intel(R) Xeon(R) 6975P-C
+Git branch: 5a799c0
+Compiler: g++ (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0
+OS: Ubuntu 22.04.2 LTS
+Hugepage: always [madvise] never
+NoTurbo: 1
+MaxPerfPct 100
+
+bigatomic array geomean over schemes and sizes
+
+./bench_hash_array_1_seqlock,5%update,n=10000,p=192,z=0,insert_mops=74,mops=4654
+./bench_hash_array_1_seqlock,5%update,n=10000,p=192,z=0,insert_mops=69,mops=4656
+./bench_hash_array_1_seqlock,50%update,n=10000,p=192,z=0,insert_mops=53,mops=780
+./bench_hash_array_1_seqlock,50%update,n=10000,p=192,z=0,insert_mops=71,mops=778
+
+./bench_hash_array_1_seqlock,5%update,n=1000000,p=192,z=0,insert_mops=1385,mops=5149
+./bench_hash_array_1_seqlock,5%update,n=1000000,p=192,z=0,insert_mops=1420,mops=5149
+./bench_hash_array_1_seqlock,50%update,n=1000000,p=192,z=0,insert_mops=1401,mops=2669
+./bench_hash_array_1_seqlock,50%update,n=1000000,p=192,z=0,insert_mops=1405,mops=2669
+
+./bench_hash_array_1_seqlock,5%update,n=100000000,p=192,z=0,insert_mops=1027,mops=2396
+./bench_hash_array_1_seqlock,5%update,n=100000000,p=192,z=0,insert_mops=1025,mops=2395
+./bench_hash_array_1_seqlock,50%update,n=100000000,p=192,z=0,insert_mops=1025,mops=2033
+./bench_hash_array_1_seqlock,50%update,n=100000000,p=192,z=0,insert_mops=1028,mops=2033
+
+./bench_hash_array_1_seqlock,5%update,n=10000,p=192,z=0.99,insert_mops=66,mops=757
+./bench_hash_array_1_seqlock,5%update,n=10000,p=192,z=0.99,insert_mops=65,mops=758
+./bench_hash_array_1_seqlock,50%update,n=10000,p=192,z=0.99,insert_mops=57,mops=138
+./bench_hash_array_1_seqlock,50%update,n=10000,p=192,z=0.99,insert_mops=64,mops=138
+
+./bench_hash_array_1_seqlock,5%update,n=1000000,p=192,z=0.99,insert_mops=1393,mops=1363
+./bench_hash_array_1_seqlock,5%update,n=1000000,p=192,z=0.99,insert_mops=1353,mops=1363
+./bench_hash_array_1_seqlock,50%update,n=1000000,p=192,z=0.99,insert_mops=1393,mops=229
+./bench_hash_array_1_seqlock,50%update,n=1000000,p=192,z=0.99,insert_mops=1371,mops=229
+
+./bench_hash_array_1_seqlock,5%update,n=100000000,p=192,z=0.99,insert_mops=1020,mops=1596
+./bench_hash_array_1_seqlock,5%update,n=100000000,p=192,z=0.99,insert_mops=1022,mops=1668
+./bench_hash_array_1_seqlock,50%update,n=100000000,p=192,z=0.99,insert_mops=1027,mops=260
+./bench_hash_array_1_seqlock,50%update,n=100000000,p=192,z=0.99,insert_mops=1027,mops=269
+
+./bench_hash_array_1_seqlock benchmark geometric mean of mops = 1108.95
+./bench_hash_array_1_seqlock initial insert geometric mean of mops = 452.446
+
+
+./bench_hash_array_4_seqlock,5%update,n=10000,p=192,z=0,insert_mops=66,mops=4674
+./bench_hash_array_4_seqlock,5%update,n=10000,p=192,z=0,insert_mops=67,mops=4674
+./bench_hash_array_4_seqlock,50%update,n=10000,p=192,z=0,insert_mops=59,mops=768
+./bench_hash_array_4_seqlock,50%update,n=10000,p=192,z=0,insert_mops=55,mops=768
+
+./bench_hash_array_4_seqlock,5%update,n=1000000,p=192,z=0,insert_mops=1183,mops=5117
+./bench_hash_array_4_seqlock,5%update,n=1000000,p=192,z=0,insert_mops=1208,mops=5118
+./bench_hash_array_4_seqlock,50%update,n=1000000,p=192,z=0,insert_mops=1201,mops=2541
+./bench_hash_array_4_seqlock,50%update,n=1000000,p=192,z=0,insert_mops=1225,mops=2540
+
+./bench_hash_array_4_seqlock,5%update,n=100000000,p=192,z=0,insert_mops=923,mops=2140
+./bench_hash_array_4_seqlock,5%update,n=100000000,p=192,z=0,insert_mops=925,mops=2137
+./bench_hash_array_4_seqlock,50%update,n=100000000,p=192,z=0,insert_mops=922,mops=1938
+./bench_hash_array_4_seqlock,50%update,n=100000000,p=192,z=0,insert_mops=923,mops=1938
+
+./bench_hash_array_4_seqlock,5%update,n=10000,p=192,z=0.99,insert_mops=63,mops=824
+./bench_hash_array_4_seqlock,5%update,n=10000,p=192,z=0.99,insert_mops=57,mops=825
+./bench_hash_array_4_seqlock,50%update,n=10000,p=192,z=0.99,insert_mops=63,mops=141
+./bench_hash_array_4_seqlock,50%update,n=10000,p=192,z=0.99,insert_mops=61,mops=141
+
+./bench_hash_array_4_seqlock,5%update,n=1000000,p=192,z=0.99,insert_mops=1187,mops=1322
+./bench_hash_array_4_seqlock,5%update,n=1000000,p=192,z=0.99,insert_mops=1204,mops=1321
+./bench_hash_array_4_seqlock,50%update,n=1000000,p=192,z=0.99,insert_mops=1191,mops=203
+./bench_hash_array_4_seqlock,50%update,n=1000000,p=192,z=0.99,insert_mops=1169,mops=203
+
+./bench_hash_array_4_seqlock,5%update,n=100000000,p=192,z=0.99,insert_mops=921,mops=1869
+./bench_hash_array_4_seqlock,5%update,n=100000000,p=192,z=0.99,insert_mops=927,mops=1779
+./bench_hash_array_4_seqlock,50%update,n=100000000,p=192,z=0.99,insert_mops=919,mops=287
+./bench_hash_array_4_seqlock,50%update,n=100000000,p=192,z=0.99,insert_mops=921,mops=298
+
+./bench_hash_array_4_seqlock benchmark geometric mean of mops = 1103.18
+./bench_hash_array_4_seqlock initial insert geometric mean of mops = 408.658
+
+
+./bench_hash_array_16_seqlock,5%update,n=10000,p=192,z=0,insert_mops=62,mops=3109
+./bench_hash_array_16_seqlock,5%update,n=10000,p=192,z=0,insert_mops=60,mops=3107
+./bench_hash_array_16_seqlock,50%update,n=10000,p=192,z=0,insert_mops=55,mops=1220
+./bench_hash_array_16_seqlock,50%update,n=10000,p=192,z=0,insert_mops=58,mops=1219
+
+./bench_hash_array_16_seqlock,5%update,n=1000000,p=192,z=0,insert_mops=1028,mops=3656
+./bench_hash_array_16_seqlock,5%update,n=1000000,p=192,z=0,insert_mops=1050,mops=3657
+./bench_hash_array_16_seqlock,50%update,n=1000000,p=192,z=0,insert_mops=827,mops=2219
+./bench_hash_array_16_seqlock,50%update,n=1000000,p=192,z=0,insert_mops=831,mops=2219
+
+./bench_hash_array_16_seqlock,5%update,n=100000000,p=192,z=0,insert_mops=514,mops=1437
+./bench_hash_array_16_seqlock,5%update,n=100000000,p=192,z=0,insert_mops=515,mops=1439
+./bench_hash_array_16_seqlock,50%update,n=100000000,p=192,z=0,insert_mops=509,mops=1127
+./bench_hash_array_16_seqlock,50%update,n=100000000,p=192,z=0,insert_mops=517,mops=1128
+
+./bench_hash_array_16_seqlock,5%update,n=10000,p=192,z=0.99,insert_mops=46,mops=286
+./bench_hash_array_16_seqlock,5%update,n=10000,p=192,z=0.99,insert_mops=41,mops=287
+./bench_hash_array_16_seqlock,50%update,n=10000,p=192,z=0.99,insert_mops=49,mops=38
+./bench_hash_array_16_seqlock,50%update,n=10000,p=192,z=0.99,insert_mops=48,mops=38
+
+./bench_hash_array_16_seqlock,5%update,n=1000000,p=192,z=0.99,insert_mops=1050,mops=441
+./bench_hash_array_16_seqlock,5%update,n=1000000,p=192,z=0.99,insert_mops=1050,mops=442
+./bench_hash_array_16_seqlock,50%update,n=1000000,p=192,z=0.99,insert_mops=958,mops=60
+./bench_hash_array_16_seqlock,50%update,n=1000000,p=192,z=0.99,insert_mops=1025,mops=60
+
+./bench_hash_array_16_seqlock,5%update,n=100000000,p=192,z=0.99,insert_mops=510,mops=565
+./bench_hash_array_16_seqlock,5%update,n=100000000,p=192,z=0.99,insert_mops=512,mops=563
+./bench_hash_array_16_seqlock,50%update,n=100000000,p=192,z=0.99,insert_mops=514,mops=79
+./bench_hash_array_16_seqlock,50%update,n=100000000,p=192,z=0.99,insert_mops=510,mops=76
+
+./bench_hash_array_16_seqlock benchmark geometric mean of mops = 542.475
+./bench_hash_array_16_seqlock initial insert geometric mean of mops = 297.089
+
+
+./bench_hash_array_1_seqlocklock,5%update,n=10000,p=192,z=0,insert_mops=74,mops=4815
+./bench_hash_array_1_seqlocklock,5%update,n=10000,p=192,z=0,insert_mops=68,mops=4814
+./bench_hash_array_1_seqlocklock,50%update,n=10000,p=192,z=0,insert_mops=57,mops=1186
+./bench_hash_array_1_seqlocklock,50%update,n=10000,p=192,z=0,insert_mops=60,mops=1188
+
+./bench_hash_array_1_seqlocklock,5%update,n=1000000,p=192,z=0,insert_mops=890,mops=4964
+./bench_hash_array_1_seqlocklock,5%update,n=1000000,p=192,z=0,insert_mops=889,mops=4964
+./bench_hash_array_1_seqlocklock,50%update,n=1000000,p=192,z=0,insert_mops=859,mops=2435
+./bench_hash_array_1_seqlocklock,50%update,n=1000000,p=192,z=0,insert_mops=859,mops=2435
+
+./bench_hash_array_1_seqlocklock,5%update,n=100000000,p=192,z=0,insert_mops=744,mops=2075
+./bench_hash_array_1_seqlocklock,5%update,n=100000000,p=192,z=0,insert_mops=739,mops=2073
+./bench_hash_array_1_seqlocklock,50%update,n=100000000,p=192,z=0,insert_mops=744,mops=1864
+./bench_hash_array_1_seqlocklock,50%update,n=100000000,p=192,z=0,insert_mops=744,mops=1863
+
+./bench_hash_array_1_seqlocklock,5%update,n=10000,p=192,z=0.99,insert_mops=69,mops=1248
+./bench_hash_array_1_seqlocklock,5%update,n=10000,p=192,z=0.99,insert_mops=64,mops=1254
+./bench_hash_array_1_seqlocklock,50%update,n=10000,p=192,z=0.99,insert_mops=55,mops=87
+./bench_hash_array_1_seqlocklock,50%update,n=10000,p=192,z=0.99,insert_mops=59,mops=86
+
+./bench_hash_array_1_seqlocklock,5%update,n=1000000,p=192,z=0.99,insert_mops=887,mops=2153
+./bench_hash_array_1_seqlocklock,5%update,n=1000000,p=192,z=0.99,insert_mops=850,mops=2153
+./bench_hash_array_1_seqlocklock,50%update,n=1000000,p=192,z=0.99,insert_mops=839,mops=126
+./bench_hash_array_1_seqlocklock,50%update,n=1000000,p=192,z=0.99,insert_mops=880,mops=138
+
+./bench_hash_array_1_seqlocklock,5%update,n=100000000,p=192,z=0.99,insert_mops=740,mops=2535
+./bench_hash_array_1_seqlocklock,5%update,n=100000000,p=192,z=0.99,insert_mops=746,mops=2552
+./bench_hash_array_1_seqlocklock,50%update,n=100000000,p=192,z=0.99,insert_mops=739,mops=157
+./bench_hash_array_1_seqlocklock,50%update,n=100000000,p=192,z=0.99,insert_mops=741,mops=160
+
+./bench_hash_array_1_seqlocklock benchmark geometric mean of mops = 1105.77
+./bench_hash_array_1_seqlocklock initial insert geometric mean of mops = 344.781
+
+
+./bench_hash_array_4_seqlocklock,5%update,n=10000,p=192,z=0,insert_mops=63,mops=4860
+./bench_hash_array_4_seqlocklock,5%update,n=10000,p=192,z=0,insert_mops=53,mops=4859
+./bench_hash_array_4_seqlocklock,50%update,n=10000,p=192,z=0,insert_mops=63,mops=1047
+./bench_hash_array_4_seqlocklock,50%update,n=10000,p=192,z=0,insert_mops=52,mops=1045
+
+./bench_hash_array_4_seqlocklock,5%update,n=1000000,p=192,z=0,insert_mops=846,mops=4883
+./bench_hash_array_4_seqlocklock,5%update,n=1000000,p=192,z=0,insert_mops=847,mops=4882
+./bench_hash_array_4_seqlocklock,50%update,n=1000000,p=192,z=0,insert_mops=814,mops=2392
+./bench_hash_array_4_seqlocklock,50%update,n=1000000,p=192,z=0,insert_mops=845,mops=2392
+
+./bench_hash_array_4_seqlocklock,5%update,n=100000000,p=192,z=0,insert_mops=737,mops=2007
+./bench_hash_array_4_seqlocklock,5%update,n=100000000,p=192,z=0,insert_mops=734,mops=2011
+./bench_hash_array_4_seqlocklock,50%update,n=100000000,p=192,z=0,insert_mops=734,mops=1806
+./bench_hash_array_4_seqlocklock,50%update,n=100000000,p=192,z=0,insert_mops=738,mops=1806
+
+./bench_hash_array_4_seqlocklock,5%update,n=10000,p=192,z=0.99,insert_mops=55,mops=1304
+./bench_hash_array_4_seqlocklock,5%update,n=10000,p=192,z=0.99,insert_mops=50,mops=1305
+./bench_hash_array_4_seqlocklock,50%update,n=10000,p=192,z=0.99,insert_mops=55,mops=90
+./bench_hash_array_4_seqlocklock,50%update,n=10000,p=192,z=0.99,insert_mops=45,mops=111
+
+./bench_hash_array_4_seqlocklock,5%update,n=1000000,p=192,z=0.99,insert_mops=849,mops=2291
+./bench_hash_array_4_seqlocklock,5%update,n=1000000,p=192,z=0.99,insert_mops=835,mops=2290
+./bench_hash_array_4_seqlocklock,50%update,n=1000000,p=192,z=0.99,insert_mops=804,mops=130
+./bench_hash_array_4_seqlocklock,50%update,n=1000000,p=192,z=0.99,insert_mops=814,mops=145
+
+./bench_hash_array_4_seqlocklock,5%update,n=100000000,p=192,z=0.99,insert_mops=735,mops=2477
+./bench_hash_array_4_seqlocklock,5%update,n=100000000,p=192,z=0.99,insert_mops=735,mops=2478
+./bench_hash_array_4_seqlocklock,50%update,n=100000000,p=192,z=0.99,insert_mops=735,mops=165
+./bench_hash_array_4_seqlocklock,50%update,n=100000000,p=192,z=0.99,insert_mops=735,mops=171
+
+./bench_hash_array_4_seqlocklock benchmark geometric mean of mops = 1115.61
+./bench_hash_array_4_seqlocklock initial insert geometric mean of mops = 321.734
+
+
+./bench_hash_array_16_seqlocklock,5%update,n=10000,p=192,z=0,insert_mops=60,mops=3103
+./bench_hash_array_16_seqlocklock,5%update,n=10000,p=192,z=0,insert_mops=53,mops=3104
+./bench_hash_array_16_seqlocklock,50%update,n=10000,p=192,z=0,insert_mops=52,mops=1192
+./bench_hash_array_16_seqlocklock,50%update,n=10000,p=192,z=0,insert_mops=61,mops=1193
+
+./bench_hash_array_16_seqlocklock,5%update,n=1000000,p=192,z=0,insert_mops=756,mops=3613
+./bench_hash_array_16_seqlocklock,5%update,n=1000000,p=192,z=0,insert_mops=737,mops=3614
+./bench_hash_array_16_seqlocklock,50%update,n=1000000,p=192,z=0,insert_mops=589,mops=1700
+./bench_hash_array_16_seqlocklock,50%update,n=1000000,p=192,z=0,insert_mops=596,mops=1715
+
+./bench_hash_array_16_seqlocklock,5%update,n=100000000,p=192,z=0,insert_mops=509,mops=1449
+./bench_hash_array_16_seqlocklock,5%update,n=100000000,p=192,z=0,insert_mops=505,mops=1448
+./bench_hash_array_16_seqlocklock,50%update,n=100000000,p=192,z=0,insert_mops=510,mops=1100
+./bench_hash_array_16_seqlocklock,50%update,n=100000000,p=192,z=0,insert_mops=505,mops=1099
+
+./bench_hash_array_16_seqlocklock,5%update,n=10000,p=192,z=0.99,insert_mops=46,mops=367
+./bench_hash_array_16_seqlocklock,5%update,n=10000,p=192,z=0.99,insert_mops=45,mops=366
+./bench_hash_array_16_seqlocklock,50%update,n=10000,p=192,z=0.99,insert_mops=49,mops=101
+./bench_hash_array_16_seqlocklock,50%update,n=10000,p=192,z=0.99,insert_mops=50,mops=106
+
+./bench_hash_array_16_seqlocklock,5%update,n=1000000,p=192,z=0.99,insert_mops=722,mops=572
+./bench_hash_array_16_seqlocklock,5%update,n=1000000,p=192,z=0.99,insert_mops=757,mops=573
+./bench_hash_array_16_seqlocklock,50%update,n=1000000,p=192,z=0.99,insert_mops=680,mops=166
+./bench_hash_array_16_seqlocklock,50%update,n=1000000,p=192,z=0.99,insert_mops=709,mops=167
+
+./bench_hash_array_16_seqlocklock,5%update,n=100000000,p=192,z=0.99,insert_mops=504,mops=691
+./bench_hash_array_16_seqlocklock,5%update,n=100000000,p=192,z=0.99,insert_mops=506,mops=685
+./bench_hash_array_16_seqlocklock,50%update,n=100000000,p=192,z=0.99,insert_mops=506,mops=216
+./bench_hash_array_16_seqlocklock,50%update,n=100000000,p=192,z=0.99,insert_mops=503,mops=215
+
+./bench_hash_array_16_seqlocklock benchmark geometric mean of mops = 720.987
+./bench_hash_array_16_seqlocklock initial insert geometric mean of mops = 263.436
+
+
+./bench_hash_array_1_wf_indirect,5%update,n=10000,p=192,z=0,insert_mops=21,mops=2650
+./bench_hash_array_1_wf_indirect,5%update,n=10000,p=192,z=0,insert_mops=17,mops=2651
+./bench_hash_array_1_wf_indirect,50%update,n=10000,p=192,z=0,insert_mops=15,mops=870
+./bench_hash_array_1_wf_indirect,50%update,n=10000,p=192,z=0,insert_mops=20,mops=870
+
+./bench_hash_array_1_wf_indirect,5%update,n=1000000,p=192,z=0,insert_mops=287,mops=2386
+./bench_hash_array_1_wf_indirect,5%update,n=1000000,p=192,z=0,insert_mops=294,mops=2387
+./bench_hash_array_1_wf_indirect,50%update,n=1000000,p=192,z=0,insert_mops=288,mops=903
+./bench_hash_array_1_wf_indirect,50%update,n=1000000,p=192,z=0,insert_mops=293,mops=904
+
+./bench_hash_array_1_wf_indirect,5%update,n=100000000,p=192,z=0,insert_mops=287,mops=1059
+./bench_hash_array_1_wf_indirect,5%update,n=100000000,p=192,z=0,insert_mops=284,mops=1057
+./bench_hash_array_1_wf_indirect,50%update,n=100000000,p=192,z=0,insert_mops=283,mops=754
+./bench_hash_array_1_wf_indirect,50%update,n=100000000,p=192,z=0,insert_mops=283,mops=754
+
+./bench_hash_array_1_wf_indirect,5%update,n=10000,p=192,z=0.99,insert_mops=14,mops=917
+./bench_hash_array_1_wf_indirect,5%update,n=10000,p=192,z=0.99,insert_mops=17,mops=918
+./bench_hash_array_1_wf_indirect,50%update,n=10000,p=192,z=0.99,insert_mops=17,mops=185
+./bench_hash_array_1_wf_indirect,50%update,n=10000,p=192,z=0.99,insert_mops=18,mops=186
+
+./bench_hash_array_1_wf_indirect,5%update,n=1000000,p=192,z=0.99,insert_mops=385,mops=1440
+./bench_hash_array_1_wf_indirect,5%update,n=1000000,p=192,z=0.99,insert_mops=384,mops=1438
+./bench_hash_array_1_wf_indirect,50%update,n=1000000,p=192,z=0.99,insert_mops=382,mops=238
+./bench_hash_array_1_wf_indirect,50%update,n=1000000,p=192,z=0.99,insert_mops=387,mops=238
+
+./bench_hash_array_1_wf_indirect,5%update,n=100000000,p=192,z=0.99,insert_mops=284,mops=1513
+./bench_hash_array_1_wf_indirect,5%update,n=100000000,p=192,z=0.99,insert_mops=284,mops=1511
+./bench_hash_array_1_wf_indirect,50%update,n=100000000,p=192,z=0.99,insert_mops=283,mops=304
+./bench_hash_array_1_wf_indirect,50%update,n=100000000,p=192,z=0.99,insert_mops=283,mops=308
+
+./bench_hash_array_1_wf_indirect benchmark geometric mean of mops = 830.63
+./bench_hash_array_1_wf_indirect initial insert geometric mean of mops = 119.606
+
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000,p=192,z=0,insert_mops=16,mops=2545
+./bench_hash_array_4_wf_indirect,5%update,n=10000,p=192,z=0,insert_mops=14,mops=2544
+./bench_hash_array_4_wf_indirect,50%update,n=10000,p=192,z=0,insert_mops=17,mops=851
+./bench_hash_array_4_wf_indirect,50%update,n=10000,p=192,z=0,insert_mops=17,mops=851
+
+./bench_hash_array_4_wf_indirect,5%update,n=1000000,p=192,z=0,insert_mops=322,mops=2399
+./bench_hash_array_4_wf_indirect,5%update,n=1000000,p=192,z=0,insert_mops=329,mops=2399
+./bench_hash_array_4_wf_indirect,50%update,n=1000000,p=192,z=0,insert_mops=320,mops=958
+./bench_hash_array_4_wf_indirect,50%update,n=1000000,p=192,z=0,insert_mops=326,mops=959
+
+./bench_hash_array_4_wf_indirect,5%update,n=100000000,p=192,z=0,insert_mops=261,mops=932
+./bench_hash_array_4_wf_indirect,5%update,n=100000000,p=192,z=0,insert_mops=260,mops=931
+./bench_hash_array_4_wf_indirect,50%update,n=100000000,p=192,z=0,insert_mops=260,mops=686
+./bench_hash_array_4_wf_indirect,50%update,n=100000000,p=192,z=0,insert_mops=260,mops=687
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000,p=192,z=0.99,insert_mops=16,mops=907
+./bench_hash_array_4_wf_indirect,5%update,n=10000,p=192,z=0.99,insert_mops=15,mops=908
+./bench_hash_array_4_wf_indirect,50%update,n=10000,p=192,z=0.99,insert_mops=15,mops=169
+./bench_hash_array_4_wf_indirect,50%update,n=10000,p=192,z=0.99,insert_mops=18,mops=169
+
+./bench_hash_array_4_wf_indirect,5%update,n=1000000,p=192,z=0.99,insert_mops=371,mops=1461
+./bench_hash_array_4_wf_indirect,5%update,n=1000000,p=192,z=0.99,insert_mops=375,mops=1463
+./bench_hash_array_4_wf_indirect,50%update,n=1000000,p=192,z=0.99,insert_mops=365,mops=226
+./bench_hash_array_4_wf_indirect,50%update,n=1000000,p=192,z=0.99,insert_mops=373,mops=226
+
+./bench_hash_array_4_wf_indirect,5%update,n=100000000,p=192,z=0.99,insert_mops=260,mops=1416
+./bench_hash_array_4_wf_indirect,5%update,n=100000000,p=192,z=0.99,insert_mops=260,mops=1420
+./bench_hash_array_4_wf_indirect,50%update,n=100000000,p=192,z=0.99,insert_mops=260,mops=279
+./bench_hash_array_4_wf_indirect,50%update,n=100000000,p=192,z=0.99,insert_mops=260,mops=280
+
+./bench_hash_array_4_wf_indirect benchmark geometric mean of mops = 796.163
+./bench_hash_array_4_wf_indirect initial insert geometric mean of mops = 114.629
+
+
+./bench_hash_array_16_wf_indirect,5%update,n=10000,p=192,z=0,insert_mops=16,mops=2291
+./bench_hash_array_16_wf_indirect,5%update,n=10000,p=192,z=0,insert_mops=15,mops=2291
+./bench_hash_array_16_wf_indirect,50%update,n=10000,p=192,z=0,insert_mops=16,mops=787
+./bench_hash_array_16_wf_indirect,50%update,n=10000,p=192,z=0,insert_mops=17,mops=787
+
+./bench_hash_array_16_wf_indirect,5%update,n=1000000,p=192,z=0,insert_mops=349,mops=1988
+./bench_hash_array_16_wf_indirect,5%update,n=1000000,p=192,z=0,insert_mops=339,mops=1987
+./bench_hash_array_16_wf_indirect,50%update,n=1000000,p=192,z=0,insert_mops=363,mops=955
+./bench_hash_array_16_wf_indirect,50%update,n=1000000,p=192,z=0,insert_mops=364,mops=956
+
+./bench_hash_array_16_wf_indirect,5%update,n=100000000,p=192,z=0,insert_mops=223,mops=775
+./bench_hash_array_16_wf_indirect,5%update,n=100000000,p=192,z=0,insert_mops=223,mops=775
+./bench_hash_array_16_wf_indirect,50%update,n=100000000,p=192,z=0,insert_mops=223,mops=607
+./bench_hash_array_16_wf_indirect,50%update,n=100000000,p=192,z=0,insert_mops=223,mops=607
+
+./bench_hash_array_16_wf_indirect,5%update,n=10000,p=192,z=0.99,insert_mops=15,mops=1004
+./bench_hash_array_16_wf_indirect,5%update,n=10000,p=192,z=0.99,insert_mops=16,mops=1004
+./bench_hash_array_16_wf_indirect,50%update,n=10000,p=192,z=0.99,insert_mops=17,mops=203
+./bench_hash_array_16_wf_indirect,50%update,n=10000,p=192,z=0.99,insert_mops=16,mops=203
+
+./bench_hash_array_16_wf_indirect,5%update,n=1000000,p=192,z=0.99,insert_mops=281,mops=1360
+./bench_hash_array_16_wf_indirect,5%update,n=1000000,p=192,z=0.99,insert_mops=288,mops=1360
+./bench_hash_array_16_wf_indirect,50%update,n=1000000,p=192,z=0.99,insert_mops=296,mops=298
+./bench_hash_array_16_wf_indirect,50%update,n=1000000,p=192,z=0.99,insert_mops=297,mops=298
+
+./bench_hash_array_16_wf_indirect,5%update,n=100000000,p=192,z=0.99,insert_mops=223,mops=1253
+./bench_hash_array_16_wf_indirect,5%update,n=100000000,p=192,z=0.99,insert_mops=223,mops=1253
+./bench_hash_array_16_wf_indirect,50%update,n=100000000,p=192,z=0.99,insert_mops=223,mops=553
+./bench_hash_array_16_wf_indirect,50%update,n=100000000,p=192,z=0.99,insert_mops=223,mops=562
+
+./bench_hash_array_16_wf_indirect benchmark geometric mean of mops = 821.056
+./bench_hash_array_16_wf_indirect initial insert geometric mean of mops = 105.729
+
+
+./bench_hash_array_1_wf_hazard,5%update,n=10000,p=192,z=0,insert_mops=22,mops=4512
+./bench_hash_array_1_wf_hazard,5%update,n=10000,p=192,z=0,insert_mops=21,mops=4512
+./bench_hash_array_1_wf_hazard,50%update,n=10000,p=192,z=0,insert_mops=22,mops=1222
+./bench_hash_array_1_wf_hazard,50%update,n=10000,p=192,z=0,insert_mops=22,mops=1223
+
+./bench_hash_array_1_wf_hazard,5%update,n=1000000,p=192,z=0,insert_mops=364,mops=4522
+./bench_hash_array_1_wf_hazard,5%update,n=1000000,p=192,z=0,insert_mops=362,mops=4523
+./bench_hash_array_1_wf_hazard,50%update,n=1000000,p=192,z=0,insert_mops=355,mops=1380
+./bench_hash_array_1_wf_hazard,50%update,n=1000000,p=192,z=0,insert_mops=360,mops=1381
+
+./bench_hash_array_1_wf_hazard,5%update,n=100000000,p=192,z=0,insert_mops=416,mops=2107
+./bench_hash_array_1_wf_hazard,5%update,n=100000000,p=192,z=0,insert_mops=417,mops=2107
+./bench_hash_array_1_wf_hazard,50%update,n=100000000,p=192,z=0,insert_mops=416,mops=1270
+./bench_hash_array_1_wf_hazard,50%update,n=100000000,p=192,z=0,insert_mops=417,mops=1270
+
+./bench_hash_array_1_wf_hazard,5%update,n=10000,p=192,z=0.99,insert_mops=24,mops=775
+./bench_hash_array_1_wf_hazard,5%update,n=10000,p=192,z=0.99,insert_mops=23,mops=774
+./bench_hash_array_1_wf_hazard,50%update,n=10000,p=192,z=0.99,insert_mops=23,mops=187
+./bench_hash_array_1_wf_hazard,50%update,n=10000,p=192,z=0.99,insert_mops=23,mops=187
+
+./bench_hash_array_1_wf_hazard,5%update,n=1000000,p=192,z=0.99,insert_mops=436,mops=1319
+./bench_hash_array_1_wf_hazard,5%update,n=1000000,p=192,z=0.99,insert_mops=446,mops=1319
+./bench_hash_array_1_wf_hazard,50%update,n=1000000,p=192,z=0.99,insert_mops=442,mops=271
+./bench_hash_array_1_wf_hazard,50%update,n=1000000,p=192,z=0.99,insert_mops=446,mops=271
+
+./bench_hash_array_1_wf_hazard,5%update,n=100000000,p=192,z=0.99,insert_mops=416,mops=1700
+./bench_hash_array_1_wf_hazard,5%update,n=100000000,p=192,z=0.99,insert_mops=415,mops=1710
+./bench_hash_array_1_wf_hazard,50%update,n=100000000,p=192,z=0.99,insert_mops=416,mops=381
+./bench_hash_array_1_wf_hazard,50%update,n=100000000,p=192,z=0.99,insert_mops=416,mops=381
+
+./bench_hash_array_1_wf_hazard benchmark geometric mean of mops = 1099.68
+./bench_hash_array_1_wf_hazard initial insert geometric mean of mops = 156.088
+
+
+./bench_hash_array_4_wf_hazard,5%update,n=10000,p=192,z=0,insert_mops=19,mops=4652
+./bench_hash_array_4_wf_hazard,5%update,n=10000,p=192,z=0,insert_mops=20,mops=4651
+./bench_hash_array_4_wf_hazard,50%update,n=10000,p=192,z=0,insert_mops=19,mops=1173
+./bench_hash_array_4_wf_hazard,50%update,n=10000,p=192,z=0,insert_mops=20,mops=1173
+
+./bench_hash_array_4_wf_hazard,5%update,n=1000000,p=192,z=0,insert_mops=368,mops=4402
+./bench_hash_array_4_wf_hazard,5%update,n=1000000,p=192,z=0,insert_mops=371,mops=4402
+./bench_hash_array_4_wf_hazard,50%update,n=1000000,p=192,z=0,insert_mops=367,mops=1374
+./bench_hash_array_4_wf_hazard,50%update,n=1000000,p=192,z=0,insert_mops=367,mops=1374
+
+./bench_hash_array_4_wf_hazard,5%update,n=100000000,p=192,z=0,insert_mops=394,mops=2011
+./bench_hash_array_4_wf_hazard,5%update,n=100000000,p=192,z=0,insert_mops=393,mops=2012
+./bench_hash_array_4_wf_hazard,50%update,n=100000000,p=192,z=0,insert_mops=393,mops=1208
+./bench_hash_array_4_wf_hazard,50%update,n=100000000,p=192,z=0,insert_mops=394,mops=1208
+
+./bench_hash_array_4_wf_hazard,5%update,n=10000,p=192,z=0.99,insert_mops=20,mops=954
+./bench_hash_array_4_wf_hazard,5%update,n=10000,p=192,z=0.99,insert_mops=21,mops=951
+./bench_hash_array_4_wf_hazard,50%update,n=10000,p=192,z=0.99,insert_mops=20,mops=217
+./bench_hash_array_4_wf_hazard,50%update,n=10000,p=192,z=0.99,insert_mops=20,mops=217
+
+./bench_hash_array_4_wf_hazard,5%update,n=1000000,p=192,z=0.99,insert_mops=403,mops=1390
+./bench_hash_array_4_wf_hazard,5%update,n=1000000,p=192,z=0.99,insert_mops=398,mops=1390
+./bench_hash_array_4_wf_hazard,50%update,n=1000000,p=192,z=0.99,insert_mops=401,mops=295
+./bench_hash_array_4_wf_hazard,50%update,n=1000000,p=192,z=0.99,insert_mops=400,mops=295
+
+./bench_hash_array_4_wf_hazard,5%update,n=100000000,p=192,z=0.99,insert_mops=393,mops=1641
+./bench_hash_array_4_wf_hazard,5%update,n=100000000,p=192,z=0.99,insert_mops=394,mops=1652
+./bench_hash_array_4_wf_hazard,50%update,n=100000000,p=192,z=0.99,insert_mops=395,mops=390
+./bench_hash_array_4_wf_hazard,50%update,n=100000000,p=192,z=0.99,insert_mops=394,mops=397
+
+./bench_hash_array_4_wf_hazard benchmark geometric mean of mops = 1132.52
+./bench_hash_array_4_wf_hazard initial insert geometric mean of mops = 145.764
+
+
+./bench_hash_array_16_wf_hazard,5%update,n=10000,p=192,z=0,insert_mops=18,mops=2698
+./bench_hash_array_16_wf_hazard,5%update,n=10000,p=192,z=0,insert_mops=18,mops=2699
+./bench_hash_array_16_wf_hazard,50%update,n=10000,p=192,z=0,insert_mops=17,mops=453
+./bench_hash_array_16_wf_hazard,50%update,n=10000,p=192,z=0,insert_mops=16,mops=478
+
+./bench_hash_array_16_wf_hazard,5%update,n=1000000,p=192,z=0,insert_mops=355,mops=3078
+./bench_hash_array_16_wf_hazard,5%update,n=1000000,p=192,z=0,insert_mops=358,mops=3078
+./bench_hash_array_16_wf_hazard,50%update,n=1000000,p=192,z=0,insert_mops=360,mops=1190
+./bench_hash_array_16_wf_hazard,50%update,n=1000000,p=192,z=0,insert_mops=345,mops=1190
+
+./bench_hash_array_16_wf_hazard,5%update,n=100000000,p=192,z=0,insert_mops=275,mops=1285
+./bench_hash_array_16_wf_hazard,5%update,n=100000000,p=192,z=0,insert_mops=275,mops=1285
+./bench_hash_array_16_wf_hazard,50%update,n=100000000,p=192,z=0,insert_mops=274,mops=813
+./bench_hash_array_16_wf_hazard,50%update,n=100000000,p=192,z=0,insert_mops=274,mops=813
+
+./bench_hash_array_16_wf_hazard,5%update,n=10000,p=192,z=0.99,insert_mops=17,mops=615
+./bench_hash_array_16_wf_hazard,5%update,n=10000,p=192,z=0.99,insert_mops=17,mops=615
+./bench_hash_array_16_wf_hazard,50%update,n=10000,p=192,z=0.99,insert_mops=16,mops=195
+./bench_hash_array_16_wf_hazard,50%update,n=10000,p=192,z=0.99,insert_mops=19,mops=195
+
+./bench_hash_array_16_wf_hazard,5%update,n=1000000,p=192,z=0.99,insert_mops=321,mops=1044
+./bench_hash_array_16_wf_hazard,5%update,n=1000000,p=192,z=0.99,insert_mops=261,mops=1044
+./bench_hash_array_16_wf_hazard,50%update,n=1000000,p=192,z=0.99,insert_mops=305,mops=350
+./bench_hash_array_16_wf_hazard,50%update,n=1000000,p=192,z=0.99,insert_mops=310,mops=349
+
+./bench_hash_array_16_wf_hazard,5%update,n=100000000,p=192,z=0.99,insert_mops=274,mops=1203
+./bench_hash_array_16_wf_hazard,5%update,n=100000000,p=192,z=0.99,insert_mops=273,mops=1211
+./bench_hash_array_16_wf_hazard,50%update,n=100000000,p=192,z=0.99,insert_mops=274,mops=536
+./bench_hash_array_16_wf_hazard,50%update,n=100000000,p=192,z=0.99,insert_mops=274,mops=532
+
+./bench_hash_array_16_wf_hazard benchmark geometric mean of mops = 847.164
+./bench_hash_array_16_wf_hazard initial insert geometric mean of mops = 116.816
+
+
+./bench_hash_array_1_wf_daniel,5%update,n=10000,p=192,z=0,insert_mops=21,mops=4515
+./bench_hash_array_1_wf_daniel,5%update,n=10000,p=192,z=0,insert_mops=22,mops=4512
+./bench_hash_array_1_wf_daniel,50%update,n=10000,p=192,z=0,insert_mops=21,mops=809
+./bench_hash_array_1_wf_daniel,50%update,n=10000,p=192,z=0,insert_mops=21,mops=812
+
+./bench_hash_array_1_wf_daniel,5%update,n=1000000,p=192,z=0,insert_mops=392,mops=4640
+./bench_hash_array_1_wf_daniel,5%update,n=1000000,p=192,z=0,insert_mops=398,mops=4640
+./bench_hash_array_1_wf_daniel,50%update,n=1000000,p=192,z=0,insert_mops=377,mops=1478
+./bench_hash_array_1_wf_daniel,50%update,n=1000000,p=192,z=0,insert_mops=381,mops=1480
+
+./bench_hash_array_1_wf_daniel,5%update,n=100000000,p=192,z=0,insert_mops=432,mops=2162
+./bench_hash_array_1_wf_daniel,5%update,n=100000000,p=192,z=0,insert_mops=431,mops=2162
+./bench_hash_array_1_wf_daniel,50%update,n=100000000,p=192,z=0,insert_mops=431,mops=1209
+./bench_hash_array_1_wf_daniel,50%update,n=100000000,p=192,z=0,insert_mops=432,mops=1209
+
+./bench_hash_array_1_wf_daniel,5%update,n=10000,p=192,z=0.99,insert_mops=27,mops=774
+./bench_hash_array_1_wf_daniel,5%update,n=10000,p=192,z=0.99,insert_mops=25,mops=774
+./bench_hash_array_1_wf_daniel,50%update,n=10000,p=192,z=0.99,insert_mops=27,mops=181
+./bench_hash_array_1_wf_daniel,50%update,n=10000,p=192,z=0.99,insert_mops=23,mops=181
+
+./bench_hash_array_1_wf_daniel,5%update,n=1000000,p=192,z=0.99,insert_mops=500,mops=1291
+./bench_hash_array_1_wf_daniel,5%update,n=1000000,p=192,z=0.99,insert_mops=491,mops=1293
+./bench_hash_array_1_wf_daniel,50%update,n=1000000,p=192,z=0.99,insert_mops=495,mops=257
+./bench_hash_array_1_wf_daniel,50%update,n=1000000,p=192,z=0.99,insert_mops=498,mops=256
+
+./bench_hash_array_1_wf_daniel,5%update,n=100000000,p=192,z=0.99,insert_mops=432,mops=1523
+./bench_hash_array_1_wf_daniel,5%update,n=100000000,p=192,z=0.99,insert_mops=431,mops=1669
+./bench_hash_array_1_wf_daniel,50%update,n=100000000,p=192,z=0.99,insert_mops=431,mops=316
+./bench_hash_array_1_wf_daniel,50%update,n=100000000,p=192,z=0.99,insert_mops=432,mops=320
+
+./bench_hash_array_1_wf_daniel benchmark geometric mean of mops = 1037.73
+./bench_hash_array_1_wf_daniel initial insert geometric mean of mops = 165.013
+
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000,p=192,z=0,insert_mops=23,mops=4367
+./bench_hash_array_4_wf_daniel,5%update,n=10000,p=192,z=0,insert_mops=22,mops=4366
+./bench_hash_array_4_wf_daniel,50%update,n=10000,p=192,z=0,insert_mops=21,mops=786
+./bench_hash_array_4_wf_daniel,50%update,n=10000,p=192,z=0,insert_mops=21,mops=786
+
+./bench_hash_array_4_wf_daniel,5%update,n=1000000,p=192,z=0,insert_mops=417,mops=4136
+./bench_hash_array_4_wf_daniel,5%update,n=1000000,p=192,z=0,insert_mops=419,mops=4136
+./bench_hash_array_4_wf_daniel,50%update,n=1000000,p=192,z=0,insert_mops=417,mops=1421
+./bench_hash_array_4_wf_daniel,50%update,n=1000000,p=192,z=0,insert_mops=412,mops=1422
+
+./bench_hash_array_4_wf_daniel,5%update,n=100000000,p=192,z=0,insert_mops=417,mops=1956
+./bench_hash_array_4_wf_daniel,5%update,n=100000000,p=192,z=0,insert_mops=416,mops=1956
+./bench_hash_array_4_wf_daniel,50%update,n=100000000,p=192,z=0,insert_mops=416,mops=1129
+./bench_hash_array_4_wf_daniel,50%update,n=100000000,p=192,z=0,insert_mops=416,mops=1129
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000,p=192,z=0.99,insert_mops=24,mops=782
+./bench_hash_array_4_wf_daniel,5%update,n=10000,p=192,z=0.99,insert_mops=24,mops=782
+./bench_hash_array_4_wf_daniel,50%update,n=10000,p=192,z=0.99,insert_mops=27,mops=192
+./bench_hash_array_4_wf_daniel,50%update,n=10000,p=192,z=0.99,insert_mops=26,mops=192
+
+./bench_hash_array_4_wf_daniel,5%update,n=1000000,p=192,z=0.99,insert_mops=466,mops=1287
+./bench_hash_array_4_wf_daniel,5%update,n=1000000,p=192,z=0.99,insert_mops=470,mops=1287
+./bench_hash_array_4_wf_daniel,50%update,n=1000000,p=192,z=0.99,insert_mops=468,mops=249
+./bench_hash_array_4_wf_daniel,50%update,n=1000000,p=192,z=0.99,insert_mops=482,mops=249
+
+./bench_hash_array_4_wf_daniel,5%update,n=100000000,p=192,z=0.99,insert_mops=417,mops=1582
+./bench_hash_array_4_wf_daniel,5%update,n=100000000,p=192,z=0.99,insert_mops=416,mops=1558
+./bench_hash_array_4_wf_daniel,50%update,n=100000000,p=192,z=0.99,insert_mops=416,mops=310
+./bench_hash_array_4_wf_daniel,50%update,n=100000000,p=192,z=0.99,insert_mops=416,mops=309
+
+./bench_hash_array_4_wf_daniel benchmark geometric mean of mops = 1004.22
+./bench_hash_array_4_wf_daniel initial insert geometric mean of mops = 163.74
+
+
+./bench_hash_array_16_wf_daniel,5%update,n=10000,p=192,z=0,insert_mops=20,mops=2752
+./bench_hash_array_16_wf_daniel,5%update,n=10000,p=192,z=0,insert_mops=23,mops=2750
+./bench_hash_array_16_wf_daniel,50%update,n=10000,p=192,z=0,insert_mops=21,mops=934
+./bench_hash_array_16_wf_daniel,50%update,n=10000,p=192,z=0,insert_mops=20,mops=933
+
+./bench_hash_array_16_wf_daniel,5%update,n=1000000,p=192,z=0,insert_mops=326,mops=2490
+./bench_hash_array_16_wf_daniel,5%update,n=1000000,p=192,z=0,insert_mops=356,mops=2492
+./bench_hash_array_16_wf_daniel,50%update,n=1000000,p=192,z=0,insert_mops=351,mops=1176
+./bench_hash_array_16_wf_daniel,50%update,n=1000000,p=192,z=0,insert_mops=355,mops=1177
+
+./bench_hash_array_16_wf_daniel,5%update,n=100000000,p=192,z=0,insert_mops=234,mops=982
+./bench_hash_array_16_wf_daniel,5%update,n=100000000,p=192,z=0,insert_mops=234,mops=983
+./bench_hash_array_16_wf_daniel,50%update,n=100000000,p=192,z=0,insert_mops=234,mops=652
+./bench_hash_array_16_wf_daniel,50%update,n=100000000,p=192,z=0,insert_mops=234,mops=652
+
+./bench_hash_array_16_wf_daniel,5%update,n=10000,p=192,z=0.99,insert_mops=20,mops=696
+./bench_hash_array_16_wf_daniel,5%update,n=10000,p=192,z=0.99,insert_mops=20,mops=696
+./bench_hash_array_16_wf_daniel,50%update,n=10000,p=192,z=0.99,insert_mops=20,mops=186
+./bench_hash_array_16_wf_daniel,50%update,n=10000,p=192,z=0.99,insert_mops=21,mops=186
+
+./bench_hash_array_16_wf_daniel,5%update,n=1000000,p=192,z=0.99,insert_mops=299,mops=1082
+./bench_hash_array_16_wf_daniel,5%update,n=1000000,p=192,z=0.99,insert_mops=316,mops=1083
+./bench_hash_array_16_wf_daniel,50%update,n=1000000,p=192,z=0.99,insert_mops=283,mops=322
+./bench_hash_array_16_wf_daniel,50%update,n=1000000,p=192,z=0.99,insert_mops=309,mops=322
+
+./bench_hash_array_16_wf_daniel,5%update,n=100000000,p=192,z=0.99,insert_mops=234,mops=1115
+./bench_hash_array_16_wf_daniel,5%update,n=100000000,p=192,z=0.99,insert_mops=234,mops=1110
+./bench_hash_array_16_wf_daniel,50%update,n=100000000,p=192,z=0.99,insert_mops=234,mops=555
+./bench_hash_array_16_wf_daniel,50%update,n=100000000,p=192,z=0.99,insert_mops=234,mops=552
+
+./bench_hash_array_16_wf_daniel benchmark geometric mean of mops = 846.307
+./bench_hash_array_16_wf_daniel initial insert geometric mean of mops = 117.407
+
+
+./bench_hash_array_1_lf_llsc,5%update,n=10000,p=192,z=0,insert_mops=33,mops=5074
+./bench_hash_array_1_lf_llsc,5%update,n=10000,p=192,z=0,insert_mops=31,mops=5068
+./bench_hash_array_1_lf_llsc,50%update,n=10000,p=192,z=0,insert_mops=34,mops=1649
+./bench_hash_array_1_lf_llsc,50%update,n=10000,p=192,z=0,insert_mops=33,mops=1641
+
+./bench_hash_array_1_lf_llsc,5%update,n=1000000,p=192,z=0,insert_mops=570,mops=4670
+./bench_hash_array_1_lf_llsc,5%update,n=1000000,p=192,z=0,insert_mops=572,mops=4670
+./bench_hash_array_1_lf_llsc,50%update,n=1000000,p=192,z=0,insert_mops=572,mops=1752
+./bench_hash_array_1_lf_llsc,50%update,n=1000000,p=192,z=0,insert_mops=572,mops=1751
+
+./bench_hash_array_1_lf_llsc,5%update,n=100000000,p=192,z=0,insert_mops=518,mops=2254
+./bench_hash_array_1_lf_llsc,5%update,n=100000000,p=192,z=0,insert_mops=517,mops=2254
+./bench_hash_array_1_lf_llsc,50%update,n=100000000,p=192,z=0,insert_mops=517,mops=1454
+./bench_hash_array_1_lf_llsc,50%update,n=100000000,p=192,z=0,insert_mops=519,mops=1454
+
+./bench_hash_array_1_lf_llsc,5%update,n=10000,p=192,z=0.99,insert_mops=26,mops=1088
+./bench_hash_array_1_lf_llsc,5%update,n=10000,p=192,z=0.99,insert_mops=23,mops=1088
+./bench_hash_array_1_lf_llsc,50%update,n=10000,p=192,z=0.99,insert_mops=22,mops=262
+./bench_hash_array_1_lf_llsc,50%update,n=10000,p=192,z=0.99,insert_mops=22,mops=262
+
+./bench_hash_array_1_lf_llsc,5%update,n=1000000,p=192,z=0.99,insert_mops=397,mops=1622
+./bench_hash_array_1_lf_llsc,5%update,n=1000000,p=192,z=0.99,insert_mops=405,mops=1622
+./bench_hash_array_1_lf_llsc,50%update,n=1000000,p=192,z=0.99,insert_mops=405,mops=363
+./bench_hash_array_1_lf_llsc,50%update,n=1000000,p=192,z=0.99,insert_mops=399,mops=363
+
+./bench_hash_array_1_lf_llsc,5%update,n=100000000,p=192,z=0.99,insert_mops=403,mops=1875
+./bench_hash_array_1_lf_llsc,5%update,n=100000000,p=192,z=0.99,insert_mops=403,mops=1914
+./bench_hash_array_1_lf_llsc,50%update,n=100000000,p=192,z=0.99,insert_mops=401,mops=425
+./bench_hash_array_1_lf_llsc,50%update,n=100000000,p=192,z=0.99,insert_mops=401,mops=435
+
+./bench_hash_array_1_lf_llsc benchmark geometric mean of mops = 1330.6
+./bench_hash_array_1_lf_llsc initial insert geometric mean of mops = 183.333
+
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000,p=192,z=0,insert_mops=35,mops=4777
+./bench_hash_array_4_lf_llsc,5%update,n=10000,p=192,z=0,insert_mops=31,mops=4769
+./bench_hash_array_4_lf_llsc,50%update,n=10000,p=192,z=0,insert_mops=31,mops=1518
+./bench_hash_array_4_lf_llsc,50%update,n=10000,p=192,z=0,insert_mops=28,mops=1515
+
+./bench_hash_array_4_lf_llsc,5%update,n=1000000,p=192,z=0,insert_mops=530,mops=4298
+./bench_hash_array_4_lf_llsc,5%update,n=1000000,p=192,z=0,insert_mops=524,mops=4298
+./bench_hash_array_4_lf_llsc,50%update,n=1000000,p=192,z=0,insert_mops=539,mops=1689
+./bench_hash_array_4_lf_llsc,50%update,n=1000000,p=192,z=0,insert_mops=540,mops=1693
+
+./bench_hash_array_4_lf_llsc,5%update,n=100000000,p=192,z=0,insert_mops=497,mops=2090
+./bench_hash_array_4_lf_llsc,5%update,n=100000000,p=192,z=0,insert_mops=497,mops=2090
+./bench_hash_array_4_lf_llsc,50%update,n=100000000,p=192,z=0,insert_mops=498,mops=1387
+./bench_hash_array_4_lf_llsc,50%update,n=100000000,p=192,z=0,insert_mops=497,mops=1389
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000,p=192,z=0.99,insert_mops=24,mops=975
+./bench_hash_array_4_lf_llsc,5%update,n=10000,p=192,z=0.99,insert_mops=23,mops=975
+./bench_hash_array_4_lf_llsc,50%update,n=10000,p=192,z=0.99,insert_mops=24,mops=259
+./bench_hash_array_4_lf_llsc,50%update,n=10000,p=192,z=0.99,insert_mops=21,mops=258
+
+./bench_hash_array_4_lf_llsc,5%update,n=1000000,p=192,z=0.99,insert_mops=428,mops=1666
+./bench_hash_array_4_lf_llsc,5%update,n=1000000,p=192,z=0.99,insert_mops=418,mops=1665
+./bench_hash_array_4_lf_llsc,50%update,n=1000000,p=192,z=0.99,insert_mops=405,mops=381
+./bench_hash_array_4_lf_llsc,50%update,n=1000000,p=192,z=0.99,insert_mops=417,mops=380
+
+./bench_hash_array_4_lf_llsc,5%update,n=100000000,p=192,z=0.99,insert_mops=385,mops=1918
+./bench_hash_array_4_lf_llsc,5%update,n=100000000,p=192,z=0.99,insert_mops=385,mops=1924
+./bench_hash_array_4_lf_llsc,50%update,n=100000000,p=192,z=0.99,insert_mops=383,mops=493
+./bench_hash_array_4_lf_llsc,50%update,n=100000000,p=192,z=0.99,insert_mops=382,mops=518
+
+./bench_hash_array_4_lf_llsc benchmark geometric mean of mops = 1302.4
+./bench_hash_array_4_lf_llsc initial insert geometric mean of mops = 178.262
+
+
+./bench_hash_array_16_lf_llsc,5%update,n=10000,p=192,z=0,insert_mops=29,mops=2765
+./bench_hash_array_16_lf_llsc,5%update,n=10000,p=192,z=0,insert_mops=26,mops=2763
+./bench_hash_array_16_lf_llsc,50%update,n=10000,p=192,z=0,insert_mops=28,mops=1090
+./bench_hash_array_16_lf_llsc,50%update,n=10000,p=192,z=0,insert_mops=26,mops=1090
+
+./bench_hash_array_16_lf_llsc,5%update,n=1000000,p=192,z=0,insert_mops=391,mops=2533
+./bench_hash_array_16_lf_llsc,5%update,n=1000000,p=192,z=0,insert_mops=387,mops=2532
+./bench_hash_array_16_lf_llsc,50%update,n=1000000,p=192,z=0,insert_mops=374,mops=1346
+./bench_hash_array_16_lf_llsc,50%update,n=1000000,p=192,z=0,insert_mops=356,mops=1347
+
+./bench_hash_array_16_lf_llsc,5%update,n=100000000,p=192,z=0,insert_mops=307,mops=1039
+./bench_hash_array_16_lf_llsc,5%update,n=100000000,p=192,z=0,insert_mops=308,mops=1039
+./bench_hash_array_16_lf_llsc,50%update,n=100000000,p=192,z=0,insert_mops=307,mops=824
+./bench_hash_array_16_lf_llsc,50%update,n=100000000,p=192,z=0,insert_mops=307,mops=824
+
+./bench_hash_array_16_lf_llsc,5%update,n=10000,p=192,z=0.99,insert_mops=20,mops=597
+./bench_hash_array_16_lf_llsc,5%update,n=10000,p=192,z=0.99,insert_mops=20,mops=596
+./bench_hash_array_16_lf_llsc,50%update,n=10000,p=192,z=0.99,insert_mops=21,mops=203
+./bench_hash_array_16_lf_llsc,50%update,n=10000,p=192,z=0.99,insert_mops=18,mops=203
+
+./bench_hash_array_16_lf_llsc,5%update,n=1000000,p=192,z=0.99,insert_mops=310,mops=1075
+./bench_hash_array_16_lf_llsc,5%update,n=1000000,p=192,z=0.99,insert_mops=307,mops=1075
+./bench_hash_array_16_lf_llsc,50%update,n=1000000,p=192,z=0.99,insert_mops=295,mops=415
+./bench_hash_array_16_lf_llsc,50%update,n=1000000,p=192,z=0.99,insert_mops=316,mops=415
+
+./bench_hash_array_16_lf_llsc,5%update,n=100000000,p=192,z=0.99,insert_mops=270,mops=1130
+./bench_hash_array_16_lf_llsc,5%update,n=100000000,p=192,z=0.99,insert_mops=269,mops=1133
+./bench_hash_array_16_lf_llsc,50%update,n=100000000,p=192,z=0.99,insert_mops=271,mops=577
+./bench_hash_array_16_lf_llsc,50%update,n=100000000,p=192,z=0.99,insert_mops=270,mops=577
+
+./bench_hash_array_16_lf_llsc benchmark geometric mean of mops = 907.587
+./bench_hash_array_16_lf_llsc initial insert geometric mean of mops = 132.406
+
+
+
+bigatomic array over schemes, including slow ones, and block sizes
+
+./bench_hash_array_1_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1400,mops=2974
+./bench_hash_array_1_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1398,mops=2973
+
+./bench_hash_array_1_seqlock benchmark geometric mean of mops = 2973.95
+./bench_hash_array_1_seqlock initial insert geometric mean of mops = 1399.5
+
+
+./bench_hash_array_2_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1384,mops=2979
+./bench_hash_array_2_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1391,mops=2980
+
+./bench_hash_array_2_seqlock benchmark geometric mean of mops = 2979.92
+./bench_hash_array_2_seqlock initial insert geometric mean of mops = 1387.71
+
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1293,mops=3034
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1287,mops=3035
+
+./bench_hash_array_4_seqlock benchmark geometric mean of mops = 3035.3
+./bench_hash_array_4_seqlock initial insert geometric mean of mops = 1290.68
+
+
+./bench_hash_array_8_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=747,mops=1610
+./bench_hash_array_8_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=748,mops=1611
+
+./bench_hash_array_8_seqlock benchmark geometric mean of mops = 1611.08
+./bench_hash_array_8_seqlock initial insert geometric mean of mops = 747.877
+
+
+./bench_hash_array_16_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=572,mops=945
+./bench_hash_array_16_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=571,mops=949
+
+./bench_hash_array_16_seqlock benchmark geometric mean of mops = 947.907
+./bench_hash_array_16_seqlock initial insert geometric mean of mops = 572.033
+
+
+./bench_hash_array_1_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=821,mops=3644
+./bench_hash_array_1_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=823,mops=3643
+
+./bench_hash_array_1_seqlocklock benchmark geometric mean of mops = 3644.06
+./bench_hash_array_1_seqlocklock initial insert geometric mean of mops = 822.593
+
+
+./bench_hash_array_2_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=812,mops=3466
+./bench_hash_array_2_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=818,mops=3466
+
+./bench_hash_array_2_seqlocklock benchmark geometric mean of mops = 3466.27
+./bench_hash_array_2_seqlocklock initial insert geometric mean of mops = 815.463
+
+
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=834,mops=3583
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=838,mops=3583
+
+./bench_hash_array_4_seqlocklock benchmark geometric mean of mops = 3583.46
+./bench_hash_array_4_seqlocklock initial insert geometric mean of mops = 836.284
+
+
+./bench_hash_array_8_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=603,mops=1987
+./bench_hash_array_8_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=604,mops=1989
+
+./bench_hash_array_8_seqlocklock benchmark geometric mean of mops = 1988.36
+./bench_hash_array_8_seqlocklock initial insert geometric mean of mops = 604.329
+
+
+./bench_hash_array_16_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=525,mops=1075
+./bench_hash_array_16_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=525,mops=1089
+
+./bench_hash_array_16_seqlocklock benchmark geometric mean of mops = 1082.3
+./bench_hash_array_16_seqlocklock initial insert geometric mean of mops = 525.092
+
+
+./bench_hash_array_1_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=361,mops=2016
+./bench_hash_array_1_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=360,mops=2012
+
+./bench_hash_array_1_wf_indirect benchmark geometric mean of mops = 2014.51
+./bench_hash_array_1_wf_indirect initial insert geometric mean of mops = 361.085
+
+
+./bench_hash_array_2_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=344,mops=1826
+./bench_hash_array_2_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=344,mops=1815
+
+./bench_hash_array_2_wf_indirect benchmark geometric mean of mops = 1821.2
+./bench_hash_array_2_wf_indirect initial insert geometric mean of mops = 344.663
+
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=311,mops=1624
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=312,mops=1621
+
+./bench_hash_array_4_wf_indirect benchmark geometric mean of mops = 1622.93
+./bench_hash_array_4_wf_indirect initial insert geometric mean of mops = 312.193
+
+
+./bench_hash_array_8_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=277,mops=1560
+./bench_hash_array_8_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=277,mops=1559
+
+./bench_hash_array_8_wf_indirect benchmark geometric mean of mops = 1560.36
+./bench_hash_array_8_wf_indirect initial insert geometric mean of mops = 277.557
+
+
+./bench_hash_array_16_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=230,mops=1407
+./bench_hash_array_16_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=229,mops=1408
+
+./bench_hash_array_16_wf_indirect benchmark geometric mean of mops = 1408.01
+./bench_hash_array_16_wf_indirect initial insert geometric mean of mops = 230.13
+
+
+./bench_hash_array_1_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=444,mops=2577
+./bench_hash_array_1_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=445,mops=2572
+
+./bench_hash_array_1_wf_hazard benchmark geometric mean of mops = 2575.01
+./bench_hash_array_1_wf_hazard initial insert geometric mean of mops = 444.932
+
+
+./bench_hash_array_2_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=347,mops=2608
+./bench_hash_array_2_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=341,mops=2608
+
+./bench_hash_array_2_wf_hazard benchmark geometric mean of mops = 2608.47
+./bench_hash_array_2_wf_hazard initial insert geometric mean of mops = 344.509
+
+
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=410,mops=2570
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=408,mops=2569
+
+./bench_hash_array_4_wf_hazard benchmark geometric mean of mops = 2569.82
+./bench_hash_array_4_wf_hazard initial insert geometric mean of mops = 409.343
+
+
+./bench_hash_array_8_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=359,mops=1955
+./bench_hash_array_8_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=360,mops=1954
+
+./bench_hash_array_8_wf_hazard benchmark geometric mean of mops = 1955.07
+./bench_hash_array_8_wf_hazard initial insert geometric mean of mops = 360.213
+
+
+./bench_hash_array_16_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=289,mops=1658
+./bench_hash_array_16_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=289,mops=1660
+
+./bench_hash_array_16_wf_hazard benchmark geometric mean of mops = 1659.44
+./bench_hash_array_16_wf_hazard initial insert geometric mean of mops = 289.688
+
+
+./bench_hash_array_1_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=468,mops=2737
+./bench_hash_array_1_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=467,mops=2736
+
+./bench_hash_array_1_wf_daniel benchmark geometric mean of mops = 2737.13
+./bench_hash_array_1_wf_daniel initial insert geometric mean of mops = 468.098
+
+
+./bench_hash_array_2_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=452,mops=2582
+./bench_hash_array_2_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=451,mops=2583
+
+./bench_hash_array_2_wf_daniel benchmark geometric mean of mops = 2582.96
+./bench_hash_array_2_wf_daniel initial insert geometric mean of mops = 451.784
+
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=428,mops=2522
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=428,mops=2521
+
+./bench_hash_array_4_wf_daniel benchmark geometric mean of mops = 2522.36
+./bench_hash_array_4_wf_daniel initial insert geometric mean of mops = 428.87
+
+
+./bench_hash_array_8_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=337,mops=1974
+./bench_hash_array_8_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=338,mops=1974
+
+./bench_hash_array_8_wf_daniel benchmark geometric mean of mops = 1974.71
+./bench_hash_array_8_wf_daniel initial insert geometric mean of mops = 337.938
+
+
+./bench_hash_array_16_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=254,mops=1477
+./bench_hash_array_16_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=253,mops=1478
+
+./bench_hash_array_16_wf_daniel benchmark geometric mean of mops = 1477.93
+./bench_hash_array_16_wf_daniel initial insert geometric mean of mops = 253.807
+
+
+./bench_hash_array_1_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=598,mops=2981
+./bench_hash_array_1_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=570,mops=2972
+
+./bench_hash_array_1_lf_llsc benchmark geometric mean of mops = 2976.87
+./bench_hash_array_1_lf_llsc initial insert geometric mean of mops = 584.408
+
+
+./bench_hash_array_2_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=586,mops=3029
+./bench_hash_array_2_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=565,mops=3024
+
+./bench_hash_array_2_lf_llsc benchmark geometric mean of mops = 3026.88
+./bench_hash_array_2_lf_llsc initial insert geometric mean of mops = 575.821
+
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=571,mops=2890
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=548,mops=2882
+
+./bench_hash_array_4_lf_llsc benchmark geometric mean of mops = 2886.78
+./bench_hash_array_4_lf_llsc initial insert geometric mean of mops = 559.998
+
+
+./bench_hash_array_8_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=390,mops=2166
+./bench_hash_array_8_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=365,mops=2155
+
+./bench_hash_array_8_lf_llsc benchmark geometric mean of mops = 2160.86
+./bench_hash_array_8_lf_llsc initial insert geometric mean of mops = 377.419
+
+
+./bench_hash_array_16_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=334,mops=1530
+./bench_hash_array_16_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=313,mops=1524
+
+./bench_hash_array_16_lf_llsc benchmark geometric mean of mops = 1527.41
+./bench_hash_array_16_lf_llsc initial insert geometric mean of mops = 323.932
+
+
+./bench_hash_array_1_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=273,mops=19
+./bench_hash_array_1_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=273,mops=19
+
+./bench_hash_array_1_simplock benchmark geometric mean of mops = 19.7327
+./bench_hash_array_1_simplock initial insert geometric mean of mops = 273.773
+
+
+./bench_hash_array_2_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=272,mops=21
+./bench_hash_array_2_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=271,mops=22
+
+./bench_hash_array_2_simplock benchmark geometric mean of mops = 22.0634
+./bench_hash_array_2_simplock initial insert geometric mean of mops = 272.135
+
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=274,mops=21
+./bench_hash_array_4_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=273,mops=21
+
+./bench_hash_array_4_simplock benchmark geometric mean of mops = 21.8897
+./bench_hash_array_4_simplock initial insert geometric mean of mops = 274.257
+
+
+./bench_hash_array_8_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=270,mops=20
+./bench_hash_array_8_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=270,mops=21
+
+./bench_hash_array_8_simplock benchmark geometric mean of mops = 20.8773
+./bench_hash_array_8_simplock initial insert geometric mean of mops = 270.064
+
+
+./bench_hash_array_16_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=246,mops=18
+./bench_hash_array_16_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=248,mops=18
+
+./bench_hash_array_16_simplock benchmark geometric mean of mops = 18.1454
+./bench_hash_array_16_simplock initial insert geometric mean of mops = 247.378
+
+
+./bench_hash_array_1_std,5%update,n=10000000,p=192,z=0.9,insert_mops=1649,mops=3334
+./bench_hash_array_1_std,5%update,n=10000000,p=192,z=0.9,insert_mops=1664,mops=3334
+
+./bench_hash_array_1_std benchmark geometric mean of mops = 3334.65
+./bench_hash_array_1_std initial insert geometric mean of mops = 1657.09
+
+
+./bench_hash_array_2_std,5%update,n=10000000,p=192,z=0.9,insert_mops=1385,mops=3210
+./bench_hash_array_2_std,5%update,n=10000000,p=192,z=0.9,insert_mops=1398,mops=3210
+
+./bench_hash_array_2_std benchmark geometric mean of mops = 3210.69
+./bench_hash_array_2_std initial insert geometric mean of mops = 1391.94
+
+
+./bench_hash_array_4_std,5%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=47
+./bench_hash_array_4_std,5%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=47
+
+./bench_hash_array_4_std benchmark geometric mean of mops = 47.105
+./bench_hash_array_4_std initial insert geometric mean of mops = 18.6271
+
+
+./bench_hash_array_8_std,5%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=46
+./bench_hash_array_8_std,5%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=46
+
+./bench_hash_array_8_std benchmark geometric mean of mops = 46.7668
+./bench_hash_array_8_std initial insert geometric mean of mops = 18.2571
+
+
+./bench_hash_array_16_std,5%update,n=10000000,p=192,z=0.9,insert_mops=2,mops=6
+./bench_hash_array_16_std,5%update,n=10000000,p=192,z=0.9,insert_mops=2,mops=6
+
+./bench_hash_array_16_std benchmark geometric mean of mops = 6.47834
+./bench_hash_array_16_std initial insert geometric mean of mops = 2.0214
+
+
+
+bench_parlay_hash geomean over schemes
+
+./bench_parlay_hash_seqlock,5%update,n=10000,p=192,z=0,insert_mops=45,mops=3393
+./bench_parlay_hash_seqlock,5%update,n=10000,p=192,z=0,insert_mops=45,mops=3270
+./bench_parlay_hash_seqlock,50%update,n=10000,p=192,z=0,insert_mops=44,mops=1785
+./bench_parlay_hash_seqlock,50%update,n=10000,p=192,z=0,insert_mops=34,mops=1795
+
+./bench_parlay_hash_seqlock,5%update,n=1000000,p=192,z=0,insert_mops=123,mops=2524
+./bench_parlay_hash_seqlock,5%update,n=1000000,p=192,z=0,insert_mops=124,mops=2523
+./bench_parlay_hash_seqlock,50%update,n=1000000,p=192,z=0,insert_mops=122,mops=1419
+./bench_parlay_hash_seqlock,50%update,n=1000000,p=192,z=0,insert_mops=119,mops=1418
+
+./bench_parlay_hash_seqlock,5%update,n=100000000,p=192,z=0,insert_mops=122,mops=1452
+./bench_parlay_hash_seqlock,5%update,n=100000000,p=192,z=0,insert_mops=119,mops=1443
+./bench_parlay_hash_seqlock,50%update,n=100000000,p=192,z=0,insert_mops=118,mops=1052
+./bench_parlay_hash_seqlock,50%update,n=100000000,p=192,z=0,insert_mops=117,mops=1050
+
+./bench_parlay_hash_seqlock,5%update,n=10000,p=192,z=0.99,insert_mops=38,mops=736
+./bench_parlay_hash_seqlock,5%update,n=10000,p=192,z=0.99,insert_mops=37,mops=760
+./bench_parlay_hash_seqlock,50%update,n=10000,p=192,z=0.99,insert_mops=37,mops=116
+./bench_parlay_hash_seqlock,50%update,n=10000,p=192,z=0.99,insert_mops=39,mops=118
+
+./bench_parlay_hash_seqlock,5%update,n=1000000,p=192,z=0.99,insert_mops=106,mops=1081
+./bench_parlay_hash_seqlock,5%update,n=1000000,p=192,z=0.99,insert_mops=107,mops=1135
+./bench_parlay_hash_seqlock,50%update,n=1000000,p=192,z=0.99,insert_mops=105,mops=162
+./bench_parlay_hash_seqlock,50%update,n=1000000,p=192,z=0.99,insert_mops=107,mops=151
+
+./bench_parlay_hash_seqlock,5%update,n=100000000,p=192,z=0.99,insert_mops=116,mops=1360
+./bench_parlay_hash_seqlock,5%update,n=100000000,p=192,z=0.99,insert_mops=116,mops=1421
+./bench_parlay_hash_seqlock,50%update,n=100000000,p=192,z=0.99,insert_mops=116,mops=197
+./bench_parlay_hash_seqlock,50%update,n=100000000,p=192,z=0.99,insert_mops=116,mops=191
+
+./bench_parlay_hash_seqlock benchmark geometric mean of mops = 846.096
+./bench_parlay_hash_seqlock initial insert geometric mean of mops = 81.6216
+
+
+./bench_parlay_hash_seqlocklock,5%update,n=10000,p=192,z=0,insert_mops=37,mops=3457
+./bench_parlay_hash_seqlocklock,5%update,n=10000,p=192,z=0,insert_mops=34,mops=3505
+./bench_parlay_hash_seqlocklock,50%update,n=10000,p=192,z=0,insert_mops=37,mops=1651
+./bench_parlay_hash_seqlocklock,50%update,n=10000,p=192,z=0,insert_mops=39,mops=1640
+
+./bench_parlay_hash_seqlocklock,5%update,n=1000000,p=192,z=0,insert_mops=124,mops=2483
+./bench_parlay_hash_seqlocklock,5%update,n=1000000,p=192,z=0,insert_mops=124,mops=2485
+./bench_parlay_hash_seqlocklock,50%update,n=1000000,p=192,z=0,insert_mops=121,mops=1326
+./bench_parlay_hash_seqlocklock,50%update,n=1000000,p=192,z=0,insert_mops=120,mops=1327
+
+./bench_parlay_hash_seqlocklock,5%update,n=100000000,p=192,z=0,insert_mops=124,mops=1432
+./bench_parlay_hash_seqlocklock,5%update,n=100000000,p=192,z=0,insert_mops=122,mops=1423
+./bench_parlay_hash_seqlocklock,50%update,n=100000000,p=192,z=0,insert_mops=121,mops=971
+./bench_parlay_hash_seqlocklock,50%update,n=100000000,p=192,z=0,insert_mops=120,mops=971
+
+./bench_parlay_hash_seqlocklock,5%update,n=10000,p=192,z=0.99,insert_mops=35,mops=1456
+./bench_parlay_hash_seqlocklock,5%update,n=10000,p=192,z=0.99,insert_mops=34,mops=1524
+./bench_parlay_hash_seqlocklock,50%update,n=10000,p=192,z=0.99,insert_mops=33,mops=66
+./bench_parlay_hash_seqlocklock,50%update,n=10000,p=192,z=0.99,insert_mops=33,mops=61
+
+./bench_parlay_hash_seqlocklock,5%update,n=1000000,p=192,z=0.99,insert_mops=107,mops=1913
+./bench_parlay_hash_seqlocklock,5%update,n=1000000,p=192,z=0.99,insert_mops=107,mops=1836
+./bench_parlay_hash_seqlocklock,50%update,n=1000000,p=192,z=0.99,insert_mops=107,mops=91
+./bench_parlay_hash_seqlocklock,50%update,n=1000000,p=192,z=0.99,insert_mops=107,mops=88
+
+./bench_parlay_hash_seqlocklock,5%update,n=100000000,p=192,z=0.99,insert_mops=120,mops=1749
+./bench_parlay_hash_seqlocklock,5%update,n=100000000,p=192,z=0.99,insert_mops=119,mops=1748
+./bench_parlay_hash_seqlocklock,50%update,n=100000000,p=192,z=0.99,insert_mops=119,mops=100
+./bench_parlay_hash_seqlocklock,50%update,n=100000000,p=192,z=0.99,insert_mops=119,mops=97
+
+./bench_parlay_hash_seqlocklock benchmark geometric mean of mops = 803.833
+./bench_parlay_hash_seqlocklock initial insert geometric mean of mops = 79.0651
+
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000,p=192,z=0,insert_mops=10,mops=1870
+./bench_parlay_hash_wf_indirect,5%update,n=10000,p=192,z=0,insert_mops=9,mops=1901
+./bench_parlay_hash_wf_indirect,50%update,n=10000,p=192,z=0,insert_mops=10,mops=711
+./bench_parlay_hash_wf_indirect,50%update,n=10000,p=192,z=0,insert_mops=10,mops=713
+
+./bench_parlay_hash_wf_indirect,5%update,n=1000000,p=192,z=0,insert_mops=51,mops=1484
+./bench_parlay_hash_wf_indirect,5%update,n=1000000,p=192,z=0,insert_mops=50,mops=1489
+./bench_parlay_hash_wf_indirect,50%update,n=1000000,p=192,z=0,insert_mops=50,mops=654
+./bench_parlay_hash_wf_indirect,50%update,n=1000000,p=192,z=0,insert_mops=50,mops=655
+
+./bench_parlay_hash_wf_indirect,5%update,n=100000000,p=192,z=0,insert_mops=44,mops=658
+./bench_parlay_hash_wf_indirect,5%update,n=100000000,p=192,z=0,insert_mops=44,mops=658
+./bench_parlay_hash_wf_indirect,50%update,n=100000000,p=192,z=0,insert_mops=44,mops=458
+./bench_parlay_hash_wf_indirect,50%update,n=100000000,p=192,z=0,insert_mops=44,mops=457
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000,p=192,z=0.99,insert_mops=9,mops=1010
+./bench_parlay_hash_wf_indirect,5%update,n=10000,p=192,z=0.99,insert_mops=9,mops=999
+./bench_parlay_hash_wf_indirect,50%update,n=10000,p=192,z=0.99,insert_mops=9,mops=155
+./bench_parlay_hash_wf_indirect,50%update,n=10000,p=192,z=0.99,insert_mops=9,mops=162
+
+./bench_parlay_hash_wf_indirect,5%update,n=1000000,p=192,z=0.99,insert_mops=45,mops=1287
+./bench_parlay_hash_wf_indirect,5%update,n=1000000,p=192,z=0.99,insert_mops=45,mops=1280
+./bench_parlay_hash_wf_indirect,50%update,n=1000000,p=192,z=0.99,insert_mops=46,mops=253
+./bench_parlay_hash_wf_indirect,50%update,n=1000000,p=192,z=0.99,insert_mops=46,mops=250
+
+./bench_parlay_hash_wf_indirect,5%update,n=100000000,p=192,z=0.99,insert_mops=43,mops=932
+./bench_parlay_hash_wf_indirect,5%update,n=100000000,p=192,z=0.99,insert_mops=44,mops=934
+./bench_parlay_hash_wf_indirect,50%update,n=100000000,p=192,z=0.99,insert_mops=44,mops=419
+./bench_parlay_hash_wf_indirect,50%update,n=100000000,p=192,z=0.99,insert_mops=43,mops=416
+
+./bench_parlay_hash_wf_indirect benchmark geometric mean of mops = 668.342
+./bench_parlay_hash_wf_indirect initial insert geometric mean of mops = 27.5938
+
+
+./bench_parlay_hash_wf_hazard,5%update,n=10000,p=192,z=0,insert_mops=14,mops=2725
+./bench_parlay_hash_wf_hazard,5%update,n=10000,p=192,z=0,insert_mops=12,mops=2730
+./bench_parlay_hash_wf_hazard,50%update,n=10000,p=192,z=0,insert_mops=14,mops=923
+./bench_parlay_hash_wf_hazard,50%update,n=10000,p=192,z=0,insert_mops=12,mops=921
+
+./bench_parlay_hash_wf_hazard,5%update,n=1000000,p=192,z=0,insert_mops=91,mops=2151
+./bench_parlay_hash_wf_hazard,5%update,n=1000000,p=192,z=0,insert_mops=91,mops=2150
+./bench_parlay_hash_wf_hazard,50%update,n=1000000,p=192,z=0,insert_mops=89,mops=839
+./bench_parlay_hash_wf_hazard,50%update,n=1000000,p=192,z=0,insert_mops=89,mops=838
+
+./bench_parlay_hash_wf_hazard,5%update,n=100000000,p=192,z=0,insert_mops=83,mops=1210
+./bench_parlay_hash_wf_hazard,5%update,n=100000000,p=192,z=0,insert_mops=83,mops=1196
+./bench_parlay_hash_wf_hazard,50%update,n=100000000,p=192,z=0,insert_mops=83,mops=702
+./bench_parlay_hash_wf_hazard,50%update,n=100000000,p=192,z=0,insert_mops=82,mops=702
+
+./bench_parlay_hash_wf_hazard,5%update,n=10000,p=192,z=0.99,insert_mops=15,mops=723
+./bench_parlay_hash_wf_hazard,5%update,n=10000,p=192,z=0.99,insert_mops=13,mops=665
+./bench_parlay_hash_wf_hazard,50%update,n=10000,p=192,z=0.99,insert_mops=12,mops=130
+./bench_parlay_hash_wf_hazard,50%update,n=10000,p=192,z=0.99,insert_mops=13,mops=134
+
+./bench_parlay_hash_wf_hazard,5%update,n=1000000,p=192,z=0.99,insert_mops=80,mops=993
+./bench_parlay_hash_wf_hazard,5%update,n=1000000,p=192,z=0.99,insert_mops=80,mops=955
+./bench_parlay_hash_wf_hazard,50%update,n=1000000,p=192,z=0.99,insert_mops=81,mops=200
+./bench_parlay_hash_wf_hazard,50%update,n=1000000,p=192,z=0.99,insert_mops=80,mops=213
+
+./bench_parlay_hash_wf_hazard,5%update,n=100000000,p=192,z=0.99,insert_mops=82,mops=1066
+./bench_parlay_hash_wf_hazard,5%update,n=100000000,p=192,z=0.99,insert_mops=82,mops=1104
+./bench_parlay_hash_wf_hazard,50%update,n=100000000,p=192,z=0.99,insert_mops=82,mops=339
+./bench_parlay_hash_wf_hazard,50%update,n=100000000,p=192,z=0.99,insert_mops=81,mops=343
+
+./bench_parlay_hash_wf_hazard benchmark geometric mean of mops = 738.745
+./bench_parlay_hash_wf_hazard initial insert geometric mean of mops = 45.6322
+
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000,p=192,z=0,insert_mops=16,mops=2865
+./bench_parlay_hash_wf_daniel,5%update,n=10000,p=192,z=0,insert_mops=16,mops=2844
+./bench_parlay_hash_wf_daniel,50%update,n=10000,p=192,z=0,insert_mops=16,mops=1068
+./bench_parlay_hash_wf_daniel,50%update,n=10000,p=192,z=0,insert_mops=18,mops=1067
+
+./bench_parlay_hash_wf_daniel,5%update,n=1000000,p=192,z=0,insert_mops=91,mops=2183
+./bench_parlay_hash_wf_daniel,5%update,n=1000000,p=192,z=0,insert_mops=89,mops=2184
+./bench_parlay_hash_wf_daniel,50%update,n=1000000,p=192,z=0,insert_mops=87,mops=948
+./bench_parlay_hash_wf_daniel,50%update,n=1000000,p=192,z=0,insert_mops=89,mops=948
+
+./bench_parlay_hash_wf_daniel,5%update,n=100000000,p=192,z=0,insert_mops=83,mops=1205
+./bench_parlay_hash_wf_daniel,5%update,n=100000000,p=192,z=0,insert_mops=82,mops=1191
+./bench_parlay_hash_wf_daniel,50%update,n=100000000,p=192,z=0,insert_mops=82,mops=677
+./bench_parlay_hash_wf_daniel,50%update,n=100000000,p=192,z=0,insert_mops=82,mops=677
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000,p=192,z=0.99,insert_mops=13,mops=583
+./bench_parlay_hash_wf_daniel,5%update,n=10000,p=192,z=0.99,insert_mops=14,mops=597
+./bench_parlay_hash_wf_daniel,50%update,n=10000,p=192,z=0.99,insert_mops=13,mops=121
+./bench_parlay_hash_wf_daniel,50%update,n=10000,p=192,z=0.99,insert_mops=15,mops=141
+
+./bench_parlay_hash_wf_daniel,5%update,n=1000000,p=192,z=0.99,insert_mops=80,mops=960
+./bench_parlay_hash_wf_daniel,5%update,n=1000000,p=192,z=0.99,insert_mops=79,mops=966
+./bench_parlay_hash_wf_daniel,50%update,n=1000000,p=192,z=0.99,insert_mops=81,mops=179
+./bench_parlay_hash_wf_daniel,50%update,n=1000000,p=192,z=0.99,insert_mops=81,mops=176
+
+./bench_parlay_hash_wf_daniel,5%update,n=100000000,p=192,z=0.99,insert_mops=81,mops=1102
+./bench_parlay_hash_wf_daniel,5%update,n=100000000,p=192,z=0.99,insert_mops=82,mops=1051
+./bench_parlay_hash_wf_daniel,50%update,n=100000000,p=192,z=0.99,insert_mops=81,mops=221
+./bench_parlay_hash_wf_daniel,50%update,n=100000000,p=192,z=0.99,insert_mops=82,mops=220
+
+./bench_parlay_hash_wf_daniel benchmark geometric mean of mops = 709.29
+./bench_parlay_hash_wf_daniel initial insert geometric mean of mops = 47.6556
+
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000,p=192,z=0,insert_mops=18,mops=2991
+./bench_parlay_hash_lf_llsc,5%update,n=10000,p=192,z=0,insert_mops=16,mops=3014
+./bench_parlay_hash_lf_llsc,50%update,n=10000,p=192,z=0,insert_mops=16,mops=1196
+./bench_parlay_hash_lf_llsc,50%update,n=10000,p=192,z=0,insert_mops=16,mops=1194
+
+./bench_parlay_hash_lf_llsc,5%update,n=1000000,p=192,z=0,insert_mops=97,mops=2201
+./bench_parlay_hash_lf_llsc,5%update,n=1000000,p=192,z=0,insert_mops=96,mops=2203
+./bench_parlay_hash_lf_llsc,50%update,n=1000000,p=192,z=0,insert_mops=97,mops=978
+./bench_parlay_hash_lf_llsc,50%update,n=1000000,p=192,z=0,insert_mops=95,mops=978
+
+./bench_parlay_hash_lf_llsc,5%update,n=100000000,p=192,z=0,insert_mops=104,mops=1258
+./bench_parlay_hash_lf_llsc,5%update,n=100000000,p=192,z=0,insert_mops=102,mops=1250
+./bench_parlay_hash_lf_llsc,50%update,n=100000000,p=192,z=0,insert_mops=102,mops=798
+./bench_parlay_hash_lf_llsc,50%update,n=100000000,p=192,z=0,insert_mops=102,mops=798
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000,p=192,z=0.99,insert_mops=15,mops=966
+./bench_parlay_hash_lf_llsc,5%update,n=10000,p=192,z=0.99,insert_mops=13,mops=987
+./bench_parlay_hash_lf_llsc,50%update,n=10000,p=192,z=0.99,insert_mops=12,mops=180
+./bench_parlay_hash_lf_llsc,50%update,n=10000,p=192,z=0.99,insert_mops=13,mops=171
+
+./bench_parlay_hash_lf_llsc,5%update,n=1000000,p=192,z=0.99,insert_mops=83,mops=1457
+./bench_parlay_hash_lf_llsc,5%update,n=1000000,p=192,z=0.99,insert_mops=83,mops=1443
+./bench_parlay_hash_lf_llsc,50%update,n=1000000,p=192,z=0.99,insert_mops=83,mops=273
+./bench_parlay_hash_lf_llsc,50%update,n=1000000,p=192,z=0.99,insert_mops=83,mops=273
+
+./bench_parlay_hash_lf_llsc,5%update,n=100000000,p=192,z=0.99,insert_mops=92,mops=1416
+./bench_parlay_hash_lf_llsc,5%update,n=100000000,p=192,z=0.99,insert_mops=92,mops=1393
+./bench_parlay_hash_lf_llsc,50%update,n=100000000,p=192,z=0.99,insert_mops=92,mops=370
+./bench_parlay_hash_lf_llsc,50%update,n=100000000,p=192,z=0.99,insert_mops=92,mops=459
+
+./bench_parlay_hash_lf_llsc benchmark geometric mean of mops = 906.174
+./bench_parlay_hash_lf_llsc initial insert geometric mean of mops = 51.1996
+
+
+
+bench_hash_list geomean over schemes
+
+./bench_hash_list_seqlock,5%update,n=10000,p=192,z=0,insert_mops=57,mops=3172
+./bench_hash_list_seqlock,5%update,n=10000,p=192,z=0,insert_mops=56,mops=3171
+./bench_hash_list_seqlock,50%update,n=10000,p=192,z=0,insert_mops=57,mops=1390
+./bench_hash_list_seqlock,50%update,n=10000,p=192,z=0,insert_mops=68,mops=1387
+
+./bench_hash_list_seqlock,5%update,n=1000000,p=192,z=0,insert_mops=856,mops=2369
+./bench_hash_list_seqlock,5%update,n=1000000,p=192,z=0,insert_mops=856,mops=2368
+./bench_hash_list_seqlock,50%update,n=1000000,p=192,z=0,insert_mops=886,mops=1267
+./bench_hash_list_seqlock,50%update,n=1000000,p=192,z=0,insert_mops=889,mops=1267
+
+./bench_hash_list_seqlock,5%update,n=100000000,p=192,z=0,insert_mops=777,mops=1258
+./bench_hash_list_seqlock,5%update,n=100000000,p=192,z=0,insert_mops=775,mops=1257
+./bench_hash_list_seqlock,50%update,n=100000000,p=192,z=0,insert_mops=776,mops=974
+./bench_hash_list_seqlock,50%update,n=100000000,p=192,z=0,insert_mops=776,mops=976
+
+./bench_hash_list_seqlock,5%update,n=10000,p=192,z=0.99,insert_mops=50,mops=839
+./bench_hash_list_seqlock,5%update,n=10000,p=192,z=0.99,insert_mops=59,mops=839
+./bench_hash_list_seqlock,50%update,n=10000,p=192,z=0.99,insert_mops=54,mops=135
+./bench_hash_list_seqlock,50%update,n=10000,p=192,z=0.99,insert_mops=58,mops=134
+
+./bench_hash_list_seqlock,5%update,n=1000000,p=192,z=0.99,insert_mops=841,mops=1212
+./bench_hash_list_seqlock,5%update,n=1000000,p=192,z=0.99,insert_mops=875,mops=1213
+./bench_hash_list_seqlock,50%update,n=1000000,p=192,z=0.99,insert_mops=885,mops=173
+./bench_hash_list_seqlock,50%update,n=1000000,p=192,z=0.99,insert_mops=886,mops=173
+
+./bench_hash_list_seqlock,5%update,n=100000000,p=192,z=0.99,insert_mops=775,mops=1549
+./bench_hash_list_seqlock,5%update,n=100000000,p=192,z=0.99,insert_mops=774,mops=1597
+./bench_hash_list_seqlock,50%update,n=100000000,p=192,z=0.99,insert_mops=773,mops=223
+./bench_hash_list_seqlock,50%update,n=100000000,p=192,z=0.99,insert_mops=775,mops=219
+
+./bench_hash_list_seqlock benchmark geometric mean of mops = 846.476
+./bench_hash_list_seqlock initial insert geometric mean of mops = 339.365
+
+
+./bench_hash_list_seqlocklock,5%update,n=10000,p=192,z=0,insert_mops=52,mops=3170
+./bench_hash_list_seqlocklock,5%update,n=10000,p=192,z=0,insert_mops=55,mops=3168
+./bench_hash_list_seqlocklock,50%update,n=10000,p=192,z=0,insert_mops=55,mops=1345
+./bench_hash_list_seqlocklock,50%update,n=10000,p=192,z=0,insert_mops=53,mops=1343
+
+./bench_hash_list_seqlocklock,5%update,n=1000000,p=192,z=0,insert_mops=672,mops=2362
+./bench_hash_list_seqlocklock,5%update,n=1000000,p=192,z=0,insert_mops=673,mops=2361
+./bench_hash_list_seqlocklock,50%update,n=1000000,p=192,z=0,insert_mops=685,mops=1212
+./bench_hash_list_seqlocklock,50%update,n=1000000,p=192,z=0,insert_mops=674,mops=1212
+
+./bench_hash_list_seqlocklock,5%update,n=100000000,p=192,z=0,insert_mops=610,mops=1242
+./bench_hash_list_seqlocklock,5%update,n=100000000,p=192,z=0,insert_mops=612,mops=1242
+./bench_hash_list_seqlocklock,50%update,n=100000000,p=192,z=0,insert_mops=613,mops=925
+./bench_hash_list_seqlocklock,50%update,n=100000000,p=192,z=0,insert_mops=610,mops=924
+
+./bench_hash_list_seqlocklock,5%update,n=10000,p=192,z=0.99,insert_mops=49,mops=1501
+./bench_hash_list_seqlocklock,5%update,n=10000,p=192,z=0.99,insert_mops=50,mops=1500
+./bench_hash_list_seqlocklock,50%update,n=10000,p=192,z=0.99,insert_mops=50,mops=76
+./bench_hash_list_seqlocklock,50%update,n=10000,p=192,z=0.99,insert_mops=43,mops=74
+
+./bench_hash_list_seqlocklock,5%update,n=1000000,p=192,z=0.99,insert_mops=672,mops=2098
+./bench_hash_list_seqlocklock,5%update,n=1000000,p=192,z=0.99,insert_mops=688,mops=2097
+./bench_hash_list_seqlocklock,50%update,n=1000000,p=192,z=0.99,insert_mops=687,mops=96
+./bench_hash_list_seqlocklock,50%update,n=1000000,p=192,z=0.99,insert_mops=667,mops=87
+
+./bench_hash_list_seqlocklock,5%update,n=100000000,p=192,z=0.99,insert_mops=611,mops=1996
+./bench_hash_list_seqlocklock,5%update,n=100000000,p=192,z=0.99,insert_mops=613,mops=1988
+./bench_hash_list_seqlocklock,50%update,n=100000000,p=192,z=0.99,insert_mops=609,mops=103
+./bench_hash_list_seqlocklock,50%update,n=100000000,p=192,z=0.99,insert_mops=610,mops=102
+
+./bench_hash_list_seqlocklock benchmark geometric mean of mops = 794.103
+./bench_hash_list_seqlocklock initial insert geometric mean of mops = 276.875
+
+
+./bench_hash_list_wf_indirect,5%update,n=10000,p=192,z=0,insert_mops=16,mops=1702
+./bench_hash_list_wf_indirect,5%update,n=10000,p=192,z=0,insert_mops=14,mops=1706
+./bench_hash_list_wf_indirect,50%update,n=10000,p=192,z=0,insert_mops=15,mops=664
+./bench_hash_list_wf_indirect,50%update,n=10000,p=192,z=0,insert_mops=19,mops=667
+
+./bench_hash_list_wf_indirect,5%update,n=1000000,p=192,z=0,insert_mops=267,mops=1335
+./bench_hash_list_wf_indirect,5%update,n=1000000,p=192,z=0,insert_mops=267,mops=1336
+./bench_hash_list_wf_indirect,50%update,n=1000000,p=192,z=0,insert_mops=273,mops=612
+./bench_hash_list_wf_indirect,50%update,n=1000000,p=192,z=0,insert_mops=260,mops=614
+
+./bench_hash_list_wf_indirect,5%update,n=100000000,p=192,z=0,insert_mops=241,mops=581
+./bench_hash_list_wf_indirect,5%update,n=100000000,p=192,z=0,insert_mops=240,mops=580
+./bench_hash_list_wf_indirect,50%update,n=100000000,p=192,z=0,insert_mops=240,mops=473
+./bench_hash_list_wf_indirect,50%update,n=100000000,p=192,z=0,insert_mops=240,mops=473
+
+./bench_hash_list_wf_indirect,5%update,n=10000,p=192,z=0.99,insert_mops=15,mops=1020
+./bench_hash_list_wf_indirect,5%update,n=10000,p=192,z=0.99,insert_mops=15,mops=1020
+./bench_hash_list_wf_indirect,50%update,n=10000,p=192,z=0.99,insert_mops=17,mops=151
+./bench_hash_list_wf_indirect,50%update,n=10000,p=192,z=0.99,insert_mops=16,mops=151
+
+./bench_hash_list_wf_indirect,5%update,n=1000000,p=192,z=0.99,insert_mops=290,mops=1313
+./bench_hash_list_wf_indirect,5%update,n=1000000,p=192,z=0.99,insert_mops=289,mops=1316
+./bench_hash_list_wf_indirect,50%update,n=1000000,p=192,z=0.99,insert_mops=298,mops=210
+./bench_hash_list_wf_indirect,50%update,n=1000000,p=192,z=0.99,insert_mops=302,mops=211
+
+./bench_hash_list_wf_indirect,5%update,n=100000000,p=192,z=0.99,insert_mops=240,mops=1064
+./bench_hash_list_wf_indirect,5%update,n=100000000,p=192,z=0.99,insert_mops=240,mops=1062
+./bench_hash_list_wf_indirect,50%update,n=100000000,p=192,z=0.99,insert_mops=240,mops=269
+./bench_hash_list_wf_indirect,50%update,n=100000000,p=192,z=0.99,insert_mops=240,mops=263
+
+./bench_hash_list_wf_indirect benchmark geometric mean of mops = 618.06
+./bench_hash_list_wf_indirect initial insert geometric mean of mops = 103.094
+
+
+./bench_hash_list_wf_hazard,5%update,n=10000,p=192,z=0,insert_mops=17,mops=2630
+./bench_hash_list_wf_hazard,5%update,n=10000,p=192,z=0,insert_mops=19,mops=2632
+./bench_hash_list_wf_hazard,50%update,n=10000,p=192,z=0,insert_mops=16,mops=825
+./bench_hash_list_wf_hazard,50%update,n=10000,p=192,z=0,insert_mops=16,mops=824
+
+./bench_hash_list_wf_hazard,5%update,n=1000000,p=192,z=0,insert_mops=307,mops=2105
+./bench_hash_list_wf_hazard,5%update,n=1000000,p=192,z=0,insert_mops=300,mops=2106
+./bench_hash_list_wf_hazard,50%update,n=1000000,p=192,z=0,insert_mops=306,mops=776
+./bench_hash_list_wf_hazard,50%update,n=1000000,p=192,z=0,insert_mops=304,mops=784
+
+./bench_hash_list_wf_hazard,5%update,n=100000000,p=192,z=0,insert_mops=344,mops=1095
+./bench_hash_list_wf_hazard,5%update,n=100000000,p=192,z=0,insert_mops=344,mops=1094
+./bench_hash_list_wf_hazard,50%update,n=100000000,p=192,z=0,insert_mops=344,mops=706
+./bench_hash_list_wf_hazard,50%update,n=100000000,p=192,z=0,insert_mops=344,mops=706
+
+./bench_hash_list_wf_hazard,5%update,n=10000,p=192,z=0.99,insert_mops=20,mops=739
+./bench_hash_list_wf_hazard,5%update,n=10000,p=192,z=0.99,insert_mops=17,mops=739
+./bench_hash_list_wf_hazard,50%update,n=10000,p=192,z=0.99,insert_mops=17,mops=149
+./bench_hash_list_wf_hazard,50%update,n=10000,p=192,z=0.99,insert_mops=17,mops=149
+
+./bench_hash_list_wf_hazard,5%update,n=1000000,p=192,z=0.99,insert_mops=317,mops=1197
+./bench_hash_list_wf_hazard,5%update,n=1000000,p=192,z=0.99,insert_mops=319,mops=1196
+./bench_hash_list_wf_hazard,50%update,n=1000000,p=192,z=0.99,insert_mops=313,mops=220
+./bench_hash_list_wf_hazard,50%update,n=1000000,p=192,z=0.99,insert_mops=318,mops=220
+
+./bench_hash_list_wf_hazard,5%update,n=100000000,p=192,z=0.99,insert_mops=344,mops=1371
+./bench_hash_list_wf_hazard,5%update,n=100000000,p=192,z=0.99,insert_mops=344,mops=1362
+./bench_hash_list_wf_hazard,50%update,n=100000000,p=192,z=0.99,insert_mops=344,mops=371
+./bench_hash_list_wf_hazard,50%update,n=100000000,p=192,z=0.99,insert_mops=343,mops=336
+
+./bench_hash_list_wf_hazard benchmark geometric mean of mops = 762.889
+./bench_hash_list_wf_hazard initial insert geometric mean of mops = 123.955
+
+
+./bench_hash_list_wf_daniel,5%update,n=10000,p=192,z=0,insert_mops=21,mops=2714
+./bench_hash_list_wf_daniel,5%update,n=10000,p=192,z=0,insert_mops=22,mops=2714
+./bench_hash_list_wf_daniel,50%update,n=10000,p=192,z=0,insert_mops=21,mops=604
+./bench_hash_list_wf_daniel,50%update,n=10000,p=192,z=0,insert_mops=18,mops=604
+
+./bench_hash_list_wf_daniel,5%update,n=1000000,p=192,z=0,insert_mops=350,mops=2145
+./bench_hash_list_wf_daniel,5%update,n=1000000,p=192,z=0,insert_mops=362,mops=2146
+./bench_hash_list_wf_daniel,50%update,n=1000000,p=192,z=0,insert_mops=353,mops=832
+./bench_hash_list_wf_daniel,50%update,n=1000000,p=192,z=0,insert_mops=357,mops=839
+
+./bench_hash_list_wf_daniel,5%update,n=100000000,p=192,z=0,insert_mops=377,mops=1121
+./bench_hash_list_wf_daniel,5%update,n=100000000,p=192,z=0,insert_mops=377,mops=1122
+./bench_hash_list_wf_daniel,50%update,n=100000000,p=192,z=0,insert_mops=377,mops=706
+./bench_hash_list_wf_daniel,50%update,n=100000000,p=192,z=0,insert_mops=377,mops=706
+
+./bench_hash_list_wf_daniel,5%update,n=10000,p=192,z=0.99,insert_mops=21,mops=741
+./bench_hash_list_wf_daniel,5%update,n=10000,p=192,z=0.99,insert_mops=28,mops=742
+./bench_hash_list_wf_daniel,50%update,n=10000,p=192,z=0.99,insert_mops=26,mops=143
+./bench_hash_list_wf_daniel,50%update,n=10000,p=192,z=0.99,insert_mops=22,mops=143
+
+./bench_hash_list_wf_daniel,5%update,n=1000000,p=192,z=0.99,insert_mops=383,mops=1183
+./bench_hash_list_wf_daniel,5%update,n=1000000,p=192,z=0.99,insert_mops=384,mops=1184
+./bench_hash_list_wf_daniel,50%update,n=1000000,p=192,z=0.99,insert_mops=392,mops=200
+./bench_hash_list_wf_daniel,50%update,n=1000000,p=192,z=0.99,insert_mops=390,mops=200
+
+./bench_hash_list_wf_daniel,5%update,n=100000000,p=192,z=0.99,insert_mops=377,mops=1354
+./bench_hash_list_wf_daniel,5%update,n=100000000,p=192,z=0.99,insert_mops=376,mops=1350
+./bench_hash_list_wf_daniel,50%update,n=100000000,p=192,z=0.99,insert_mops=377,mops=291
+./bench_hash_list_wf_daniel,50%update,n=100000000,p=192,z=0.99,insert_mops=377,mops=267
+
+./bench_hash_list_wf_daniel benchmark geometric mean of mops = 728.254
+./bench_hash_list_wf_daniel initial insert geometric mean of mops = 146.923
+
+
+./bench_hash_list_lf_llsc,5%update,n=10000,p=192,z=0,insert_mops=26,mops=2832
+./bench_hash_list_lf_llsc,5%update,n=10000,p=192,z=0,insert_mops=25,mops=2830
+./bench_hash_list_lf_llsc,50%update,n=10000,p=192,z=0,insert_mops=27,mops=1043
+./bench_hash_list_lf_llsc,50%update,n=10000,p=192,z=0,insert_mops=24,mops=1040
+
+./bench_hash_list_lf_llsc,5%update,n=1000000,p=192,z=0,insert_mops=449,mops=2180
+./bench_hash_list_lf_llsc,5%update,n=1000000,p=192,z=0,insert_mops=454,mops=2179
+./bench_hash_list_lf_llsc,50%update,n=1000000,p=192,z=0,insert_mops=467,mops=929
+./bench_hash_list_lf_llsc,50%update,n=1000000,p=192,z=0,insert_mops=465,mops=929
+
+./bench_hash_list_lf_llsc,5%update,n=100000000,p=192,z=0,insert_mops=453,mops=1192
+./bench_hash_list_lf_llsc,5%update,n=100000000,p=192,z=0,insert_mops=453,mops=1191
+./bench_hash_list_lf_llsc,50%update,n=100000000,p=192,z=0,insert_mops=453,mops=838
+./bench_hash_list_lf_llsc,50%update,n=100000000,p=192,z=0,insert_mops=453,mops=837
+
+./bench_hash_list_lf_llsc,5%update,n=10000,p=192,z=0.99,insert_mops=26,mops=877
+./bench_hash_list_lf_llsc,5%update,n=10000,p=192,z=0.99,insert_mops=22,mops=876
+./bench_hash_list_lf_llsc,50%update,n=10000,p=192,z=0.99,insert_mops=20,mops=194
+./bench_hash_list_lf_llsc,50%update,n=10000,p=192,z=0.99,insert_mops=19,mops=194
+
+./bench_hash_list_lf_llsc,5%update,n=1000000,p=192,z=0.99,insert_mops=360,mops=1524
+./bench_hash_list_lf_llsc,5%update,n=1000000,p=192,z=0.99,insert_mops=353,mops=1524
+./bench_hash_list_lf_llsc,50%update,n=1000000,p=192,z=0.99,insert_mops=348,mops=332
+./bench_hash_list_lf_llsc,50%update,n=1000000,p=192,z=0.99,insert_mops=361,mops=332
+
+./bench_hash_list_lf_llsc,5%update,n=100000000,p=192,z=0.99,insert_mops=336,mops=1637
+./bench_hash_list_lf_llsc,5%update,n=100000000,p=192,z=0.99,insert_mops=337,mops=1634
+./bench_hash_list_lf_llsc,50%update,n=100000000,p=192,z=0.99,insert_mops=338,mops=475
+./bench_hash_list_lf_llsc,50%update,n=100000000,p=192,z=0.99,insert_mops=336,mops=483
+
+./bench_hash_list_lf_llsc benchmark geometric mean of mops = 927.352
+./bench_hash_list_lf_llsc initial insert geometric mean of mops = 155.748
+
+
+
+bench_leaf_tree geomean over schemes
+
+./bench_leaf_tree_seqlock,5%update,n=10000,p=192,z=0,insert_mops=12,mops=539
+./bench_leaf_tree_seqlock,5%update,n=10000,p=192,z=0,insert_mops=14,mops=530
+./bench_leaf_tree_seqlock,50%update,n=10000,p=192,z=0,insert_mops=13,mops=331
+./bench_leaf_tree_seqlock,50%update,n=10000,p=192,z=0,insert_mops=12,mops=328
+
+./bench_leaf_tree_seqlock,5%update,n=1000000,p=192,z=0,insert_mops=118,mops=170
+./bench_leaf_tree_seqlock,5%update,n=1000000,p=192,z=0,insert_mops=115,mops=171
+./bench_leaf_tree_seqlock,50%update,n=1000000,p=192,z=0,insert_mops=120,mops=143
+./bench_leaf_tree_seqlock,50%update,n=1000000,p=192,z=0,insert_mops=117,mops=142
+
+./bench_leaf_tree_seqlock,5%update,n=100000000,p=192,z=0,insert_mops=52,mops=59
+./bench_leaf_tree_seqlock,5%update,n=100000000,p=192,z=0,insert_mops=52,mops=59
+./bench_leaf_tree_seqlock,50%update,n=100000000,p=192,z=0,insert_mops=52,mops=56
+./bench_leaf_tree_seqlock,50%update,n=100000000,p=192,z=0,insert_mops=52,mops=56
+
+./bench_leaf_tree_seqlock,5%update,n=10000,p=192,z=0.99,insert_mops=11,mops=372
+./bench_leaf_tree_seqlock,5%update,n=10000,p=192,z=0.99,insert_mops=12,mops=382
+./bench_leaf_tree_seqlock,50%update,n=10000,p=192,z=0.99,insert_mops=11,mops=46
+./bench_leaf_tree_seqlock,50%update,n=10000,p=192,z=0.99,insert_mops=11,mops=47
+
+./bench_leaf_tree_seqlock,5%update,n=1000000,p=192,z=0.99,insert_mops=109,mops=192
+./bench_leaf_tree_seqlock,5%update,n=1000000,p=192,z=0.99,insert_mops=108,mops=192
+./bench_leaf_tree_seqlock,50%update,n=1000000,p=192,z=0.99,insert_mops=107,mops=62
+./bench_leaf_tree_seqlock,50%update,n=1000000,p=192,z=0.99,insert_mops=107,mops=73
+
+./bench_leaf_tree_seqlock,5%update,n=100000000,p=192,z=0.99,insert_mops=52,mops=89
+./bench_leaf_tree_seqlock,5%update,n=100000000,p=192,z=0.99,insert_mops=52,mops=89
+./bench_leaf_tree_seqlock,50%update,n=100000000,p=192,z=0.99,insert_mops=52,mops=83
+./bench_leaf_tree_seqlock,50%update,n=100000000,p=192,z=0.99,insert_mops=52,mops=82
+
+./bench_leaf_tree_seqlock benchmark geometric mean of mops = 130.889
+./bench_leaf_tree_seqlock initial insert geometric mean of mops = 41.9628
+
+
+./bench_leaf_tree_seqlocklock,5%update,n=10000,p=192,z=0,insert_mops=11,mops=536
+./bench_leaf_tree_seqlocklock,5%update,n=10000,p=192,z=0,insert_mops=11,mops=537
+./bench_leaf_tree_seqlocklock,50%update,n=10000,p=192,z=0,insert_mops=11,mops=316
+./bench_leaf_tree_seqlocklock,50%update,n=10000,p=192,z=0,insert_mops=11,mops=316
+
+./bench_leaf_tree_seqlocklock,5%update,n=1000000,p=192,z=0,insert_mops=111,mops=172
+./bench_leaf_tree_seqlocklock,5%update,n=1000000,p=192,z=0,insert_mops=110,mops=172
+./bench_leaf_tree_seqlocklock,50%update,n=1000000,p=192,z=0,insert_mops=114,mops=145
+./bench_leaf_tree_seqlocklock,50%update,n=1000000,p=192,z=0,insert_mops=114,mops=143
+
+./bench_leaf_tree_seqlocklock,5%update,n=100000000,p=192,z=0,insert_mops=53,mops=59
+./bench_leaf_tree_seqlocklock,5%update,n=100000000,p=192,z=0,insert_mops=52,mops=59
+./bench_leaf_tree_seqlocklock,50%update,n=100000000,p=192,z=0,insert_mops=53,mops=56
+./bench_leaf_tree_seqlocklock,50%update,n=100000000,p=192,z=0,insert_mops=52,mops=56
+
+./bench_leaf_tree_seqlocklock,5%update,n=10000,p=192,z=0.99,insert_mops=11,mops=466
+./bench_leaf_tree_seqlocklock,5%update,n=10000,p=192,z=0.99,insert_mops=11,mops=460
+./bench_leaf_tree_seqlocklock,50%update,n=10000,p=192,z=0.99,insert_mops=11,mops=18
+./bench_leaf_tree_seqlocklock,50%update,n=10000,p=192,z=0.99,insert_mops=11,mops=18
+
+./bench_leaf_tree_seqlocklock,5%update,n=1000000,p=192,z=0.99,insert_mops=103,mops=192
+./bench_leaf_tree_seqlocklock,5%update,n=1000000,p=192,z=0.99,insert_mops=104,mops=194
+./bench_leaf_tree_seqlocklock,50%update,n=1000000,p=192,z=0.99,insert_mops=103,mops=21
+./bench_leaf_tree_seqlocklock,50%update,n=1000000,p=192,z=0.99,insert_mops=102,mops=21
+
+./bench_leaf_tree_seqlocklock,5%update,n=100000000,p=192,z=0.99,insert_mops=52,mops=89
+./bench_leaf_tree_seqlocklock,5%update,n=100000000,p=192,z=0.99,insert_mops=52,mops=89
+./bench_leaf_tree_seqlocklock,50%update,n=100000000,p=192,z=0.99,insert_mops=52,mops=81
+./bench_leaf_tree_seqlocklock,50%update,n=100000000,p=192,z=0.99,insert_mops=52,mops=81
+
+./bench_leaf_tree_seqlocklock benchmark geometric mean of mops = 111.3
+./bench_leaf_tree_seqlocklock initial insert geometric mean of mops = 40.429
+
+
+./bench_leaf_tree_wf_indirect,5%update,n=10000,p=192,z=0,insert_mops=6,mops=293
+./bench_leaf_tree_wf_indirect,5%update,n=10000,p=192,z=0,insert_mops=6,mops=295
+./bench_leaf_tree_wf_indirect,50%update,n=10000,p=192,z=0,insert_mops=6,mops=171
+./bench_leaf_tree_wf_indirect,50%update,n=10000,p=192,z=0,insert_mops=6,mops=173
+
+./bench_leaf_tree_wf_indirect,5%update,n=1000000,p=192,z=0,insert_mops=60,mops=102
+./bench_leaf_tree_wf_indirect,5%update,n=1000000,p=192,z=0,insert_mops=60,mops=102
+./bench_leaf_tree_wf_indirect,50%update,n=1000000,p=192,z=0,insert_mops=61,mops=89
+./bench_leaf_tree_wf_indirect,50%update,n=1000000,p=192,z=0,insert_mops=61,mops=86
+
+./bench_leaf_tree_wf_indirect,5%update,n=100000000,p=192,z=0,insert_mops=26,mops=27
+./bench_leaf_tree_wf_indirect,5%update,n=100000000,p=192,z=0,insert_mops=24,mops=26
+./bench_leaf_tree_wf_indirect,50%update,n=100000000,p=192,z=0,insert_mops=24,mops=25
+./bench_leaf_tree_wf_indirect,50%update,n=100000000,p=192,z=0,insert_mops=24,mops=25
+
+./bench_leaf_tree_wf_indirect,5%update,n=10000,p=192,z=0.99,insert_mops=5,mops=240
+./bench_leaf_tree_wf_indirect,5%update,n=10000,p=192,z=0.99,insert_mops=6,mops=239
+./bench_leaf_tree_wf_indirect,50%update,n=10000,p=192,z=0.99,insert_mops=5,mops=113
+./bench_leaf_tree_wf_indirect,50%update,n=10000,p=192,z=0.99,insert_mops=5,mops=73
+
+./bench_leaf_tree_wf_indirect,5%update,n=1000000,p=192,z=0.99,insert_mops=54,mops=97
+./bench_leaf_tree_wf_indirect,5%update,n=1000000,p=192,z=0.99,insert_mops=56,mops=98
+./bench_leaf_tree_wf_indirect,50%update,n=1000000,p=192,z=0.99,insert_mops=55,mops=87
+./bench_leaf_tree_wf_indirect,50%update,n=1000000,p=192,z=0.99,insert_mops=55,mops=85
+
+./bench_leaf_tree_wf_indirect,5%update,n=100000000,p=192,z=0.99,insert_mops=24,mops=44
+./bench_leaf_tree_wf_indirect,5%update,n=100000000,p=192,z=0.99,insert_mops=24,mops=44
+./bench_leaf_tree_wf_indirect,50%update,n=100000000,p=192,z=0.99,insert_mops=24,mops=41
+./bench_leaf_tree_wf_indirect,50%update,n=100000000,p=192,z=0.99,insert_mops=24,mops=41
+
+./bench_leaf_tree_wf_indirect benchmark geometric mean of mops = 83.1028
+./bench_leaf_tree_wf_indirect initial insert geometric mean of mops = 20.6178
+
+
+./bench_leaf_tree_wf_hazard,5%update,n=10000,p=192,z=0,insert_mops=8,mops=502
+./bench_leaf_tree_wf_hazard,5%update,n=10000,p=192,z=0,insert_mops=8,mops=503
+./bench_leaf_tree_wf_hazard,50%update,n=10000,p=192,z=0,insert_mops=8,mops=254
+./bench_leaf_tree_wf_hazard,50%update,n=10000,p=192,z=0,insert_mops=7,mops=254
+
+./bench_leaf_tree_wf_hazard,5%update,n=1000000,p=192,z=0,insert_mops=87,mops=153
+./bench_leaf_tree_wf_hazard,5%update,n=1000000,p=192,z=0,insert_mops=87,mops=157
+./bench_leaf_tree_wf_hazard,50%update,n=1000000,p=192,z=0,insert_mops=89,mops=117
+./bench_leaf_tree_wf_hazard,50%update,n=1000000,p=192,z=0,insert_mops=90,mops=121
+
+./bench_leaf_tree_wf_hazard,5%update,n=100000000,p=192,z=0,insert_mops=44,mops=54
+./bench_leaf_tree_wf_hazard,5%update,n=100000000,p=192,z=0,insert_mops=43,mops=54
+./bench_leaf_tree_wf_hazard,50%update,n=100000000,p=192,z=0,insert_mops=43,mops=53
+./bench_leaf_tree_wf_hazard,50%update,n=100000000,p=192,z=0,insert_mops=43,mops=52
+
+./bench_leaf_tree_wf_hazard,5%update,n=10000,p=192,z=0.99,insert_mops=8,mops=388
+./bench_leaf_tree_wf_hazard,5%update,n=10000,p=192,z=0.99,insert_mops=7,mops=380
+./bench_leaf_tree_wf_hazard,50%update,n=10000,p=192,z=0.99,insert_mops=6,mops=91
+./bench_leaf_tree_wf_hazard,50%update,n=10000,p=192,z=0.99,insert_mops=7,mops=92
+
+./bench_leaf_tree_wf_hazard,5%update,n=1000000,p=192,z=0.99,insert_mops=81,mops=177
+./bench_leaf_tree_wf_hazard,5%update,n=1000000,p=192,z=0.99,insert_mops=81,mops=176
+./bench_leaf_tree_wf_hazard,50%update,n=1000000,p=192,z=0.99,insert_mops=80,mops=120
+./bench_leaf_tree_wf_hazard,50%update,n=1000000,p=192,z=0.99,insert_mops=80,mops=125
+
+./bench_leaf_tree_wf_hazard,5%update,n=100000000,p=192,z=0.99,insert_mops=43,mops=82
+./bench_leaf_tree_wf_hazard,5%update,n=100000000,p=192,z=0.99,insert_mops=43,mops=81
+./bench_leaf_tree_wf_hazard,50%update,n=100000000,p=192,z=0.99,insert_mops=43,mops=66
+./bench_leaf_tree_wf_hazard,50%update,n=100000000,p=192,z=0.99,insert_mops=43,mops=63
+
+./bench_leaf_tree_wf_hazard benchmark geometric mean of mops = 132.065
+./bench_leaf_tree_wf_hazard initial insert geometric mean of mops = 30.9265
+
+
+./bench_leaf_tree_wf_daniel,5%update,n=10000,p=192,z=0,insert_mops=9,mops=484
+./bench_leaf_tree_wf_daniel,5%update,n=10000,p=192,z=0,insert_mops=9,mops=481
+./bench_leaf_tree_wf_daniel,50%update,n=10000,p=192,z=0,insert_mops=8,mops=269
+./bench_leaf_tree_wf_daniel,50%update,n=10000,p=192,z=0,insert_mops=8,mops=269
+
+./bench_leaf_tree_wf_daniel,5%update,n=1000000,p=192,z=0,insert_mops=97,mops=181
+./bench_leaf_tree_wf_daniel,5%update,n=1000000,p=192,z=0,insert_mops=99,mops=181
+./bench_leaf_tree_wf_daniel,50%update,n=1000000,p=192,z=0,insert_mops=99,mops=155
+./bench_leaf_tree_wf_daniel,50%update,n=1000000,p=192,z=0,insert_mops=99,mops=156
+
+./bench_leaf_tree_wf_daniel,5%update,n=100000000,p=192,z=0,insert_mops=48,mops=58
+./bench_leaf_tree_wf_daniel,5%update,n=100000000,p=192,z=0,insert_mops=47,mops=58
+./bench_leaf_tree_wf_daniel,50%update,n=100000000,p=192,z=0,insert_mops=48,mops=54
+./bench_leaf_tree_wf_daniel,50%update,n=100000000,p=192,z=0,insert_mops=47,mops=54
+
+./bench_leaf_tree_wf_daniel,5%update,n=10000,p=192,z=0.99,insert_mops=9,mops=380
+./bench_leaf_tree_wf_daniel,5%update,n=10000,p=192,z=0.99,insert_mops=8,mops=379
+./bench_leaf_tree_wf_daniel,50%update,n=10000,p=192,z=0.99,insert_mops=7,mops=80
+./bench_leaf_tree_wf_daniel,50%update,n=10000,p=192,z=0.99,insert_mops=7,mops=79
+
+./bench_leaf_tree_wf_daniel,5%update,n=1000000,p=192,z=0.99,insert_mops=85,mops=176
+./bench_leaf_tree_wf_daniel,5%update,n=1000000,p=192,z=0.99,insert_mops=85,mops=177
+./bench_leaf_tree_wf_daniel,50%update,n=1000000,p=192,z=0.99,insert_mops=86,mops=126
+./bench_leaf_tree_wf_daniel,50%update,n=1000000,p=192,z=0.99,insert_mops=87,mops=127
+
+./bench_leaf_tree_wf_daniel,5%update,n=100000000,p=192,z=0.99,insert_mops=47,mops=77
+./bench_leaf_tree_wf_daniel,5%update,n=100000000,p=192,z=0.99,insert_mops=48,mops=78
+./bench_leaf_tree_wf_daniel,50%update,n=100000000,p=192,z=0.99,insert_mops=48,mops=69
+./bench_leaf_tree_wf_daniel,50%update,n=100000000,p=192,z=0.99,insert_mops=48,mops=70
+
+./bench_leaf_tree_wf_daniel benchmark geometric mean of mops = 137.074
+./bench_leaf_tree_wf_daniel initial insert geometric mean of mops = 33.8145
+
+
+./bench_leaf_tree_lf_llsc,5%update,n=10000,p=192,z=0,insert_mops=10,mops=474
+./bench_leaf_tree_lf_llsc,5%update,n=10000,p=192,z=0,insert_mops=9,mops=483
+./bench_leaf_tree_lf_llsc,50%update,n=10000,p=192,z=0,insert_mops=9,mops=279
+./bench_leaf_tree_lf_llsc,50%update,n=10000,p=192,z=0,insert_mops=10,mops=278
+
+./bench_leaf_tree_lf_llsc,5%update,n=1000000,p=192,z=0,insert_mops=98,mops=176
+./bench_leaf_tree_lf_llsc,5%update,n=1000000,p=192,z=0,insert_mops=100,mops=176
+./bench_leaf_tree_lf_llsc,50%update,n=1000000,p=192,z=0,insert_mops=101,mops=153
+./bench_leaf_tree_lf_llsc,50%update,n=1000000,p=192,z=0,insert_mops=101,mops=151
+
+./bench_leaf_tree_lf_llsc,5%update,n=100000000,p=192,z=0,insert_mops=50,mops=55
+./bench_leaf_tree_lf_llsc,5%update,n=100000000,p=192,z=0,insert_mops=50,mops=56
+./bench_leaf_tree_lf_llsc,50%update,n=100000000,p=192,z=0,insert_mops=50,mops=53
+./bench_leaf_tree_lf_llsc,50%update,n=100000000,p=192,z=0,insert_mops=50,mops=53
+
+./bench_leaf_tree_lf_llsc,5%update,n=10000,p=192,z=0.99,insert_mops=8,mops=397
+./bench_leaf_tree_lf_llsc,5%update,n=10000,p=192,z=0.99,insert_mops=9,mops=402
+./bench_leaf_tree_lf_llsc,50%update,n=10000,p=192,z=0.99,insert_mops=8,mops=103
+./bench_leaf_tree_lf_llsc,50%update,n=10000,p=192,z=0.99,insert_mops=8,mops=105
+
+./bench_leaf_tree_lf_llsc,5%update,n=1000000,p=192,z=0.99,insert_mops=87,mops=178
+./bench_leaf_tree_lf_llsc,5%update,n=1000000,p=192,z=0.99,insert_mops=88,mops=178
+./bench_leaf_tree_lf_llsc,50%update,n=1000000,p=192,z=0.99,insert_mops=89,mops=143
+./bench_leaf_tree_lf_llsc,50%update,n=1000000,p=192,z=0.99,insert_mops=87,mops=142
+
+./bench_leaf_tree_lf_llsc,5%update,n=100000000,p=192,z=0.99,insert_mops=47,mops=78
+./bench_leaf_tree_lf_llsc,5%update,n=100000000,p=192,z=0.99,insert_mops=47,mops=77
+./bench_leaf_tree_lf_llsc,50%update,n=100000000,p=192,z=0.99,insert_mops=47,mops=67
+./bench_leaf_tree_lf_llsc,50%update,n=100000000,p=192,z=0.99,insert_mops=47,mops=68
+
+./bench_leaf_tree_lf_llsc benchmark geometric mean of mops = 140.679
+./bench_leaf_tree_lf_llsc initial insert geometric mean of mops = 35.1688
+
+
+
+bench_hash_array_4 varying size
+
+./bench_hash_array_4_seqlock,5%update,n=100,p=192,z=0.9,insert_mops=28,mops=671
+./bench_hash_array_4_seqlock,5%update,n=100,p=192,z=0.9,insert_mops=27,mops=671
+
+./bench_hash_array_4_seqlock,5%update,n=1000,p=192,z=0.9,insert_mops=20,mops=946
+./bench_hash_array_4_seqlock,5%update,n=1000,p=192,z=0.9,insert_mops=19,mops=946
+
+./bench_hash_array_4_seqlock,5%update,n=10000,p=192,z=0.9,insert_mops=59,mops=1289
+./bench_hash_array_4_seqlock,5%update,n=10000,p=192,z=0.9,insert_mops=57,mops=1289
+
+./bench_hash_array_4_seqlock,5%update,n=100000,p=192,z=0.9,insert_mops=522,mops=2129
+./bench_hash_array_4_seqlock,5%update,n=100000,p=192,z=0.9,insert_mops=535,mops=2130
+
+./bench_hash_array_4_seqlock,5%update,n=1000000,p=192,z=0.9,insert_mops=1200,mops=2535
+./bench_hash_array_4_seqlock,5%update,n=1000000,p=192,z=0.9,insert_mops=1198,mops=2533
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1276,mops=3013
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1278,mops=3015
+
+./bench_hash_array_4_seqlock,5%update,n=100000000,p=192,z=0.9,insert_mops=924,mops=3028
+./bench_hash_array_4_seqlock,5%update,n=100000000,p=192,z=0.9,insert_mops=922,mops=2989
+
+./bench_hash_array_4_seqlock,5%update,n=1000000000,p=192,z=0.9,insert_mops=810,mops=2801
+./bench_hash_array_4_seqlock,5%update,n=1000000000,p=192,z=0.9,insert_mops=814,mops=2801
+
+./bench_hash_array_4_seqlock benchmark geometric mean of mops = 1804.5
+./bench_hash_array_4_seqlock initial insert geometric mean of mops = 258.778
+
+
+./bench_hash_array_4_seqlocklock,5%update,n=100,p=192,z=0.9,insert_mops=9,mops=1132
+warning: update success ratio = 0.39973
+./bench_hash_array_4_seqlocklock,5%update,n=100,p=192,z=0.9,insert_mops=7,mops=1131
+warning: update success ratio = 0.399889
+
+./bench_hash_array_4_seqlocklock,5%update,n=1000,p=192,z=0.9,insert_mops=16,mops=1675
+./bench_hash_array_4_seqlocklock,5%update,n=1000,p=192,z=0.9,insert_mops=14,mops=1673
+
+./bench_hash_array_4_seqlocklock,5%update,n=10000,p=192,z=0.9,insert_mops=57,mops=1744
+./bench_hash_array_4_seqlocklock,5%update,n=10000,p=192,z=0.9,insert_mops=62,mops=1742
+
+./bench_hash_array_4_seqlocklock,5%update,n=100000,p=192,z=0.9,insert_mops=378,mops=2960
+./bench_hash_array_4_seqlocklock,5%update,n=100000,p=192,z=0.9,insert_mops=407,mops=2963
+
+./bench_hash_array_4_seqlocklock,5%update,n=1000000,p=192,z=0.9,insert_mops=839,mops=3645
+./bench_hash_array_4_seqlocklock,5%update,n=1000000,p=192,z=0.9,insert_mops=850,mops=3644
+
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=828,mops=3581
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=834,mops=3580
+
+./bench_hash_array_4_seqlocklock,5%update,n=100000000,p=192,z=0.9,insert_mops=735,mops=3007
+./bench_hash_array_4_seqlocklock,5%update,n=100000000,p=192,z=0.9,insert_mops=736,mops=3012
+
+./bench_hash_array_4_seqlocklock,5%update,n=1000000000,p=192,z=0.9,insert_mops=670,mops=2674
+./bench_hash_array_4_seqlocklock,5%update,n=1000000000,p=192,z=0.9,insert_mops=670,mops=2671
+
+./bench_hash_array_4_seqlocklock benchmark geometric mean of mops = 2379.58
+./bench_hash_array_4_seqlocklock initial insert geometric mean of mops = 180.54
+
+
+./bench_hash_array_4_wf_indirect,5%update,n=100,p=192,z=0.9,insert_mops=3,mops=599
+./bench_hash_array_4_wf_indirect,5%update,n=100,p=192,z=0.9,insert_mops=4,mops=597
+
+./bench_hash_array_4_wf_indirect,5%update,n=1000,p=192,z=0.9,insert_mops=2,mops=922
+./bench_hash_array_4_wf_indirect,5%update,n=1000,p=192,z=0.9,insert_mops=2,mops=923
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000,p=192,z=0.9,insert_mops=17,mops=1348
+./bench_hash_array_4_wf_indirect,5%update,n=10000,p=192,z=0.9,insert_mops=17,mops=1350
+
+./bench_hash_array_4_wf_indirect,5%update,n=100000,p=192,z=0.9,insert_mops=142,mops=1652
+./bench_hash_array_4_wf_indirect,5%update,n=100000,p=192,z=0.9,insert_mops=145,mops=1654
+
+./bench_hash_array_4_wf_indirect,5%update,n=1000000,p=192,z=0.9,insert_mops=319,mops=2150
+./bench_hash_array_4_wf_indirect,5%update,n=1000000,p=192,z=0.9,insert_mops=318,mops=2151
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=311,mops=1606
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=312,mops=1605
+
+./bench_hash_array_4_wf_indirect,5%update,n=100000000,p=192,z=0.9,insert_mops=259,mops=1243
+./bench_hash_array_4_wf_indirect,5%update,n=100000000,p=192,z=0.9,insert_mops=258,mops=1242
+
+
+./bench_hash_array_4_wf_hazard,5%update,n=100,p=192,z=0.9,insert_mops=3,mops=652
+warning: update success ratio = 0.397691
+./bench_hash_array_4_wf_hazard,5%update,n=100,p=192,z=0.9,insert_mops=3,mops=652
+warning: update success ratio = 0.397624
+
+./bench_hash_array_4_wf_hazard,5%update,n=1000,p=192,z=0.9,insert_mops=5,mops=799
+./bench_hash_array_4_wf_hazard,5%update,n=1000,p=192,z=0.9,insert_mops=2,mops=800
+
+./bench_hash_array_4_wf_hazard,5%update,n=10000,p=192,z=0.9,insert_mops=21,mops=1131
+./bench_hash_array_4_wf_hazard,5%update,n=10000,p=192,z=0.9,insert_mops=18,mops=1131
+
+./bench_hash_array_4_wf_hazard,5%update,n=100000,p=192,z=0.9,insert_mops=154,mops=2025
+./bench_hash_array_4_wf_hazard,5%update,n=100000,p=192,z=0.9,insert_mops=157,mops=2026
+
+./bench_hash_array_4_wf_hazard,5%update,n=1000000,p=192,z=0.9,insert_mops=369,mops=2334
+./bench_hash_array_4_wf_hazard,5%update,n=1000000,p=192,z=0.9,insert_mops=364,mops=2334
+
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=406,mops=2614
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=404,mops=2612
+
+./bench_hash_array_4_wf_hazard,5%update,n=100000000,p=192,z=0.9,insert_mops=394,mops=2483
+./bench_hash_array_4_wf_hazard,5%update,n=100000000,p=192,z=0.9,insert_mops=393,mops=2460
+
+
+./bench_hash_array_4_wf_daniel,5%update,n=100,p=192,z=0.9,insert_mops=3,mops=613
+warning: update success ratio = 0.394098
+./bench_hash_array_4_wf_daniel,5%update,n=100,p=192,z=0.9,insert_mops=3,mops=613
+warning: update success ratio = 0.394402
+
+./bench_hash_array_4_wf_daniel,5%update,n=1000,p=192,z=0.9,insert_mops=3,mops=883
+./bench_hash_array_4_wf_daniel,5%update,n=1000,p=192,z=0.9,insert_mops=2,mops=883
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000,p=192,z=0.9,insert_mops=20,mops=1141
+./bench_hash_array_4_wf_daniel,5%update,n=10000,p=192,z=0.9,insert_mops=19,mops=1141
+
+./bench_hash_array_4_wf_daniel,5%update,n=100000,p=192,z=0.9,insert_mops=169,mops=1908
+./bench_hash_array_4_wf_daniel,5%update,n=100000,p=192,z=0.9,insert_mops=166,mops=1908
+
+./bench_hash_array_4_wf_daniel,5%update,n=1000000,p=192,z=0.9,insert_mops=410,mops=2251
+./bench_hash_array_4_wf_daniel,5%update,n=1000000,p=192,z=0.9,insert_mops=413,mops=2250
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=428,mops=2439
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=425,mops=2438
+
+./bench_hash_array_4_wf_daniel,5%update,n=100000000,p=192,z=0.9,insert_mops=413,mops=2341
+./bench_hash_array_4_wf_daniel,5%update,n=100000000,p=192,z=0.9,insert_mops=414,mops=2328
+
+./bench_hash_array_4_wf_daniel,5%update,n=1000000000,p=192,z=0.9,insert_mops=233,mops=2116
+./bench_hash_array_4_wf_daniel,5%update,n=1000000000,p=192,z=0.9,insert_mops=232,mops=2115
+
+./bench_hash_array_4_wf_daniel benchmark geometric mean of mops = 1542.41
+./bench_hash_array_4_wf_daniel initial insert geometric mean of mops = 71.2121
+
+
+./bench_hash_array_4_lf_llsc,5%update,n=100,p=192,z=0.9,insert_mops=6,mops=735
+./bench_hash_array_4_lf_llsc,5%update,n=100,p=192,z=0.9,insert_mops=4,mops=735
+
+./bench_hash_array_4_lf_llsc,5%update,n=1000,p=192,z=0.9,insert_mops=2,mops=936
+./bench_hash_array_4_lf_llsc,5%update,n=1000,p=192,z=0.9,insert_mops=4,mops=939
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000,p=192,z=0.9,insert_mops=21,mops=1272
+./bench_hash_array_4_lf_llsc,5%update,n=10000,p=192,z=0.9,insert_mops=22,mops=1271
+
+./bench_hash_array_4_lf_llsc,5%update,n=100000,p=192,z=0.9,insert_mops=199,mops=2346
+./bench_hash_array_4_lf_llsc,5%update,n=100000,p=192,z=0.9,insert_mops=189,mops=2345
+
+./bench_hash_array_4_lf_llsc,5%update,n=1000000,p=192,z=0.9,insert_mops=422,mops=2857
+./bench_hash_array_4_lf_llsc,5%update,n=1000000,p=192,z=0.9,insert_mops=423,mops=2858
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=419,mops=2903
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=418,mops=2903
+
+./bench_hash_array_4_lf_llsc,5%update,n=100000000,p=192,z=0.9,insert_mops=388,mops=2620
+./bench_hash_array_4_lf_llsc,5%update,n=100000000,p=192,z=0.9,insert_mops=388,mops=2620
+
+./bench_hash_array_4_lf_llsc,5%update,n=1000000000,p=192,z=0.9,insert_mops=364,mops=2413
+./bench_hash_array_4_lf_llsc,5%update,n=1000000000,p=192,z=0.9,insert_mops=365,mops=2416
+
+./bench_hash_array_4_lf_llsc benchmark geometric mean of mops = 1795.53
+./bench_hash_array_4_lf_llsc initial insert geometric mean of mops = 81.7355
+
+
+
+bench_hash_array_4 varying updates
+
+./bench_hash_array_4_seqlock,0%update,n=10000000,p=192,z=0.9,insert_mops=1284,mops=4769
+./bench_hash_array_4_seqlock,0%update,n=10000000,p=192,z=0.9,insert_mops=1272,mops=4759
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1275,mops=3030
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1269,mops=3032
+./bench_hash_array_4_seqlock,10%update,n=10000000,p=192,z=0.9,insert_mops=1278,mops=2119
+./bench_hash_array_4_seqlock,10%update,n=10000000,p=192,z=0.9,insert_mops=1269,mops=2115
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=192,z=0.9,insert_mops=1275,mops=1185
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=192,z=0.9,insert_mops=1270,mops=1183
+./bench_hash_array_4_seqlock,50%update,n=10000000,p=192,z=0.9,insert_mops=1277,mops=513
+./bench_hash_array_4_seqlock,50%update,n=10000000,p=192,z=0.9,insert_mops=1276,mops=514
+./bench_hash_array_4_seqlock,100%update,n=10000000,p=192,z=0.9,insert_mops=1266,mops=309
+./bench_hash_array_4_seqlock,100%update,n=10000000,p=192,z=0.9,insert_mops=1261,mops=309
+
+./bench_hash_array_4_seqlock benchmark geometric mean of mops = 1339.15
+./bench_hash_array_4_seqlock initial insert geometric mean of mops = 1273.14
+
+
+./bench_hash_array_4_seqlocklock,0%update,n=10000000,p=192,z=0.9,insert_mops=833,mops=4541
+./bench_hash_array_4_seqlocklock,0%update,n=10000000,p=192,z=0.9,insert_mops=843,mops=4541
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=829,mops=3551
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=833,mops=3551
+./bench_hash_array_4_seqlocklock,10%update,n=10000000,p=192,z=0.9,insert_mops=823,mops=2992
+./bench_hash_array_4_seqlocklock,10%update,n=10000000,p=192,z=0.9,insert_mops=829,mops=2990
+./bench_hash_array_4_seqlocklock,20%update,n=10000000,p=192,z=0.9,insert_mops=818,mops=2196
+./bench_hash_array_4_seqlocklock,20%update,n=10000000,p=192,z=0.9,insert_mops=817,mops=2198
+./bench_hash_array_4_seqlocklock,50%update,n=10000000,p=192,z=0.9,insert_mops=813,mops=279
+./bench_hash_array_4_seqlocklock,50%update,n=10000000,p=192,z=0.9,insert_mops=813,mops=275
+./bench_hash_array_4_seqlocklock,100%update,n=10000000,p=192,z=0.9,insert_mops=804,mops=154
+./bench_hash_array_4_seqlocklock,100%update,n=10000000,p=192,z=0.9,insert_mops=813,mops=153
+
+./bench_hash_array_4_seqlocklock benchmark geometric mean of mops = 1286.5
+./bench_hash_array_4_seqlocklock initial insert geometric mean of mops = 822.791
+
+
+./bench_hash_array_4_wf_indirect,0%update,n=10000000,p=192,z=0.9,insert_mops=277,mops=2026
+./bench_hash_array_4_wf_indirect,0%update,n=10000000,p=192,z=0.9,insert_mops=278,mops=2021
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=279,mops=1577
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=278,mops=1575
+./bench_hash_array_4_wf_indirect,10%update,n=10000000,p=192,z=0.9,insert_mops=277,mops=1367
+./bench_hash_array_4_wf_indirect,10%update,n=10000000,p=192,z=0.9,insert_mops=278,mops=1367
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=192,z=0.9,insert_mops=277,mops=1111
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=192,z=0.9,insert_mops=276,mops=1111
+./bench_hash_array_4_wf_indirect,50%update,n=10000000,p=192,z=0.9,insert_mops=275,mops=769
+./bench_hash_array_4_wf_indirect,50%update,n=10000000,p=192,z=0.9,insert_mops=275,mops=769
+./bench_hash_array_4_wf_indirect,100%update,n=10000000,p=192,z=0.9,insert_mops=275,mops=445
+./bench_hash_array_4_wf_indirect,100%update,n=10000000,p=192,z=0.9,insert_mops=275,mops=449
+
+./bench_hash_array_4_wf_indirect benchmark geometric mean of mops = 1089.44
+./bench_hash_array_4_wf_indirect initial insert geometric mean of mops = 277.122
+
+
+./bench_hash_array_4_wf_hazard,0%update,n=10000000,p=192,z=0.9,insert_mops=414,mops=4547
+./bench_hash_array_4_wf_hazard,0%update,n=10000000,p=192,z=0.9,insert_mops=411,mops=4548
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=407,mops=2552
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=405,mops=2552
+./bench_hash_array_4_wf_hazard,10%update,n=10000000,p=192,z=0.9,insert_mops=407,mops=2009
+./bench_hash_array_4_wf_hazard,10%update,n=10000000,p=192,z=0.9,insert_mops=407,mops=2009
+./bench_hash_array_4_wf_hazard,20%update,n=10000000,p=192,z=0.9,insert_mops=407,mops=1532
+./bench_hash_array_4_wf_hazard,20%update,n=10000000,p=192,z=0.9,insert_mops=407,mops=1532
+./bench_hash_array_4_wf_hazard,50%update,n=10000000,p=192,z=0.9,insert_mops=405,mops=980
+./bench_hash_array_4_wf_hazard,50%update,n=10000000,p=192,z=0.9,insert_mops=407,mops=980
+./bench_hash_array_4_wf_hazard,100%update,n=10000000,p=192,z=0.9,insert_mops=405,mops=650
+./bench_hash_array_4_wf_hazard,100%update,n=10000000,p=192,z=0.9,insert_mops=407,mops=650
+
+./bench_hash_array_4_wf_hazard benchmark geometric mean of mops = 1683.91
+./bench_hash_array_4_wf_hazard initial insert geometric mean of mops = 407.798
+
+
+./bench_hash_array_4_wf_daniel,0%update,n=10000000,p=192,z=0.9,insert_mops=433,mops=4293
+./bench_hash_array_4_wf_daniel,0%update,n=10000000,p=192,z=0.9,insert_mops=433,mops=4294
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=431,mops=2487
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=427,mops=2486
+./bench_hash_array_4_wf_daniel,10%update,n=10000000,p=192,z=0.9,insert_mops=429,mops=1953
+./bench_hash_array_4_wf_daniel,10%update,n=10000000,p=192,z=0.9,insert_mops=430,mops=1953
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=192,z=0.9,insert_mops=429,mops=1500
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=192,z=0.9,insert_mops=429,mops=1500
+./bench_hash_array_4_wf_daniel,50%update,n=10000000,p=192,z=0.9,insert_mops=429,mops=982
+./bench_hash_array_4_wf_daniel,50%update,n=10000000,p=192,z=0.9,insert_mops=428,mops=982
+./bench_hash_array_4_wf_daniel,100%update,n=10000000,p=192,z=0.9,insert_mops=429,mops=650
+./bench_hash_array_4_wf_daniel,100%update,n=10000000,p=192,z=0.9,insert_mops=429,mops=650
+
+./bench_hash_array_4_wf_daniel benchmark geometric mean of mops = 1647.47
+./bench_hash_array_4_wf_daniel initial insert geometric mean of mops = 430.135
+
+
+./bench_hash_array_4_lf_llsc,0%update,n=10000000,p=192,z=0.9,insert_mops=647,mops=4324
+./bench_hash_array_4_lf_llsc,0%update,n=10000000,p=192,z=0.9,insert_mops=645,mops=4324
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=575,mops=2989
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=546,mops=2981
+./bench_hash_array_4_lf_llsc,10%update,n=10000000,p=192,z=0.9,insert_mops=519,mops=2406
+./bench_hash_array_4_lf_llsc,10%update,n=10000000,p=192,z=0.9,insert_mops=507,mops=2394
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=192,z=0.9,insert_mops=454,mops=1797
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=192,z=0.9,insert_mops=426,mops=1793
+./bench_hash_array_4_lf_llsc,50%update,n=10000000,p=192,z=0.9,insert_mops=413,mops=1108
+./bench_hash_array_4_lf_llsc,50%update,n=10000000,p=192,z=0.9,insert_mops=412,mops=1106
+./bench_hash_array_4_lf_llsc,100%update,n=10000000,p=192,z=0.9,insert_mops=421,mops=714
+./bench_hash_array_4_lf_llsc,100%update,n=10000000,p=192,z=0.9,insert_mops=415,mops=714
+
+./bench_hash_array_4_lf_llsc benchmark geometric mean of mops = 1879.04
+./bench_hash_array_4_lf_llsc initial insert geometric mean of mops = 491.845
+
+
+
+bench_hash_array_4 varying zipfians
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0,insert_mops=1291,mops=3150
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0,insert_mops=1284,mops=3149
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.5,insert_mops=1294,mops=3354
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.5,insert_mops=1283,mops=3355
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.8,insert_mops=1289,mops=3810
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.8,insert_mops=1286,mops=3809
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1281,mops=3036
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1277,mops=3034
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.95,insert_mops=1193,mops=2117
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.95,insert_mops=1277,mops=2115
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.99,insert_mops=1275,mops=1498
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.99,insert_mops=1276,mops=1496
+
+./bench_hash_array_4_seqlock benchmark geometric mean of mops = 2699.95
+./bench_hash_array_4_seqlock initial insert geometric mean of mops = 1275.72
+
+
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0,insert_mops=828,mops=2956
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0,insert_mops=826,mops=2956
+
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.5,insert_mops=834,mops=3157
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.5,insert_mops=846,mops=3157
+
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.8,insert_mops=834,mops=3643
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.8,insert_mops=829,mops=3643
+
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=825,mops=3611
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=836,mops=3610
+
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.95,insert_mops=824,mops=3059
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.95,insert_mops=831,mops=3060
+
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.99,insert_mops=857,mops=2315
+./bench_hash_array_4_seqlocklock,5%update,n=10000000,p=192,z=0.99,insert_mops=843,mops=2318
+
+./bench_hash_array_4_seqlocklock benchmark geometric mean of mops = 3090.26
+./bench_hash_array_4_seqlocklock initial insert geometric mean of mops = 834.814
+
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0,insert_mops=318,mops=1268
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0,insert_mops=317,mops=1266
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.5,insert_mops=315,mops=1308
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.5,insert_mops=315,mops=1304
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.8,insert_mops=313,mops=1541
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.8,insert_mops=314,mops=1539
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=311,mops=1628
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=312,mops=1627
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.95,insert_mops=311,mops=1626
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.95,insert_mops=311,mops=1625
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.99,insert_mops=309,mops=1490
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.99,insert_mops=310,mops=1491
+
+./bench_hash_array_4_wf_indirect benchmark geometric mean of mops = 1469.57
+./bench_hash_array_4_wf_indirect initial insert geometric mean of mops = 313.55
+
+
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0,insert_mops=406,mops=2667
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0,insert_mops=407,mops=2667
+
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.5,insert_mops=406,mops=2829
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.5,insert_mops=406,mops=2829
+
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.8,insert_mops=406,mops=3138
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.8,insert_mops=408,mops=3139
+
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=406,mops=2615
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=407,mops=2613
+
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.95,insert_mops=406,mops=2029
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.95,insert_mops=407,mops=2029
+
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.99,insert_mops=405,mops=1614
+./bench_hash_array_4_wf_hazard,5%update,n=10000000,p=192,z=0.99,insert_mops=407,mops=1614
+
+./bench_hash_array_4_wf_hazard benchmark geometric mean of mops = 2424.24
+./bench_hash_array_4_wf_hazard initial insert geometric mean of mops = 406.981
+
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0,insert_mops=426,mops=2536
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0,insert_mops=427,mops=2536
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.5,insert_mops=427,mops=2677
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.5,insert_mops=425,mops=2687
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.8,insert_mops=426,mops=2975
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.8,insert_mops=426,mops=2965
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=425,mops=2479
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=426,mops=2484
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.95,insert_mops=425,mops=1918
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.95,insert_mops=423,mops=1916
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.99,insert_mops=425,mops=1491
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.99,insert_mops=426,mops=1490
+
+./bench_hash_array_4_wf_daniel benchmark geometric mean of mops = 2287.95
+./bench_hash_array_4_wf_daniel initial insert geometric mean of mops = 426.064
+
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0,insert_mops=609,mops=2762
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0,insert_mops=609,mops=2761
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.5,insert_mops=606,mops=2926
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.5,insert_mops=604,mops=2925
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.8,insert_mops=598,mops=3284
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.8,insert_mops=595,mops=3281
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=574,mops=2942
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=549,mops=2937
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.95,insert_mops=524,mops=2298
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.95,insert_mops=506,mops=2295
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.99,insert_mops=487,mops=1788
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.99,insert_mops=481,mops=1790
+
+./bench_hash_array_4_lf_llsc benchmark geometric mean of mops = 2616.22
+./bench_hash_array_4_lf_llsc initial insert geometric mean of mops = 560.087
+
+
+
+bench_hash_array_4 varying threads
+
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=8,z=0.9,insert_mops=1293,mops=222
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=8,z=0.9,insert_mops=1277,mops=219
+
+./bench_hash_array_4_seqlock benchmark geometric mean of mops = 220.753
+./bench_hash_array_4_seqlock initial insert geometric mean of mops = 1285.51
+
+
+./bench_hash_array_4_seqlocklock,20%update,n=10000000,p=8,z=0.9,insert_mops=763,mops=206
+./bench_hash_array_4_seqlocklock,20%update,n=10000000,p=8,z=0.9,insert_mops=741,mops=209
+
+./bench_hash_array_4_seqlocklock benchmark geometric mean of mops = 208.042
+./bench_hash_array_4_seqlocklock initial insert geometric mean of mops = 752.473
+
+
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=8,z=0.9,insert_mops=296,mops=91
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=8,z=0.9,insert_mops=297,mops=90
+
+./bench_hash_array_4_wf_indirect benchmark geometric mean of mops = 90.8756
+./bench_hash_array_4_wf_indirect initial insert geometric mean of mops = 297.231
+
+
+./bench_hash_array_4_wf_hazard,20%update,n=10000000,p=8,z=0.9,insert_mops=409,mops=145
+./bench_hash_array_4_wf_hazard,20%update,n=10000000,p=8,z=0.9,insert_mops=405,mops=143
+
+./bench_hash_array_4_wf_hazard benchmark geometric mean of mops = 144.573
+./bench_hash_array_4_wf_hazard initial insert geometric mean of mops = 407.402
+
+
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=8,z=0.9,insert_mops=428,mops=139
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=8,z=0.9,insert_mops=419,mops=140
+
+./bench_hash_array_4_wf_daniel benchmark geometric mean of mops = 140.093
+./bench_hash_array_4_wf_daniel initial insert geometric mean of mops = 423.992
+
+
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=8,z=0.9,insert_mops=646,mops=164
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=8,z=0.9,insert_mops=641,mops=164
+
+./bench_hash_array_4_lf_llsc benchmark geometric mean of mops = 164.16
+./bench_hash_array_4_lf_llsc initial insert geometric mean of mops = 644.265
+
+
+
+bench_parlay_hash varying size
+
+./bench_parlay_hash_seqlock,5%update,n=100,p=192,z=0.9,insert_mops=15,mops=501
+./bench_parlay_hash_seqlock,5%update,n=100,p=192,z=0.9,insert_mops=16,mops=499
+
+./bench_parlay_hash_seqlock,5%update,n=1000,p=192,z=0.9,insert_mops=18,mops=859
+./bench_parlay_hash_seqlock,5%update,n=1000,p=192,z=0.9,insert_mops=18,mops=782
+
+./bench_parlay_hash_seqlock,5%update,n=10000,p=192,z=0.9,insert_mops=41,mops=1228
+./bench_parlay_hash_seqlock,5%update,n=10000,p=192,z=0.9,insert_mops=39,mops=1232
+
+./bench_parlay_hash_seqlock,5%update,n=100000,p=192,z=0.9,insert_mops=96,mops=1772
+./bench_parlay_hash_seqlock,5%update,n=100000,p=192,z=0.9,insert_mops=96,mops=1818
+
+./bench_parlay_hash_seqlock,5%update,n=1000000,p=192,z=0.9,insert_mops=119,mops=2074
+./bench_parlay_hash_seqlock,5%update,n=1000000,p=192,z=0.9,insert_mops=120,mops=2071
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=140,mops=1963
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=139,mops=1967
+
+./bench_parlay_hash_seqlock,5%update,n=100000000,p=192,z=0.9,insert_mops=118,mops=1668
+./bench_parlay_hash_seqlock,5%update,n=100000000,p=192,z=0.9,insert_mops=116,mops=1671
+
+./bench_parlay_hash_seqlock,5%update,n=1000000000,p=192,z=0.9,insert_mops=107,mops=1401
+./bench_parlay_hash_seqlock,5%update,n=1000000000,p=192,z=0.9,insert_mops=107,mops=1405
+
+./bench_parlay_hash_seqlock benchmark geometric mean of mops = 1309.72
+./bench_parlay_hash_seqlock initial insert geometric mean of mops = 63.2104
+
+
+./bench_parlay_hash_seqlocklock,5%update,n=100,p=192,z=0.9,insert_mops=6,mops=884
+./bench_parlay_hash_seqlocklock,5%update,n=100,p=192,z=0.9,insert_mops=8,mops=884
+
+./bench_parlay_hash_seqlocklock,5%update,n=1000,p=192,z=0.9,insert_mops=9,mops=1392
+./bench_parlay_hash_seqlocklock,5%update,n=1000,p=192,z=0.9,insert_mops=11,mops=1369
+
+./bench_parlay_hash_seqlocklock,5%update,n=10000,p=192,z=0.9,insert_mops=37,mops=2167
+./bench_parlay_hash_seqlocklock,5%update,n=10000,p=192,z=0.9,insert_mops=35,mops=2079
+
+./bench_parlay_hash_seqlocklock,5%update,n=100000,p=192,z=0.9,insert_mops=97,mops=2497
+./bench_parlay_hash_seqlocklock,5%update,n=100000,p=192,z=0.9,insert_mops=110,mops=2423
+
+./bench_parlay_hash_seqlocklock,5%update,n=1000000,p=192,z=0.9,insert_mops=114,mops=2378
+./bench_parlay_hash_seqlocklock,5%update,n=1000000,p=192,z=0.9,insert_mops=113,mops=2375
+
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=139,mops=2052
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=138,mops=2053
+
+./bench_parlay_hash_seqlocklock,5%update,n=100000000,p=192,z=0.9,insert_mops=118,mops=1676
+./bench_parlay_hash_seqlocklock,5%update,n=100000000,p=192,z=0.9,insert_mops=117,mops=1672
+
+./bench_parlay_hash_seqlocklock,5%update,n=1000000000,p=192,z=0.9,insert_mops=108,mops=1398
+./bench_parlay_hash_seqlocklock,5%update,n=1000000000,p=192,z=0.9,insert_mops=108,mops=1400
+
+./bench_parlay_hash_seqlocklock benchmark geometric mean of mops = 1709.51
+./bench_parlay_hash_seqlocklock initial insert geometric mean of mops = 52.0719
+
+
+./bench_parlay_hash_wf_indirect,5%update,n=100,p=192,z=0.9,insert_mops=3,mops=536
+./bench_parlay_hash_wf_indirect,5%update,n=100,p=192,z=0.9,insert_mops=3,mops=537
+
+./bench_parlay_hash_wf_indirect,5%update,n=1000,p=192,z=0.9,insert_mops=5,mops=923
+./bench_parlay_hash_wf_indirect,5%update,n=1000,p=192,z=0.9,insert_mops=3,mops=909
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000,p=192,z=0.9,insert_mops=10,mops=1422
+./bench_parlay_hash_wf_indirect,5%update,n=10000,p=192,z=0.9,insert_mops=10,mops=1422
+
+./bench_parlay_hash_wf_indirect,5%update,n=100000,p=192,z=0.9,insert_mops=35,mops=1506
+./bench_parlay_hash_wf_indirect,5%update,n=100000,p=192,z=0.9,insert_mops=35,mops=1503
+
+./bench_parlay_hash_wf_indirect,5%update,n=1000000,p=192,z=0.9,insert_mops=51,mops=1458
+./bench_parlay_hash_wf_indirect,5%update,n=1000000,p=192,z=0.9,insert_mops=51,mops=1463
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=59,mops=1205
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=59,mops=1206
+
+./bench_parlay_hash_wf_indirect,5%update,n=100000000,p=192,z=0.9,insert_mops=44,mops=841
+./bench_parlay_hash_wf_indirect,5%update,n=100000000,p=192,z=0.9,insert_mops=44,mops=840
+
+./bench_parlay_hash_wf_indirect,5%update,n=1000000000,p=192,z=0.9,insert_mops=35,mops=658
+./bench_parlay_hash_wf_indirect,5%update,n=1000000000,p=192,z=0.9,insert_mops=31,mops=600
+
+./bench_parlay_hash_wf_indirect benchmark geometric mean of mops = 997.673
+./bench_parlay_hash_wf_indirect initial insert geometric mean of mops = 19.7333
+
+
+./bench_parlay_hash_wf_hazard,5%update,n=100,p=192,z=0.9,insert_mops=2,mops=416
+./bench_parlay_hash_wf_hazard,5%update,n=100,p=192,z=0.9,insert_mops=2,mops=413
+
+./bench_parlay_hash_wf_hazard,5%update,n=1000,p=192,z=0.9,insert_mops=4,mops=561
+./bench_parlay_hash_wf_hazard,5%update,n=1000,p=192,z=0.9,insert_mops=4,mops=671
+
+./bench_parlay_hash_wf_hazard,5%update,n=10000,p=192,z=0.9,insert_mops=12,mops=1005
+./bench_parlay_hash_wf_hazard,5%update,n=10000,p=192,z=0.9,insert_mops=13,mops=900
+
+./bench_parlay_hash_wf_hazard,5%update,n=100000,p=192,z=0.9,insert_mops=58,mops=1299
+./bench_parlay_hash_wf_hazard,5%update,n=100000,p=192,z=0.9,insert_mops=60,mops=1324
+
+./bench_parlay_hash_wf_hazard,5%update,n=1000000,p=192,z=0.9,insert_mops=87,mops=1498
+./bench_parlay_hash_wf_hazard,5%update,n=1000000,p=192,z=0.9,insert_mops=87,mops=1490
+
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=93,mops=1434
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=94,mops=1445
+
+./bench_parlay_hash_wf_hazard,5%update,n=100000000,p=192,z=0.9,insert_mops=86,mops=1347
+./bench_parlay_hash_wf_hazard,5%update,n=100000000,p=192,z=0.9,insert_mops=85,mops=1335
+
+./bench_parlay_hash_wf_hazard,5%update,n=1000000000,p=192,z=0.9,insert_mops=80,mops=1155
+./bench_parlay_hash_wf_hazard,5%update,n=1000000000,p=192,z=0.9,insert_mops=78,mops=1123
+
+./bench_parlay_hash_wf_hazard benchmark geometric mean of mops = 1005.67
+./bench_parlay_hash_wf_hazard initial insert geometric mean of mops = 29.4672
+
+
+./bench_parlay_hash_wf_daniel,5%update,n=100,p=192,z=0.9,insert_mops=2,mops=405
+./bench_parlay_hash_wf_daniel,5%update,n=100,p=192,z=0.9,insert_mops=3,mops=405
+
+./bench_parlay_hash_wf_daniel,5%update,n=1000,p=192,z=0.9,insert_mops=7,mops=658
+./bench_parlay_hash_wf_daniel,5%update,n=1000,p=192,z=0.9,insert_mops=7,mops=660
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000,p=192,z=0.9,insert_mops=13,mops=991
+./bench_parlay_hash_wf_daniel,5%update,n=10000,p=192,z=0.9,insert_mops=17,mops=969
+
+./bench_parlay_hash_wf_daniel,5%update,n=100000,p=192,z=0.9,insert_mops=62,mops=1306
+./bench_parlay_hash_wf_daniel,5%update,n=100000,p=192,z=0.9,insert_mops=58,mops=1321
+
+./bench_parlay_hash_wf_daniel,5%update,n=1000000,p=192,z=0.9,insert_mops=89,mops=1570
+./bench_parlay_hash_wf_daniel,5%update,n=1000000,p=192,z=0.9,insert_mops=89,mops=1574
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=97,mops=1473
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=96,mops=1479
+
+./bench_parlay_hash_wf_daniel,5%update,n=100000000,p=192,z=0.9,insert_mops=81,mops=1363
+./bench_parlay_hash_wf_daniel,5%update,n=100000000,p=192,z=0.9,insert_mops=82,mops=1367
+
+./bench_parlay_hash_wf_daniel,5%update,n=1000000000,p=192,z=0.9,insert_mops=75,mops=1154
+./bench_parlay_hash_wf_daniel,5%update,n=1000000000,p=192,z=0.9,insert_mops=73,mops=1133
+
+./bench_parlay_hash_wf_daniel benchmark geometric mean of mops = 1028.17
+./bench_parlay_hash_wf_daniel initial insert geometric mean of mops = 32.2883
+
+
+./bench_parlay_hash_lf_llsc,5%update,n=100,p=192,z=0.9,insert_mops=4,mops=605
+./bench_parlay_hash_lf_llsc,5%update,n=100,p=192,z=0.9,insert_mops=4,mops=604
+
+./bench_parlay_hash_lf_llsc,5%update,n=1000,p=192,z=0.9,insert_mops=6,mops=958
+./bench_parlay_hash_lf_llsc,5%update,n=1000,p=192,z=0.9,insert_mops=5,mops=994
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000,p=192,z=0.9,insert_mops=14,mops=1454
+./bench_parlay_hash_lf_llsc,5%update,n=10000,p=192,z=0.9,insert_mops=15,mops=1520
+
+./bench_parlay_hash_lf_llsc,5%update,n=100000,p=192,z=0.9,insert_mops=71,mops=1864
+./bench_parlay_hash_lf_llsc,5%update,n=100000,p=192,z=0.9,insert_mops=66,mops=1836
+
+./bench_parlay_hash_lf_llsc,5%update,n=1000000,p=192,z=0.9,insert_mops=102,mops=1943
+./bench_parlay_hash_lf_llsc,5%update,n=1000000,p=192,z=0.9,insert_mops=97,mops=1933
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=110,mops=1731
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=110,mops=1740
+
+./bench_parlay_hash_lf_llsc,5%update,n=100000000,p=192,z=0.9,insert_mops=95,mops=1451
+./bench_parlay_hash_lf_llsc,5%update,n=100000000,p=192,z=0.9,insert_mops=94,mops=1453
+
+./bench_parlay_hash_lf_llsc,5%update,n=1000000000,p=192,z=0.9,insert_mops=86,mops=1247
+./bench_parlay_hash_lf_llsc,5%update,n=1000000000,p=192,z=0.9,insert_mops=86,mops=1248
+
+./bench_parlay_hash_lf_llsc benchmark geometric mean of mops = 1331.98
+./bench_parlay_hash_lf_llsc initial insert geometric mean of mops = 35.7998
+
+
+
+bench_parlay_hash varying updates
+
+./bench_parlay_hash_seqlock,0%update,n=10000000,p=192,z=0.9,insert_mops=125,mops=2139
+./bench_parlay_hash_seqlock,0%update,n=10000000,p=192,z=0.9,insert_mops=124,mops=2228
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=124,mops=1928
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=125,mops=1947
+./bench_parlay_hash_seqlock,10%update,n=10000000,p=192,z=0.9,insert_mops=125,mops=1672
+./bench_parlay_hash_seqlock,10%update,n=10000000,p=192,z=0.9,insert_mops=125,mops=1718
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=192,z=0.9,insert_mops=115,mops=1163
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=192,z=0.9,insert_mops=108,mops=1172
+./bench_parlay_hash_seqlock,50%update,n=10000000,p=192,z=0.9,insert_mops=108,mops=476
+./bench_parlay_hash_seqlock,50%update,n=10000000,p=192,z=0.9,insert_mops=107,mops=465
+./bench_parlay_hash_seqlock,100%update,n=10000000,p=192,z=0.9,insert_mops=108,mops=239
+./bench_parlay_hash_seqlock,100%update,n=10000000,p=192,z=0.9,insert_mops=107,mops=244
+
+./bench_parlay_hash_seqlock benchmark geometric mean of mops = 992.291
+./bench_parlay_hash_seqlock initial insert geometric mean of mops = 116.935
+
+
+./bench_parlay_hash_seqlocklock,0%update,n=10000000,p=192,z=0.9,insert_mops=137,mops=2464
+./bench_parlay_hash_seqlocklock,0%update,n=10000000,p=192,z=0.9,insert_mops=137,mops=2462
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=136,mops=2037
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=137,mops=2036
+./bench_parlay_hash_seqlocklock,10%update,n=10000000,p=192,z=0.9,insert_mops=137,mops=1817
+./bench_parlay_hash_seqlocklock,10%update,n=10000000,p=192,z=0.9,insert_mops=135,mops=1818
+./bench_parlay_hash_seqlocklock,20%update,n=10000000,p=192,z=0.9,insert_mops=125,mops=1472
+./bench_parlay_hash_seqlocklock,20%update,n=10000000,p=192,z=0.9,insert_mops=119,mops=1472
+./bench_parlay_hash_seqlocklock,50%update,n=10000000,p=192,z=0.9,insert_mops=117,mops=970
+./bench_parlay_hash_seqlocklock,50%update,n=10000000,p=192,z=0.9,insert_mops=117,mops=951
+./bench_parlay_hash_seqlocklock,100%update,n=10000000,p=192,z=0.9,insert_mops=117,mops=104
+./bench_parlay_hash_seqlocklock,100%update,n=10000000,p=192,z=0.9,insert_mops=116,mops=113
+
+./bench_parlay_hash_seqlocklock benchmark geometric mean of mops = 1058.36
+./bench_parlay_hash_seqlocklock initial insert geometric mean of mops = 127.427
+
+
+./bench_parlay_hash_wf_indirect,0%update,n=10000000,p=192,z=0.9,insert_mops=58,mops=1529
+./bench_parlay_hash_wf_indirect,0%update,n=10000000,p=192,z=0.9,insert_mops=58,mops=1526
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=58,mops=1203
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=57,mops=1201
+./bench_parlay_hash_wf_indirect,10%update,n=10000000,p=192,z=0.9,insert_mops=58,mops=1060
+./bench_parlay_hash_wf_indirect,10%update,n=10000000,p=192,z=0.9,insert_mops=57,mops=1060
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=192,z=0.9,insert_mops=54,mops=870
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=192,z=0.9,insert_mops=52,mops=862
+./bench_parlay_hash_wf_indirect,50%update,n=10000000,p=192,z=0.9,insert_mops=51,mops=604
+./bench_parlay_hash_wf_indirect,50%update,n=10000000,p=192,z=0.9,insert_mops=51,mops=604
+./bench_parlay_hash_wf_indirect,100%update,n=10000000,p=192,z=0.9,insert_mops=51,mops=421
+./bench_parlay_hash_wf_indirect,100%update,n=10000000,p=192,z=0.9,insert_mops=51,mops=429
+
+./bench_parlay_hash_wf_indirect benchmark geometric mean of mops = 870.164
+./bench_parlay_hash_wf_indirect initial insert geometric mean of mops = 54.9569
+
+
+./bench_parlay_hash_wf_hazard,0%update,n=10000000,p=192,z=0.9,insert_mops=99,mops=2123
+./bench_parlay_hash_wf_hazard,0%update,n=10000000,p=192,z=0.9,insert_mops=98,mops=2123
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=99,mops=1428
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=99,mops=1436
+./bench_parlay_hash_wf_hazard,10%update,n=10000000,p=192,z=0.9,insert_mops=99,mops=1181
+./bench_parlay_hash_wf_hazard,10%update,n=10000000,p=192,z=0.9,insert_mops=98,mops=1188
+./bench_parlay_hash_wf_hazard,20%update,n=10000000,p=192,z=0.9,insert_mops=95,mops=898
+./bench_parlay_hash_wf_hazard,20%update,n=10000000,p=192,z=0.9,insert_mops=92,mops=911
+./bench_parlay_hash_wf_hazard,50%update,n=10000000,p=192,z=0.9,insert_mops=89,mops=558
+./bench_parlay_hash_wf_hazard,50%update,n=10000000,p=192,z=0.9,insert_mops=90,mops=560
+./bench_parlay_hash_wf_hazard,100%update,n=10000000,p=192,z=0.9,insert_mops=89,mops=355
+./bench_parlay_hash_wf_hazard,100%update,n=10000000,p=192,z=0.9,insert_mops=90,mops=349
+
+./bench_parlay_hash_wf_hazard benchmark geometric mean of mops = 929.207
+./bench_parlay_hash_wf_hazard initial insert geometric mean of mops = 95.0432
+
+
+./bench_parlay_hash_wf_daniel,0%update,n=10000000,p=192,z=0.9,insert_mops=99,mops=2113
+./bench_parlay_hash_wf_daniel,0%update,n=10000000,p=192,z=0.9,insert_mops=98,mops=2116
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=98,mops=1476
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=98,mops=1457
+./bench_parlay_hash_wf_daniel,10%update,n=10000000,p=192,z=0.9,insert_mops=96,mops=1201
+./bench_parlay_hash_wf_daniel,10%update,n=10000000,p=192,z=0.9,insert_mops=96,mops=1203
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=192,z=0.9,insert_mops=90,mops=893
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=192,z=0.9,insert_mops=87,mops=900
+./bench_parlay_hash_wf_daniel,50%update,n=10000000,p=192,z=0.9,insert_mops=84,mops=553
+./bench_parlay_hash_wf_daniel,50%update,n=10000000,p=192,z=0.9,insert_mops=84,mops=547
+./bench_parlay_hash_wf_daniel,100%update,n=10000000,p=192,z=0.9,insert_mops=84,mops=356
+./bench_parlay_hash_wf_daniel,100%update,n=10000000,p=192,z=0.9,insert_mops=84,mops=353
+
+./bench_parlay_hash_wf_daniel benchmark geometric mean of mops = 931.622
+./bench_parlay_hash_wf_daniel initial insert geometric mean of mops = 91.8166
+
+
+./bench_parlay_hash_lf_llsc,0%update,n=10000000,p=192,z=0.9,insert_mops=117,mops=2259
+./bench_parlay_hash_lf_llsc,0%update,n=10000000,p=192,z=0.9,insert_mops=116,mops=2278
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=116,mops=1740
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=115,mops=1750
+./bench_parlay_hash_lf_llsc,10%update,n=10000000,p=192,z=0.9,insert_mops=114,mops=1505
+./bench_parlay_hash_lf_llsc,10%update,n=10000000,p=192,z=0.9,insert_mops=114,mops=1514
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=192,z=0.9,insert_mops=106,mops=1204
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=192,z=0.9,insert_mops=101,mops=1193
+./bench_parlay_hash_lf_llsc,50%update,n=10000000,p=192,z=0.9,insert_mops=99,mops=752
+./bench_parlay_hash_lf_llsc,50%update,n=10000000,p=192,z=0.9,insert_mops=98,mops=745
+./bench_parlay_hash_lf_llsc,100%update,n=10000000,p=192,z=0.9,insert_mops=98,mops=486
+./bench_parlay_hash_lf_llsc,100%update,n=10000000,p=192,z=0.9,insert_mops=98,mops=481
+
+./bench_parlay_hash_lf_llsc benchmark geometric mean of mops = 1172.56
+./bench_parlay_hash_lf_llsc initial insert geometric mean of mops = 107.9
+
+
+
+bench_parlay_hash varying zipfians
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0,insert_mops=147,mops=2035
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0,insert_mops=147,mops=2047
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.5,insert_mops=146,mops=2024
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.5,insert_mops=146,mops=2023
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.8,insert_mops=146,mops=2026
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.8,insert_mops=144,mops=2019
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=139,mops=1961
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=129,mops=1925
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.95,insert_mops=127,mops=1730
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.95,insert_mops=126,mops=1707
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.99,insert_mops=126,mops=1447
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.99,insert_mops=126,mops=1406
+
+./bench_parlay_hash_seqlock benchmark geometric mean of mops = 1848.02
+./bench_parlay_hash_seqlock initial insert geometric mean of mops = 137.737
+
+
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0,insert_mops=144,mops=2026
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0,insert_mops=143,mops=2035
+
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0.5,insert_mops=144,mops=2022
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0.5,insert_mops=144,mops=2018
+
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0.8,insert_mops=146,mops=2028
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0.8,insert_mops=145,mops=2027
+
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=129,mops=2006
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=125,mops=1986
+
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0.95,insert_mops=126,mops=1943
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0.95,insert_mops=126,mops=1947
+
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0.99,insert_mops=126,mops=1763
+./bench_parlay_hash_seqlocklock,5%update,n=10000000,p=192,z=0.99,insert_mops=126,mops=1799
+
+./bench_parlay_hash_seqlocklock benchmark geometric mean of mops = 1964.92
+./bench_parlay_hash_seqlocklock initial insert geometric mean of mops = 135.377
+
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0,insert_mops=61,mops=1117
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0,insert_mops=61,mops=1110
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.5,insert_mops=60,mops=1116
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.5,insert_mops=61,mops=1120
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.8,insert_mops=61,mops=1175
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.8,insert_mops=60,mops=1171
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=58,mops=1194
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=55,mops=1181
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.95,insert_mops=53,mops=1184
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.95,insert_mops=54,mops=1187
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.99,insert_mops=54,mops=1160
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.99,insert_mops=54,mops=1158
+
+./bench_parlay_hash_wf_indirect benchmark geometric mean of mops = 1156.24
+./bench_parlay_hash_wf_indirect initial insert geometric mean of mops = 57.9325
+
+
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0,insert_mops=99,mops=1566
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0,insert_mops=99,mops=1557
+
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0.5,insert_mops=98,mops=1567
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0.5,insert_mops=98,mops=1569
+
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0.8,insert_mops=99,mops=1586
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0.8,insert_mops=99,mops=1581
+
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=95,mops=1415
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=91,mops=1410
+
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0.95,insert_mops=89,mops=1235
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0.95,insert_mops=89,mops=1200
+
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0.99,insert_mops=90,mops=1051
+./bench_parlay_hash_wf_hazard,5%update,n=10000000,p=192,z=0.99,insert_mops=89,mops=1050
+
+./bench_parlay_hash_wf_hazard benchmark geometric mean of mops = 1383.86
+./bench_parlay_hash_wf_hazard initial insert geometric mean of mops = 94.8977
+
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0,insert_mops=95,mops=1558
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0,insert_mops=97,mops=1563
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.5,insert_mops=96,mops=1571
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.5,insert_mops=96,mops=1572
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.8,insert_mops=95,mops=1604
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.8,insert_mops=95,mops=1600
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=89,mops=1456
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=86,mops=1451
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.95,insert_mops=84,mops=1225
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.95,insert_mops=84,mops=1228
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.99,insert_mops=84,mops=1023
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.99,insert_mops=83,mops=1014
+
+./bench_parlay_hash_wf_daniel benchmark geometric mean of mops = 1387.98
+./bench_parlay_hash_wf_daniel initial insert geometric mean of mops = 90.6118
+
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0,insert_mops=114,mops=1802
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0,insert_mops=114,mops=1801
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.5,insert_mops=114,mops=1789
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.5,insert_mops=114,mops=1788
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.8,insert_mops=114,mops=1787
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.8,insert_mops=113,mops=1786
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=107,mops=1737
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=103,mops=1734
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.95,insert_mops=101,mops=1595
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.95,insert_mops=100,mops=1595
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.99,insert_mops=98,mops=1409
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.99,insert_mops=97,mops=1446
+
+./bench_parlay_hash_lf_llsc benchmark geometric mean of mops = 1683.58
+./bench_parlay_hash_lf_llsc initial insert geometric mean of mops = 107.71
+
+
+
+bench_parlay_hash varying threads
+
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=8,z=0.9,insert_mops=138,mops=102
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=8,z=0.9,insert_mops=139,mops=100
+
+./bench_parlay_hash_seqlock benchmark geometric mean of mops = 101.67
+./bench_parlay_hash_seqlock initial insert geometric mean of mops = 138.731
+
+
+./bench_parlay_hash_seqlocklock,20%update,n=10000000,p=8,z=0.9,insert_mops=126,mops=97
+./bench_parlay_hash_seqlocklock,20%update,n=10000000,p=8,z=0.9,insert_mops=124,mops=97
+
+./bench_parlay_hash_seqlocklock benchmark geometric mean of mops = 97.1626
+./bench_parlay_hash_seqlocklock initial insert geometric mean of mops = 125.676
+
+
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=8,z=0.9,insert_mops=58,mops=61
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=8,z=0.9,insert_mops=59,mops=62
+
+./bench_parlay_hash_wf_indirect benchmark geometric mean of mops = 62.0464
+./bench_parlay_hash_wf_indirect initial insert geometric mean of mops = 58.6496
+
+
+./bench_parlay_hash_wf_hazard,20%update,n=10000000,p=8,z=0.9,insert_mops=95,mops=73
+./bench_parlay_hash_wf_hazard,20%update,n=10000000,p=8,z=0.9,insert_mops=95,mops=73
+
+./bench_parlay_hash_wf_hazard benchmark geometric mean of mops = 73.3131
+./bench_parlay_hash_wf_hazard initial insert geometric mean of mops = 95.6892
+
+
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=8,z=0.9,insert_mops=98,mops=71
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=8,z=0.9,insert_mops=99,mops=73
+
+./bench_parlay_hash_wf_daniel benchmark geometric mean of mops = 72.7796
+./bench_parlay_hash_wf_daniel initial insert geometric mean of mops = 98.9869
+
+
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=8,z=0.9,insert_mops=116,mops=82
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=8,z=0.9,insert_mops=116,mops=84
+
+./bench_parlay_hash_lf_llsc benchmark geometric mean of mops = 83.5263
+./bench_parlay_hash_lf_llsc initial insert geometric mean of mops = 116.52
+
+
+
+bench_hash_list varying size
+
+./bench_hash_list_seqlock,5%update,n=100,p=192,z=0.9,insert_mops=12,mops=496
+./bench_hash_list_seqlock,5%update,n=100,p=192,z=0.9,insert_mops=13,mops=495
+
+./bench_hash_list_seqlock,5%update,n=1000,p=192,z=0.9,insert_mops=8,mops=713
+./bench_hash_list_seqlock,5%update,n=1000,p=192,z=0.9,insert_mops=8,mops=714
+
+./bench_hash_list_seqlock,5%update,n=10000,p=192,z=0.9,insert_mops=51,mops=1215
+./bench_hash_list_seqlock,5%update,n=10000,p=192,z=0.9,insert_mops=54,mops=1215
+
+./bench_hash_list_seqlock,5%update,n=100000,p=192,z=0.9,insert_mops=432,mops=1965
+./bench_hash_list_seqlock,5%update,n=100000,p=192,z=0.9,insert_mops=431,mops=1962
+
+./bench_hash_list_seqlock,5%update,n=1000000,p=192,z=0.9,insert_mops=888,mops=2231
+./bench_hash_list_seqlock,5%update,n=1000000,p=192,z=0.9,insert_mops=872,mops=2231
+
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1068,mops=2494
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1066,mops=2497
+
+./bench_hash_list_seqlock,5%update,n=100000000,p=192,z=0.9,insert_mops=779,mops=1869
+./bench_hash_list_seqlock,5%update,n=100000000,p=192,z=0.9,insert_mops=779,mops=1864
+
+./bench_hash_list_seqlock,5%update,n=1000000000,p=192,z=0.9,insert_mops=679,mops=1458
+./bench_hash_list_seqlock,5%update,n=1000000000,p=192,z=0.9,insert_mops=679,mops=1459
+
+./bench_hash_list_seqlock benchmark geometric mean of mops = 1375.73
+./bench_hash_list_seqlock initial insert geometric mean of mops = 182.354
+
+
+./bench_hash_list_seqlocklock,5%update,n=100,p=192,z=0.9,insert_mops=6,mops=976
+warning: update success ratio = 0.397768
+./bench_hash_list_seqlocklock,5%update,n=100,p=192,z=0.9,insert_mops=6,mops=973
+warning: update success ratio = 0.397969
+
+./bench_hash_list_seqlocklock,5%update,n=1000,p=192,z=0.9,insert_mops=7,mops=939
+./bench_hash_list_seqlocklock,5%update,n=1000,p=192,z=0.9,insert_mops=6,mops=943
+
+./bench_hash_list_seqlocklock,5%update,n=10000,p=192,z=0.9,insert_mops=44,mops=2154
+./bench_hash_list_seqlocklock,5%update,n=10000,p=192,z=0.9,insert_mops=43,mops=2149
+
+./bench_hash_list_seqlocklock,5%update,n=100000,p=192,z=0.9,insert_mops=380,mops=2766
+./bench_hash_list_seqlocklock,5%update,n=100000,p=192,z=0.9,insert_mops=373,mops=2768
+
+./bench_hash_list_seqlocklock,5%update,n=1000000,p=192,z=0.9,insert_mops=678,mops=2645
+./bench_hash_list_seqlocklock,5%update,n=1000000,p=192,z=0.9,insert_mops=667,mops=2647
+
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=789,mops=2689
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=790,mops=2687
+
+./bench_hash_list_seqlocklock,5%update,n=100000000,p=192,z=0.9,insert_mops=610,mops=1885
+./bench_hash_list_seqlocklock,5%update,n=100000000,p=192,z=0.9,insert_mops=613,mops=1883
+
+./bench_hash_list_seqlocklock,5%update,n=1000000000,p=192,z=0.9,insert_mops=560,mops=1454
+./bench_hash_list_seqlocklock,5%update,n=1000000000,p=192,z=0.9,insert_mops=560,mops=1454
+
+./bench_hash_list_seqlocklock benchmark geometric mean of mops = 1792.56
+./bench_hash_list_seqlocklock initial insert geometric mean of mops = 138.034
+
+
+./bench_hash_list_wf_indirect,5%update,n=100,p=192,z=0.9,insert_mops=2,mops=565
+./bench_hash_list_wf_indirect,5%update,n=100,p=192,z=0.9,insert_mops=3,mops=566
+
+./bench_hash_list_wf_indirect,5%update,n=1000,p=192,z=0.9,insert_mops=1,mops=886
+./bench_hash_list_wf_indirect,5%update,n=1000,p=192,z=0.9,insert_mops=2,mops=887
+
+./bench_hash_list_wf_indirect,5%update,n=10000,p=192,z=0.9,insert_mops=15,mops=1410
+./bench_hash_list_wf_indirect,5%update,n=10000,p=192,z=0.9,insert_mops=15,mops=1412
+
+./bench_hash_list_wf_indirect,5%update,n=100000,p=192,z=0.9,insert_mops=110,mops=1566
+./bench_hash_list_wf_indirect,5%update,n=100000,p=192,z=0.9,insert_mops=111,mops=1569
+
+./bench_hash_list_wf_indirect,5%update,n=1000000,p=192,z=0.9,insert_mops=266,mops=1499
+./bench_hash_list_wf_indirect,5%update,n=1000000,p=192,z=0.9,insert_mops=261,mops=1504
+
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=316,mops=1396
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=316,mops=1388
+
+./bench_hash_list_wf_indirect,5%update,n=100000000,p=192,z=0.9,insert_mops=241,mops=913
+./bench_hash_list_wf_indirect,5%update,n=100000000,p=192,z=0.9,insert_mops=240,mops=912
+
+./bench_hash_list_wf_indirect,5%update,n=1000000000,p=192,z=0.9,insert_mops=225,mops=719
+./bench_hash_list_wf_indirect,5%update,n=1000000000,p=192,z=0.9,insert_mops=225,mops=721
+
+./bench_hash_list_wf_indirect benchmark geometric mean of mops = 1054.34
+./bench_hash_list_wf_indirect initial insert geometric mean of mops = 50.9109
+
+
+./bench_hash_list_wf_hazard,5%update,n=100,p=192,z=0.9,insert_mops=4,mops=520
+./bench_hash_list_wf_hazard,5%update,n=100,p=192,z=0.9,insert_mops=3,mops=520
+
+./bench_hash_list_wf_hazard,5%update,n=1000,p=192,z=0.9,insert_mops=2,mops=667
+./bench_hash_list_wf_hazard,5%update,n=1000,p=192,z=0.9,insert_mops=2,mops=666
+
+./bench_hash_list_wf_hazard,5%update,n=10000,p=192,z=0.9,insert_mops=16,mops=1226
+./bench_hash_list_wf_hazard,5%update,n=10000,p=192,z=0.9,insert_mops=18,mops=1229
+
+./bench_hash_list_wf_hazard,5%update,n=100000,p=192,z=0.9,insert_mops=137,mops=1699
+./bench_hash_list_wf_hazard,5%update,n=100000,p=192,z=0.9,insert_mops=146,mops=1699
+
+./bench_hash_list_wf_hazard,5%update,n=1000000,p=192,z=0.9,insert_mops=296,mops=1842
+./bench_hash_list_wf_hazard,5%update,n=1000000,p=192,z=0.9,insert_mops=299,mops=1841
+
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=372,mops=1992
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=367,mops=1994
+
+./bench_hash_list_wf_hazard,5%update,n=100000000,p=192,z=0.9,insert_mops=344,mops=1585
+./bench_hash_list_wf_hazard,5%update,n=100000000,p=192,z=0.9,insert_mops=344,mops=1584
+
+./bench_hash_list_wf_hazard,5%update,n=1000000000,p=192,z=0.9,insert_mops=320,mops=1244
+./bench_hash_list_wf_hazard,5%update,n=1000000000,p=192,z=0.9,insert_mops=320,mops=1247
+
+./bench_hash_list_wf_hazard benchmark geometric mean of mops = 1230.42
+./bench_hash_list_wf_hazard initial insert geometric mean of mops = 65.4106
+
+
+./bench_hash_list_wf_daniel,5%update,n=100,p=192,z=0.9,insert_mops=4,mops=507
+./bench_hash_list_wf_daniel,5%update,n=100,p=192,z=0.9,insert_mops=4,mops=507
+
+./bench_hash_list_wf_daniel,5%update,n=1000,p=192,z=0.9,insert_mops=3,mops=637
+./bench_hash_list_wf_daniel,5%update,n=1000,p=192,z=0.9,insert_mops=3,mops=636
+
+./bench_hash_list_wf_daniel,5%update,n=10000,p=192,z=0.9,insert_mops=21,mops=1245
+./bench_hash_list_wf_daniel,5%update,n=10000,p=192,z=0.9,insert_mops=23,mops=1245
+
+./bench_hash_list_wf_daniel,5%update,n=100000,p=192,z=0.9,insert_mops=164,mops=1692
+./bench_hash_list_wf_daniel,5%update,n=100000,p=192,z=0.9,insert_mops=159,mops=1693
+
+./bench_hash_list_wf_daniel,5%update,n=1000000,p=192,z=0.9,insert_mops=353,mops=1866
+./bench_hash_list_wf_daniel,5%update,n=1000000,p=192,z=0.9,insert_mops=348,mops=1866
+
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=416,mops=2052
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=415,mops=2051
+
+./bench_hash_list_wf_daniel,5%update,n=100000000,p=192,z=0.9,insert_mops=376,mops=1631
+./bench_hash_list_wf_daniel,5%update,n=100000000,p=192,z=0.9,insert_mops=375,mops=1637
+
+./bench_hash_list_wf_daniel,5%update,n=1000000000,p=192,z=0.9,insert_mops=346,mops=1293
+./bench_hash_list_wf_daniel,5%update,n=1000000000,p=192,z=0.9,insert_mops=346,mops=1288
+
+./bench_hash_list_wf_daniel benchmark geometric mean of mops = 1237.67
+./bench_hash_list_wf_daniel initial insert geometric mean of mops = 74.6449
+
+
+./bench_hash_list_lf_llsc,5%update,n=100,p=192,z=0.9,insert_mops=3,mops=641
+./bench_hash_list_lf_llsc,5%update,n=100,p=192,z=0.9,insert_mops=3,mops=639
+
+./bench_hash_list_lf_llsc,5%update,n=1000,p=192,z=0.9,insert_mops=2,mops=758
+./bench_hash_list_lf_llsc,5%update,n=1000,p=192,z=0.9,insert_mops=3,mops=757
+
+./bench_hash_list_lf_llsc,5%update,n=10000,p=192,z=0.9,insert_mops=20,mops=1521
+./bench_hash_list_lf_llsc,5%update,n=10000,p=192,z=0.9,insert_mops=20,mops=1517
+
+./bench_hash_list_lf_llsc,5%update,n=100000,p=192,z=0.9,insert_mops=168,mops=2055
+./bench_hash_list_lf_llsc,5%update,n=100000,p=192,z=0.9,insert_mops=179,mops=2056
+
+./bench_hash_list_lf_llsc,5%update,n=1000000,p=192,z=0.9,insert_mops=363,mops=2169
+./bench_hash_list_lf_llsc,5%update,n=1000000,p=192,z=0.9,insert_mops=348,mops=2167
+
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=395,mops=2318
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=381,mops=2314
+
+./bench_hash_list_lf_llsc,5%update,n=100000000,p=192,z=0.9,insert_mops=336,mops=1749
+./bench_hash_list_lf_llsc,5%update,n=100000000,p=192,z=0.9,insert_mops=334,mops=1747
+
+./bench_hash_list_lf_llsc,5%update,n=1000000000,p=192,z=0.9,insert_mops=336,mops=1359
+./bench_hash_list_lf_llsc,5%update,n=1000000000,p=192,z=0.9,insert_mops=334,mops=1357
+
+./bench_hash_list_lf_llsc benchmark geometric mean of mops = 1436.23
+./bench_hash_list_lf_llsc initial insert geometric mean of mops = 69.5728
+
+
+
+bench_hash_list varying updates
+
+./bench_hash_list_seqlock,0%update,n=10000000,p=192,z=0.9,insert_mops=1097,mops=2802
+./bench_hash_list_seqlock,0%update,n=10000000,p=192,z=0.9,insert_mops=1093,mops=2784
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1062,mops=2524
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1062,mops=2524
+./bench_hash_list_seqlock,10%update,n=10000000,p=192,z=0.9,insert_mops=1059,mops=1851
+./bench_hash_list_seqlock,10%update,n=10000000,p=192,z=0.9,insert_mops=1057,mops=1851
+./bench_hash_list_seqlock,20%update,n=10000000,p=192,z=0.9,insert_mops=1045,mops=1217
+./bench_hash_list_seqlock,20%update,n=10000000,p=192,z=0.9,insert_mops=1043,mops=1219
+./bench_hash_list_seqlock,50%update,n=10000000,p=192,z=0.9,insert_mops=1035,mops=437
+./bench_hash_list_seqlock,50%update,n=10000000,p=192,z=0.9,insert_mops=1035,mops=436
+./bench_hash_list_seqlock,100%update,n=10000000,p=192,z=0.9,insert_mops=1021,mops=232
+./bench_hash_list_seqlock,100%update,n=10000000,p=192,z=0.9,insert_mops=1013,mops=235
+
+./bench_hash_list_seqlock benchmark geometric mean of mops = 1084.67
+./bench_hash_list_seqlock initial insert geometric mean of mops = 1052.01
+
+
+./bench_hash_list_seqlocklock,0%update,n=10000000,p=192,z=0.9,insert_mops=790,mops=2782
+./bench_hash_list_seqlocklock,0%update,n=10000000,p=192,z=0.9,insert_mops=791,mops=2779
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=782,mops=2696
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=780,mops=2694
+./bench_hash_list_seqlocklock,10%update,n=10000000,p=192,z=0.9,insert_mops=777,mops=2368
+./bench_hash_list_seqlocklock,10%update,n=10000000,p=192,z=0.9,insert_mops=778,mops=2373
+./bench_hash_list_seqlocklock,20%update,n=10000000,p=192,z=0.9,insert_mops=770,mops=1895
+./bench_hash_list_seqlocklock,20%update,n=10000000,p=192,z=0.9,insert_mops=764,mops=1896
+./bench_hash_list_seqlocklock,50%update,n=10000000,p=192,z=0.9,insert_mops=742,mops=276
+./bench_hash_list_seqlocklock,50%update,n=10000000,p=192,z=0.9,insert_mops=737,mops=293
+./bench_hash_list_seqlocklock,100%update,n=10000000,p=192,z=0.9,insert_mops=740,mops=114
+./bench_hash_list_seqlocklock,100%update,n=10000000,p=192,z=0.9,insert_mops=744,mops=112
+
+./bench_hash_list_seqlocklock benchmark geometric mean of mops = 1014.87
+./bench_hash_list_seqlocklock initial insert geometric mean of mops = 766.449
+
+
+./bench_hash_list_wf_indirect,0%update,n=10000000,p=192,z=0.9,insert_mops=313,mops=1458
+./bench_hash_list_wf_indirect,0%update,n=10000000,p=192,z=0.9,insert_mops=310,mops=1453
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=308,mops=1381
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=308,mops=1378
+./bench_hash_list_wf_indirect,10%update,n=10000000,p=192,z=0.9,insert_mops=306,mops=1214
+./bench_hash_list_wf_indirect,10%update,n=10000000,p=192,z=0.9,insert_mops=305,mops=1216
+./bench_hash_list_wf_indirect,20%update,n=10000000,p=192,z=0.9,insert_mops=305,mops=995
+./bench_hash_list_wf_indirect,20%update,n=10000000,p=192,z=0.9,insert_mops=303,mops=992
+./bench_hash_list_wf_indirect,50%update,n=10000000,p=192,z=0.9,insert_mops=303,mops=685
+./bench_hash_list_wf_indirect,50%update,n=10000000,p=192,z=0.9,insert_mops=302,mops=683
+./bench_hash_list_wf_indirect,100%update,n=10000000,p=192,z=0.9,insert_mops=301,mops=453
+./bench_hash_list_wf_indirect,100%update,n=10000000,p=192,z=0.9,insert_mops=301,mops=453
+
+./bench_hash_list_wf_indirect benchmark geometric mean of mops = 953.895
+./bench_hash_list_wf_indirect initial insert geometric mean of mops = 305.926
+
+
+./bench_hash_list_wf_hazard,0%update,n=10000000,p=192,z=0.9,insert_mops=380,mops=2613
+./bench_hash_list_wf_hazard,0%update,n=10000000,p=192,z=0.9,insert_mops=375,mops=2601
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=366,mops=1990
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=362,mops=1991
+./bench_hash_list_wf_hazard,10%update,n=10000000,p=192,z=0.9,insert_mops=363,mops=1647
+./bench_hash_list_wf_hazard,10%update,n=10000000,p=192,z=0.9,insert_mops=364,mops=1646
+./bench_hash_list_wf_hazard,20%update,n=10000000,p=192,z=0.9,insert_mops=364,mops=1255
+./bench_hash_list_wf_hazard,20%update,n=10000000,p=192,z=0.9,insert_mops=362,mops=1254
+./bench_hash_list_wf_hazard,50%update,n=10000000,p=192,z=0.9,insert_mops=364,mops=768
+./bench_hash_list_wf_hazard,50%update,n=10000000,p=192,z=0.9,insert_mops=363,mops=768
+./bench_hash_list_wf_hazard,100%update,n=10000000,p=192,z=0.9,insert_mops=363,mops=493
+./bench_hash_list_wf_hazard,100%update,n=10000000,p=192,z=0.9,insert_mops=363,mops=490
+
+./bench_hash_list_wf_hazard benchmark geometric mean of mops = 1262.94
+./bench_hash_list_wf_hazard initial insert geometric mean of mops = 366.232
+
+
+./bench_hash_list_wf_daniel,0%update,n=10000000,p=192,z=0.9,insert_mops=418,mops=2726
+./bench_hash_list_wf_daniel,0%update,n=10000000,p=192,z=0.9,insert_mops=417,mops=2707
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=413,mops=2075
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=411,mops=2073
+./bench_hash_list_wf_daniel,10%update,n=10000000,p=192,z=0.9,insert_mops=413,mops=1695
+./bench_hash_list_wf_daniel,10%update,n=10000000,p=192,z=0.9,insert_mops=412,mops=1695
+./bench_hash_list_wf_daniel,20%update,n=10000000,p=192,z=0.9,insert_mops=412,mops=1306
+./bench_hash_list_wf_daniel,20%update,n=10000000,p=192,z=0.9,insert_mops=412,mops=1305
+./bench_hash_list_wf_daniel,50%update,n=10000000,p=192,z=0.9,insert_mops=411,mops=808
+./bench_hash_list_wf_daniel,50%update,n=10000000,p=192,z=0.9,insert_mops=411,mops=807
+./bench_hash_list_wf_daniel,100%update,n=10000000,p=192,z=0.9,insert_mops=409,mops=517
+./bench_hash_list_wf_daniel,100%update,n=10000000,p=192,z=0.9,insert_mops=410,mops=517
+
+./bench_hash_list_wf_daniel benchmark geometric mean of mops = 1317.11
+./bench_hash_list_wf_daniel initial insert geometric mean of mops = 412.837
+
+
+./bench_hash_list_lf_llsc,0%update,n=10000000,p=192,z=0.9,insert_mops=602,mops=2779
+./bench_hash_list_lf_llsc,0%update,n=10000000,p=192,z=0.9,insert_mops=595,mops=2789
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=565,mops=2418
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=556,mops=2413
+./bench_hash_list_lf_llsc,10%update,n=10000000,p=192,z=0.9,insert_mops=524,mops=1974
+./bench_hash_list_lf_llsc,10%update,n=10000000,p=192,z=0.9,insert_mops=505,mops=1965
+./bench_hash_list_lf_llsc,20%update,n=10000000,p=192,z=0.9,insert_mops=456,mops=1496
+./bench_hash_list_lf_llsc,20%update,n=10000000,p=192,z=0.9,insert_mops=443,mops=1487
+./bench_hash_list_lf_llsc,50%update,n=10000000,p=192,z=0.9,insert_mops=416,mops=852
+./bench_hash_list_lf_llsc,50%update,n=10000000,p=192,z=0.9,insert_mops=411,mops=850
+./bench_hash_list_lf_llsc,100%update,n=10000000,p=192,z=0.9,insert_mops=402,mops=542
+./bench_hash_list_lf_llsc,100%update,n=10000000,p=192,z=0.9,insert_mops=397,mops=542
+
+./bench_hash_list_lf_llsc benchmark geometric mean of mops = 1445.79
+./bench_hash_list_lf_llsc initial insert geometric mean of mops = 484.243
+
+
+
+bench_hash_list varying zipfians
+
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0,insert_mops=1091,mops=2059
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0,insert_mops=1082,mops=2060
+
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0.5,insert_mops=1079,mops=2196
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0.5,insert_mops=1077,mops=2194
+
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0.8,insert_mops=1066,mops=2594
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0.8,insert_mops=1064,mops=2592
+
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1056,mops=2565
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1058,mops=2561
+
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0.95,insert_mops=1055,mops=2003
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0.95,insert_mops=1051,mops=2005
+
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0.99,insert_mops=1027,mops=1422
+./bench_hash_list_seqlock,5%update,n=10000000,p=192,z=0.99,insert_mops=1037,mops=1423
+
+./bench_hash_list_seqlock benchmark geometric mean of mops = 2100.07
+./bench_hash_list_seqlock initial insert geometric mean of mops = 1062.36
+
+
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0,insert_mops=806,mops=2040
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0,insert_mops=798,mops=2039
+
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0.5,insert_mops=800,mops=2170
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0.5,insert_mops=798,mops=2173
+
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0.8,insert_mops=792,mops=2580
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0.8,insert_mops=794,mops=2579
+
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=788,mops=2716
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=784,mops=2715
+
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0.95,insert_mops=784,mops=2542
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0.95,insert_mops=784,mops=2543
+
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0.99,insert_mops=775,mops=2198
+./bench_hash_list_seqlocklock,5%update,n=10000000,p=192,z=0.99,insert_mops=779,mops=2198
+
+./bench_hash_list_seqlocklock benchmark geometric mean of mops = 2361.82
+./bench_hash_list_seqlocklock initial insert geometric mean of mops = 790.423
+
+
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0,insert_mops=315,mops=971
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0,insert_mops=313,mops=963
+
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0.5,insert_mops=310,mops=1015
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0.5,insert_mops=310,mops=1011
+
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0.8,insert_mops=308,mops=1259
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0.8,insert_mops=308,mops=1254
+
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=307,mops=1380
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=307,mops=1382
+
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0.95,insert_mops=304,mops=1424
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0.95,insert_mops=305,mops=1425
+
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0.99,insert_mops=305,mops=1389
+./bench_hash_list_wf_indirect,5%update,n=10000000,p=192,z=0.99,insert_mops=303,mops=1388
+
+./bench_hash_list_wf_indirect benchmark geometric mean of mops = 1224.41
+./bench_hash_list_wf_indirect initial insert geometric mean of mops = 308.292
+
+
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0,insert_mops=374,mops=1698
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0,insert_mops=372,mops=1698
+
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0.5,insert_mops=369,mops=1821
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0.5,insert_mops=367,mops=1821
+
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0.8,insert_mops=366,mops=2137
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0.8,insert_mops=365,mops=2138
+
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=364,mops=1998
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=365,mops=1998
+
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0.95,insert_mops=365,mops=1705
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0.95,insert_mops=364,mops=1704
+
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0.99,insert_mops=363,mops=1378
+./bench_hash_list_wf_hazard,5%update,n=10000000,p=192,z=0.99,insert_mops=364,mops=1377
+
+./bench_hash_list_wf_hazard benchmark geometric mean of mops = 1772.89
+./bench_hash_list_wf_hazard initial insert geometric mean of mops = 366.9
+
+
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0,insert_mops=425,mops=1798
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0,insert_mops=423,mops=1796
+
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0.5,insert_mops=423,mops=1916
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0.5,insert_mops=421,mops=1917
+
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0.8,insert_mops=422,mops=2258
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0.8,insert_mops=420,mops=2256
+
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=419,mops=2086
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=418,mops=2086
+
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0.95,insert_mops=417,mops=1758
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0.95,insert_mops=417,mops=1757
+
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0.99,insert_mops=414,mops=1377
+./bench_hash_list_wf_daniel,5%update,n=10000000,p=192,z=0.99,insert_mops=414,mops=1380
+
+./bench_hash_list_wf_daniel benchmark geometric mean of mops = 1844.15
+./bench_hash_list_wf_daniel initial insert geometric mean of mops = 419.838
+
+
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0,insert_mops=565,mops=1985
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0,insert_mops=556,mops=1981
+
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0.5,insert_mops=563,mops=2116
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0.5,insert_mops=564,mops=2113
+
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0.8,insert_mops=560,mops=2473
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0.8,insert_mops=557,mops=2470
+
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=552,mops=2397
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=545,mops=2394
+
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0.95,insert_mops=490,mops=2003
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0.95,insert_mops=449,mops=1999
+
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0.99,insert_mops=414,mops=1508
+./bench_hash_list_lf_llsc,5%update,n=10000000,p=192,z=0.99,insert_mops=389,mops=1507
+
+./bench_hash_list_lf_llsc benchmark geometric mean of mops = 2053.55
+./bench_hash_list_lf_llsc initial insert geometric mean of mops = 513.377
+
+
+
+bench_hash_list varying threads
+
+./bench_hash_list_seqlock,20%update,n=10000000,p=8,z=0.9,insert_mops=1045,mops=136
+./bench_hash_list_seqlock,20%update,n=10000000,p=8,z=0.9,insert_mops=1038,mops=142
+
+./bench_hash_list_seqlock benchmark geometric mean of mops = 139.321
+./bench_hash_list_seqlock initial insert geometric mean of mops = 1042.2
+
+
+./bench_hash_list_seqlocklock,20%update,n=10000000,p=8,z=0.9,insert_mops=771,mops=134
+./bench_hash_list_seqlocklock,20%update,n=10000000,p=8,z=0.9,insert_mops=756,mops=137
+
+./bench_hash_list_seqlocklock benchmark geometric mean of mops = 136.17
+./bench_hash_list_seqlocklock initial insert geometric mean of mops = 763.69
+
+
+./bench_hash_list_wf_indirect,20%update,n=10000000,p=8,z=0.9,insert_mops=273,mops=63
+./bench_hash_list_wf_indirect,20%update,n=10000000,p=8,z=0.9,insert_mops=272,mops=63
+
+./bench_hash_list_wf_indirect benchmark geometric mean of mops = 63.1215
+./bench_hash_list_wf_indirect initial insert geometric mean of mops = 272.644
+
+
+./bench_hash_list_wf_hazard,20%update,n=10000000,p=8,z=0.9,insert_mops=371,mops=102
+./bench_hash_list_wf_hazard,20%update,n=10000000,p=8,z=0.9,insert_mops=372,mops=101
+
+./bench_hash_list_wf_hazard benchmark geometric mean of mops = 102.133
+./bench_hash_list_wf_hazard initial insert geometric mean of mops = 371.95
+
+
+./bench_hash_list_wf_daniel,20%update,n=10000000,p=8,z=0.9,insert_mops=416,mops=108
+./bench_hash_list_wf_daniel,20%update,n=10000000,p=8,z=0.9,insert_mops=414,mops=106
+
+./bench_hash_list_wf_daniel benchmark geometric mean of mops = 107.314
+./bench_hash_list_wf_daniel initial insert geometric mean of mops = 415.266
+
+
+./bench_hash_list_lf_llsc,20%update,n=10000000,p=8,z=0.9,insert_mops=589,mops=120
+./bench_hash_list_lf_llsc,20%update,n=10000000,p=8,z=0.9,insert_mops=579,mops=119
+
+./bench_hash_list_lf_llsc benchmark geometric mean of mops = 120.121
+./bench_hash_list_lf_llsc initial insert geometric mean of mops = 584.206
+
+
+
+bench_leaf_tree varying size
+
+./bench_leaf_tree_seqlock,5%update,n=100,p=192,z=0.9,insert_mops=2,mops=253
+./bench_leaf_tree_seqlock,5%update,n=100,p=192,z=0.9,insert_mops=1,mops=261
+
+./bench_leaf_tree_seqlock,5%update,n=1000,p=192,z=0.9,insert_mops=2,mops=449
+./bench_leaf_tree_seqlock,5%update,n=1000,p=192,z=0.9,insert_mops=2,mops=449
+
+./bench_leaf_tree_seqlock,5%update,n=10000,p=192,z=0.9,insert_mops=12,mops=529
+./bench_leaf_tree_seqlock,5%update,n=10000,p=192,z=0.9,insert_mops=12,mops=529
+
+./bench_leaf_tree_seqlock,5%update,n=100000,p=192,z=0.9,insert_mops=77,mops=347
+./bench_leaf_tree_seqlock,5%update,n=100000,p=192,z=0.9,insert_mops=73,mops=350
+
+./bench_leaf_tree_seqlock,5%update,n=1000000,p=192,z=0.9,insert_mops=117,mops=192
+./bench_leaf_tree_seqlock,5%update,n=1000000,p=192,z=0.9,insert_mops=114,mops=194
+
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=96,mops=124
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=96,mops=124
+
+./bench_leaf_tree_seqlock,5%update,n=100000000,p=192,z=0.9,insert_mops=52,mops=67
+./bench_leaf_tree_seqlock,5%update,n=100000000,p=192,z=0.9,insert_mops=52,mops=67
+
+
+./bench_leaf_tree_seqlocklock,5%update,n=100,p=192,z=0.9,insert_mops=1,mops=413
+warning: update success ratio = 0.399201
+./bench_leaf_tree_seqlocklock,5%update,n=100,p=192,z=0.9,insert_mops=1,mops=431
+warning: update success ratio = 0.398538
+
+./bench_leaf_tree_seqlocklock,5%update,n=1000,p=192,z=0.9,insert_mops=2,mops=674
+./bench_leaf_tree_seqlocklock,5%update,n=1000,p=192,z=0.9,insert_mops=2,mops=673
+
+./bench_leaf_tree_seqlocklock,5%update,n=10000,p=192,z=0.9,insert_mops=11,mops=562
+./bench_leaf_tree_seqlocklock,5%update,n=10000,p=192,z=0.9,insert_mops=11,mops=561
+
+./bench_leaf_tree_seqlocklock,5%update,n=100000,p=192,z=0.9,insert_mops=65,mops=348
+./bench_leaf_tree_seqlocklock,5%update,n=100000,p=192,z=0.9,insert_mops=71,mops=350
+
+./bench_leaf_tree_seqlocklock,5%update,n=1000000,p=192,z=0.9,insert_mops=111,mops=194
+./bench_leaf_tree_seqlocklock,5%update,n=1000000,p=192,z=0.9,insert_mops=108,mops=197
+
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=94,mops=125
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=93,mops=125
+
+./bench_leaf_tree_seqlocklock,5%update,n=100000000,p=192,z=0.9,insert_mops=52,mops=67
+./bench_leaf_tree_seqlocklock,5%update,n=100000000,p=192,z=0.9,insert_mops=52,mops=67
+
+./bench_leaf_tree_seqlocklock,5%update,n=1000000000,p=192,z=0.9,insert_mops=34,mops=41
+./bench_leaf_tree_seqlocklock,5%update,n=1000000000,p=192,z=0.9,insert_mops=34,mops=41
+
+./bench_leaf_tree_seqlocklock benchmark geometric mean of mops = 210.876
+./bench_leaf_tree_seqlocklock initial insert geometric mean of mops = 22.0038
+
+
+./bench_leaf_tree_wf_indirect,5%update,n=100,p=192,z=0.9,insert_mops=1,mops=403
+./bench_leaf_tree_wf_indirect,5%update,n=100,p=192,z=0.9,insert_mops=0,mops=403
+
+./bench_leaf_tree_wf_indirect,5%update,n=1000,p=192,z=0.9,insert_mops=1,mops=395
+./bench_leaf_tree_wf_indirect,5%update,n=1000,p=192,z=0.9,insert_mops=1,mops=394
+
+./bench_leaf_tree_wf_indirect,5%update,n=10000,p=192,z=0.9,insert_mops=6,mops=307
+./bench_leaf_tree_wf_indirect,5%update,n=10000,p=192,z=0.9,insert_mops=6,mops=306
+
+./bench_leaf_tree_wf_indirect,5%update,n=100000,p=192,z=0.9,insert_mops=40,mops=182
+./bench_leaf_tree_wf_indirect,5%update,n=100000,p=192,z=0.9,insert_mops=38,mops=184
+
+./bench_leaf_tree_wf_indirect,5%update,n=1000000,p=192,z=0.9,insert_mops=60,mops=110
+./bench_leaf_tree_wf_indirect,5%update,n=1000000,p=192,z=0.9,insert_mops=59,mops=111
+
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=52,mops=74
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=50,mops=72
+
+./bench_leaf_tree_wf_indirect,5%update,n=100000000,p=192,z=0.9,insert_mops=26,mops=29
+./bench_leaf_tree_wf_indirect,5%update,n=100000000,p=192,z=0.9,insert_mops=24,mops=28
+
+
+./bench_leaf_tree_wf_hazard,5%update,n=100,p=192,z=0.9,insert_mops=1,mops=319
+warning: update success ratio = 0.395541
+./bench_leaf_tree_wf_hazard,5%update,n=100,p=192,z=0.9,insert_mops=0,mops=320
+warning: update success ratio = 0.396013
+
+./bench_leaf_tree_wf_hazard,5%update,n=1000,p=192,z=0.9,insert_mops=1,mops=510
+./bench_leaf_tree_wf_hazard,5%update,n=1000,p=192,z=0.9,insert_mops=1,mops=513
+
+./bench_leaf_tree_wf_hazard,5%update,n=10000,p=192,z=0.9,insert_mops=7,mops=490
+./bench_leaf_tree_wf_hazard,5%update,n=10000,p=192,z=0.9,insert_mops=8,mops=497
+
+./bench_leaf_tree_wf_hazard,5%update,n=100000,p=192,z=0.9,insert_mops=47,mops=319
+./bench_leaf_tree_wf_hazard,5%update,n=100000,p=192,z=0.9,insert_mops=52,mops=311
+
+./bench_leaf_tree_wf_hazard,5%update,n=1000000,p=192,z=0.9,insert_mops=87,mops=184
+./bench_leaf_tree_wf_hazard,5%update,n=1000000,p=192,z=0.9,insert_mops=88,mops=184
+
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=75,mops=111
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=74,mops=118
+
+./bench_leaf_tree_wf_hazard,5%update,n=100000000,p=192,z=0.9,insert_mops=44,mops=66
+./bench_leaf_tree_wf_hazard,5%update,n=100000000,p=192,z=0.9,insert_mops=43,mops=65
+
+
+./bench_leaf_tree_wf_daniel,5%update,n=100,p=192,z=0.9,insert_mops=1,mops=336
+./bench_leaf_tree_wf_daniel,5%update,n=100,p=192,z=0.9,insert_mops=1,mops=339
+
+./bench_leaf_tree_wf_daniel,5%update,n=1000,p=192,z=0.9,insert_mops=1,mops=510
+./bench_leaf_tree_wf_daniel,5%update,n=1000,p=192,z=0.9,insert_mops=1,mops=507
+
+./bench_leaf_tree_wf_daniel,5%update,n=10000,p=192,z=0.9,insert_mops=8,mops=478
+./bench_leaf_tree_wf_daniel,5%update,n=10000,p=192,z=0.9,insert_mops=8,mops=489
+
+./bench_leaf_tree_wf_daniel,5%update,n=100000,p=192,z=0.9,insert_mops=54,mops=322
+./bench_leaf_tree_wf_daniel,5%update,n=100000,p=192,z=0.9,insert_mops=60,mops=325
+
+./bench_leaf_tree_wf_daniel,5%update,n=1000000,p=192,z=0.9,insert_mops=99,mops=199
+./bench_leaf_tree_wf_daniel,5%update,n=1000000,p=192,z=0.9,insert_mops=97,mops=195
+
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=79,mops=123
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=79,mops=123
+
+./bench_leaf_tree_wf_daniel,5%update,n=100000000,p=192,z=0.9,insert_mops=48,mops=67
+./bench_leaf_tree_wf_daniel,5%update,n=100000000,p=192,z=0.9,insert_mops=47,mops=66
+
+
+./bench_leaf_tree_lf_llsc,5%update,n=100,p=192,z=0.9,insert_mops=1,mops=377
+./bench_leaf_tree_lf_llsc,5%update,n=100,p=192,z=0.9,insert_mops=1,mops=367
+
+./bench_leaf_tree_lf_llsc,5%update,n=1000,p=192,z=0.9,insert_mops=1,mops=542
+./bench_leaf_tree_lf_llsc,5%update,n=1000,p=192,z=0.9,insert_mops=1,mops=544
+
+./bench_leaf_tree_lf_llsc,5%update,n=10000,p=192,z=0.9,insert_mops=9,mops=479
+./bench_leaf_tree_lf_llsc,5%update,n=10000,p=192,z=0.9,insert_mops=9,mops=486
+
+./bench_leaf_tree_lf_llsc,5%update,n=100000,p=192,z=0.9,insert_mops=59,mops=312
+./bench_leaf_tree_lf_llsc,5%update,n=100000,p=192,z=0.9,insert_mops=57,mops=313
+
+./bench_leaf_tree_lf_llsc,5%update,n=1000000,p=192,z=0.9,insert_mops=93,mops=193
+./bench_leaf_tree_lf_llsc,5%update,n=1000000,p=192,z=0.9,insert_mops=95,mops=191
+
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=85,mops=122
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=85,mops=121
+
+./bench_leaf_tree_lf_llsc,5%update,n=100000000,p=192,z=0.9,insert_mops=48,mops=64
+./bench_leaf_tree_lf_llsc,5%update,n=100000000,p=192,z=0.9,insert_mops=48,mops=63
+
+
+
+bench_leaf_tree varying updates
+
+./bench_leaf_tree_seqlock,0%update,n=10000000,p=192,z=0.9,insert_mops=96,mops=129
+./bench_leaf_tree_seqlock,0%update,n=10000000,p=192,z=0.9,insert_mops=95,mops=128
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=95,mops=126
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=95,mops=125
+./bench_leaf_tree_seqlock,10%update,n=10000000,p=192,z=0.9,insert_mops=94,mops=124
+./bench_leaf_tree_seqlock,10%update,n=10000000,p=192,z=0.9,insert_mops=94,mops=124
+./bench_leaf_tree_seqlock,20%update,n=10000000,p=192,z=0.9,insert_mops=93,mops=123
+./bench_leaf_tree_seqlock,20%update,n=10000000,p=192,z=0.9,insert_mops=93,mops=123
+./bench_leaf_tree_seqlock,50%update,n=10000000,p=192,z=0.9,insert_mops=93,mops=111
+./bench_leaf_tree_seqlock,50%update,n=10000000,p=192,z=0.9,insert_mops=92,mops=109
+./bench_leaf_tree_seqlock,100%update,n=10000000,p=192,z=0.9,insert_mops=92,mops=38
+./bench_leaf_tree_seqlock,100%update,n=10000000,p=192,z=0.9,insert_mops=92,mops=109
+
+./bench_leaf_tree_seqlock benchmark geometric mean of mops = 110.023
+./bench_leaf_tree_seqlock initial insert geometric mean of mops = 94.2132
+
+
+./bench_leaf_tree_seqlocklock,0%update,n=10000000,p=192,z=0.9,insert_mops=92,mops=128
+./bench_leaf_tree_seqlocklock,0%update,n=10000000,p=192,z=0.9,insert_mops=92,mops=128
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=92,mops=125
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=91,mops=125
+./bench_leaf_tree_seqlocklock,10%update,n=10000000,p=192,z=0.9,insert_mops=91,mops=125
+./bench_leaf_tree_seqlocklock,10%update,n=10000000,p=192,z=0.9,insert_mops=91,mops=125
+./bench_leaf_tree_seqlocklock,20%update,n=10000000,p=192,z=0.9,insert_mops=91,mops=123
+./bench_leaf_tree_seqlocklock,20%update,n=10000000,p=192,z=0.9,insert_mops=90,mops=124
+./bench_leaf_tree_seqlocklock,50%update,n=10000000,p=192,z=0.9,insert_mops=90,mops=110
+./bench_leaf_tree_seqlocklock,50%update,n=10000000,p=192,z=0.9,insert_mops=90,mops=110
+./bench_leaf_tree_seqlocklock,100%update,n=10000000,p=192,z=0.9,insert_mops=89,mops=109
+./bench_leaf_tree_seqlocklock,100%update,n=10000000,p=192,z=0.9,insert_mops=89,mops=109
+
+./bench_leaf_tree_seqlocklock benchmark geometric mean of mops = 120.125
+./bench_leaf_tree_seqlocklock initial insert geometric mean of mops = 91.2759
+
+
+./bench_leaf_tree_wf_indirect,0%update,n=10000000,p=192,z=0.9,insert_mops=51,mops=75
+./bench_leaf_tree_wf_indirect,0%update,n=10000000,p=192,z=0.9,insert_mops=48,mops=73
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=47,mops=71
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=47,mops=71
+./bench_leaf_tree_wf_indirect,10%update,n=10000000,p=192,z=0.9,insert_mops=47,mops=69
+./bench_leaf_tree_wf_indirect,10%update,n=10000000,p=192,z=0.9,insert_mops=47,mops=68
+./bench_leaf_tree_wf_indirect,20%update,n=10000000,p=192,z=0.9,insert_mops=47,mops=67
+./bench_leaf_tree_wf_indirect,20%update,n=10000000,p=192,z=0.9,insert_mops=47,mops=66
+./bench_leaf_tree_wf_indirect,50%update,n=10000000,p=192,z=0.9,insert_mops=46,mops=57
+./bench_leaf_tree_wf_indirect,50%update,n=10000000,p=192,z=0.9,insert_mops=47,mops=57
+./bench_leaf_tree_wf_indirect,100%update,n=10000000,p=192,z=0.9,insert_mops=46,mops=53
+./bench_leaf_tree_wf_indirect,100%update,n=10000000,p=192,z=0.9,insert_mops=46,mops=53
+
+./bench_leaf_tree_wf_indirect benchmark geometric mean of mops = 65.0822
+./bench_leaf_tree_wf_indirect initial insert geometric mean of mops = 47.5622
+
+
+./bench_leaf_tree_wf_hazard,0%update,n=10000000,p=192,z=0.9,insert_mops=76,mops=119
+./bench_leaf_tree_wf_hazard,0%update,n=10000000,p=192,z=0.9,insert_mops=74,mops=119
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=74,mops=114
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=74,mops=121
+./bench_leaf_tree_wf_hazard,10%update,n=10000000,p=192,z=0.9,insert_mops=74,mops=107
+./bench_leaf_tree_wf_hazard,10%update,n=10000000,p=192,z=0.9,insert_mops=73,mops=107
+./bench_leaf_tree_wf_hazard,20%update,n=10000000,p=192,z=0.9,insert_mops=74,mops=107
+./bench_leaf_tree_wf_hazard,20%update,n=10000000,p=192,z=0.9,insert_mops=73,mops=101
+./bench_leaf_tree_wf_hazard,50%update,n=10000000,p=192,z=0.9,insert_mops=73,mops=102
+./bench_leaf_tree_wf_hazard,50%update,n=10000000,p=192,z=0.9,insert_mops=74,mops=102
+./bench_leaf_tree_wf_hazard,100%update,n=10000000,p=192,z=0.9,insert_mops=73,mops=95
+./bench_leaf_tree_wf_hazard,100%update,n=10000000,p=192,z=0.9,insert_mops=73,mops=96
+
+./bench_leaf_tree_wf_hazard benchmark geometric mean of mops = 107.659
+./bench_leaf_tree_wf_hazard initial insert geometric mean of mops = 74.3876
+
+
+./bench_leaf_tree_wf_daniel,0%update,n=10000000,p=192,z=0.9,insert_mops=79,mops=127
+./bench_leaf_tree_wf_daniel,0%update,n=10000000,p=192,z=0.9,insert_mops=79,mops=128
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=79,mops=122
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=79,mops=121
+./bench_leaf_tree_wf_daniel,10%update,n=10000000,p=192,z=0.9,insert_mops=78,mops=118
+./bench_leaf_tree_wf_daniel,10%update,n=10000000,p=192,z=0.9,insert_mops=78,mops=118
+./bench_leaf_tree_wf_daniel,20%update,n=10000000,p=192,z=0.9,insert_mops=78,mops=116
+./bench_leaf_tree_wf_daniel,20%update,n=10000000,p=192,z=0.9,insert_mops=79,mops=116
+./bench_leaf_tree_wf_daniel,50%update,n=10000000,p=192,z=0.9,insert_mops=78,mops=113
+./bench_leaf_tree_wf_daniel,50%update,n=10000000,p=192,z=0.9,insert_mops=78,mops=113
+./bench_leaf_tree_wf_daniel,100%update,n=10000000,p=192,z=0.9,insert_mops=78,mops=101
+./bench_leaf_tree_wf_daniel,100%update,n=10000000,p=192,z=0.9,insert_mops=78,mops=102
+
+./bench_leaf_tree_wf_daniel benchmark geometric mean of mops = 116.547
+./bench_leaf_tree_wf_daniel initial insert geometric mean of mops = 78.8595
+
+
+./bench_leaf_tree_lf_llsc,0%update,n=10000000,p=192,z=0.9,insert_mops=88,mops=124
+./bench_leaf_tree_lf_llsc,0%update,n=10000000,p=192,z=0.9,insert_mops=88,mops=124
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=87,mops=123
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=87,mops=123
+./bench_leaf_tree_lf_llsc,10%update,n=10000000,p=192,z=0.9,insert_mops=87,mops=121
+./bench_leaf_tree_lf_llsc,10%update,n=10000000,p=192,z=0.9,insert_mops=86,mops=121
+./bench_leaf_tree_lf_llsc,20%update,n=10000000,p=192,z=0.9,insert_mops=86,mops=123
+./bench_leaf_tree_lf_llsc,20%update,n=10000000,p=192,z=0.9,insert_mops=86,mops=123
+./bench_leaf_tree_lf_llsc,50%update,n=10000000,p=192,z=0.9,insert_mops=86,mops=116
+./bench_leaf_tree_lf_llsc,50%update,n=10000000,p=192,z=0.9,insert_mops=86,mops=115
+./bench_leaf_tree_lf_llsc,100%update,n=10000000,p=192,z=0.9,insert_mops=85,mops=107
+./bench_leaf_tree_lf_llsc,100%update,n=10000000,p=192,z=0.9,insert_mops=84,mops=106
+
+./bench_leaf_tree_lf_llsc benchmark geometric mean of mops = 119.177
+./bench_leaf_tree_lf_llsc initial insert geometric mean of mops = 86.8534
+
+
+
+bench_leaf_tree varying zipfians
+
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0,insert_mops=97,mops=112
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0,insert_mops=96,mops=111
+
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0.5,insert_mops=95,mops=111
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0.5,insert_mops=95,mops=111
+
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0.8,insert_mops=94,mops=113
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0.8,insert_mops=94,mops=114
+
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=93,mops=123
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=93,mops=122
+
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0.95,insert_mops=93,mops=134
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0.95,insert_mops=93,mops=134
+
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0.99,insert_mops=92,mops=143
+./bench_leaf_tree_seqlock,5%update,n=10000000,p=192,z=0.99,insert_mops=92,mops=143
+
+./bench_leaf_tree_seqlock benchmark geometric mean of mops = 122.429
+./bench_leaf_tree_seqlock initial insert geometric mean of mops = 94.3498
+
+
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0,insert_mops=95,mops=112
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0,insert_mops=94,mops=112
+
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0.5,insert_mops=93,mops=111
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0.5,insert_mops=94,mops=111
+
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0.8,insert_mops=92,mops=115
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0.8,insert_mops=92,mops=115
+
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=91,mops=124
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0.9,insert_mops=91,mops=123
+
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0.95,insert_mops=91,mops=134
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0.95,insert_mops=90,mops=136
+
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0.99,insert_mops=90,mops=145
+./bench_leaf_tree_seqlocklock,5%update,n=10000000,p=192,z=0.99,insert_mops=90,mops=145
+
+./bench_leaf_tree_seqlocklock benchmark geometric mean of mops = 123.48
+./bench_leaf_tree_seqlocklock initial insert geometric mean of mops = 92.3817
+
+
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0,insert_mops=52,mops=65
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0,insert_mops=49,mops=64
+
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0.5,insert_mops=48,mops=64
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0.5,insert_mops=48,mops=64
+
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0.8,insert_mops=48,mops=67
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0.8,insert_mops=48,mops=67
+
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=48,mops=73
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=48,mops=72
+
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0.95,insert_mops=48,mops=77
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0.95,insert_mops=48,mops=77
+
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0.99,insert_mops=48,mops=82
+./bench_leaf_tree_wf_indirect,5%update,n=10000000,p=192,z=0.99,insert_mops=48,mops=82
+
+./bench_leaf_tree_wf_indirect benchmark geometric mean of mops = 71.5078
+./bench_leaf_tree_wf_indirect initial insert geometric mean of mops = 48.8278
+
+
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0,insert_mops=75,mops=105
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0,insert_mops=74,mops=103
+
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0.5,insert_mops=74,mops=105
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0.5,insert_mops=73,mops=102
+
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0.8,insert_mops=73,mops=106
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0.8,insert_mops=73,mops=108
+
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=73,mops=120
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0.9,insert_mops=73,mops=118
+
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0.95,insert_mops=72,mops=121
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0.95,insert_mops=73,mops=116
+
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0.99,insert_mops=72,mops=124
+./bench_leaf_tree_wf_hazard,5%update,n=10000000,p=192,z=0.99,insert_mops=72,mops=124
+
+./bench_leaf_tree_wf_hazard benchmark geometric mean of mops = 112.869
+./bench_leaf_tree_wf_hazard initial insert geometric mean of mops = 73.6902
+
+
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0,insert_mops=79,mops=105
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0,insert_mops=79,mops=105
+
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0.5,insert_mops=78,mops=104
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0.5,insert_mops=78,mops=104
+
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0.8,insert_mops=78,mops=109
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0.8,insert_mops=78,mops=109
+
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=78,mops=121
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=78,mops=119
+
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0.95,insert_mops=78,mops=133
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0.95,insert_mops=78,mops=137
+
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0.99,insert_mops=78,mops=149
+./bench_leaf_tree_wf_daniel,5%update,n=10000000,p=192,z=0.99,insert_mops=77,mops=147
+
+./bench_leaf_tree_wf_daniel benchmark geometric mean of mops = 119.56
+./bench_leaf_tree_wf_daniel initial insert geometric mean of mops = 78.4062
+
+
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0,insert_mops=87,mops=105
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0,insert_mops=87,mops=104
+
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0.5,insert_mops=87,mops=104
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0.5,insert_mops=86,mops=103
+
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0.8,insert_mops=87,mops=108
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0.8,insert_mops=87,mops=108
+
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=86,mops=119
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=86,mops=119
+
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0.95,insert_mops=85,mops=136
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0.95,insert_mops=85,mops=136
+
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0.99,insert_mops=86,mops=147
+./bench_leaf_tree_lf_llsc,5%update,n=10000000,p=192,z=0.99,insert_mops=85,mops=145
+
+./bench_leaf_tree_lf_llsc benchmark geometric mean of mops = 118.981
+./bench_leaf_tree_lf_llsc initial insert geometric mean of mops = 86.762
+
+
+
+bench_leaf_tree varying threads
+
+./bench_leaf_tree_seqlock,20%update,n=10000000,p=8,z=0.9,insert_mops=95,mops=5
+./bench_leaf_tree_seqlock,20%update,n=10000000,p=8,z=0.9,insert_mops=95,mops=5
+
+./bench_leaf_tree_seqlock benchmark geometric mean of mops = 5.53952
+./bench_leaf_tree_seqlock initial insert geometric mean of mops = 95.7823
+
+
+./bench_leaf_tree_seqlocklock,20%update,n=10000000,p=8,z=0.9,insert_mops=94,mops=5
+./bench_leaf_tree_seqlocklock,20%update,n=10000000,p=8,z=0.9,insert_mops=93,mops=5
+
+./bench_leaf_tree_seqlocklock benchmark geometric mean of mops = 5.63122
+./bench_leaf_tree_seqlocklock initial insert geometric mean of mops = 94.2825
+
+
+./bench_leaf_tree_wf_indirect,20%update,n=10000000,p=8,z=0.9,insert_mops=53,mops=3
+./bench_leaf_tree_wf_indirect,20%update,n=10000000,p=8,z=0.9,insert_mops=50,mops=3
+
+./bench_leaf_tree_wf_indirect benchmark geometric mean of mops = 3.13068
+./bench_leaf_tree_wf_indirect initial insert geometric mean of mops = 52.1895
+
+
+./bench_leaf_tree_wf_hazard,20%update,n=10000000,p=8,z=0.9,insert_mops=76,mops=5
+./bench_leaf_tree_wf_hazard,20%update,n=10000000,p=8,z=0.9,insert_mops=74,mops=5
+
+./bench_leaf_tree_wf_hazard benchmark geometric mean of mops = 5.15109
+./bench_leaf_tree_wf_hazard initial insert geometric mean of mops = 75.8846
+
+
+./bench_leaf_tree_wf_daniel,20%update,n=10000000,p=8,z=0.9,insert_mops=79,mops=5
+./bench_leaf_tree_wf_daniel,20%update,n=10000000,p=8,z=0.9,insert_mops=78,mops=5
+
+./bench_leaf_tree_wf_daniel benchmark geometric mean of mops = 5.23202
+./bench_leaf_tree_wf_daniel initial insert geometric mean of mops = 79.1023
+
+
+./bench_leaf_tree_lf_llsc,20%update,n=10000000,p=8,z=0.9,insert_mops=87,mops=5
+./bench_leaf_tree_lf_llsc,20%update,n=10000000,p=8,z=0.9,insert_mops=87,mops=5
+
+./bench_leaf_tree_lf_llsc benchmark geometric mean of mops = 5.37041
+./bench_leaf_tree_lf_llsc initial insert geometric mean of mops = 87.938
+
+
