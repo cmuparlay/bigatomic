@@ -261,13 +261,18 @@ struct big_atomic {
     hazptr.protect_direct(new_ptr);
 
     // try to install new value (linerization point if succeeds)
-    if (header.load(std::memory_order_relaxed) != old_hdr ||
-        !header.compare_exchange_strong(old_hdr, (tag) new_ptr)) [[unlikely]] {
-      allocator::destroy(new_ptr); // installation failed
-      return false;
-    }
+    tag tmp_hdr = header.load(std::memory_order_relaxed);
+    if (tmp_hdr != old_hdr ||
+        !header.compare_exchange_strong(tmp_hdr, (tag) new_ptr)) [[unlikely]]
+      // if failed because current value is a seq number, and old_hdr
+      // was a pointer with same seq num, try again             
+      if (!is_version(tmp_hdr) || (tmp_hdr != new_tag - 1) ||
+          !header.compare_exchange_strong(tmp_hdr, (tag) new_ptr)) {
+        allocator::destroy(new_ptr); // installation failed
+        return false;
+      }
     
-    if (is_pointer(old_hdr)) // was a pointer, do not install cache
+    if (is_pointer(tmp_hdr)) // was a pointer, do not install cache
       retire((indirect_holder*) old_hdr);
     else { // try to install the cached value
       store_sequential(v);
