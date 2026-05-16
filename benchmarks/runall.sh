@@ -25,7 +25,7 @@ echo "MaxPerfPct" `cat /sys/devices/system/cpu/intel_pstate/max_perf_pct` >> ${f
 schemes="seqlock seqlocklock wf_indirect wf_hazard wf_daniel lf_llsc"
 slow_schemes="simplock std"
 
-threads="8 16 32 64 96 192 384 512 768"
+threads="8,16,32,64,96,192,384,512,768"
 
 default_block_size=4
 all_block_sizes="1 2 4 8 16"
