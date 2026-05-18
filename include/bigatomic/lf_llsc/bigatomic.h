@@ -259,7 +259,7 @@ struct big_atomic {
     }
     indirect_holder* new_ptr = allocator::create(v, new_tag);
     if (is_pointer(old_hdr)) // delay to reduce contention
-      for (volatile int i = 0; i < 100; i++);
+      for (volatile int i = 0; i < 500; i++);
     hazptr.protect_direct(new_ptr);
 
     // try to install new value (linerization point if succeeds)
@@ -280,7 +280,7 @@ struct big_atomic {
       store_sequential(v);
       while (header.load(std::memory_order_relaxed) != (tag) new_ptr ||
              !header.compare_exchange_weak((tag&) new_ptr, new_tag)) {
-        for (volatile int i =0; i < 1000; i++); // delay to reduce contention
+        for (volatile int i =0; i < 200; i++); // delay to reduce contention
         new_ptr = (indirect_holder*) hazptr.protect(header);
         store_sequential(new_ptr->value);
         new_tag = new_ptr->version;

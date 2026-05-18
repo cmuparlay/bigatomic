@@ -295,23 +295,26 @@ int main(int argc, char* argv[]) {
   for (auto zipfian_param : zipfians) {
     for (auto n : sizes) {
       long m = 10 * n + 1000000;
-
-      auto a = parlay::random_shuffle(parlay::tabulate(2 * n, [](K i) { return i; }));
+      parlay::sequence<K> a;
+      parlay::sequence<K> b;
+        
+      a = parlay::random_shuffle(parlay::tabulate(2 * n, [](K i) { return i; }));
 
       // take m numbers from a in uniform or zipfian distribution
-      parlay::sequence<K> b;
       if (zipfian_param != 0.0) {
         Zipfian z(2 * n, zipfian_param);
         b = parlay::tabulate(m, [&](int i) { return a[z(i)]; });
         a = parlay::random_shuffle(a);
       } else {
         b = parlay::tabulate(m, [&](int i) { return a[parlay::hash64(i) % (2 * n)]; });
-      }
-
+      } 
+                                                                          
       for (auto p : threads) {
         for (auto update_percent : percents) {
-          results.push_back(test_loop(P, a, b, p, rounds, update_percent, zipfian_param, trial_time, latency_cuttoff,
-                                      verbose, warmup));
+          parlay::execute_with_scheduler(p, [&] {
+            results.push_back(test_loop(P, a, b, p, rounds, update_percent,
+                                        zipfian_param, trial_time, latency_cuttoff,
+                                        verbose, warmup)); });
         }
         if (print_means) std::cout << std::endl;
       }
