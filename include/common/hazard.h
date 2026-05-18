@@ -34,6 +34,7 @@ inline int num_workers() {
 
 
 #define NumSlots 2
+#define MaxThreads 2048
   
 struct alignas(64) hazard_s {
 
@@ -44,7 +45,7 @@ struct alignas(64) hazard_s {
 
   std::vector<announce_slot> announcements;
 
-  hazard_s() : announcements(std::vector<announce_slot>(num_workers())) {}
+  hazard_s() : announcements(std::vector<announce_slot>(MaxThreads)) {}
 
   std::vector<void*> get_announced() {
     std::vector<void*> announced;
@@ -204,7 +205,7 @@ struct alignas(64) memory_pool_ {
   using T = xT;
 
   memory_pool_() {
-    workers = num_workers();
+    workers = MaxThreads;
     pools = std::vector<hlist>(workers);
   }
 
