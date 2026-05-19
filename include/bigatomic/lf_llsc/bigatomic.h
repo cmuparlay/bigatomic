@@ -71,15 +71,13 @@ struct big_atomic {
 
   big_atomic() : header(std::numeric_limits<long>::min()) {
     static_assert(std::is_default_constructible_v<T>);
-
     // force correct static initialization order
     allocator::init();
     hazptr_instance();
     store_sequential(T{});
   }
 
-  /* implicit */ big_atomic(const T& initial) : big_atomic() {       // NOLINT(google-explicit-constructor)
-    // force correct static initialization order
+  big_atomic(const T& initial) : header(std::numeric_limits<long>::min()) {
     allocator::init();
     hazptr_instance();
     store_sequential(initial);
