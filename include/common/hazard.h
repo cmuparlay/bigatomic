@@ -59,7 +59,7 @@ struct alignas(64) hazard_s {
   }
 
   template<typename T>
-  std::pair<T*, int> loadProtected(std::atomic<T*>* ptr, int slot_id) {
+  std::pair<T, int> loadProtected(std::atomic<T>* ptr, int slot_id) {
     size_t id = worker_id();
     while (true) {
       auto y = ptr->load();
@@ -363,7 +363,7 @@ static auto with_protection(std::atomic<T*>* ptr, int slot_id, Thunk fb) {
 
 template<typename T>
 PARLAY_INLINE
-static auto load_protected(std::atomic<T*>& ptr, int slot_id) {
+static auto load_protected(std::atomic<T>& ptr, int slot_id) {
   return internal::get_hazard().loadProtected(&ptr, slot_id).first;
 }
 
