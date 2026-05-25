@@ -21,9 +21,8 @@
 
 #include <parlay/alloc.h>
 
+#include <common/hazard_ptr.h>
 #include <common/utility.h>
-
-#include "hazard_ptr.h"
 
 namespace parlay {
 

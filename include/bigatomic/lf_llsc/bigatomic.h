@@ -34,9 +34,8 @@
 
 #include <parlay/alloc.h>
 
+#include <common/hazard_ptr.h>
 #include <common/utility.h>
-
-#include "hazard_ptr.h"
 
 namespace parlay {
 
@@ -62,7 +61,9 @@ private:
 
   PARLAY_INLINE
   static tag load_protected(const std::atomic<tag>& src) {
-    return get_hazard_list<backup>().template protect<backup>(src); }
+    return get_hazard_list<backup>().protect(src, [](long tag) {
+             return is_seqnum(tag) ? nullptr : (backup*) tag; });
+  }
   
   PARLAY_INLINE
   static void protect(backup* src) {
