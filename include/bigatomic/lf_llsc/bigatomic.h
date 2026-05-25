@@ -44,7 +44,11 @@ template<typename T, typename Equal = std::equal_to<>>
 struct big_atomic {
   // T must be trivially copyable, but it doesn't have to be trivially default constructible (or
   // even default constructible at all) since we only make copies from what the user gives us
- private:
+
+  // either a seqnum or a pointer to a backup
+  using tag = long;
+
+private:
 
   struct backup {
     explicit backup(const T& value, long seqnum) : value(value), seqnum(seqnum) { }
@@ -55,9 +59,6 @@ struct big_atomic {
     void set_next(backup* next) { next_ = next; }
     void destroy() {  allocator::destroy(this); }
   };
-
-  // either a seqnum or a pointer to a backup
-  using tag = long;
 
   PARLAY_INLINE
   static tag load_protected(const std::atomic<tag>& src) {
@@ -95,14 +96,6 @@ struct big_atomic {
   static backup* to_ptr(tag hdr) {
     return reinterpret_cast<backup*>(hdr); }
 
-  PARLAY_INLINE
-  void store_sequential(const T& desired) {
-    atomic_store_per_byte_memcpy(&cache, &desired, sizeof(T)); }
-
-  PARLAY_INLINE void load_sequential(char* buffer) {
-     atomic_load_per_byte_memcpy(buffer, &cache, sizeof(T));
-  }
-
   std::atomic<tag> header;   // Either pointer or sequence number
   alignas(8) char cache[sizeof(T)]; 
 
@@ -110,6 +103,14 @@ struct big_atomic {
 
   using value_type = T;
   using allocator = type_allocator<backup>;
+
+  PARLAY_INLINE
+  void store_sequential(const T& desired) {
+    atomic_store_per_byte_memcpy(&cache, &desired, sizeof(T)); }
+
+  PARLAY_INLINE void load_sequential(char* buffer) {
+     atomic_load_per_byte_memcpy(buffer, &cache, sizeof(T));
+  }
 
   big_atomic() : header(std::numeric_limits<long>::min()) {
     static_assert(std::is_default_constructible_v<T>);
@@ -153,12 +154,14 @@ struct big_atomic {
   }
 
   PARLAY_INLINE bool sc(tag expected_tag, const T& v) {
-    tag old_hdr = header.load(std::memory_order_acquire);
-    tag seqnum;
+    tag old_hdr, seqnum;
     if (is_seqnum(expected_tag)) [[likely]] {
+      old_hdr = header.load(std::memory_order_acquire);
       if (old_hdr != expected_tag) return false;
       seqnum = old_hdr;
     } else { // expected_tag is a pointer
+      for (volatile int i = 0; i < 1000; i++); // for efficiency
+      old_hdr = header.load(std::memory_order_acquire);
       auto expected_ptr = to_ptr(expected_tag);
       if (is_pointer(old_hdr)) { // also a pointer
         if (expected_tag != old_hdr) return false;
@@ -170,8 +173,6 @@ struct big_atomic {
     }
     tag new_seqnum = seqnum + 1;
     backup* new_ptr = allocator::create(v, new_seqnum);
-    if (is_pointer(old_hdr)) // delay to reduce contention
-      for (volatile int i = 0; i < 1000; i++);
     protect(new_ptr);
 
     // try to install new value (linerization point if succeeds)

@@ -41,9 +41,10 @@ extern inline HazardPointers<GarbageType>& get_hazard_list();
 template<typename GarbageType>
 class HazardPointers {
 
-  // After this many retires, a thread will attempt to clean up the contents of
-  // its local retired list, deleting any retired objects that are not protected.
-  constexpr static std::size_t cleanup_threshold = 2000;
+  // After this many retires * num_threads, a thread will attempt to
+  // clean up the contents of its local retired list, deleting any
+  // retired objects that are not protected.
+  constexpr static std::size_t cleanup_threshold = 10;
 
   using garbage_type = GarbageType;
   using protected_set_type = std::unordered_set<garbage_type*>;
@@ -254,7 +255,7 @@ class HazardPointers {
     HazardSlot& my_slot = *local_slot.my_slot;
     my_slot.retired_list.push(p);
 
-    if (++my_slot.num_retires_since_cleanup >= cleanup_threshold) {
+    if (++my_slot.num_retires_since_cleanup >= cleanup_threshold * parlay::num_workers()) {
       cleanup(my_slot);
     }
   }
