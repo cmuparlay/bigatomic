@@ -281,14 +281,14 @@ int main(int argc, char* argv[]) {
   bool warmup = !P.getOption("-nowarmup");
   bool print_means = !P.getOption("-nomeans");
 
-  auto sizes = parlay::map(comma_separated_arg(P, "-n", "100000"),
-                           parlay::chars_to_long);
-  auto zipfians = parlay::map(comma_separated_arg(P, "-z", "0.0"),
-                              parlay::chars_to_float);
-  auto percents = parlay::map(comma_separated_arg(P, "-u", "5"),
-                              parlay::chars_to_int);
-  auto threads = parlay::map(comma_separated_arg(P, "-p", std::to_string(parlay::num_workers())),
-                                         parlay::chars_to_int);
+  auto sizes_str = comma_separated_arg(P, "-n", "100000");
+  auto sizes = parlay::map(sizes_str, parlay::chars_to_long);
+  auto zipfians_str = comma_separated_arg(P, "-z", "0.0");
+  auto zipfians = parlay::map(zipfians_str, parlay::chars_to_float);
+  auto percents_str = comma_separated_arg(P, "-u", "5");
+  auto percents = parlay::map(percents_str, parlay::chars_to_int);
+  auto threads_str = comma_separated_arg(P, "-p", std::to_string(parlay::num_workers()));
+  auto threads = parlay::map(threads_str, parlay::chars_to_int);
 
   parlay::sequence<std::tuple<double, double>> results;
 
@@ -322,13 +322,24 @@ int main(int argc, char* argv[]) {
   }
   auto insert_times = parlay::map(results, [](auto x) { return std::get<0>(x); });
   auto bench_times = parlay::map(results, [](auto x) { return std::get<1>(x); });
+  auto to_str = [&] (auto& seq) {
+                  auto n = seq.size();
+                  auto separator = to_chars(std::string(","));
+                  return flatten(tabulate(2 * n - 1, [&](size_t i) {
+                                   return (i & 1) ? separator : seq[i/2];}));
+                };
+  
   if (print_means) {
-    std::cout << P.commandName()
-              << " benchmark geometric mean of mops = "
-              << geometric_mean(bench_times) << std::endl;
-    std::cout << P.commandName()
-              << " initial insert geometric mean of mops = "
-              << geometric_mean(insert_times) << std::endl;
-    std::cout << std::endl;
+    std::cout << P.commandName() 
+              << " -p " << to_str(threads_str)
+              << " -n " << to_str(sizes_str)
+              << " -u " << to_str(percents_str) 
+              << " -z " << to_str(zipfians_str)
+              << " -- geomean=" << geometric_mean(bench_times)
+              << std::endl;
+    // std::cout << P.commandName()
+    //           << " initial insert geometric mean of mops = "
+    //           << geometric_mean(insert_times) << std::endl;
+     std::cout << std::endl;
   }
 }
