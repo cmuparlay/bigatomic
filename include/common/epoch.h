@@ -91,7 +91,7 @@ namespace epoch {
 
   inline int worker_id() {return parlay::my_thread_id(); }
   inline int num_workers() {return parlay::num_thread_ids();}
-  constexpr int max_num_workers = 1024;
+  constexpr int max_num_workers = 4096;
 
 struct alignas(64) epoch_s {
 

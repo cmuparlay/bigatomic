@@ -25,8 +25,10 @@ head="numactl -i all"
 llsc_schemes="seqlock wf_indirect wf_daniel lf_llsc"
 cas_schemes="simplock std"
 
-threads="8,16,32,64,96,192,384,512,768,1536"
-some_threads="192 768"
+other_hash="folly_hash folly_sharded libcuckoo seq_hash tbb_hash parallel_hashmap"
+
+all_threads="8,16,32,64,96,192,384,512,768,1536"
+all_threads_space="8 16 32 64 96 192 384 512 768 1536"
 some_threads="$(nproc) $(( $(nproc) * 4 ))"
 
 default_block_size=4
@@ -63,7 +65,7 @@ do
     done
 done
 
-for application in bench_parlay_hash # bench_hash_list bench_leaf_tree
+for application in bench_parlay_hash
 do
     echo -e "\n${application} geomean over schemes\n" >> ${filename}
     for scheme in ${llsc_schemes}
@@ -116,4 +118,43 @@ do
         ${head} ./${application}_${scheme} -n ${default_size} -u 20 -z ${default_zipfian} -p ${threads} -r ${rounds} >> ${filename}
         echo "" >> ${filename}
     done
+done
+
+str="\n$other hash tables geomean\n"
+for table in ${other_hash}
+do
+    for p in ${some_threads}
+    do
+        command="./${table} -p ${p} -n ${some_sizes} -z ${some_zipfians} -u ${some_updates} -r ${rounds}"
+        echo ${command}
+        ${head} ${command} >> ${filename}
+        echo "" >> ${filename}
+    done
+done
+
+str="\n$other hash tables zipfian\n"
+echo -e ${str}
+echo -e ${str} >> ${filename}
+for table in ${other_hash}
+do
+    ${head} ./${table} -n ${default_size} -u ${default_update} -z ${all_zipfians} -r ${rounds} >> ${filename}
+    echo "" >> ${filename}
+done
+
+str="\n$other hash tables threads (z = ${default_zipfian})\n"
+echo -e ${str}
+echo -e ${str} >> ${filename}
+for table in ${other_hash}
+do
+    ${head} ./${table} -p ${all_threads} -n ${default_size} -u ${default_update} -z ${default_zipfian} -r ${rounds} >> ${filename}
+    echo "" >> ${filename}
+done
+
+str="\n$other hash tables threads (z = 0)\n"
+echo -e ${str}
+echo -e ${str} >> ${filename}
+for table in ${other_hash} bench_parlay_hash_lf_llsc bench_parlay_hash_seqlock
+do
+    ${head} ./${table} -p ${all_threads} -n ${default_size} -u ${default_update} -z 0 -r ${rounds} >> ${filename}
+    echo "" >> ${filename}
 done
