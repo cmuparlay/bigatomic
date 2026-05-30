@@ -65,6 +65,13 @@ do
     done
 done
 
+scheme=lf_llsc_ablation
+block_size=4
+command="./bench_hash_array_${block_size}_${scheme} -n ${some_sizes} -z ${some_zipfians} -u ${some_updates} -r ${rounds}"
+echo ${command}
+${head} ${command} >> ${filename}
+echo "" >> ${filename}
+
 for application in bench_parlay_hash
 do
     echo -e "\n${application} geomean over schemes\n" >> ${filename}
@@ -118,6 +125,15 @@ do
         ${head} ./${application}_${scheme} -n ${default_size} -u 20 -z ${default_zipfian} -p ${threads} -r ${rounds} >> ${filename}
         echo "" >> ${filename}
     done
+done
+
+str="\nvarying threads for simplock std\n"
+echo -e ${str}
+echo -e ${str} >> ${filename}
+for scheme in ${cas_schemes}
+do
+    ${head} ./bench_hash_array_${default_block_size} -n ${default_size} -u 20 -z ${default_zipfian} -p ${threads} -r ${rounds} >> ${filename}
+    echo "" >> ${filename}
 done
 
 str="\n$other hash tables geomean\n"
