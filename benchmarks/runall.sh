@@ -65,7 +65,7 @@ do
     done
 done
 
-scheme=lf_llsc_ablation
+scheme=wf_ablation
 block_size=4
 command="./bench_hash_array_${block_size}_${scheme} -n ${some_sizes} -z ${some_zipfians} -u ${some_updates} -r ${rounds}"
 echo ${command}
@@ -131,7 +131,7 @@ application=bench_hash_array_4_wf_ablation
 str="\n${application} varying updates\n"
 echo -e ${str}
 echo -e ${str} >> ${filename}
-${head} ./${application}_${scheme} -n ${default_size} -u ${all_updates} -z ${default_zipfian} -r ${rounds} >> ${filename}
+${head} ./${application} -n ${default_size} -u ${all_updates} -z ${default_zipfian} -r ${rounds} >> ${filename}
 echo "" >> ${filename}
 
 str="\nvarying threads for simplock and std\n"
