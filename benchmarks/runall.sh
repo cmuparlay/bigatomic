@@ -102,7 +102,7 @@ do
     str="\n${application} varying updates\n"
     echo -e ${str}
     echo -e ${str} >> ${filename}
-    for scheme in ${llsc_schemes}
+    for scheme in ${llsc_schemes} 
     do
         ${head} ./${application}_${scheme} -n ${default_size} -u ${all_updates} -z ${default_zipfian} -r ${rounds} >> ${filename}
         echo "" >> ${filename}
@@ -127,7 +127,14 @@ do
     done
 done
 
-str="\nvarying threads for simplock std\n"
+application=bench_hash_array_4_wf_ablation
+str="\n${application} varying updates\n"
+echo -e ${str}
+echo -e ${str} >> ${filename}
+${head} ./${application}_${scheme} -n ${default_size} -u ${all_updates} -z ${default_zipfian} -r ${rounds} >> ${filename}
+echo "" >> ${filename}
+
+str="\nvarying threads for simplock and std\n"
 echo -e ${str}
 echo -e ${str} >> ${filename}
 for scheme in ${cas_schemes}

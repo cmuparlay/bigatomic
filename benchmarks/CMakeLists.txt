@@ -1,6 +1,6 @@
 set(BENCHMARK_SOURCES bench_map.cpp)
 
-set(BENCHMARK_BIG_ATOMICS "seqlock" "simplock" "wf_hazard" "wf_indirect" "std" "lf_lowmem" "wf_daniel" "seqlocklock" "lf_llsc" "lf_llsc_ablation")
+set(BENCHMARK_BIG_ATOMICS "seqlock" "simplock" "wf_hazard" "wf_indirect" "std" "lf_lowmem" "wf_daniel" "seqlocklock" "lf_llsc" "wf_ablation")
 set(BENCHMARK_BIG_ATOMICS_LL "seqlock" "seqlocklock" "wf_hazard" "wf_indirect" "lf_lowmem" "wf_daniel" "lf_llsc")
 set(BENCHMARK_TABLES "hash_array" "hash_list")
 set(BENCHMARK_SIZES "1" "2" "4" "8" "16")
