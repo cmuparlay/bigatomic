@@ -1,0 +1,1516 @@
+Date: 06-04-2026
+Model name: Intel(R) Xeon(R) 6975P-C
+Git branch: 9c2a7e8
+Compiler: g++ (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0
+OS: Ubuntu 22.04.2 LTS
+Hugepage: always [madvise] never
+NoTurbo: 1
+MaxPerfPct 100
+
+bigatomic array geomean over schemes and sizes, with and without oversubscription
+
+
+bench_hash_array varying block size, p = 192
+
+./bench_hash_array_1_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1383,mops=2994
+
+./bench_hash_array_1_seqlock -p 192 -n 10000000 -u 5 -z .9 -- geomean=2994.41
+
+
+./bench_hash_array_1_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=348,mops=2064
+
+./bench_hash_array_1_wf_indirect -p 192 -n 10000000 -u 5 -z .9 -- geomean=2064.84
+
+
+./bench_hash_array_1_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=477,mops=2821
+
+./bench_hash_array_1_wf_daniel -p 192 -n 10000000 -u 5 -z .9 -- geomean=2821.92
+
+
+./bench_hash_array_1_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=690,mops=3098
+
+./bench_hash_array_1_lf_llsc -p 192 -n 10000000 -u 5 -z .9 -- geomean=3098.67
+
+
+./bench_hash_array_1_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=816,mops=105
+
+./bench_hash_array_1_simplock -p 192 -n 10000000 -u 5 -z .9 -- geomean=105.338
+
+
+./bench_hash_array_1_std,5%update,n=10000000,p=192,z=0.9,insert_mops=1668,mops=3350
+
+./bench_hash_array_1_std -p 192 -n 10000000 -u 5 -z .9 -- geomean=3350.98
+
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1269,mops=3144
+
+./bench_hash_array_4_seqlock -p 192 -n 10000000 -u 5 -z .9 -- geomean=3144.23
+
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=309,mops=1692
+
+./bench_hash_array_4_wf_indirect -p 192 -n 10000000 -u 5 -z .9 -- geomean=1692.57
+
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=422,mops=2650
+
+./bench_hash_array_4_wf_daniel -p 192 -n 10000000 -u 5 -z .9 -- geomean=2650.01
+
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=650,mops=2973
+
+./bench_hash_array_4_lf_llsc -p 192 -n 10000000 -u 5 -z .9 -- geomean=2973.77
+
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=570,mops=102
+
+./bench_hash_array_4_simplock -p 192 -n 10000000 -u 5 -z .9 -- geomean=102.861
+
+
+./bench_hash_array_4_std,5%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=47
+
+./bench_hash_array_4_std -p 192 -n 10000000 -u 5 -z .9 -- geomean=47.1403
+
+
+./bench_hash_array_16_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=456,mops=1250
+
+./bench_hash_array_16_seqlock -p 192 -n 10000000 -u 5 -z .9 -- geomean=1250.96
+
+
+./bench_hash_array_16_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=212,mops=1407
+
+./bench_hash_array_16_wf_indirect -p 192 -n 10000000 -u 5 -z .9 -- geomean=1407.92
+
+
+./bench_hash_array_16_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=242,mops=1538
+
+./bench_hash_array_16_wf_daniel -p 192 -n 10000000 -u 5 -z .9 -- geomean=1538.71
+
+
+./bench_hash_array_16_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=362,mops=1582
+
+./bench_hash_array_16_lf_llsc -p 192 -n 10000000 -u 5 -z .9 -- geomean=1582.87
+
+
+./bench_hash_array_16_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=424,mops=89
+
+./bench_hash_array_16_simplock -p 192 -n 10000000 -u 5 -z .9 -- geomean=89.5353
+
+
+./bench_hash_array_16_std,5%update,n=10000000,p=192,z=0.9,insert_mops=2,mops=6
+
+./bench_hash_array_16_std -p 192 -n 10000000 -u 5 -z .9 -- geomean=6.43374
+
+
+
+bench_hash_array varying block size, p = 768
+
+./bench_hash_array_1_seqlock,5%update,n=10000000,p=768,z=0.9,insert_mops=101,mops=580
+
+./bench_hash_array_1_seqlock -p 768 -n 10000000 -u 5 -z .9 -- geomean=580.677
+
+
+./bench_hash_array_1_wf_indirect,5%update,n=10000000,p=768,z=0.9,insert_mops=76,mops=1863
+
+./bench_hash_array_1_wf_indirect -p 768 -n 10000000 -u 5 -z .9 -- geomean=1863.04
+
+
+./bench_hash_array_1_wf_daniel,5%update,n=10000000,p=768,z=0.9,insert_mops=74,mops=2716
+
+./bench_hash_array_1_wf_daniel -p 768 -n 10000000 -u 5 -z .9 -- geomean=2716.32
+
+
+./bench_hash_array_1_lf_llsc,5%update,n=10000000,p=768,z=0.9,insert_mops=74,mops=3093
+
+./bench_hash_array_1_lf_llsc -p 768 -n 10000000 -u 5 -z .9 -- geomean=3093.18
+
+
+./bench_hash_array_1_simplock,5%update,n=10000000,p=768,z=0.9,insert_mops=92,mops=97
+
+./bench_hash_array_1_simplock -p 768 -n 10000000 -u 5 -z .9 -- geomean=97.8421
+
+
+./bench_hash_array_1_std,5%update,n=10000000,p=768,z=0.9,insert_mops=98,mops=3221
+
+./bench_hash_array_1_std -p 768 -n 10000000 -u 5 -z .9 -- geomean=3221.85
+
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=768,z=0.9,insert_mops=81,mops=561
+
+./bench_hash_array_4_seqlock -p 768 -n 10000000 -u 5 -z .9 -- geomean=561.535
+
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=768,z=0.9,insert_mops=71,mops=1630
+
+./bench_hash_array_4_wf_indirect -p 768 -n 10000000 -u 5 -z .9 -- geomean=1630.23
+
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=768,z=0.9,insert_mops=77,mops=2565
+
+./bench_hash_array_4_wf_daniel -p 768 -n 10000000 -u 5 -z .9 -- geomean=2565.57
+
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=768,z=0.9,insert_mops=97,mops=2889
+
+./bench_hash_array_4_lf_llsc -p 768 -n 10000000 -u 5 -z .9 -- geomean=2889.36
+
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=768,z=0.9,insert_mops=78,mops=86
+
+./bench_hash_array_4_simplock -p 768 -n 10000000 -u 5 -z .9 -- geomean=86.6433
+
+
+./bench_hash_array_4_std,5%update,n=10000000,p=768,z=0.9,insert_mops=10,mops=35
+
+./bench_hash_array_4_std -p 768 -n 10000000 -u 5 -z .9 -- geomean=35.9354
+
+
+./bench_hash_array_16_seqlock,5%update,n=10000000,p=768,z=0.9,insert_mops=92,mops=411
+
+./bench_hash_array_16_seqlock -p 768 -n 10000000 -u 5 -z .9 -- geomean=411.589
+
+
+./bench_hash_array_16_wf_indirect,5%update,n=10000000,p=768,z=0.9,insert_mops=67,mops=1368
+
+./bench_hash_array_16_wf_indirect -p 768 -n 10000000 -u 5 -z .9 -- geomean=1368.62
+
+
+./bench_hash_array_16_wf_daniel,5%update,n=10000000,p=768,z=0.9,insert_mops=28,mops=1518
+
+./bench_hash_array_16_wf_daniel -p 768 -n 10000000 -u 5 -z .9 -- geomean=1518.62
+
+
+./bench_hash_array_16_lf_llsc,5%update,n=10000000,p=768,z=0.9,insert_mops=85,mops=1590
+
+./bench_hash_array_16_lf_llsc -p 768 -n 10000000 -u 5 -z .9 -- geomean=1590.5
+
+
+./bench_hash_array_16_simplock,5%update,n=10000000,p=768,z=0.9,insert_mops=73,mops=88
+
+./bench_hash_array_16_simplock -p 768 -n 10000000 -u 5 -z .9 -- geomean=88.595
+
+
+./bench_hash_array_16_std,5%update,n=10000000,p=768,z=0.9,insert_mops=1,mops=5
+
+./bench_hash_array_16_std -p 768 -n 10000000 -u 5 -z .9 -- geomean=5.68461
+Date: 06-04-2026
+Model name: Intel(R) Xeon(R) 6975P-C
+Git branch: 9c2a7e8
+Compiler: g++ (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0
+OS: Ubuntu 22.04.2 LTS
+Hugepage: always [madvise] never
+NoTurbo: 1
+MaxPerfPct 100
+
+bigatomic array geomean over schemes and sizes, with and without oversubscription
+
+
+bench_hash_array_4 varying size
+
+./bench_hash_array_4_seqlock,5%update,n=100,p=192,z=0.9,insert_mops=26,mops=641
+
+./bench_hash_array_4_seqlock,5%update,n=1000,p=192,z=0.9,insert_mops=23,mops=1011
+
+./bench_hash_array_4_seqlock,5%update,n=10000,p=192,z=0.9,insert_mops=69,mops=1166
+
+./bench_hash_array_4_seqlock,5%update,n=100000,p=192,z=0.9,insert_mops=500,mops=2135
+
+./bench_hash_array_4_seqlock,5%update,n=1000000,p=192,z=0.9,insert_mops=1214,mops=2493
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1263,mops=3095
+
+./bench_hash_array_4_seqlock,5%update,n=100000000,p=192,z=0.9,insert_mops=921,mops=2968
+
+./bench_hash_array_4_seqlock -p 192 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=1675.37
+
+
+./bench_hash_array_4_wf_indirect,5%update,n=100,p=192,z=0.9,insert_mops=6,mops=671
+
+./bench_hash_array_4_wf_indirect,5%update,n=1000,p=192,z=0.9,insert_mops=2,mops=933
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000,p=192,z=0.9,insert_mops=23,mops=1499
+
+./bench_hash_array_4_wf_indirect,5%update,n=100000,p=192,z=0.9,insert_mops=40,mops=1915
+
+./bench_hash_array_4_wf_indirect,5%update,n=1000000,p=192,z=0.9,insert_mops=243,mops=2211
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=305,mops=1682
+
+./bench_hash_array_4_wf_indirect,5%update,n=100000000,p=192,z=0.9,insert_mops=269,mops=1312
+
+./bench_hash_array_4_wf_indirect -p 192 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=1364.1
+
+
+./bench_hash_array_4_wf_daniel,5%update,n=100,p=192,z=0.9,insert_mops=3,mops=754
+warning: update success ratio = 0.365298
+
+./bench_hash_array_4_wf_daniel,5%update,n=1000,p=192,z=0.9,insert_mops=5,mops=995
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000,p=192,z=0.9,insert_mops=16,mops=1749
+
+./bench_hash_array_4_wf_daniel,5%update,n=100000,p=192,z=0.9,insert_mops=130,mops=2186
+
+./bench_hash_array_4_wf_daniel,5%update,n=1000000,p=192,z=0.9,insert_mops=388,mops=2649
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=425,mops=2648
+
+./bench_hash_array_4_wf_daniel,5%update,n=100000000,p=192,z=0.9,insert_mops=418,mops=2399
+
+./bench_hash_array_4_wf_daniel -p 192 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=1740.44
+
+
+./bench_hash_array_4_lf_llsc,5%update,n=100,p=192,z=0.9,insert_mops=9,mops=840
+warning: update success ratio = 0.396669
+
+./bench_hash_array_4_lf_llsc,5%update,n=1000,p=192,z=0.9,insert_mops=3,mops=975
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000,p=192,z=0.9,insert_mops=26,mops=1640
+
+./bench_hash_array_4_lf_llsc,5%update,n=100000,p=192,z=0.9,insert_mops=216,mops=2462
+
+./bench_hash_array_4_lf_llsc,5%update,n=1000000,p=192,z=0.9,insert_mops=560,mops=2829
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=608,mops=2960
+
+./bench_hash_array_4_lf_llsc,5%update,n=100000000,p=192,z=0.9,insert_mops=526,mops=2683
+
+./bench_hash_array_4_lf_llsc -p 192 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=1850.87
+
+
+./bench_hash_array_4_simplock,5%update,n=100,p=192,z=0.9,insert_mops=7,mops=16
+
+./bench_hash_array_4_simplock,5%update,n=1000,p=192,z=0.9,insert_mops=7,mops=28
+
+./bench_hash_array_4_simplock,5%update,n=10000,p=192,z=0.9,insert_mops=63,mops=40
+
+./bench_hash_array_4_simplock,5%update,n=100000,p=192,z=0.9,insert_mops=452,mops=52
+
+./bench_hash_array_4_simplock,5%update,n=1000000,p=192,z=0.9,insert_mops=817,mops=69
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=519,mops=89
+
+./bench_hash_array_4_simplock,5%update,n=100000000,p=192,z=0.9,insert_mops=513,mops=132
+
+./bench_hash_array_4_simplock -p 192 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=50.4837
+
+
+./bench_hash_array_4_std,5%update,n=100,p=192,z=0.9,insert_mops=4,mops=17
+
+./bench_hash_array_4_std,5%update,n=1000,p=192,z=0.9,insert_mops=5,mops=22
+
+./bench_hash_array_4_std,5%update,n=10000,p=192,z=0.9,insert_mops=8,mops=30
+
+./bench_hash_array_4_std,5%update,n=100000,p=192,z=0.9,insert_mops=15,mops=39
+
+./bench_hash_array_4_std,5%update,n=1000000,p=192,z=0.9,insert_mops=18,mops=40
+
+./bench_hash_array_4_std,5%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=46
+
+./bench_hash_array_4_std,5%update,n=100000000,p=192,z=0.9,insert_mops=18,mops=52
+
+./bench_hash_array_4_std -p 192 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=33.2643
+
+
+
+bench_hash_array_4 varying updates
+
+./bench_hash_array_4_seqlock,0%update,n=10000000,p=192,z=0.9,insert_mops=1300,mops=4720
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1205,mops=3007
+./bench_hash_array_4_seqlock,10%update,n=10000000,p=192,z=0.9,insert_mops=1191,mops=2120
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=192,z=0.9,insert_mops=1280,mops=1235
+./bench_hash_array_4_seqlock,50%update,n=10000000,p=192,z=0.9,insert_mops=1272,mops=556
+./bench_hash_array_4_seqlock,100%update,n=10000000,p=192,z=0.9,insert_mops=1269,mops=333
+
+./bench_hash_array_4_seqlock -p 192 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=1380.01
+
+
+./bench_hash_array_4_wf_indirect,0%update,n=10000000,p=192,z=0.9,insert_mops=309,mops=2065
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=306,mops=1685
+./bench_hash_array_4_wf_indirect,10%update,n=10000000,p=192,z=0.9,insert_mops=305,mops=1480
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=192,z=0.9,insert_mops=305,mops=1237
+./bench_hash_array_4_wf_indirect,50%update,n=10000000,p=192,z=0.9,insert_mops=303,mops=859
+./bench_hash_array_4_wf_indirect,100%update,n=10000000,p=192,z=0.9,insert_mops=304,mops=593
+
+./bench_hash_array_4_wf_indirect -p 192 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=1217.38
+
+
+./bench_hash_array_4_wf_daniel,0%update,n=10000000,p=192,z=0.9,insert_mops=428,mops=4308
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=395,mops=2630
+./bench_hash_array_4_wf_daniel,10%update,n=10000000,p=192,z=0.9,insert_mops=426,mops=2147
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=192,z=0.9,insert_mops=423,mops=1655
+./bench_hash_array_4_wf_daniel,50%update,n=10000000,p=192,z=0.9,insert_mops=425,mops=1070
+./bench_hash_array_4_wf_daniel,100%update,n=10000000,p=192,z=0.9,insert_mops=424,mops=724
+
+./bench_hash_array_4_wf_daniel -p 192 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=1774.72
+
+
+./bench_hash_array_4_lf_llsc,0%update,n=10000000,p=192,z=0.9,insert_mops=675,mops=4395
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=650,mops=2967
+./bench_hash_array_4_lf_llsc,10%update,n=10000000,p=192,z=0.9,insert_mops=645,mops=2410
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=192,z=0.9,insert_mops=632,mops=1841
+./bench_hash_array_4_lf_llsc,50%update,n=10000000,p=192,z=0.9,insert_mops=620,mops=1169
+./bench_hash_array_4_lf_llsc,100%update,n=10000000,p=192,z=0.9,insert_mops=607,mops=778
+
+./bench_hash_array_4_lf_llsc -p 192 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=1936.61
+
+
+./bench_hash_array_4_simplock,0%update,n=10000000,p=192,z=0.9,insert_mops=562,mops=100
+./bench_hash_array_4_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=565,mops=95
+./bench_hash_array_4_simplock,10%update,n=10000000,p=192,z=0.9,insert_mops=541,mops=90
+./bench_hash_array_4_simplock,20%update,n=10000000,p=192,z=0.9,insert_mops=533,mops=84
+./bench_hash_array_4_simplock,50%update,n=10000000,p=192,z=0.9,insert_mops=538,mops=70
+./bench_hash_array_4_simplock,100%update,n=10000000,p=192,z=0.9,insert_mops=537,mops=56
+
+./bench_hash_array_4_simplock -p 192 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=81.4686
+
+
+./bench_hash_array_4_std,0%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=48
+./bench_hash_array_4_std,5%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=45
+./bench_hash_array_4_std,10%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=44
+./bench_hash_array_4_std,20%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=42
+./bench_hash_array_4_std,50%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=36
+./bench_hash_array_4_std,100%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=31
+
+./bench_hash_array_4_std -p 192 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=41.0918
+
+
+
+bench_hash_array_4 varying zipfians
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0,insert_mops=1287,mops=3092
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.5,insert_mops=1299,mops=3298
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.8,insert_mops=1240,mops=3752
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1289,mops=3065
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.95,insert_mops=1282,mops=2135
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.99,insert_mops=1201,mops=1536
+
+./bench_hash_array_4_seqlock -p 192 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=2697.13
+
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0,insert_mops=309,mops=1280
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.5,insert_mops=305,mops=1329
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.8,insert_mops=306,mops=1628
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=304,mops=1681
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.95,insert_mops=303,mops=1664
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.99,insert_mops=304,mops=1570
+
+./bench_hash_array_4_wf_indirect -p 192 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=1517.16
+
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0,insert_mops=427,mops=2516
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.5,insert_mops=425,mops=2659
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.8,insert_mops=425,mops=2951
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=425,mops=2659
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.95,insert_mops=426,mops=2215
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.99,insert_mops=424,mops=1842
+
+./bench_hash_array_4_wf_daniel -p 192 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=2446.78
+
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0,insert_mops=648,mops=2798
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.5,insert_mops=642,mops=2954
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.8,insert_mops=637,mops=3297
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=642,mops=3016
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.95,insert_mops=635,mops=2486
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.99,insert_mops=635,mops=1989
+
+./bench_hash_array_4_lf_llsc -p 192 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=2722.19
+
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=192,z=0,insert_mops=572,mops=1398
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=192,z=0.5,insert_mops=573,mops=1501
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=192,z=0.8,insert_mops=573,mops=304
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=573,mops=94
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=192,z=0.95,insert_mops=574,mops=57
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=192,z=0.99,insert_mops=571,mops=40
+
+./bench_hash_array_4_simplock -p 192 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=228.501
+
+
+./bench_hash_array_4_std,5%update,n=10000000,p=192,z=0,insert_mops=18,mops=59
+
+./bench_hash_array_4_std,5%update,n=10000000,p=192,z=0.5,insert_mops=18,mops=61
+
+./bench_hash_array_4_std,5%update,n=10000000,p=192,z=0.8,insert_mops=18,mops=63
+
+./bench_hash_array_4_std,5%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=46
+
+./bench_hash_array_4_std,5%update,n=10000000,p=192,z=0.95,insert_mops=18,mops=35
+
+./bench_hash_array_4_std,5%update,n=10000000,p=192,z=0.99,insert_mops=18,mops=28
+
+./bench_hash_array_4_std -p 192 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=47.261
+
+
+
+bench_hash_array_4 varying size
+
+./bench_hash_array_4_seqlock,5%update,n=100,p=768,z=0.9,insert_mops=25,mops=121
+
+./bench_hash_array_4_seqlock,5%update,n=1000,p=768,z=0.9,insert_mops=26,mops=191
+
+./bench_hash_array_4_seqlock,5%update,n=10000,p=768,z=0.9,insert_mops=63,mops=232
+
+./bench_hash_array_4_seqlock,5%update,n=100000,p=768,z=0.9,insert_mops=2,mops=378
+
+./bench_hash_array_4_seqlock,5%update,n=1000000,p=768,z=0.9,insert_mops=14,mops=392
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=768,z=0.9,insert_mops=77,mops=636
+
+./bench_hash_array_4_seqlock,5%update,n=100000000,p=768,z=0.9,insert_mops=435,mops=656
+
+./bench_hash_array_4_seqlock -p 768 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=319.197
+
+
+./bench_hash_array_4_wf_indirect,5%update,n=100,p=768,z=0.9,insert_mops=2,mops=645
+
+./bench_hash_array_4_wf_indirect,5%update,n=1000,p=768,z=0.9,insert_mops=2,mops=952
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000,p=768,z=0.9,insert_mops=1,mops=1555
+
+./bench_hash_array_4_wf_indirect,5%update,n=100000,p=768,z=0.9,insert_mops=2,mops=2106
+
+./bench_hash_array_4_wf_indirect,5%update,n=1000000,p=768,z=0.9,insert_mops=16,mops=2151
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=768,z=0.9,insert_mops=69,mops=1645
+
+./bench_hash_array_4_wf_indirect,5%update,n=100000000,p=768,z=0.9,insert_mops=188,mops=1293
+
+./bench_hash_array_4_wf_indirect -p 768 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=1373.32
+
+
+./bench_hash_array_4_wf_daniel,5%update,n=100,p=768,z=0.9,insert_mops=4,mops=754
+warning: update success ratio = 0.369714
+
+./bench_hash_array_4_wf_daniel,5%update,n=1000,p=768,z=0.9,insert_mops=4,mops=922
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000,p=768,z=0.9,insert_mops=0,mops=1753
+
+./bench_hash_array_4_wf_daniel,5%update,n=100000,p=768,z=0.9,insert_mops=7,mops=2274
+
+./bench_hash_array_4_wf_daniel,5%update,n=1000000,p=768,z=0.9,insert_mops=25,mops=2682
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=768,z=0.9,insert_mops=83,mops=2536
+
+./bench_hash_array_4_wf_daniel,5%update,n=100000000,p=768,z=0.9,insert_mops=220,mops=2303
+
+./bench_hash_array_4_wf_daniel -p 768 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=1713.94
+
+
+./bench_hash_array_4_lf_llsc,5%update,n=100,p=768,z=0.9,insert_mops=10,mops=1041
+warning: update success ratio = 0.363179
+
+./bench_hash_array_4_lf_llsc,5%update,n=1000,p=768,z=0.9,insert_mops=6,mops=1226
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000,p=768,z=0.9,insert_mops=43,mops=2181
+
+./bench_hash_array_4_lf_llsc,5%update,n=100000,p=768,z=0.9,insert_mops=6,mops=2668
+
+./bench_hash_array_4_lf_llsc,5%update,n=1000000,p=768,z=0.9,insert_mops=13,mops=3036
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=768,z=0.9,insert_mops=96,mops=2818
+
+./bench_hash_array_4_lf_llsc,5%update,n=100000000,p=768,z=0.9,insert_mops=269,mops=2492
+
+./bench_hash_array_4_lf_llsc -p 768 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=2062.31
+
+
+./bench_hash_array_4_simplock,5%update,n=100,p=768,z=0.9,insert_mops=8,mops=14
+
+./bench_hash_array_4_simplock,5%update,n=1000,p=768,z=0.9,insert_mops=6,mops=24
+
+./bench_hash_array_4_simplock,5%update,n=10000,p=768,z=0.9,insert_mops=30,mops=33
+
+./bench_hash_array_4_simplock,5%update,n=100000,p=768,z=0.9,insert_mops=2,mops=46
+
+./bench_hash_array_4_simplock,5%update,n=1000000,p=768,z=0.9,insert_mops=14,mops=62
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=768,z=0.9,insert_mops=85,mops=92
+
+./bench_hash_array_4_simplock,5%update,n=100000000,p=768,z=0.9,insert_mops=316,mops=109
+
+./bench_hash_array_4_simplock -p 768 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=44.6944
+
+
+./bench_hash_array_4_std,5%update,n=100,p=768,z=0.9,insert_mops=6,mops=14
+
+./bench_hash_array_4_std,5%update,n=1000,p=768,z=0.9,insert_mops=0,mops=18
+
+./bench_hash_array_4_std,5%update,n=10000,p=768,z=0.9,insert_mops=0,mops=25
+
+./bench_hash_array_4_std,5%update,n=100000,p=768,z=0.9,insert_mops=0,mops=31
+
+./bench_hash_array_4_std,5%update,n=1000000,p=768,z=0.9,insert_mops=5,mops=32
+
+./bench_hash_array_4_std,5%update,n=10000000,p=768,z=0.9,insert_mops=11,mops=37
+
+./bench_hash_array_4_std,5%update,n=100000000,p=768,z=0.9,insert_mops=13,mops=40
+
+./bench_hash_array_4_std -p 768 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=27.0964
+
+
+
+bench_hash_array_4 varying updates
+
+./bench_hash_array_4_seqlock,0%update,n=10000000,p=768,z=0.9,insert_mops=109,mops=4629
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=768,z=0.9,insert_mops=130,mops=509
+./bench_hash_array_4_seqlock,10%update,n=10000000,p=768,z=0.9,insert_mops=104,mops=363
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=768,z=0.9,insert_mops=105,mops=241
+./bench_hash_array_4_seqlock,50%update,n=10000000,p=768,z=0.9,insert_mops=88,mops=141
+./bench_hash_array_4_seqlock,100%update,n=10000000,p=768,z=0.9,insert_mops=99,mops=93
+
+./bench_hash_array_4_seqlock -p 768 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=373.985
+
+
+./bench_hash_array_4_wf_indirect,0%update,n=10000000,p=768,z=0.9,insert_mops=76,mops=1989
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=768,z=0.9,insert_mops=79,mops=1631
+./bench_hash_array_4_wf_indirect,10%update,n=10000000,p=768,z=0.9,insert_mops=74,mops=1428
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=768,z=0.9,insert_mops=68,mops=1169
+./bench_hash_array_4_wf_indirect,50%update,n=10000000,p=768,z=0.9,insert_mops=73,mops=792
+./bench_hash_array_4_wf_indirect,100%update,n=10000000,p=768,z=0.9,insert_mops=73,mops=532
+
+./bench_hash_array_4_wf_indirect -p 768 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=1148.14
+
+
+./bench_hash_array_4_wf_daniel,0%update,n=10000000,p=768,z=0.9,insert_mops=72,mops=4232
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=768,z=0.9,insert_mops=74,mops=2531
+./bench_hash_array_4_wf_daniel,10%update,n=10000000,p=768,z=0.9,insert_mops=67,mops=2002
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=768,z=0.9,insert_mops=79,mops=1486
+./bench_hash_array_4_wf_daniel,50%update,n=10000000,p=768,z=0.9,insert_mops=82,mops=904
+./bench_hash_array_4_wf_daniel,100%update,n=10000000,p=768,z=0.9,insert_mops=72,mops=581
+
+./bench_hash_array_4_wf_daniel -p 768 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=1599.66
+
+
+./bench_hash_array_4_lf_llsc,0%update,n=10000000,p=768,z=0.9,insert_mops=99,mops=4297
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=768,z=0.9,insert_mops=104,mops=2948
+./bench_hash_array_4_lf_llsc,10%update,n=10000000,p=768,z=0.9,insert_mops=102,mops=2362
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=768,z=0.9,insert_mops=96,mops=1765
+./bench_hash_array_4_lf_llsc,50%update,n=10000000,p=768,z=0.9,insert_mops=85,mops=1087
+./bench_hash_array_4_lf_llsc,100%update,n=10000000,p=768,z=0.9,insert_mops=98,mops=713
+
+./bench_hash_array_4_lf_llsc -p 768 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=1856.98
+
+
+./bench_hash_array_4_simplock,0%update,n=10000000,p=768,z=0.9,insert_mops=95,mops=92
+./bench_hash_array_4_simplock,5%update,n=10000000,p=768,z=0.9,insert_mops=77,mops=85
+./bench_hash_array_4_simplock,10%update,n=10000000,p=768,z=0.9,insert_mops=80,mops=80
+./bench_hash_array_4_simplock,20%update,n=10000000,p=768,z=0.9,insert_mops=84,mops=76
+./bench_hash_array_4_simplock,50%update,n=10000000,p=768,z=0.9,insert_mops=82,mops=63
+./bench_hash_array_4_simplock,100%update,n=10000000,p=768,z=0.9,insert_mops=83,mops=51
+
+./bench_hash_array_4_simplock -p 768 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=73.656
+
+
+./bench_hash_array_4_std,0%update,n=10000000,p=768,z=0.9,insert_mops=5,mops=38
+./bench_hash_array_4_std,5%update,n=10000000,p=768,z=0.9,insert_mops=11,mops=37
+./bench_hash_array_4_std,10%update,n=10000000,p=768,z=0.9,insert_mops=10,mops=36
+./bench_hash_array_4_std,20%update,n=10000000,p=768,z=0.9,insert_mops=8,mops=34
+./bench_hash_array_4_std,50%update,n=10000000,p=768,z=0.9,insert_mops=8,mops=30
+./bench_hash_array_4_std,100%update,n=10000000,p=768,z=0.9,insert_mops=10,mops=26
+
+./bench_hash_array_4_std -p 768 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=33.6869
+
+
+
+bench_hash_array_4 varying zipfians
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=768,z=0,insert_mops=110,mops=2989
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=768,z=0.5,insert_mops=90,mops=2857
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=768,z=0.8,insert_mops=133,mops=1182
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=768,z=0.9,insert_mops=114,mops=546
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=768,z=0.95,insert_mops=98,mops=379
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=768,z=0.99,insert_mops=89,mops=353
+
+./bench_hash_array_4_seqlock -p 768 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=950.652
+
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=768,z=0,insert_mops=67,mops=1222
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=768,z=0.5,insert_mops=76,mops=1246
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=768,z=0.8,insert_mops=87,mops=1505
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=768,z=0.9,insert_mops=70,mops=1599
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=768,z=0.95,insert_mops=72,mops=1587
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=768,z=0.99,insert_mops=78,mops=1504
+
+./bench_hash_array_4_wf_indirect -p 768 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=1435.81
+
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=768,z=0,insert_mops=85,mops=2432
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=768,z=0.5,insert_mops=80,mops=2564
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=768,z=0.8,insert_mops=85,mops=2820
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=768,z=0.9,insert_mops=84,mops=2521
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=768,z=0.95,insert_mops=82,mops=2103
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=768,z=0.99,insert_mops=77,mops=1761
+
+./bench_hash_array_4_wf_daniel -p 768 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=2340.39
+
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=768,z=0,insert_mops=88,mops=2735
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=768,z=0.5,insert_mops=84,mops=2912
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=768,z=0.8,insert_mops=98,mops=3202
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=768,z=0.9,insert_mops=80,mops=2918
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=768,z=0.95,insert_mops=102,mops=2533
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=768,z=0.99,insert_mops=108,mops=2156
+
+./bench_hash_array_4_lf_llsc -p 768 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=2722.11
+
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=768,z=0,insert_mops=92,mops=1390
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=768,z=0.5,insert_mops=78,mops=1471
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=768,z=0.8,insert_mops=82,mops=271
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=768,z=0.9,insert_mops=80,mops=85
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=768,z=0.95,insert_mops=86,mops=51
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=768,z=0.99,insert_mops=77,mops=35
+
+./bench_hash_array_4_simplock -p 768 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=210.681
+
+
+./bench_hash_array_4_std,5%update,n=10000000,p=768,z=0,insert_mops=6,mops=51
+
+./bench_hash_array_4_std,5%update,n=10000000,p=768,z=0.5,insert_mops=11,mops=51
+
+./bench_hash_array_4_std,5%update,n=10000000,p=768,z=0.8,insert_mops=9,mops=50
+
+./bench_hash_array_4_std,5%update,n=10000000,p=768,z=0.9,insert_mops=9,mops=35
+
+./bench_hash_array_4_std,5%update,n=10000000,p=768,z=0.95,insert_mops=12,mops=29
+
+./bench_hash_array_4_std,5%update,n=10000000,p=768,z=0.99,insert_mops=7,mops=24
+
+./bench_hash_array_4_std -p 768 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=38.8776
+
+
+
+bench_hash_array_4 varying threads
+
+
+
+
+
+
+
+
+bench_parlay_hash varying size
+
+./bench_parlay_hash_seqlock,5%update,n=100,p=192,z=0.9,insert_mops=15,mops=472
+
+./bench_parlay_hash_seqlock,5%update,n=1000,p=192,z=0.9,insert_mops=18,mops=578
+
+./bench_parlay_hash_seqlock,5%update,n=10000,p=192,z=0.9,insert_mops=50,mops=1287
+
+./bench_parlay_hash_seqlock,5%update,n=100000,p=192,z=0.9,insert_mops=102,mops=1825
+
+./bench_parlay_hash_seqlock,5%update,n=1000000,p=192,z=0.9,insert_mops=121,mops=2062
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=141,mops=1953
+
+./bench_parlay_hash_seqlock,5%update,n=100000000,p=192,z=0.9,insert_mops=114,mops=1674
+
+./bench_parlay_hash_seqlock -p 192 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=1232.92
+
+
+./bench_parlay_hash_wf_indirect,5%update,n=100,p=192,z=0.9,insert_mops=3,mops=559
+
+./bench_parlay_hash_wf_indirect,5%update,n=1000,p=192,z=0.9,insert_mops=3,mops=929
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000,p=192,z=0.9,insert_mops=12,mops=1466
+
+./bench_parlay_hash_wf_indirect,5%update,n=100000,p=192,z=0.9,insert_mops=18,mops=1502
+
+./bench_parlay_hash_wf_indirect,5%update,n=1000000,p=192,z=0.9,insert_mops=41,mops=1443
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=51,mops=1142
+
+./bench_parlay_hash_wf_indirect,5%update,n=100000000,p=192,z=0.9,insert_mops=43,mops=827
+
+./bench_parlay_hash_wf_indirect -p 192 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=1066.05
+
+
+./bench_parlay_hash_wf_daniel,5%update,n=100,p=192,z=0.9,insert_mops=3,mops=616
+warning: update success ratio = 0.382721
+
+./bench_parlay_hash_wf_daniel,5%update,n=1000,p=192,z=0.9,insert_mops=7,mops=913
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000,p=192,z=0.9,insert_mops=13,mops=1413
+
+./bench_parlay_hash_wf_daniel,5%update,n=100000,p=192,z=0.9,insert_mops=56,mops=1701
+
+./bench_parlay_hash_wf_daniel,5%update,n=1000000,p=192,z=0.9,insert_mops=86,mops=1769
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=88,mops=1503
+
+./bench_parlay_hash_wf_daniel,5%update,n=100000000,p=192,z=0.9,insert_mops=77,mops=1356
+
+./bench_parlay_hash_wf_daniel -p 192 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=1254.52
+
+
+./bench_parlay_hash_lf_llsc,5%update,n=100,p=192,z=0.9,insert_mops=8,mops=732
+warning: update success ratio = 0.386131
+
+./bench_parlay_hash_lf_llsc,5%update,n=1000,p=192,z=0.9,insert_mops=7,mops=1111
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000,p=192,z=0.9,insert_mops=14,mops=1632
+
+./bench_parlay_hash_lf_llsc,5%update,n=100000,p=192,z=0.9,insert_mops=63,mops=1991
+
+./bench_parlay_hash_lf_llsc,5%update,n=1000000,p=192,z=0.9,insert_mops=96,mops=2009
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=124,mops=1812
+
+./bench_parlay_hash_lf_llsc,5%update,n=100000000,p=192,z=0.9,insert_mops=110,mops=1540
+
+./bench_parlay_hash_lf_llsc -p 192 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=1470.44
+
+
+
+
+
+
+
+bench_parlay_hash varying updates
+
+./bench_parlay_hash_seqlock,0%update,n=10000000,p=192,z=0.9,insert_mops=144,mops=2451
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=142,mops=1984
+./bench_parlay_hash_seqlock,10%update,n=10000000,p=192,z=0.9,insert_mops=142,mops=1689
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=192,z=0.9,insert_mops=144,mops=1206
+./bench_parlay_hash_seqlock,50%update,n=10000000,p=192,z=0.9,insert_mops=140,mops=550
+./bench_parlay_hash_seqlock,100%update,n=10000000,p=192,z=0.9,insert_mops=128,mops=283
+
+./bench_parlay_hash_seqlock -p 192 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=1075.58
+
+
+./bench_parlay_hash_wf_indirect,0%update,n=10000000,p=192,z=0.9,insert_mops=52,mops=1462
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=51,mops=1149
+./bench_parlay_hash_wf_indirect,10%update,n=10000000,p=192,z=0.9,insert_mops=50,mops=1008
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=192,z=0.9,insert_mops=53,mops=834
+./bench_parlay_hash_wf_indirect,50%update,n=10000000,p=192,z=0.9,insert_mops=48,mops=574
+./bench_parlay_hash_wf_indirect,100%update,n=10000000,p=192,z=0.9,insert_mops=44,mops=392
+
+./bench_parlay_hash_wf_indirect -p 192 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=826.555
+
+
+./bench_parlay_hash_wf_daniel,0%update,n=10000000,p=192,z=0.9,insert_mops=91,mops=2083
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=91,mops=1513
+./bench_parlay_hash_wf_daniel,10%update,n=10000000,p=192,z=0.9,insert_mops=90,mops=1285
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=192,z=0.9,insert_mops=91,mops=1041
+./bench_parlay_hash_wf_daniel,50%update,n=10000000,p=192,z=0.9,insert_mops=86,mops=706
+./bench_parlay_hash_wf_daniel,100%update,n=10000000,p=192,z=0.9,insert_mops=80,mops=477
+
+./bench_parlay_hash_wf_daniel -p 192 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=1060.41
+
+
+./bench_parlay_hash_lf_llsc,0%update,n=10000000,p=192,z=0.9,insert_mops=122,mops=2320
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=120,mops=1821
+./bench_parlay_hash_lf_llsc,10%update,n=10000000,p=192,z=0.9,insert_mops=122,mops=1566
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=192,z=0.9,insert_mops=117,mops=1267
+./bench_parlay_hash_lf_llsc,50%update,n=10000000,p=192,z=0.9,insert_mops=120,mops=826
+./bench_parlay_hash_lf_llsc,100%update,n=10000000,p=192,z=0.9,insert_mops=110,mops=570
+
+./bench_parlay_hash_lf_llsc -p 192 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=1257.65
+
+
+
+
+
+
+
+bench_parlay_hash varying zipfians
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0,insert_mops=142,mops=2069
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.5,insert_mops=142,mops=2053
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.8,insert_mops=142,mops=2047
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=143,mops=1976
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.95,insert_mops=141,mops=1718
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.99,insert_mops=127,mops=1328
+
+./bench_parlay_hash_seqlock -p 192 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=1843.54
+
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0,insert_mops=52,mops=1031
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.5,insert_mops=51,mops=1035
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.8,insert_mops=51,mops=1096
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=51,mops=1142
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.95,insert_mops=48,mops=1136
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.99,insert_mops=45,mops=1107
+
+./bench_parlay_hash_wf_indirect -p 192 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=1090.55
+
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0,insert_mops=92,mops=1515
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.5,insert_mops=90,mops=1522
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.8,insert_mops=89,mops=1558
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=93,mops=1497
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.95,insert_mops=84,mops=1397
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.99,insert_mops=78,mops=1237
+
+./bench_parlay_hash_wf_daniel -p 192 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=1450.4
+
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0,insert_mops=119,mops=1903
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.5,insert_mops=122,mops=1889
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.8,insert_mops=119,mops=1880
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=126,mops=1817
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.95,insert_mops=117,mops=1700
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.99,insert_mops=108,mops=1500
+
+./bench_parlay_hash_lf_llsc -p 192 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=1775.78
+
+
+
+
+
+
+
+bench_parlay_hash varying size
+
+./bench_parlay_hash_seqlock,5%update,n=100,p=768,z=0.9,insert_mops=17,mops=102
+
+./bench_parlay_hash_seqlock,5%update,n=1000,p=768,z=0.9,insert_mops=24,mops=164
+
+./bench_parlay_hash_seqlock,5%update,n=10000,p=768,z=0.9,insert_mops=0,mops=204
+
+./bench_parlay_hash_seqlock,5%update,n=100000,p=768,z=0.9,insert_mops=3,mops=324
+
+./bench_parlay_hash_seqlock,5%update,n=1000000,p=768,z=0.9,insert_mops=25,mops=352
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=768,z=0.9,insert_mops=97,mops=442
+
+./bench_parlay_hash_seqlock,5%update,n=100000000,p=768,z=0.9,insert_mops=114,mops=570
+
+./bench_parlay_hash_seqlock -p 768 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=268.039
+
+
+./bench_parlay_hash_wf_indirect,5%update,n=100,p=768,z=0.9,insert_mops=3,mops=543
+
+./bench_parlay_hash_wf_indirect,5%update,n=1000,p=768,z=0.9,insert_mops=4,mops=924
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000,p=768,z=0.9,insert_mops=0,mops=1392
+
+./bench_parlay_hash_wf_indirect,5%update,n=100000,p=768,z=0.9,insert_mops=5,mops=1578
+
+./bench_parlay_hash_wf_indirect,5%update,n=1000000,p=768,z=0.9,insert_mops=22,mops=1383
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=768,z=0.9,insert_mops=38,mops=1064
+
+./bench_parlay_hash_wf_indirect,5%update,n=100000000,p=768,z=0.9,insert_mops=41,mops=806
+
+./bench_parlay_hash_wf_indirect -p 768 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=1039.51
+
+
+./bench_parlay_hash_wf_daniel,5%update,n=100,p=768,z=0.9,insert_mops=4,mops=603
+warning: update success ratio = 0.382694
+
+./bench_parlay_hash_wf_daniel,5%update,n=1000,p=768,z=0.9,insert_mops=6,mops=937
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000,p=768,z=0.9,insert_mops=1,mops=1458
+
+./bench_parlay_hash_wf_daniel,5%update,n=100000,p=768,z=0.9,insert_mops=4,mops=1738
+
+./bench_parlay_hash_wf_daniel,5%update,n=1000000,p=768,z=0.9,insert_mops=26,mops=1688
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=768,z=0.9,insert_mops=61,mops=1428
+
+./bench_parlay_hash_wf_daniel,5%update,n=100000000,p=768,z=0.9,insert_mops=69,mops=1293
+
+./bench_parlay_hash_wf_daniel -p 768 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=1238.96
+
+
+./bench_parlay_hash_lf_llsc,5%update,n=100,p=768,z=0.9,insert_mops=9,mops=728
+warning: update success ratio = 0.360469
+
+./bench_parlay_hash_lf_llsc,5%update,n=1000,p=768,z=0.9,insert_mops=6,mops=1182
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000,p=768,z=0.9,insert_mops=0,mops=1670
+
+./bench_parlay_hash_lf_llsc,5%update,n=100000,p=768,z=0.9,insert_mops=5,mops=2004
+
+./bench_parlay_hash_lf_llsc,5%update,n=1000000,p=768,z=0.9,insert_mops=34,mops=1918
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=768,z=0.9,insert_mops=68,mops=1672
+
+./bench_parlay_hash_lf_llsc,5%update,n=100000000,p=768,z=0.9,insert_mops=93,mops=1455
+
+./bench_parlay_hash_lf_llsc -p 768 -n 100,1000,10000,100000,1000000,10000000,100000000 -u 5 -z .9 -- geomean=1450.16
+
+
+
+
+
+
+
+bench_parlay_hash varying updates
+
+./bench_parlay_hash_seqlock,0%update,n=10000000,p=768,z=0.9,insert_mops=95,mops=2390
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=768,z=0.9,insert_mops=103,mops=459
+./bench_parlay_hash_seqlock,10%update,n=10000000,p=768,z=0.9,insert_mops=101,mops=370
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=768,z=0.9,insert_mops=94,mops=243
+./bench_parlay_hash_seqlock,50%update,n=10000000,p=768,z=0.9,insert_mops=96,mops=126
+./bench_parlay_hash_seqlock,100%update,n=10000000,p=768,z=0.9,insert_mops=99,mops=92
+
+./bench_parlay_hash_seqlock -p 768 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=324.672
+
+
+./bench_parlay_hash_wf_indirect,0%update,n=10000000,p=768,z=0.9,insert_mops=35,mops=1376
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=768,z=0.9,insert_mops=41,mops=1067
+./bench_parlay_hash_wf_indirect,10%update,n=10000000,p=768,z=0.9,insert_mops=38,mops=935
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=768,z=0.9,insert_mops=35,mops=748
+./bench_parlay_hash_wf_indirect,50%update,n=10000000,p=768,z=0.9,insert_mops=33,mops=460
+./bench_parlay_hash_wf_indirect,100%update,n=10000000,p=768,z=0.9,insert_mops=35,mops=319
+
+./bench_parlay_hash_wf_indirect -p 768 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=730.045
+
+
+./bench_parlay_hash_wf_daniel,0%update,n=10000000,p=768,z=0.9,insert_mops=64,mops=1977
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=768,z=0.9,insert_mops=61,mops=1423
+./bench_parlay_hash_wf_daniel,10%update,n=10000000,p=768,z=0.9,insert_mops=61,mops=1206
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=768,z=0.9,insert_mops=61,mops=937
+./bench_parlay_hash_wf_daniel,50%update,n=10000000,p=768,z=0.9,insert_mops=29,mops=583
+./bench_parlay_hash_wf_daniel,100%update,n=10000000,p=768,z=0.9,insert_mops=29,mops=379
+
+./bench_parlay_hash_wf_daniel -p 768 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=943.488
+
+
+./bench_parlay_hash_lf_llsc,0%update,n=10000000,p=768,z=0.9,insert_mops=81,mops=2275
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=768,z=0.9,insert_mops=84,mops=1700
+./bench_parlay_hash_lf_llsc,10%update,n=10000000,p=768,z=0.9,insert_mops=77,mops=1450
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=768,z=0.9,insert_mops=75,mops=1117
+./bench_parlay_hash_lf_llsc,50%update,n=10000000,p=768,z=0.9,insert_mops=26,mops=683
+./bench_parlay_hash_lf_llsc,100%update,n=10000000,p=768,z=0.9,insert_mops=38,mops=441
+
+./bench_parlay_hash_lf_llsc -p 768 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=1112.32
+
+
+
+
+
+
+
+bench_parlay_hash varying zipfians
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=768,z=0,insert_mops=83,mops=1775
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=768,z=0.5,insert_mops=101,mops=1736
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=768,z=0.8,insert_mops=98,mops=763
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=768,z=0.9,insert_mops=95,mops=544
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=768,z=0.95,insert_mops=96,mops=371
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=768,z=0.99,insert_mops=94,mops=328
+
+./bench_parlay_hash_seqlock -p 768 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=733.937
+
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=768,z=0,insert_mops=39,mops=932
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=768,z=0.5,insert_mops=39,mops=936
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=768,z=0.8,insert_mops=38,mops=1010
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=768,z=0.9,insert_mops=40,mops=1064
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=768,z=0.95,insert_mops=39,mops=1073
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=768,z=0.99,insert_mops=39,mops=1050
+
+./bench_parlay_hash_wf_indirect -p 768 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=1009.91
+
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=768,z=0,insert_mops=60,mops=1428
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=768,z=0.5,insert_mops=60,mops=1427
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=768,z=0.8,insert_mops=60,mops=1474
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=768,z=0.9,insert_mops=60,mops=1418
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=768,z=0.95,insert_mops=61,mops=1338
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=768,z=0.99,insert_mops=62,mops=1218
+
+./bench_parlay_hash_wf_daniel -p 768 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=1381.64
+
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=768,z=0,insert_mops=78,mops=1787
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=768,z=0.5,insert_mops=81,mops=1782
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=768,z=0.8,insert_mops=81,mops=1774
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=768,z=0.9,insert_mops=84,mops=1697
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=768,z=0.95,insert_mops=79,mops=1604
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=768,z=0.99,insert_mops=80,mops=1478
+
+./bench_parlay_hash_lf_llsc -p 768 -n 10000000 -u 5 -z 0.0,0.5,0.8,0.9,.95,.99 -- geomean=1683.91
+
+
+
+
+
+
+
+bench_parlay_hash varying threads
+
+
+
+
+
+
+
+
+
+Date: 06-04-2026
+Model name: Intel(R) Xeon(R) 6975P-C
+Git branch: 9c2a7e8
+Compiler: g++ (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0
+OS: Ubuntu 22.04.2 LTS
+Hugepage: always [madvise] never
+NoTurbo: 1
+MaxPerfPct 100
+
+bigatomic array geomean over schemes and sizes, with and without oversubscription
+
+
+bench_hash_array_4 varying threads
+
+
+
+
+
+
+
+
+bench_parlay_hash varying threads
+
+
+
+
+
+
+
+
+
+Date: 06-04-2026
+Model name: Intel(R) Xeon(R) 6975P-C
+Git branch: 9c2a7e8
+Compiler: g++ (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0
+OS: Ubuntu 22.04.2 LTS
+Hugepage: always [madvise] never
+NoTurbo: 1
+MaxPerfPct 100
+
+bigatomic array geomean over schemes and sizes, with and without oversubscription
+
+
+bench_hash_array_4 varying threads
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=8,z=0.9,insert_mops=129,mops=258
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=8,z=0.9,insert_mops=130,mops=217
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=16,z=0.9,insert_mops=249,mops=509
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=16,z=0.9,insert_mops=251,mops=414
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=32,z=0.9,insert_mops=466,mops=992
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=32,z=0.9,insert_mops=487,mops=811
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=64,z=0.9,insert_mops=569,mops=1373
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=64,z=0.9,insert_mops=590,mops=1007
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=96,z=0.9,insert_mops=903,mops=2134
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=96,z=0.9,insert_mops=901,mops=1235
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1193,mops=3070
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=192,z=0.9,insert_mops=1260,mops=1394
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=384,z=0.9,insert_mops=461,mops=1398
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=384,z=0.9,insert_mops=316,mops=550
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=512,z=0.9,insert_mops=186,mops=961
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=512,z=0.9,insert_mops=182,mops=391
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=768,z=0.9,insert_mops=116,mops=594
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=768,z=0.9,insert_mops=81,mops=252
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=1536,z=0.9,insert_mops=41,mops=326
+./bench_hash_array_4_seqlock,20%update,n=10000000,p=1536,z=0.9,insert_mops=32,mops=131
+
+./bench_hash_array_4_seqlock -p 8,16,32,64,96,192,384,512,768,1536 -n 10000000 -u 5,20 -z .9 -- geomean=663.988
+
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=8,z=0.9,insert_mops=21,mops=114
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=8,z=0.9,insert_mops=21,mops=86
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=16,z=0.9,insert_mops=41,mops=219
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=16,z=0.9,insert_mops=41,mops=165
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=32,z=0.9,insert_mops=80,mops=457
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=32,z=0.9,insert_mops=83,mops=358
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=64,z=0.9,insert_mops=130,mops=642
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=64,z=0.9,insert_mops=133,mops=527
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=96,z=0.9,insert_mops=195,mops=1071
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=96,z=0.9,insert_mops=194,mops=805
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=306,mops=1663
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=192,z=0.9,insert_mops=302,mops=1223
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=384,z=0.9,insert_mops=207,mops=1634
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=384,z=0.9,insert_mops=221,mops=1193
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=512,z=0.9,insert_mops=122,mops=1619
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=512,z=0.9,insert_mops=121,mops=1180
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=768,z=0.9,insert_mops=67,mops=1615
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=768,z=0.9,insert_mops=70,mops=1171
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=1536,z=0.9,insert_mops=33,mops=1581
+./bench_hash_array_4_wf_indirect,20%update,n=10000000,p=1536,z=0.9,insert_mops=38,mops=1137
+
+./bench_hash_array_4_wf_indirect -p 8,16,32,64,96,192,384,512,768,1536 -n 10000000 -u 5,20 -z .9 -- geomean=679.978
+
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=8,z=0.9,insert_mops=34,mops=200
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=8,z=0.9,insert_mops=34,mops=138
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=16,z=0.9,insert_mops=65,mops=391
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=16,z=0.9,insert_mops=67,mops=265
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=32,z=0.9,insert_mops=127,mops=748
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=32,z=0.9,insert_mops=128,mops=495
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=64,z=0.9,insert_mops=200,mops=1174
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=64,z=0.9,insert_mops=228,mops=873
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=96,z=0.9,insert_mops=282,mops=1663
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=96,z=0.9,insert_mops=277,mops=1043
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=424,mops=2638
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=192,z=0.9,insert_mops=421,mops=1657
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=384,z=0.9,insert_mops=181,mops=2577
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=384,z=0.9,insert_mops=210,mops=1591
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=512,z=0.9,insert_mops=126,mops=2556
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=512,z=0.9,insert_mops=151,mops=1538
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=768,z=0.9,insert_mops=69,mops=2541
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=768,z=0.9,insert_mops=87,mops=1488
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=1536,z=0.9,insert_mops=35,mops=2489
+./bench_hash_array_4_wf_daniel,20%update,n=10000000,p=1536,z=0.9,insert_mops=29,mops=1441
+
+./bench_hash_array_4_wf_daniel -p 8,16,32,64,96,192,384,512,768,1536 -n 10000000 -u 5,20 -z .9 -- geomean=1031.01
+
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=8,z=0.9,insert_mops=49,mops=225
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=8,z=0.9,insert_mops=40,mops=153
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=16,z=0.9,insert_mops=89,mops=444
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=16,z=0.9,insert_mops=81,mops=297
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=32,z=0.9,insert_mops=173,mops=855
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=32,z=0.9,insert_mops=162,mops=569
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=64,z=0.9,insert_mops=274,mops=1354
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=64,z=0.9,insert_mops=251,mops=848
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=96,z=0.9,insert_mops=393,mops=1936
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=96,z=0.9,insert_mops=390,mops=1254
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=630,mops=3014
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=192,z=0.9,insert_mops=619,mops=1893
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=384,z=0.9,insert_mops=224,mops=2956
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=384,z=0.9,insert_mops=273,mops=1852
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=512,z=0.9,insert_mops=145,mops=2895
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=512,z=0.9,insert_mops=159,mops=1828
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=768,z=0.9,insert_mops=87,mops=2893
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=768,z=0.9,insert_mops=85,mops=1771
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=1536,z=0.9,insert_mops=37,mops=2893
+./bench_hash_array_4_lf_llsc,20%update,n=10000000,p=1536,z=0.9,insert_mops=63,mops=1769
+
+./bench_hash_array_4_lf_llsc -p 8,16,32,64,96,192,384,512,768,1536 -n 10000000 -u 5,20 -z .9 -- geomean=1179.4
+
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=8,z=0.9,insert_mops=60,mops=92
+./bench_hash_array_4_simplock,20%update,n=10000000,p=8,z=0.9,insert_mops=60,mops=80
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=16,z=0.9,insert_mops=116,mops=84
+./bench_hash_array_4_simplock,20%update,n=10000000,p=16,z=0.9,insert_mops=115,mops=78
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=32,z=0.9,insert_mops=224,mops=103
+./bench_hash_array_4_simplock,20%update,n=10000000,p=32,z=0.9,insert_mops=218,mops=77
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=64,z=0.9,insert_mops=296,mops=94
+./bench_hash_array_4_simplock,20%update,n=10000000,p=64,z=0.9,insert_mops=279,mops=84
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=96,z=0.9,insert_mops=428,mops=98
+./bench_hash_array_4_simplock,20%update,n=10000000,p=96,z=0.9,insert_mops=444,mops=91
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=542,mops=99
+./bench_hash_array_4_simplock,20%update,n=10000000,p=192,z=0.9,insert_mops=573,mops=88
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=384,z=0.9,insert_mops=289,mops=82
+./bench_hash_array_4_simplock,20%update,n=10000000,p=384,z=0.9,insert_mops=268,mops=71
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=512,z=0.9,insert_mops=163,mops=84
+./bench_hash_array_4_simplock,20%update,n=10000000,p=512,z=0.9,insert_mops=152,mops=73
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=768,z=0.9,insert_mops=96,mops=92
+./bench_hash_array_4_simplock,20%update,n=10000000,p=768,z=0.9,insert_mops=90,mops=81
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=1536,z=0.9,insert_mops=32,mops=93
+./bench_hash_array_4_simplock,20%update,n=10000000,p=1536,z=0.9,insert_mops=24,mops=83
+
+./bench_hash_array_4_simplock -p 8,16,32,64,96,192,384,512,768,1536 -n 10000000 -u 5,20 -z .9 -- geomean=86.482
+
+
+./bench_hash_array_4_std,5%update,n=10000000,p=8,z=0.9,insert_mops=13,mops=37
+./bench_hash_array_4_std,20%update,n=10000000,p=8,z=0.9,insert_mops=13,mops=34
+
+./bench_hash_array_4_std,5%update,n=10000000,p=16,z=0.9,insert_mops=15,mops=42
+./bench_hash_array_4_std,20%update,n=10000000,p=16,z=0.9,insert_mops=15,mops=41
+
+./bench_hash_array_4_std,5%update,n=10000000,p=32,z=0.9,insert_mops=17,mops=44
+./bench_hash_array_4_std,20%update,n=10000000,p=32,z=0.9,insert_mops=16,mops=41
+
+./bench_hash_array_4_std,5%update,n=10000000,p=64,z=0.9,insert_mops=16,mops=44
+./bench_hash_array_4_std,20%update,n=10000000,p=64,z=0.9,insert_mops=16,mops=41
+
+./bench_hash_array_4_std,5%update,n=10000000,p=96,z=0.9,insert_mops=17,mops=42
+./bench_hash_array_4_std,20%update,n=10000000,p=96,z=0.9,insert_mops=17,mops=39
+
+./bench_hash_array_4_std,5%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=47
+./bench_hash_array_4_std,20%update,n=10000000,p=192,z=0.9,insert_mops=19,mops=43
+
+./bench_hash_array_4_std,5%update,n=10000000,p=384,z=0.9,insert_mops=14,mops=38
+./bench_hash_array_4_std,20%update,n=10000000,p=384,z=0.9,insert_mops=15,mops=35
+
+./bench_hash_array_4_std,5%update,n=10000000,p=512,z=0.9,insert_mops=13,mops=38
+./bench_hash_array_4_std,20%update,n=10000000,p=512,z=0.9,insert_mops=13,mops=34
+
+./bench_hash_array_4_std,5%update,n=10000000,p=768,z=0.9,insert_mops=9,mops=36
+./bench_hash_array_4_std,20%update,n=10000000,p=768,z=0.9,insert_mops=12,mops=34
+
+./bench_hash_array_4_std,5%update,n=10000000,p=1536,z=0.9,insert_mops=10,mops=43
+./bench_hash_array_4_std,20%update,n=10000000,p=1536,z=0.9,insert_mops=7,mops=38
+
+./bench_hash_array_4_std -p 8,16,32,64,96,192,384,512,768,1536 -n 10000000 -u 5,20 -z .9 -- geomean=39.8771
+
+
+
+bench_parlay_hash varying threads
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=8,z=0.9,insert_mops=60,mops=123
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=8,z=0.9,insert_mops=61,mops=106
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=16,z=0.9,insert_mops=87,mops=243
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=16,z=0.9,insert_mops=89,mops=205
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=32,z=0.9,insert_mops=116,mops=487
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=32,z=0.9,insert_mops=115,mops=405
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=64,z=0.9,insert_mops=123,mops=809
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=64,z=0.9,insert_mops=119,mops=647
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=96,z=0.9,insert_mops=128,mops=1197
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=96,z=0.9,insert_mops=132,mops=926
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=132,mops=1968
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=192,z=0.9,insert_mops=130,mops=1134
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=384,z=0.9,insert_mops=117,mops=970
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=384,z=0.9,insert_mops=119,mops=552
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=512,z=0.9,insert_mops=110,mops=771
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=512,z=0.9,insert_mops=108,mops=393
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=768,z=0.9,insert_mops=92,mops=562
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=768,z=0.9,insert_mops=92,mops=201
+
+./bench_parlay_hash_seqlock,5%update,n=10000000,p=1536,z=0.9,insert_mops=69,mops=268
+./bench_parlay_hash_seqlock,20%update,n=10000000,p=1536,z=0.9,insert_mops=66,mops=150
+
+./bench_parlay_hash_seqlock -p 8,16,32,64,96,192,384,512,768,1536 -n 10000000 -u 5,20 -z .9 -- geomean=451.768
+
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=8,z=0.9,insert_mops=17,mops=80
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=8,z=0.9,insert_mops=17,mops=62
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=16,z=0.9,insert_mops=28,mops=154
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=16,z=0.9,insert_mops=27,mops=116
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=32,z=0.9,insert_mops=38,mops=296
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=32,z=0.9,insert_mops=36,mops=226
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=64,z=0.9,insert_mops=42,mops=428
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=64,z=0.9,insert_mops=42,mops=347
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=96,z=0.9,insert_mops=45,mops=682
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=96,z=0.9,insert_mops=44,mops=510
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=46,mops=1122
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=192,z=0.9,insert_mops=46,mops=818
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=384,z=0.9,insert_mops=45,mops=1096
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=384,z=0.9,insert_mops=45,mops=790
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=512,z=0.9,insert_mops=41,mops=1070
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=512,z=0.9,insert_mops=39,mops=773
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=768,z=0.9,insert_mops=37,mops=1057
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=768,z=0.9,insert_mops=33,mops=719
+
+./bench_parlay_hash_wf_indirect,5%update,n=10000000,p=1536,z=0.9,insert_mops=31,mops=1017
+./bench_parlay_hash_wf_indirect,20%update,n=10000000,p=1536,z=0.9,insert_mops=14,mops=583
+
+./bench_parlay_hash_wf_indirect -p 8,16,32,64,96,192,384,512,768,1536 -n 10000000 -u 5,20 -z .9 -- geomean=445.308
+
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=8,z=0.9,insert_mops=20,mops=98
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=8,z=0.9,insert_mops=20,mops=75
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=16,z=0.9,insert_mops=34,mops=193
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=16,z=0.9,insert_mops=34,mops=147
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=32,z=0.9,insert_mops=51,mops=370
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=32,z=0.9,insert_mops=51,mops=271
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=64,z=0.9,insert_mops=69,mops=585
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=64,z=0.9,insert_mops=68,mops=492
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=96,z=0.9,insert_mops=74,mops=874
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=96,z=0.9,insert_mops=75,mops=616
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=83,mops=1494
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=192,z=0.9,insert_mops=82,mops=1021
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=384,z=0.9,insert_mops=74,mops=1445
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=384,z=0.9,insert_mops=73,mops=979
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=512,z=0.9,insert_mops=66,mops=1418
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=512,z=0.9,insert_mops=65,mops=951
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=768,z=0.9,insert_mops=57,mops=1406
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=768,z=0.9,insert_mops=57,mops=926
+
+./bench_parlay_hash_wf_daniel,5%update,n=10000000,p=1536,z=0.9,insert_mops=25,mops=1198
+./bench_parlay_hash_wf_daniel,20%update,n=10000000,p=1536,z=0.9,insert_mops=22,mops=735
+
+./bench_parlay_hash_wf_daniel -p 8,16,32,64,96,192,384,512,768,1536 -n 10000000 -u 5,20 -z .9 -- geomean=565.458
+
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=8,z=0.9,insert_mops=32,mops=113
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=8,z=0.9,insert_mops=29,mops=85
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=16,z=0.9,insert_mops=51,mops=222
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=16,z=0.9,insert_mops=49,mops=165
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=32,z=0.9,insert_mops=76,mops=425
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=32,z=0.9,insert_mops=75,mops=332
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=64,z=0.9,insert_mops=95,mops=716
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=64,z=0.9,insert_mops=91,mops=537
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=96,z=0.9,insert_mops=101,mops=1026
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=96,z=0.9,insert_mops=102,mops=740
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=110,mops=1813
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=192,z=0.9,insert_mops=112,mops=1251
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=384,z=0.9,insert_mops=96,mops=1759
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=384,z=0.9,insert_mops=97,mops=1149
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=512,z=0.9,insert_mops=87,mops=1714
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=512,z=0.9,insert_mops=84,mops=1124
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=768,z=0.9,insert_mops=47,mops=1686
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=768,z=0.9,insert_mops=26,mops=1111
+
+./bench_parlay_hash_lf_llsc,5%update,n=10000000,p=1536,z=0.9,insert_mops=42,mops=1404
+./bench_parlay_hash_lf_llsc,20%update,n=10000000,p=1536,z=0.9,insert_mops=14,mops=897
+
+./bench_parlay_hash_lf_llsc -p 8,16,32,64,96,192,384,512,768,1536 -n 10000000 -u 5,20 -z .9 -- geomean=667.344
+
+
+
+
+
+

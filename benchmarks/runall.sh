@@ -27,8 +27,8 @@ cas_schemes="simplock std"
 
 other_hash="folly_hash folly_sharded libcuckoo seq_hash tbb_hash parallel_hashmap"
 
-all_threads="8,16,32,64,96,192,384,512,768,1536"
-all_threads_space="8 16 32 64 96 192 384 512 768 1536"
+all_threads="8,16,32,64,96,192,384,512,768"
+all_threads_space="8 16 32 64 96 192 384 512 768"
 some_threads="$(nproc) $(( $(nproc) * 4 ))"
 
 default_block_size=4
@@ -36,7 +36,7 @@ all_block_sizes="1 2 4 8 16"
 some_block_sizes="1 4 16"
 
 default_size=10000000
-all_sizes="100,1000,10000,100000,1000000,10000000,100000000,1000000000"
+all_sizes="100,1000,10000,100000,1000000,10000000,100000000"
 some_sizes="10000,1000000,100000000"
 
 default_zipfian=.9
@@ -110,7 +110,7 @@ do
         str="\n${application} varying size\n" 
         echo -e ${str}
         echo -e ${str} >> ${filename}
-        for scheme in ${llsc_schemes} ${cas_schemes}
+        for scheme in ${all_schemes}
         do
             ${head} ./${application}_${scheme} -n ${all_sizes} -u ${default_update} -z ${default_zipfian} -r ${rounds} -p ${p} >> ${filename}
             echo "" >> ${filename}
@@ -119,7 +119,7 @@ do
         str="\n${application} varying updates\n"
         echo -e ${str}
         echo -e ${str} >> ${filename}
-        for scheme in ${llsc_schemes} 
+        for scheme in ${all_schemes} 
         do
             ${head} ./${application}_${scheme} -n ${default_size} -u ${all_updates} -z ${default_zipfian} -r ${rounds} -p ${p} >> ${filename}
             echo "" >> ${filename}
@@ -128,7 +128,7 @@ do
         str="\n${application} varying zipfians\n"
         echo -e ${str}
         echo -e ${str} >> ${filename}
-        for scheme in ${llsc_schemes}
+        for scheme in ${all_schemes}
         do
             ${head} ./${application}_${scheme} -n ${default_size} -u ${default_update} -z ${all_zipfians} -r ${rounds} -p ${p}>> ${filename}
             echo "" >> ${filename}
@@ -138,9 +138,9 @@ do
     str="\n${application} varying threads\n"
     echo -e ${str}
     echo -e ${str} >> ${filename}
-    for scheme in ${llsc_schemes}
+    for scheme in ${all_schemes}
     do
-        ${head} ./${application}_${scheme} -n ${default_size} -u 20 -z ${default_zipfian} -p ${threads} -r ${rounds} >> ${filename}
+        ${head} ./${application}_${scheme} -n ${default_size} -u 5,20 -z ${default_zipfian} -p ${all_threads} -r ${rounds} >> ${filename}
         echo "" >> ${filename}
     done
 done

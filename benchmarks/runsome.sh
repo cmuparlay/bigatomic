@@ -8,7 +8,7 @@ machine_nowhite=${machine//[[:space:]]/}
 filename=../../timings/${procs}-${machine}_${today}
 
 echo ${filename}
-> ${filename}
+#> ${filename}
 echo "Date:" ${today} >> ${filename}
 echo `lscpu | grep 'Model name'` >> ${filename}
 echo "Git branch:" `git rev-parse --short HEAD` >> ${filename}
@@ -24,6 +24,7 @@ head="numactl -i all"
 
 llsc_schemes="seqlock wf_indirect wf_daniel lf_llsc"
 cas_schemes="simplock std"
+all_schemes="${llsc_schemes} ${cas_schemes}"
 
 other_hash="folly_hash folly_sharded libcuckoo seq_hash tbb_hash parallel_hashmap"
 
@@ -51,23 +52,6 @@ rounds=1
 
 echo -e "\nbigatomic array geomean over schemes and sizes, with and without oversubscription\n" >> ${filename}
 
-
-application=bench_hash_array
-for p in ${some_threads}
-do
-    str="\n${application} varying block size, p = ${p}\n" 
-    echo -e ${str}
-    echo -e ${str} >> ${filename}
-    for block_size in ${some_block_sizes}
-    do
-        for scheme in ${llsc_schemes} ${cas_schemes}
-        do
-            ${head} ./${application}_${block_size}_${scheme} -n ${default_size} -u ${default_update} -z ${default_zipfian} -r ${rounds} -p ${p} >> ${filename}
-            echo "" >> ${filename}
-        done
-    done
-done
-
 for application in bench_hash_array_${default_block_size} bench_parlay_hash
 do
     for p in ${some_threads}
@@ -75,7 +59,7 @@ do
         str="\n${application} varying size\n" 
         echo -e ${str}
         echo -e ${str} >> ${filename}
-        for scheme in ${llsc_schemes} ${cas_schemes}
+        for scheme in ${all_schemes}
         do
             ${head} ./${application}_${scheme} -n ${all_sizes} -u ${default_update} -z ${default_zipfian} -r ${rounds} -p ${p} >> ${filename}
             echo "" >> ${filename}
@@ -84,7 +68,7 @@ do
         str="\n${application} varying updates\n"
         echo -e ${str}
         echo -e ${str} >> ${filename}
-        for scheme in ${llsc_schemes} 
+        for scheme in ${all_schemes} 
         do
             ${head} ./${application}_${scheme} -n ${default_size} -u ${all_updates} -z ${default_zipfian} -r ${rounds} -p ${p} >> ${filename}
             echo "" >> ${filename}
@@ -93,7 +77,7 @@ do
         str="\n${application} varying zipfians\n"
         echo -e ${str}
         echo -e ${str} >> ${filename}
-        for scheme in ${llsc_schemes}
+        for scheme in ${all_schemes}
         do
             ${head} ./${application}_${scheme} -n ${default_size} -u ${default_update} -z ${all_zipfians} -r ${rounds} -p ${p}>> ${filename}
             echo "" >> ${filename}
@@ -103,7 +87,7 @@ do
     str="\n${application} varying threads\n"
     echo -e ${str}
     echo -e ${str} >> ${filename}
-    for scheme in ${llsc_schemes}
+    for scheme in ${all_schemes}
     do
         ${head} ./${application}_${scheme} -n ${default_size} -u 20 -z ${default_zipfian} -p ${threads} -r ${rounds} >> ${filename}
         echo "" >> ${filename}
