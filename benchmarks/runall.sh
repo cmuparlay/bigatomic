@@ -87,34 +87,52 @@ do
     done
 done
 
-for application in bench_hash_array_${default_block_size} bench_parlay_hash # bench_hash_list bench_leaf_tree
+application=bench_hash_array
+for p in ${some_threads}
 do
-    str="\n${application} varying size\n" 
-    echo -e ${str}
-    echo -e ${str} >> ${filename}
-    for scheme in ${llsc_schemes}
+    str="\n${application} varying block size\n" 
+    for block_size in ${some_block_sizes}
     do
-        echo "./${application}_${scheme} -n ${all_sizes} -u ${default_update} -z ${default_zipfian} -r ${rounds}"
-        ${head} ./${application}_${scheme} -n ${all_sizes} -u ${default_update} -z ${default_zipfian} -r ${rounds} >> ${filename}
-        echo "" >> ${filename}
+        echo -e ${str}
+        echo -e ${str} >> ${filename}
+        for scheme in ${llsc_schemes} ${cas_schemes}
+        do
+            ${head} ./${application}_${block_size}_${scheme} -n ${default_size} -u ${default_update} -z ${default_zipfian} -r ${rounds} -p ${p} >> ${filename}
+            echo "" >> ${filename}
+        done
     done
+done
 
-    str="\n${application} varying updates\n"
-    echo -e ${str}
-    echo -e ${str} >> ${filename}
-    for scheme in ${llsc_schemes} 
+for application in bench_hash_array_${default_block_size} bench_parlay_hash
+do
+    for p in ${some_threads}
     do
-        ${head} ./${application}_${scheme} -n ${default_size} -u ${all_updates} -z ${default_zipfian} -r ${rounds} >> ${filename}
-        echo "" >> ${filename}
-    done
+        str="\n${application} varying size\n" 
+        echo -e ${str}
+        echo -e ${str} >> ${filename}
+        for scheme in ${llsc_schemes} ${cas_schemes}
+        do
+            ${head} ./${application}_${scheme} -n ${all_sizes} -u ${default_update} -z ${default_zipfian} -r ${rounds} -p ${p} >> ${filename}
+            echo "" >> ${filename}
+        done
 
-    str="\n${application} varying zipfians\n"
-    echo -e ${str}
-    echo -e ${str} >> ${filename}
-    for scheme in ${llsc_schemes}
-    do
-        ${head} ./${application}_${scheme} -n ${default_size} -u ${default_update} -z ${all_zipfians} -r ${rounds} >> ${filename}
-        echo "" >> ${filename}
+        str="\n${application} varying updates\n"
+        echo -e ${str}
+        echo -e ${str} >> ${filename}
+        for scheme in ${llsc_schemes} 
+        do
+            ${head} ./${application}_${scheme} -n ${default_size} -u ${all_updates} -z ${default_zipfian} -r ${rounds} -p ${p} >> ${filename}
+            echo "" >> ${filename}
+        done
+
+        str="\n${application} varying zipfians\n"
+        echo -e ${str}
+        echo -e ${str} >> ${filename}
+        for scheme in ${llsc_schemes}
+        do
+            ${head} ./${application}_${scheme} -n ${default_size} -u ${default_update} -z ${all_zipfians} -r ${rounds} -p ${p}>> ${filename}
+            echo "" >> ${filename}
+        done
     done
 
     str="\n${application} varying threads\n"
