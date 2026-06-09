@@ -24,6 +24,7 @@ head="numactl -i all"
 
 llsc_schemes="seqlock wf_indirect wf_daniel lf_llsc"
 cas_schemes="simplock std"
+all_schemes="${llsc_schemes} ${cas_schemes}"
 
 other_hash="folly_hash folly_sharded libcuckoo seq_hash tbb_hash parallel_hashmap"
 
@@ -141,6 +142,19 @@ do
     for scheme in ${all_schemes}
     do
         ${head} ./${application}_${scheme} -n ${default_size} -u 5,20 -z ${default_zipfian} -p ${all_threads} -r ${rounds} >> ${filename}
+        echo "" >> ${filename}
+    done
+done
+
+
+str="\n$hash_array varying k\n"
+echo -e ${str}
+echo -e ${str} >> ${filename}
+for scheme in ${all_schemes}
+do
+    for k in ${all_block_sizes}
+    do
+        ${head} ./bench_hash_array_${k}_${scheme} -n ${default_size} -u ${default_update} -z ${default_zipfian} -r ${rounds} >> ${filename}
         echo "" >> ${filename}
     done
 done
