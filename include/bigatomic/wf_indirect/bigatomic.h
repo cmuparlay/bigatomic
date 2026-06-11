@@ -18,31 +18,61 @@
 #include <parlay/sequence.h>
 #include <parlay/portability.h>
 
-#include <common/hazard.h>
+#include <common/hazard_ptr.h>
 
 namespace parlay {
 
 template<typename V, class KeyEqual = std::equal_to<V>>
 struct big_atomic {
 
-  std::atomic<V*> ptr;
+private:
 
-  big_atomic(const V& v) : ptr(hazard::New<V>(v)) {}
-  big_atomic() : ptr(hazard::New<V>(V{})) {}
-  ~big_atomic() { hazard::Delete(ptr.load()); }
+  struct backup {
+    explicit backup(const V& value_) : value(value_) { }
+    V value;
+    backup* next_;    // Intrusive link for hazard pointers
+    backup* get_next() { return next_; }
+    void set_next(backup* next) { next_ = next; }
+    void destroy() {  allocator::destroy(this); }
+  };
 
+  using allocator = type_allocator<backup>;
+  std::atomic<backup*> ptr;
+
+  PARLAY_INLINE
+  static backup* load_protected(const std::atomic<backup*>& src) {
+    return get_hazard_list<backup>().protect(src); }
+
+  PARLAY_INLINE
+  static void retire(backup* p) {
+    if (p) { get_hazard_list<backup>().retire(p); } }
+
+  PARLAY_INLINE
+  static void Delete(backup* p) {
+    allocator::destroy(p);  }
+
+  PARLAY_INLINE
+  static backup* new_backup(V v) {
+    return allocator::create(v); }
+
+public:
+  using tag = backup*;
+
+  big_atomic(const V& v) : ptr(new_backup(v)) {
+    allocator::init();}
+  big_atomic() : ptr(new_backup(V{})) {
+    allocator::init();}
+  ~big_atomic() { allocator::destroy(ptr.load()); }
   
-  using tag = V*;
-
   PARLAY_INLINE void store_sequential(const V& v) {
     auto old_v = ptr.load();
-    if (old_v != nullptr) hazard::Retire(old_v);
-    ptr = hazard::New<V>(v); }
+    if (old_v != nullptr) retire(old_v);
+    ptr = new_backup(v); }
 
   PARLAY_INLINE std::pair<V,tag> ll() {
     __builtin_prefetch(this);
-    auto old_v = hazard::load_protected(ptr, 0);
-    return std::pair<V,tag>(*old_v, old_v);
+    auto old_v = load_protected(ptr);
+    return std::pair<V,tag>(old_v->value, old_v);
   }
 
   PARLAY_INLINE bool lv(tag tg) {
@@ -52,12 +82,12 @@ struct big_atomic {
   PARLAY_INLINE bool sc(tag expected_tag, const V& v) {
       auto old_v = ptr.load();
       if (old_v != expected_tag) return false;
-      auto new_v = hazard::New<V>(v);
+      auto new_v = new_backup(v);
       if (ptr.compare_exchange_strong(old_v, new_v)) {
-        hazard::Retire(old_v);
+        retire(old_v);
         return true;
       }
-      hazard::Delete(new_v);
+      Delete(new_v);
       return false;
   }
 

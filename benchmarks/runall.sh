@@ -22,7 +22,7 @@ echo "MaxPerfPct" `cat /sys/devices/system/cpu/intel_pstate/max_perf_pct` >> ${f
 
 head="numactl -i all"
 
-llsc_schemes="seqlock wf_indirect wf_daniel lf_llsc"
+llsc_schemes="seqlock wf_indirect wf_direct lf_lowmem"
 cas_schemes="simplock std"
 all_schemes="${llsc_schemes} ${cas_schemes}"
 
