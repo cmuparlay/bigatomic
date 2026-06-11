@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <atomic>
+#include <chrono>
 #include <cmath>
 #include <functional>
 #include <iterator>
@@ -71,6 +72,12 @@ struct parlay_hash {
 
   // a reference to the scheduler (null if not to be cleared)
   parlay::scheduler_type* sched_ref;
+
+  template <typename Time>
+  void spinDelay(Time duration) {
+    auto start = std::chrono::high_resolution_clock::now();
+    while (std::chrono::high_resolution_clock::now() - start < duration) {}
+  }
 
   // *********************************************
   // The state structure for each bucket
@@ -505,7 +512,7 @@ struct parlay_hash {
       } else {
 	// If another thread is working on the block, wait until Done
 	while (t->block_status[block_num] == Working) {
-	  for (volatile int i=0; i < 100; i++);
+          spinDelay(std::chrono::nanoseconds(100));
 	}
       }
     }
@@ -716,7 +723,7 @@ struct parlay_hash {
 	retire_link(new_head);
       }
       // delay before trying again, only marginally helps
-      for (volatile int i=0; i < delay; i++);
+      spinDelay(std::chrono::nanoseconds(delay));
       delay = std::min(2*delay, 5000); // 1000-10000 are about equally good
     }
   }
@@ -780,7 +787,7 @@ struct parlay_hash {
 	  }	    
 	}
 	// delay before trying again, only marginally helps
-	for (volatile int i=0; i < delay; i++);
+        spinDelay(std::chrono::nanoseconds(delay));
 	delay = std::min(2*delay, 5000); // 1000-10000 are about equally good
       }
     });
@@ -851,7 +858,7 @@ struct parlay_hash {
           } // if sc failed, will need to try again
           retire_list_n(new_list, cnt - 1); // failed, retire new list
 	}
-	for (volatile int i=0; i < delay; i++);
+        spinDelay(std::chrono::nanoseconds(delay));
 	delay = std::min(2*delay, 5000); // 1000-10000 are about equally good
       }
     });

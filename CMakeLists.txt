@@ -27,7 +27,7 @@ set(PARLAY_BIGATOMIC_INCLUDE_DIR "${PARLAY_BIGATOMIC_SOURCE_DIR}/include")
 
 add_library(bigatomic INTERFACE)
 target_include_directories(bigatomic INTERFACE ${PARLAY_BIGATOMIC_INCLUDE_DIR})
-target_compile_features(bigatomic INTERFACE cxx_std_17)
+target_compile_features(bigatomic INTERFACE cxx_std_20)
 target_compile_options(bigatomic INTERFACE -g -fno-omit-frame-pointer)
 
 # Find threading library

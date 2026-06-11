@@ -19,6 +19,7 @@
 #include <parlay/sequence.h>
 
 #include <common/lock.h>
+#include <common/utility.h>
 
 namespace parlay {
 
@@ -47,7 +48,7 @@ struct big_atomic {
       std::atomic_thread_fence(std::memory_order_acquire);
       if ((ver & 1) == 0 && version.load(std::memory_order_relaxed) == ver) [[likely]]
 	return std::pair(v,ver);
-      for (volatile int i = 0; i < delay; i++);
+      spinDelay(std::chrono::nanoseconds(delay)); 
       delay = std::min(2 * delay, 5000);
     }
   }

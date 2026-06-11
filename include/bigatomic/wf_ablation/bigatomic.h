@@ -153,7 +153,7 @@ struct big_atomic {
     } else {
       p = to_ptr(expected_tag);
       ver = seqnum.load(std::memory_order_acquire);
-      for (volatile int i = 0; i < 500; i++);
+      spinDelay(std::chrono::nanoseconds(1000)); 
     }
 
     auto ptr = new_backup(desired);

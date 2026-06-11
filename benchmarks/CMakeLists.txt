@@ -62,20 +62,20 @@ endforeach()
 # message(${SET_BENCH_DIR})
 
 # A hack to get a list of include directories
-execute_process(COMMAND find ${SET_BENCH_DIR}/common -type d OUTPUT_VARIABLE INCL_STRING)
+# execute_process(COMMAND find ${SET_BENCH_DIR}/common -type d OUTPUT_VARIABLE INCL_STRING)
 
-string(REPLACE "\n" ";" INCL_LIST ${INCL_STRING})
-set(DEBRA_OPTIONS -DUSE_TREE_STATS) # tree stats used for size
+# string(REPLACE "\n" ";" INCL_LIST ${INCL_STRING})
+# set(DEBRA_OPTIONS -DUSE_TREE_STATS) # tree stats used for size
 
-foreach(bench ${SET_BENCH})
-  add_executable(${bench} ${BENCHMARK_SOURCES})
-  target_link_libraries(${bench} PRIVATE atomic bigatomic)
-  target_compile_definitions(${bench} PRIVATE "Ordered")
-  target_include_directories(${bench} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/setbench")
-  target_include_directories(${bench} PRIVATE ${SET_BENCH_DIR}/ds/${bench})
-  target_include_directories(${bench} PRIVATE ${INCL_LIST})
-  target_compile_options(${bench} PRIVATE -fpermissive ${DEBRA_OPTIONS})
-endforeach()
+# foreach(bench ${SET_BENCH})
+#   add_executable(${bench} ${BENCHMARK_SOURCES})
+#   target_link_libraries(${bench} PRIVATE atomic bigatomic)
+#   target_compile_definitions(${bench} PRIVATE "Ordered")
+#   target_include_directories(${bench} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/setbench")
+#   target_include_directories(${bench} PRIVATE ${SET_BENCH_DIR}/ds/${bench})
+#   target_include_directories(${bench} PRIVATE ${INCL_LIST})
+#   target_compile_options(${bench} PRIVATE -fpermissive ${DEBRA_OPTIONS})
+# endforeach()
 
 function(other_bench NAME LINKS OPTIONS)
   set(NAME ${NAME})
