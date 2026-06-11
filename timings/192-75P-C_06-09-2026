@@ -1,0 +1,161 @@
+Date: 06-09-2026
+Model name: Intel(R) Xeon(R) 6975P-C
+Git branch: 658344f
+Compiler: g++ (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0
+OS: Ubuntu 22.04.2 LTS
+Hugepage: always [madvise] never
+NoTurbo: 1
+MaxPerfPct 100
+
+hash_array varying k
+
+./bench_hash_array_1_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1358,mops=2991
+
+./bench_hash_array_1_seqlock -p 192 -n 10000000 -u 5 -z .9 -- geomean=2991.59
+
+
+./bench_hash_array_2_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1388,mops=2990
+
+./bench_hash_array_2_seqlock -p 192 -n 10000000 -u 5 -z .9 -- geomean=2990.4
+
+
+./bench_hash_array_4_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=1257,mops=3009
+
+./bench_hash_array_4_seqlock -p 192 -n 10000000 -u 5 -z .9 -- geomean=3009.72
+
+
+./bench_hash_array_8_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=746,mops=1337
+
+./bench_hash_array_8_seqlock -p 192 -n 10000000 -u 5 -z .9 -- geomean=1337.82
+
+
+./bench_hash_array_16_seqlock,5%update,n=10000000,p=192,z=0.9,insert_mops=458,mops=1137
+
+./bench_hash_array_16_seqlock -p 192 -n 10000000 -u 5 -z .9 -- geomean=1137.18
+
+
+./bench_hash_array_1_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=349,mops=2064
+
+./bench_hash_array_1_wf_indirect -p 192 -n 10000000 -u 5 -z .9 -- geomean=2064.93
+
+
+./bench_hash_array_2_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=346,mops=1875
+
+./bench_hash_array_2_wf_indirect -p 192 -n 10000000 -u 5 -z .9 -- geomean=1875.5
+
+
+./bench_hash_array_4_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=308,mops=1690
+
+./bench_hash_array_4_wf_indirect -p 192 -n 10000000 -u 5 -z .9 -- geomean=1690.32
+
+
+./bench_hash_array_8_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=251,mops=1584
+
+./bench_hash_array_8_wf_indirect -p 192 -n 10000000 -u 5 -z .9 -- geomean=1584.76
+
+
+./bench_hash_array_16_wf_indirect,5%update,n=10000000,p=192,z=0.9,insert_mops=211,mops=1408
+
+./bench_hash_array_16_wf_indirect -p 192 -n 10000000 -u 5 -z .9 -- geomean=1408.71
+
+
+./bench_hash_array_1_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=478,mops=2863
+
+./bench_hash_array_1_wf_daniel -p 192 -n 10000000 -u 5 -z .9 -- geomean=2863.01
+
+
+./bench_hash_array_2_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=454,mops=2735
+
+./bench_hash_array_2_wf_daniel -p 192 -n 10000000 -u 5 -z .9 -- geomean=2735.36
+
+
+./bench_hash_array_4_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=427,mops=2669
+
+./bench_hash_array_4_wf_daniel -p 192 -n 10000000 -u 5 -z .9 -- geomean=2669.34
+
+
+./bench_hash_array_8_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=294,mops=2012
+
+./bench_hash_array_8_wf_daniel -p 192 -n 10000000 -u 5 -z .9 -- geomean=2012.21
+
+
+./bench_hash_array_16_wf_daniel,5%update,n=10000000,p=192,z=0.9,insert_mops=244,mops=1462
+
+./bench_hash_array_16_wf_daniel -p 192 -n 10000000 -u 5 -z .9 -- geomean=1462.62
+
+
+./bench_hash_array_1_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=689,mops=3124
+
+./bench_hash_array_1_lf_llsc -p 192 -n 10000000 -u 5 -z .9 -- geomean=3124.24
+
+
+./bench_hash_array_2_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=674,mops=3078
+
+./bench_hash_array_2_lf_llsc -p 192 -n 10000000 -u 5 -z .9 -- geomean=3078.79
+
+
+./bench_hash_array_4_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=622,mops=2769
+
+./bench_hash_array_4_lf_llsc -p 192 -n 10000000 -u 5 -z .9 -- geomean=2769.75
+
+
+./bench_hash_array_8_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=456,mops=2255
+
+./bench_hash_array_8_lf_llsc -p 192 -n 10000000 -u 5 -z .9 -- geomean=2255.08
+
+
+./bench_hash_array_16_lf_llsc,5%update,n=10000000,p=192,z=0.9,insert_mops=362,mops=1618
+
+./bench_hash_array_16_lf_llsc -p 192 -n 10000000 -u 5 -z .9 -- geomean=1618.54
+
+
+./bench_hash_array_1_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=819,mops=104
+
+./bench_hash_array_1_simplock -p 192 -n 10000000 -u 5 -z .9 -- geomean=104.016
+
+
+./bench_hash_array_2_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=750,mops=109
+
+./bench_hash_array_2_simplock -p 192 -n 10000000 -u 5 -z .9 -- geomean=109.902
+
+
+./bench_hash_array_4_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=570,mops=94
+
+./bench_hash_array_4_simplock -p 192 -n 10000000 -u 5 -z .9 -- geomean=94.1104
+
+
+./bench_hash_array_8_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=503,mops=103
+
+./bench_hash_array_8_simplock -p 192 -n 10000000 -u 5 -z .9 -- geomean=103.435
+
+
+./bench_hash_array_16_simplock,5%update,n=10000000,p=192,z=0.9,insert_mops=426,mops=88
+
+./bench_hash_array_16_simplock -p 192 -n 10000000 -u 5 -z .9 -- geomean=88.7048
+
+
+./bench_hash_array_1_std,5%update,n=10000000,p=192,z=0.9,insert_mops=1626,mops=3528
+
+./bench_hash_array_1_std -p 192 -n 10000000 -u 5 -z .9 -- geomean=3528.3
+
+
+./bench_hash_array_2_std,5%update,n=10000000,p=192,z=0.9,insert_mops=1398,mops=3205
+
+./bench_hash_array_2_std -p 192 -n 10000000 -u 5 -z .9 -- geomean=3205.83
+
+
+./bench_hash_array_4_std,5%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=46
+
+./bench_hash_array_4_std -p 192 -n 10000000 -u 5 -z .9 -- geomean=46.5718
+
+
+./bench_hash_array_8_std,5%update,n=10000000,p=192,z=0.9,insert_mops=18,mops=46
+
+./bench_hash_array_8_std -p 192 -n 10000000 -u 5 -z .9 -- geomean=46.9668
+
+
+./bench_hash_array_16_std,5%update,n=10000000,p=192,z=0.9,insert_mops=2,mops=6
+
+./bench_hash_array_16_std -p 192 -n 10000000 -u 5 -z .9 -- geomean=6.5558
+
+

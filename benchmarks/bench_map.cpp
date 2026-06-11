@@ -63,38 +63,21 @@ double geometric_mean(const parlay::sequence<double>& vals) {
 
 std::tuple<double, double> test_loop(
     commandLine& C,
-    long n,                 // num entries in map
+    const parlay::sequence<K>& a,  // set of keys (unique)
+    const parlay::sequence<K>& b,  // distribution across keys 
     long p,                 // num threads
     long rounds,            // num trials
-    double zipfian_param,   // zipfian parameter [0:1) (0 is uniform, .99 is high skew)
     int update_percent,     // percent of operations that are either insert or delete (1/2 each)
+    double zipfian_param,   // zipfian parameter [0:1) (0 is uniform, .99 is high skew)
     double trial_time,      // time to run one trial
     double latency_cutoff,  // cutoff to measure percent below
     bool verbose,           // show some more info
-    bool warmup,            // run one warmup round
-    bool grow) {            // start with table of size 1
+    bool warmup) {
   // total samples used
-  long m = 10 * n + 1000 * p;
-
-  // generate 2*n unique numbers in random order
-  // get rid of top bit since growt seems to fail if used (must use it itself)
-  // auto x = parlay::delayed_tabulate(1.2* 2 * n,[&] (size_t i) {
-  //		 return (K) (parlay::hash64(i) >> 1) ;});
-  // auto y = parlay::random_shuffle(parlay::remove_duplicates(x));
-  // auto a = parlay::tabulate(2 * n, [&] (size_t i) {return y[i];});
-  auto a = parlay::random_shuffle(parlay::tabulate(2 * n, [](K i) { return i; }));
-
-  // take m numbers from a in uniform or zipfian distribution
-  parlay::sequence<K> b;
-  if (zipfian_param != 0.0) {
-    Zipfian z(2 * n, zipfian_param);
-    b = parlay::tabulate(m, [&](int i) { return a[z(i)]; });
-    a = parlay::random_shuffle(a);
-  } else {
-    b = parlay::tabulate(m, [&](int i) { return a[parlay::hash64(i) % (2 * n)]; });
-  }
 
   enum op_type : char { Find, Insert, Remove };
+  size_t n = a.size()/2;
+  size_t m = b.size();
 
   // generate the operation types with update_percent updates
   // half the updates will be inserts and half removes
@@ -118,7 +101,7 @@ std::tuple<double, double> test_loop(
 
   for (int i = 0; i < rounds + warmup; i++) {
     {
-      map_type map = grow ? map_type(1) : map_type(n);
+      map_type map = map_type(n);
       size_t np = n / p;
       size_t mp = m / p;
 
@@ -279,43 +262,84 @@ std::tuple<double, double> test_loop(
   return std::tuple{geometric_mean(insert_times), geometric_mean(bench_times)};
 }
 
+parlay::sequence<parlay::chars> comma_separated_arg(commandLine P, std::string option,
+                                                    std::string default_str) {
+    char* str = P.getOptionValue(option);
+    if (str != nullptr) 
+      return parlay::tokens(std::string(str), [] (char x) {return x == ',';});
+    else return parlay::sequence<parlay::chars>{parlay::to_sequence(default_str)};
+}
+
 int main(int argc, char* argv[]) {
   commandLine P(argc, argv,
                 "[-n <size>] [-r <rounds>] [-p <procs>] [-z <zipfian_param>] [-u <update percent>] [-verbose]");
 
-  long n = P.getOptionIntValue("-n", 0);
-  int p = P.getOptionIntValue("-p", parlay::num_workers());
   int rounds = P.getOptionIntValue("-r", 2);
-  double zipfian_param = P.getOptionDoubleValue("-z", -1.0);
-  int update_percent = P.getOptionIntValue("-u", -1);
   double trial_time = P.getOptionDoubleValue("-t", 1.0);
   double latency_cuttoff = P.getOptionDoubleValue("-latency", 10.0);  // in miliseconds
   bool verbose = P.getOption("-verbose");
   bool warmup = !P.getOption("-nowarmup");
   bool print_means = !P.getOption("-nomeans");
-  bool grow = P.getOption("-grow");
 
-  std::vector<long> sizes{100000, 10000000};
-  std::vector<int> percents{5, 50};
-  std::vector<double> zipfians{0, .99};
-  if (n != 0) sizes = std::vector<long>{n};
-  if (update_percent != -1) percents = std::vector<int>{update_percent};
-  if (zipfian_param != -1.0) zipfians = std::vector<double>{zipfian_param};
+  auto sizes_str = comma_separated_arg(P, "-n", "100000");
+  auto sizes = parlay::map(sizes_str, parlay::chars_to_long);
+  auto zipfians_str = comma_separated_arg(P, "-z", "0.0");
+  auto zipfians = parlay::map(zipfians_str, parlay::chars_to_float);
+  auto percents_str = comma_separated_arg(P, "-u", "5");
+  auto percents = parlay::map(percents_str, parlay::chars_to_int);
+  auto threads_str = comma_separated_arg(P, "-p", std::to_string(parlay::num_workers()));
+  auto threads = parlay::map(threads_str, parlay::chars_to_int);
 
   parlay::sequence<std::tuple<double, double>> results;
 
-  for (auto zipfian_param : zipfians)
-    for (auto update_percent : percents) {
-      for (auto n : sizes) {
-        results.push_back(test_loop(P, n, p, rounds, zipfian_param, update_percent, trial_time, latency_cuttoff,
-                                    verbose, warmup, grow));
+  for (auto zipfian_param : zipfians) {
+    for (auto n : sizes) {
+      long m = 10 * n + 1000000;
+      parlay::sequence<K> a;
+      parlay::sequence<K> b;
+        
+      a = parlay::random_shuffle(parlay::tabulate(2 * n, [](K i) { return i; }));
+
+      // take m numbers from a in uniform or zipfian distribution
+      if (zipfian_param != 0.0) {
+        Zipfian z(2 * n, zipfian_param);
+        b = parlay::tabulate(m, [&](int i) { return a[z(i)]; });
+        a = parlay::random_shuffle(a);
+      } else {
+        b = parlay::tabulate(m, [&](int i) { return a[parlay::hash64(i) % (2 * n)]; });
+      } 
+                                                                          
+      for (auto p : threads) {
+        for (auto update_percent : percents) {
+          parlay::execute_with_scheduler(p, [&] {
+            results.push_back(test_loop(P, a, b, p, rounds, update_percent,
+                                        zipfian_param, trial_time, latency_cuttoff,
+                                        verbose, warmup)); });
+        }
+        if (print_means) std::cout << std::endl;
       }
-      if (print_means) std::cout << std::endl;
     }
+  }
   auto insert_times = parlay::map(results, [](auto x) { return std::get<0>(x); });
   auto bench_times = parlay::map(results, [](auto x) { return std::get<1>(x); });
+  auto to_str = [&] (auto& seq) {
+                  auto n = seq.size();
+                  auto separator = to_chars(std::string(","));
+                  return flatten(tabulate(2 * n - 1, [&](size_t i) {
+                                   return (i & 1) ? separator : seq[i/2];}));
+                };
+  
   if (print_means) {
-    std::cout << "benchmark geometric mean of mops = " << geometric_mean(bench_times) << std::endl;
-    std::cout << "initial insert geometric mean of mops = " << geometric_mean(insert_times) << std::endl;
+    std::cout << P.commandName() 
+              << " -p " << to_str(threads_str)
+              << " -n " << to_str(sizes_str)
+              << " -u " << to_str(percents_str) 
+              << " -z " << to_str(zipfians_str)
+              << " -- geomean=" << geometric_mean(bench_times)
+              << std::endl;
+    // std::cout << P.commandName()
+    //           << " initial insert geometric mean of mops = "
+    //           << geometric_mean(insert_times) << std::endl;
+     std::cout << std::endl;
   }
 }

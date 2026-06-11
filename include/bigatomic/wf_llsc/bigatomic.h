@@ -51,12 +51,12 @@ struct big_atomic {
  public:
 
   using value_type = T;
-  using version_type = long;
+  using version_type = int64_t;
 
   using allocator = type_allocator<indirect_holder>;
 
   big_atomic() : indirect_value(allocator::create(T{})),
-                 version(std::numeric_limits<long>::min()), fast_value{} {
+                 version(std::numeric_limits<int64_t>::min()), fast_value{} {
     static_assert(std::is_default_constructible_v<T>);
 
     // force correct static initialization order
@@ -66,7 +66,7 @@ struct big_atomic {
     new (static_cast<void*>(&fast_value)) T{};
   }
 
-  /* implicit */ big_atomic(const T& t) : version(std::numeric_limits<long>::min()),       // NOLINT(google-explicit-constructor)
+  /* implicit */ big_atomic(const T& t) : version(std::numeric_limits<int64_t>::min()),       // NOLINT(google-explicit-constructor)
       indirect_value(allocator::create(t)), fast_value{} {
     // force correct static initialization order
     allocator::init();
@@ -77,7 +77,7 @@ struct big_atomic {
 
   // can be either a version_type or an indirect_holder*
   // if a version type then negative
-  using tag = long; 
+  using tag = int64_t; 
   
   void store_sequential(const T& desired) {
     atomic_store_per_byte_memcpy(&fast_value, &desired, sizeof(T)); }
@@ -93,7 +93,7 @@ struct big_atomic {
       return std::pair(bits_to_object<T>(buffer), ver);
     // reload with protection
     p = hazptr_holder{}.protect(indirect_value);
-    return std::pair<T,tag>(unmark_ptr(p)->value, (long) p);
+    return std::pair<T,tag>(unmark_ptr(p)->value, (int64_t) p);
   }
 
   PARLAY_INLINE bool lv(tag expected_tag) {

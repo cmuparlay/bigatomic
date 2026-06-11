@@ -1,0 +1,36 @@
+bigatomic array geomean over schemes and sizes, with and without oversubscription
+
+./bench_hash_array_4_wf_ablation,5%update,n=10000,p=192,z=0,insert_mops=33,mops=3264
+./bench_hash_array_4_wf_ablation,50%update,n=10000,p=192,z=0,insert_mops=15,mops=585
+
+./bench_hash_array_4_wf_ablation,5%update,n=1000000,p=192,z=0,insert_mops=388,mops=3331
+./bench_hash_array_4_wf_ablation,50%update,n=1000000,p=192,z=0,insert_mops=389,mops=1258
+
+./bench_hash_array_4_wf_ablation,5%update,n=100000000,p=192,z=0,insert_mops=365,mops=1547
+./bench_hash_array_4_wf_ablation,50%update,n=100000000,p=192,z=0,insert_mops=363,mops=969
+
+./bench_hash_array_4_wf_ablation,5%update,n=10000,p=192,z=0.99,insert_mops=19,mops=976
+./bench_hash_array_4_wf_ablation,50%update,n=10000,p=192,z=0.99,insert_mops=18,mops=283
+warning: update success ratio = 0.392173
+
+./bench_hash_array_4_wf_ablation,5%update,n=1000000,p=192,z=0.99,insert_mops=417,mops=1567
+./bench_hash_array_4_wf_ablation,50%update,n=1000000,p=192,z=0.99,insert_mops=426,mops=550
+
+./bench_hash_array_4_wf_ablation,5%update,n=100000000,p=192,z=0.99,insert_mops=364,mops=1644
+./bench_hash_array_4_wf_ablation,50%update,n=100000000,p=192,z=0.99,insert_mops=363,mops=716
+
+./bench_hash_array_4_wf_ablation -p 192 -n 10000,1000000,100000000 -u 5,50 -z 0.0,0.99 -- geomean=1106.81
+
+
+bench_hash_array_4_wf_ablation varying updates
+
+./bench_hash_array_4_wf_ablation,0%update,n=10000000,p=192,z=0.9,insert_mops=391,mops=3378
+./bench_hash_array_4_wf_ablation,5%update,n=10000000,p=192,z=0.9,insert_mops=387,mops=2203
+./bench_hash_array_4_wf_ablation,10%update,n=10000000,p=192,z=0.9,insert_mops=387,mops=1820
+./bench_hash_array_4_wf_ablation,20%update,n=10000000,p=192,z=0.9,insert_mops=386,mops=1420
+./bench_hash_array_4_wf_ablation,50%update,n=10000000,p=192,z=0.9,insert_mops=389,mops=978
+./bench_hash_array_4_wf_ablation,100%update,n=10000000,p=192,z=0.9,insert_mops=388,mops=691
+
+./bench_hash_array_4_wf_ablation -p 192 -n 10000000 -u 0,5,10,20,50,100 -z .9 -- geomean=1534.1
+
+

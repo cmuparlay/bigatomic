@@ -66,7 +66,7 @@ class NodeManager {
   // The minimum number of backup nodes to pre-allocate for each thread.  If a thread ever manages to run out, it will
   // allocate another set of this many on top of whatever it already had.  This can only happen if the user spawns
   // more threads, so there should be no allocations after the warmup run if the number of threads stays the same.
-  constexpr static std::size_t slab_size = 1024;
+  constexpr static std::size_t slab_size = 4096;
 
   struct NodeMemorySlab {
     std::array<node_type, slab_size> nodes;
@@ -157,6 +157,7 @@ public:
 
   [[nodiscard]] unsigned my_thread_id() const noexcept { return local_data.my_slot->thread_id; }
 
+  PARLAY_INLINE
   marked_node_ptr_type protect_node(const std::atomic<marked_node_ptr_type>& src) noexcept {
     auto& announcement_slot = local_data.my_slot->protected_node;
     auto result = src.load(std::memory_order_acquire);
@@ -175,11 +176,6 @@ public:
     }
   }
 
-  void release() {
-    auto& slot = *local_data.my_slot;
-    slot.protected_node.store(nullptr, std::memory_order_relaxed);
-  }
-
   PARLAY_INLINE node_type* get_free_node() {
     auto& slot = *local_data.my_slot;
     if (slot.free_nodes.empty()) [[unlikely]] {
@@ -190,6 +186,7 @@ public:
     return node;
   }
 
+  PARLAY_INLINE
   void free_node(node_type* node) {
     auto& slot = *local_data.my_slot;
     slot.free_nodes.push(node);
@@ -467,8 +464,6 @@ private:
   }
 
   static void free_node(marked_node_ptr_type ptr) noexcept { node_manager().free_node(ptr.get_ptr()); }
-
-  static void release() noexcept { node_manager().release(); }
 
   marked_node_ptr_type protect_backup() noexcept { return node_manager().protect_node(backup_value); }
 

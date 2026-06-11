@@ -13,6 +13,7 @@
 
 #include <atomic>
 #include <functional>
+#include <limits>
 
 #include <parlay/primitives.h>
 #include <parlay/sequence.h>
@@ -27,34 +28,30 @@ struct big_atomic {
  private:
   using vtype = int64_t;
 
-  struct hold {
-    V val;
-    V get() { return val; }
-    hold(V v) : val(v) {}
-    hold() = default;
-  };
-
-  std::atomic<hold*> ptr;
+  std::atomic<V*> ptr;
   std::atomic<vtype> version;
   V cache;
 
   // a bit in the pointer is used to mark whether the cache is valid or not
-  static hold* mark_invalid(hold* ptr) { return (hold*)(((size_t)ptr) | 1ul); }
-  static hold* remove_mark(hold* ptr) { return (hold*)(((size_t)ptr) & ~1ul); }
-  static bool is_valid(hold* ptr) { return ((size_t)ptr & 1) == 0; }
+  PARLAY_INLINE
+  static V* mark_invalid(V* ptr) { return (V*)(((size_t)ptr) | 1ul); }
+    PARLAY_INLINE
+  static V* remove_mark(V* ptr) { return (V*)(((size_t)ptr) & ~1ul); }
+    PARLAY_INLINE
+  static bool is_valid(V* ptr) { return ((size_t)ptr & 1) == 0; }
 
-  bool try_install(hold* p_old, hold* p_new) {
-    hold* p_tmp = p_old;
+  bool try_install(V* p_old, V* p_new) {
+    V* p_tmp = p_old;
     // try to swap in p_new for p_old
     if (p_old == ptr.load() && ptr.compare_exchange_strong(p_old, p_new)) return true;
     // if failed the first time, and this was because p_old was
     // validated (i.e. with the same value) then we need to try
     // again.
-    hold* x = ptr.load();
+    V* x = ptr.load();
     return (remove_mark(p_tmp) == x && ptr.compare_exchange_strong(x, p_new));
   }
 
-  void try_update_cache(V v, hold* p, vtype ver) {
+  void try_update_cache(V v, V* p, vtype ver) {
     // try to lock the cache
     if (!(ver & 1) && ver == version.load() && version.compare_exchange_strong(ver, ver + 1)) {
       // when locked load the cache
@@ -70,8 +67,8 @@ struct big_atomic {
   // try to update the atomic with new_v.  old_p is the current
   // pointer (consistent with the old value), and ver the current
   // version.
-  bool try_update(V new_v, hold* old_p, vtype ver) {
-    hold* new_p = mark_invalid(hazard::New<hold>(new_v));
+  bool try_update(V new_v, V* old_p, vtype ver) {
+    V* new_p = mark_invalid(hazard::protect(hazard::New<V>(new_v), 1));
     if (try_install(old_p, new_p)) {
       hazard::Retire(remove_mark(old_p));
       try_update_cache(new_v, new_p, ver);
@@ -83,35 +80,90 @@ struct big_atomic {
   }
 
  public:
-  big_atomic(const V& v) : ptr(hazard::New<hold>()), version(0), cache(v) {}
-  big_atomic() : ptr(hazard::New<hold>()), version(0) {}
-  ~big_atomic() { hazard::Retire(remove_mark(ptr.load())); }
+  big_atomic(const V& v) : ptr(hazard::New<V>()),
+                           version(std::numeric_limits<int64_t>::min()),
+                           cache(v) {}
+  big_atomic() : ptr(hazard::New<V>()),
+                 version(std::numeric_limits<int64_t>::min()) {}
+  ~big_atomic() { hazard::Delete(remove_mark(ptr.load())); }
 
-  V load() {
+  V load_() {
     vtype ver = version.load(std::memory_order_acquire);
     V v = cache;
-    hold* p = ptr.load();
+    V* p = ptr.load();
     std::atomic_thread_fence(std::memory_order_acquire);
     // check if value in the cache is valid
     if (is_valid(p) && version.load(std::memory_order_relaxed) == ver) return v;
-    return hazard::with_announced(&ptr, [&](hold* p) { return remove_mark(p)->get(); });
+    return *remove_mark(hazard::load_protected(ptr, 0));
   }
 
   void store(const V& new_v) { return try_update(new_v, ptr.load(), version.load()); }
 
-  bool cas(const V& expected_v, const V& new_v) {
+  bool cas_(const V& expected_v, const V& new_v) {
     vtype ver = version.load(std::memory_order_acquire);
     __builtin_prefetch(ptr.load());
     V old_v = cache;
-    return hazard::with_announced(&ptr, [&](hold* old_p) {
+    return hazard::with_protection(&ptr, 0, [&](V* old_p) {
       std::atomic_thread_fence(std::memory_order_acquire);
       // check if value in the cache is valid
-      if (!(is_valid(old_p) && version.load(std::memory_order_relaxed) == ver)) old_v = remove_mark(old_p)->get();
+      if (!(is_valid(old_p) && version.load(std::memory_order_relaxed) == ver))
+        old_v = *remove_mark(old_p);
       if (!(old_v == expected_v)) return false;
       if (expected_v == new_v) return true;
       return try_update(new_v, old_p, ver);
     });
   }
+
+  using tag = int64_t; 
+  
+  void store_sequential(const V& desired) {
+    cache = desired;
+  }
+
+  PARLAY_INLINE std::pair<V,tag> ll() {
+    vtype ver = version.load(std::memory_order_acquire);
+    V v = cache;
+    V* p = ptr.load();
+    std::atomic_thread_fence(std::memory_order_acquire);
+    // check if value in the cache is valid
+    if (is_valid(p) && version.load(std::memory_order_relaxed) == ver) [[likely]] 
+        return std::pair(v, ver);
+    p = hazard::load_protected(ptr, 0); 
+    return std::pair(*remove_mark(p), (int64_t) p);
+  }
+
+  PARLAY_INLINE bool lv(tag expected_tag) {
+    V* p = ptr.load();
+    if (expected_tag < 0) [[likely]] { // i.e. a version
+      auto ver = version.load(std::memory_order_acquire);
+      return (is_valid(p) && ver == expected_tag);
+    } else
+      return (p == (V*) expected_tag);
+  }
+
+  PARLAY_INLINE bool sc(tag expected_tag, const V& new_v) {
+    vtype ver;
+    V* p;
+    if (expected_tag < 0) [[likely]] { // i.e. a version
+      p = hazard::load_protected(ptr, 0);
+      ver = version.load(std::memory_order_acquire);
+      if (!is_valid(p) || ver != expected_tag) [[unlikely]] return false;
+    } else {
+      p = (V*) expected_tag;
+      ver = version.load(std::memory_order_acquire);
+    }
+    return try_update(new_v, p, ver);
+  }
+
+  PARLAY_INLINE V load() { return ll().first; }
+
+  PARLAY_INLINE bool cas(const V& expected, const V& desired) {
+    auto [current, tag] = ll();
+    if (!KeyEqual{}(current, expected)) return false;
+    if (KeyEqual{}(expected, desired)) return true;
+    return sc(tag, desired);
+  }
+  
 };
 
 }  // namespace parlay
