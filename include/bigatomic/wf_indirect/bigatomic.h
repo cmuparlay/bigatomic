@@ -33,41 +33,26 @@ private:
     backup* next_;    // Intrusive link for hazard pointers
     backup* get_next() { return next_; }
     void set_next(backup* next) { next_ = next; }
-    void destroy() {  allocator::destroy(this); }
+    void destroy() {  hazard::Delete(this); }
   };
 
-  using allocator = type_allocator<backup>;
   std::atomic<backup*> ptr;
 
   PARLAY_INLINE
   static backup* load_protected(const std::atomic<backup*>& src) {
-    return get_hazard_list<backup>().protect(src); }
-
-  PARLAY_INLINE
-  static void retire(backup* p) {
-    if (p) { get_hazard_list<backup>().retire(p); } }
-
-  PARLAY_INLINE
-  static void Delete(backup* p) {
-    allocator::destroy(p);  }
-
-  PARLAY_INLINE
-  static backup* new_backup(V v) {
-    return allocator::create(v); }
+    return hazard::get_hazard_list<backup>().protect(src); }
 
 public:
   using tag = backup*;
 
-  big_atomic(const V& v) : ptr(new_backup(v)) {
-    allocator::init();}
-  big_atomic() : ptr(new_backup(V{})) {
-    allocator::init();}
-  ~big_atomic() { allocator::destroy(ptr.load()); }
+  big_atomic(const V& v) : ptr(hazard::New<backup>(v)) {}
+  big_atomic() : ptr(hazard::New<backup>(V{})) {}
+  ~big_atomic() { hazard::Delete(ptr.load()); }
   
   PARLAY_INLINE void store_sequential(const V& v) {
     auto old_v = ptr.load();
-    if (old_v != nullptr) retire(old_v);
-    ptr = new_backup(v); }
+    if (old_v != nullptr) hazard::Retire(old_v);
+    ptr = hazard::New<backup>(v); }
 
   PARLAY_INLINE std::pair<V,tag> ll() {
     __builtin_prefetch(this);
@@ -82,12 +67,12 @@ public:
   PARLAY_INLINE bool sc(tag expected_tag, const V& v) {
       auto old_v = ptr.load();
       if (old_v != expected_tag) return false;
-      auto new_v = new_backup(v);
+      auto new_v = hazard::New<backup>(v);
       if (ptr.compare_exchange_strong(old_v, new_v)) {
-        retire(old_v);
+        hazard::Retire(old_v);
         return true;
       }
-      Delete(new_v);
+      hazard::Delete(new_v);
       return false;
   }
 

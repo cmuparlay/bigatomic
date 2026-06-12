@@ -5,7 +5,7 @@
 //  - Wait-free store
 //  - Wait-free CAS (with spurious failures in the presence of stores)
 //
-// Uses up to O(n + p^2) extra space.  Uses the Parlay allocator.
+// Uses up to O(n + p^2) extra space.
 //
 
 #pragma once
@@ -47,30 +47,18 @@ struct big_atomic {
     backup* next_;    // Intrusive link for hazard pointers
     backup* get_next() { return next_; }
     void set_next(backup* next) { next_ = next; }
-    void destroy() {  allocator::destroy(this); }
+    void destroy() {  hazard::Delete(this); }
   };
 
   static_assert(alignof(backup) >= 2, "Need a spare bit to mark pointers");
 
   PARLAY_INLINE
   static backup* load_protected(const std::atomic<backup*>& src) {
-    return get_hazard_list<backup>().protect(src); }
+    return hazard::get_hazard_list<backup>().protect(src); }
   
   PARLAY_INLINE
   static void protect(backup* src) {
-    get_hazard_list<backup>().protect_direct(src); }
-
-  PARLAY_INLINE
-  static void retire(backup* p) {
-    if (p) { get_hazard_list<backup>().retire(p); } }
-
-  PARLAY_INLINE
-  static void Delete(backup* p) {
-    allocator::destroy(p);  }
-
-  PARLAY_INLINE
-  static backup* new_backup(T v) {
-    return allocator::create(v); }
+    hazard::get_hazard_list<backup>().protect_direct(src); }
 
   PARLAY_INLINE
   static bool is_seqnum(long tag) {
@@ -93,26 +81,20 @@ struct big_atomic {
   using value_type = T;
   using seqnum_type = int64_t;
 
-  using allocator = type_allocator<backup>;
-
-  big_atomic() : indirect(new_backup(T{})),
+  big_atomic() : indirect(hazard::New<backup>(T{})),
                  seqnum(std::numeric_limits<int64_t>::min()), cache{} {
     static_assert(std::is_default_constructible_v<T>);
-    allocator::init();
     new (static_cast<void*>(&cache)) T{};
   }
 
   /* implicit */ big_atomic(const T& t) : seqnum(std::numeric_limits<int64_t>::min()),       // NOLINT(google-explicit-constructor)
-      indirect(new_backup(t)), cache{} {
-    allocator::init();
+       indirect(hazard::New<backup>(t)), cache{} {
     new (static_cast<void*>(&cache)) T{t};
   }
 
   ~big_atomic() {
     auto p = unmark_ptr(indirect.load(std::memory_order_acquire));
-    if (p) {
-      allocator::destroy(p);
-    }
+    if (p) { hazard::Delete(p);  }
   }
 
   PARLAY_INLINE
@@ -156,7 +138,7 @@ struct big_atomic {
       spinDelay(std::chrono::nanoseconds(1000)); 
     }
 
-    auto ptr = new_backup(desired);
+    auto ptr = hazard::New<backup>(desired);
     protect(ptr);
     auto new_p = mark_ptr(ptr);
     auto old_p = p;
@@ -166,7 +148,7 @@ struct big_atomic {
         || (p == indirect.load(std::memory_order_relaxed) &&
             p == unmark_ptr(old_p) &&
             indirect.compare_exchange_strong(p, new_p))) {
-      retire(unmark_ptr(p));
+      hazard::Retire(unmark_ptr(p));
 
       if ((ver % 2 == 0) && ver == seqnum.load(std::memory_order_relaxed) &&
           seqnum.compare_exchange_strong(ver, ver + 1)) {
@@ -176,7 +158,7 @@ struct big_atomic {
       }
       return true;
     }
-    Delete(unmark_ptr(new_p));
+    hazard::Delete(unmark_ptr(new_p));
     return false;
   }
 

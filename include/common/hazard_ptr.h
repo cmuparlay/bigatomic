@@ -16,7 +16,7 @@
 
 #include <common/utility.h>
 
-namespace parlay {
+namespace hazard {  
 
 template<typename GarbageType>
 class HazardPointers;
@@ -315,4 +315,43 @@ HazardPointers<GarbageType>& get_hazard_list() {
   return *list;
 }
 
-}  // namespace parlay
+  template <typename T>
+  PARLAY_INLINE
+  static void Retire(T* p) {
+    if (p) { get_hazard_list<T>().retire(p); } }
+
+#define ParlayAlloc
+  
+#ifdef ParlayAlloc
+#include <parlay/alloc.h>
+
+  template <typename T>
+  PARLAY_INLINE
+  static void Delete(T* p) {
+    p->~T();
+    parlay::type_allocator<T>::free(p);
+  }
+
+  template <typename T, typename... Args>
+  PARLAY_INLINE
+  T* New(Args&&... args) {
+    T* r = parlay::type_allocator<T>::alloc();
+    new (r) T(std::forward<Args>(args)...);
+    return r;
+    // return new T(std::forward<Args>(args)...);
+  }
+#else
+  template <typename T>
+  PARLAY_INLINE
+  static void Delete(T* p) {
+    delete p;
+  }
+
+  template <typename T, typename... Args>
+  PARLAY_INLINE
+  T* New(Args&&... args) {
+    return new T(std::forward<Args>(args)...);
+  }
+#endif
+}
+

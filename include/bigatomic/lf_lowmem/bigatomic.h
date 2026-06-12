@@ -56,30 +56,33 @@ private:
     backup* next_;    // Intrusive link for hazard pointers
     backup* get_next() { return next_; }
     void set_next(backup* next) { next_ = next; }
-    void destroy() {  allocator::destroy(this); }
+    void destroy() {  Delete(this); }
   };
 
   PARLAY_INLINE
   static tag load_protected(const std::atomic<tag>& src) {
-    return get_hazard_list<backup>().protect(src, [](long tag) {
+    return hazard::get_hazard_list<backup>().protect(src, [](long tag) {
              return is_seqnum(tag) ? nullptr : (backup*) tag; });
   }
   
   PARLAY_INLINE
   static void protect(backup* src) {
-    get_hazard_list<backup>().protect_direct(src); }
+    hazard::get_hazard_list<backup>().protect_direct(src); }
 
   PARLAY_INLINE
-  static void retire(backup* p) {
-    if (p) { get_hazard_list<backup>().retire(p); } }
+  static void Retire(backup* p) {
+    hazard::Retire(p); }
+    //if (p) { get_hazard_list<backup>().retire(p); } }
 
   PARLAY_INLINE
   static void Delete(backup* p) {
-    allocator::destroy(p);  }
+    hazard::Delete(p); }
+  //allocator::destroy(p);  }
 
   PARLAY_INLINE
-  static backup* new_backup(T v, tag new_seqnum) {
-    return allocator::create(v, new_seqnum); }
+  static backup* New(T v, tag new_seqnum) {
+    return hazard::New<backup>(v, new_seqnum); }
+    //return allocator::create(v, new_seqnum); }
 
   PARLAY_INLINE
   static bool is_seqnum(long tag) {
@@ -103,7 +106,7 @@ private:
  public:
 
   using value_type = T;
-  using allocator = type_allocator<backup>;
+  //using allocator = type_allocator<backup>;
 
   PARLAY_INLINE
   void store_sequential(const T& desired) {
@@ -163,7 +166,7 @@ private:
       spinDelay(std::chrono::nanoseconds(1000)); 
     }
     tag new_seqnum = seqnum + 1;
-    backup* new_backup = allocator::create(v, new_seqnum);
+    backup* new_backup = New(v, new_seqnum);
     protect(new_backup);
 
     // try to install new value (linerization point if succeeds)
@@ -174,13 +177,13 @@ private:
       // was a pointer with same seq num, try again             
       if (is_pointer(cur_tag) || (cur_tag != seqnum) ||
           !header.compare_exchange_strong(cur_tag, to_tag(new_backup))) {
-        allocator::destroy(new_backup); // installation failed
+        Delete(new_backup); // installation failed
         return false;
       }
     }
     
     if (is_pointer(cur_tag)) // was a pointer, do not install cache
-      retire(to_ptr(cur_tag));
+      Retire(to_ptr(cur_tag));
     else { // try to install the cached value
       store_sequential(v);
       while (header.load(std::memory_order_relaxed) != to_tag(new_backup) ||
@@ -189,7 +192,7 @@ private:
         store_sequential(new_backup->value);
         new_seqnum = new_backup->seqnum;
       }
-      retire(new_backup);
+      Retire(new_backup);
     }
     return true;
   }
