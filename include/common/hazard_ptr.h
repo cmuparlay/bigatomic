@@ -320,7 +320,7 @@ HazardPointers<GarbageType>& get_hazard_list() {
   static void Retire(T* p) {
     if (p) { get_hazard_list<T>().retire(p); } }
 
-#define ParlayAlloc
+  //#define ParlayAlloc
   
 #ifdef ParlayAlloc
 #include <parlay/alloc.h>

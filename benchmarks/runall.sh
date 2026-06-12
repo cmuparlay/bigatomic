@@ -1,4 +1,7 @@
 #!/bin/bash
+##########################################
+# Script for running all experiments in paper except for the htm experiments
+##########################################
 
 # print various information about the machine/compiler/date at head of file
 procs=`nproc`
@@ -7,20 +10,25 @@ machine=`lscpu | grep 'Model name' | rev | cut -c 1-5 | rev`
 machine_nowhite=${machine//[[:space:]]/}
 filename=../../timings/${procs}-${machine}_${today}
 
+head="numactl -i all"
+
 echo ${filename}
 > ${filename}
-echo "Date:" ${today} >> ${filename}
+date >> ${filename}
 echo `lscpu | grep 'Model name'` >> ${filename}
 echo "Git branch:" `git rev-parse --short HEAD` >> ${filename}
 echo "Compiler:" `g++ --version | head -1` >> ${filename}
 echo "OS:" `lsb_release -a | grep 'Description' | cut -c 14-` >> ${filename}
 echo "Hugepage:" `cat /sys/kernel/mm/transparent_hugepage/enabled` >> ${filename}
 echo "NoTurbo:" `cat /sys/devices/system/cpu/intel_pstate/no_turbo` >> ${filename}
-echo "MaxPerfPct" `cat /sys/devices/system/cpu/intel_pstate/max_perf_pct` >> ${filename}
+echo "MaxPerfPct:" `cat /sys/devices/system/cpu/intel_pstate/max_perf_pct` >> ${filename}
+echo "Command Prefix: ${head}"
+
+env_vars="LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2"
+export ${env_vars}
+echo ${env_vars}
 
 # Experiments start here
-
-head="numactl -i all"
 
 llsc_schemes="seqlock wf_indirect wf_direct lf_lowmem"
 cas_schemes="simplock std"
@@ -50,7 +58,10 @@ some_updates="5,50"
 
 rounds=1
 
-echo -e "\nbigatomic array geomean over schemes and sizes, with and without oversubscription\n" >> ${filename}
+##########################################
+# Figure 1
+##########################################
+echo -e "\nbigatomic array geomean over schemes and sizes, with and without oversubscription (figure 1)\n" >> ${filename}
 
 for scheme in ${llsc_schemes} ${cas_schemes}
 do
@@ -66,91 +77,53 @@ do
     done
 done
 
-scheme=wf_ablation
-block_size=4
-command="./bench_hash_array_${block_size}_${scheme} -n ${some_sizes} -z ${some_zipfians} -u ${some_updates} -r ${rounds}"
-echo ${command}
-${head} ${command} >> ${filename}
-echo "" >> ${filename}
-
-for application in bench_parlay_hash
-do
-    echo -e "\n${application} geomean over schemes\n" >> ${filename}
-    for scheme in ${llsc_schemes}
-    do
-        for p in ${some_threads}
-        do
-            command="./${application}_${scheme} -p ${p} -n ${some_sizes} -z ${some_zipfians} -u ${some_updates} -r ${rounds}"
-            echo ${command}
-            ${head} ${command} >> ${filename}
-            echo "" >> ${filename}
-        done
-    done
-done
-
-application=bench_hash_array
+##########################################
+# Figure 3
+##########################################
+application= bench_hash_array_${default_block_size}
 for p in ${some_threads}
 do
-    str="\n${application} varying block size\n" 
-    for block_size in ${some_block_sizes}
+    str="\n${application} varying updates (figure 3, second row)\n"
+    echo -e ${str}
+    echo -e ${str} >> ${filename}
+    for scheme in ${all_schemes} 
     do
-        echo -e ${str}
-        echo -e ${str} >> ${filename}
-        for scheme in ${llsc_schemes} ${cas_schemes}
-        do
-            ${head} ./${application}_${block_size}_${scheme} -n ${default_size} -u ${default_update} -z ${default_zipfian} -r ${rounds} -p ${p} >> ${filename}
-            echo "" >> ${filename}
-        done
-    done
-done
-
-for application in bench_hash_array_${default_block_size} bench_parlay_hash
-do
-    for p in ${some_threads}
-    do
-        str="\n${application} varying size\n" 
-        echo -e ${str}
-        echo -e ${str} >> ${filename}
-        for scheme in ${all_schemes}
-        do
-            ${head} ./${application}_${scheme} -n ${all_sizes} -u ${default_update} -z ${default_zipfian} -r ${rounds} -p ${p} >> ${filename}
-            echo "" >> ${filename}
-        done
-
-        str="\n${application} varying updates\n"
-        echo -e ${str}
-        echo -e ${str} >> ${filename}
-        for scheme in ${all_schemes} 
-        do
-            ${head} ./${application}_${scheme} -n ${default_size} -u ${all_updates} -z ${default_zipfian} -r ${rounds} -p ${p} >> ${filename}
-            echo "" >> ${filename}
-        done
-
-        str="\n${application} varying zipfians\n"
-        echo -e ${str}
-        echo -e ${str} >> ${filename}
-        for scheme in ${all_schemes}
-        do
-            ${head} ./${application}_${scheme} -n ${default_size} -u ${default_update} -z ${all_zipfians} -r ${rounds} -p ${p}>> ${filename}
-            echo "" >> ${filename}
-        done
+        ${head} ./${application}_${scheme} -n ${default_size} -u ${all_updates} -z ${default_zipfian} -r ${rounds} -p ${p} >> ${filename}
+        echo "" >> ${filename}
     done
 
-    str="\n${application} varying threads\n"
+    str="\n${application} varying zipfians (figure 3, third row)\n"
     echo -e ${str}
     echo -e ${str} >> ${filename}
     for scheme in ${all_schemes}
     do
-        ${head} ./${application}_${scheme} -n ${default_size} -u 5,20 -z ${default_zipfian} -p ${all_threads} -r ${rounds} >> ${filename}
+        ${head} ./${application}_${scheme} -n ${default_size} -u ${default_update} -z ${all_zipfians} -r ${rounds} -p ${p}>> ${filename}
+        echo "" >> ${filename}
+    done
+
+    str="\n${application} varying size (figure 3, fourth row)\n" 
+    echo -e ${str}
+    echo -e ${str} >> ${filename}
+    for scheme in ${all_schemes}
+    do
+        ${head} ./${application}_${scheme} -n ${all_sizes} -u ${default_update} -z ${default_zipfian} -r ${rounds} -p ${p} >> ${filename}
         echo "" >> ${filename}
     done
 done
 
-
-str="\n$hash_array varying k\n"
+str="\n${application} varying threads (figure 3, top left)\n"
 echo -e ${str}
 echo -e ${str} >> ${filename}
 for scheme in ${all_schemes}
+do
+    ${head} ./${application}_${scheme} -n ${default_size} -u 5,20 -z ${default_zipfian} -p ${all_threads} -r ${rounds} >> ${filename}
+    echo "" >> ${filename}
+done
+
+str="\n$hash_array varying k (figure 3, top right)\n"
+echo -e ${str}
+echo -e ${str} >> ${filename}
+for scheme in ${all_schemes} 
 do
     for k in ${all_block_sizes}
     do
@@ -159,35 +132,64 @@ do
     done
 done
 
+##########################################
+# Figure 5
+##########################################
+application=bench_parlay_hash
+for p in ${procs}
+do
+    str="\n${application} varying updates (figure 5, bottom left)\n"
+    echo -e ${str}
+    echo -e ${str} >> ${filename}
+    for scheme in ${llsc_schemes} 
+    do
+        ${head} ./${application}_${scheme} -n ${default_size} -u ${all_updates} -z ${default_zipfian} -r ${rounds} -p ${p} >> ${filename}
+        echo "" >> ${filename}
+    done
+
+    str="\n${application} varying zipfians (figure 5, top right)\n"
+    echo -e ${str}
+    echo -e ${str} >> ${filename}
+    for scheme in ${llsc_schemes}
+    do
+        ${head} ./${application}_${scheme} -n ${default_size} -u ${default_update} -z ${all_zipfians} -r ${rounds} -p ${p}>> ${filename}
+        echo "" >> ${filename}
+    done
+
+    str="\n${application} varying size (figure 5, bottom left)\n" 
+    echo -e ${str}
+    echo -e ${str} >> ${filename}
+    for scheme in ${llsc_schemes}
+    do
+        ${head} ./${application}_${scheme} -n ${all_sizes} -u ${default_update} -z ${default_zipfian} -r ${rounds} -p ${p} >> ${filename}
+        echo "" >> ${filename}
+    done
+done
+
+str="\n${application} varying threads (figure 5, top left)\n"
+echo -e ${str}
+echo -e ${str} >> ${filename}
+for scheme in ${llsc_schemes}
+do
+    ${head} ./${application}_${scheme} -n ${default_size} -u 5,20 -z ${default_zipfian} -p ${all_threads} -r ${rounds} >> ${filename}
+    echo "" >> ${filename}
+done
+
+##########################################
+# Figure 4 (other data also taken from figure 1)
+##########################################
 application=bench_hash_array_4_wf_ablation
-str="\n${application} varying updates\n"
+str="\n${application} varying updates (figure 4) \n"
 echo -e ${str}
 echo -e ${str} >> ${filename}
 ${head} ./${application} -n ${default_size} -u ${all_updates} -z ${default_zipfian} -r ${rounds} >> ${filename}
 echo "" >> ${filename}
 
-str="\nvarying threads for simplock and std\n"
-echo -e ${str}
-echo -e ${str} >> ${filename}
-for scheme in ${cas_schemes}
-do
-    ${head} ./bench_hash_array_${default_block_size} -n ${default_size} -u 20 -z ${default_zipfian} -p ${threads} -r ${rounds} >> ${filename}
-    echo "" >> ${filename}
-done
 
-str="\n$other hash tables geomean\n"
-for table in ${other_hash}
-do
-    for p in ${some_threads}
-    do
-        command="./${table} -p ${p} -n ${some_sizes} -z ${some_zipfians} -u ${some_updates} -r ${rounds}"
-        echo ${command}
-        ${head} ${command} >> ${filename}
-        echo "" >> ${filename}
-    done
-done
-
-str="\n$other hash tables zipfian\n"
+##########################################
+# Figure 2
+##########################################
+str="\n$other hash tables zipfian (figure 2)\n"
 echo -e ${str}
 echo -e ${str} >> ${filename}
 for table in ${other_hash}
@@ -196,16 +198,7 @@ do
     echo "" >> ${filename}
 done
 
-str="\n$other hash tables threads (z = ${default_zipfian})\n"
-echo -e ${str}
-echo -e ${str} >> ${filename}
-for table in ${other_hash}
-do
-    ${head} ./${table} -p ${all_threads} -n ${default_size} -u ${default_update} -z ${default_zipfian} -r ${rounds} >> ${filename}
-    echo "" >> ${filename}
-done
-
-str="\n$other hash tables threads (z = 0)\n"
+str="\n$other hash tables threads (z = 0) (figure 2)\n"
 echo -e ${str}
 echo -e ${str} >> ${filename}
 for table in ${other_hash} bench_parlay_hash_lf_llsc bench_parlay_hash_seqlock
@@ -213,3 +206,5 @@ do
     ${head} ./${table} -p ${all_threads} -n ${default_size} -u ${default_update} -z 0 -r ${rounds} >> ${filename}
     echo "" >> ${filename}
 done
+
+echo "finished at: `date`"

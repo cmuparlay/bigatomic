@@ -163,7 +163,7 @@ private:
       seqnum = expected_tag;
     } else {
       seqnum = to_ptr(expected_tag)->seqnum;
-      spinDelay(std::chrono::nanoseconds(1000)); 
+      spinDelay(std::chrono::nanoseconds(1500)); 
     }
     tag new_seqnum = seqnum + 1;
     backup* new_backup = New(v, new_seqnum);
