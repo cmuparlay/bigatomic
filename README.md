@@ -50,4 +50,6 @@ make -j
 bash ../../benchmarks/runall.sh
 ```
 
+This will create a file in `bigatomic/timings/` that includes all timings.
+
 
