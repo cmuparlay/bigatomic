@@ -50,7 +50,14 @@ make -j
 bash ../../benchmarks/runall.sh
 ```
 
-This will create a file in `bigatomic/timings/` that includes all timings.  You can also run just one benchmark.  For example within the build/benchmarks directory:
+This will create a file in `bigatomic/timings/` that includes all timings.
+
+Note that it requires Folly, TBB, and Boost are installed to run
+timings on their hash tables.  If you don't want to install them, you
+can comment out the appropriate checks in the CmakeFiles, and the
+runall.sh script.
+
+You can also run just one benchmark.  For example within the build/benchmarks directory:
 
 ```
 ./bench_hash_array_4_lf_lowmem -n 10000,10000000 -z 0,.99 -u 5,50
