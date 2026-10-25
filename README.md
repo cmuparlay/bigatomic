@@ -50,6 +50,13 @@ make -j
 bash ../../benchmarks/runall.sh
 ```
 
-This will create a file in `bigatomic/timings/` that includes all timings.
+This will create a file in `bigatomic/timings/` that includes all timings.  You can also run just one benchmark.  For example within the build/benchmarks directory:
+
+```
+./bench_hash_array_4_lf_lowmem -n 10000,10000000 -z 0,.99 -u 5,50
+```
+
+will run the lock-free low-memory implementation of 4-word big atomics for on two sizes (10K, 1M), with two Zipfian parameters (0, .99), and with two update percentages (5, 5).   It will print out both the times for the individual runs and the geometric mean.
+
 
 
