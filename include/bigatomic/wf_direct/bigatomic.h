@@ -148,8 +148,9 @@ struct big_atomic {
     auto new_p = mark_ptr(ptr);
     auto old_p = p;
 
-    if (((p = indirect.load(std::memory_order_relaxed)) == old_p &&
-         indirect.compare_exchange_strong(p, new_p))
+    p = indirect.load(std::memory_order_relaxed);
+    if ((p == old_p &&
+         indirect.compare_exchange_strong(old_p, new_p))
         || (p == indirect.load(std::memory_order_relaxed) &&
             p == unmark_ptr(old_p) &&
             indirect.compare_exchange_strong(p, new_p))) {
