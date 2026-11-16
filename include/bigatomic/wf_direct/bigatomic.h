@@ -54,7 +54,8 @@ struct big_atomic {
 
   PARLAY_INLINE
   static backup* load_protected(const std::atomic<backup*>& src) {
-    return hazard::get_hazard_list<backup>().protect(src); }
+    return hazard::get_hazard_list<backup>().protect(src, [](backup* p) {
+      return unmark_ptr(p); }); }
   
   PARLAY_INLINE
   static void protect(backup* src) {
@@ -126,7 +127,7 @@ struct big_atomic {
     if (is_seqnum(expected_tag)) [[likely]] { // i.e. a seqnum
       auto ver = seqnum.load(std::memory_order_acquire);
       return (!is_marked(p) && ver == expected_tag);
-      } else return (p == to_ptr(expected_tag));
+    } else return (unmark_ptr(p) == unmark_ptr(to_ptr(expected_tag)));
   }
 
   PARLAY_INLINE bool sc(tag expected_tag, const T& desired) {
