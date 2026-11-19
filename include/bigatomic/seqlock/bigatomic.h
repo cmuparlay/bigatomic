@@ -72,7 +72,7 @@ struct big_atomic {
   }
 
   PARLAY_INLINE
-  bool lv(tag tg) {
+  bool vl(tag tg) {
     return version.load() == tg;
   }
 

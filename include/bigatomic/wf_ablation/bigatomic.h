@@ -54,7 +54,8 @@ struct big_atomic {
 
   PARLAY_INLINE
   static backup* load_protected(const std::atomic<backup*>& src) {
-    return hazard::get_hazard_list<backup>().protect(src); }
+    return hazard::get_hazard_list<backup>().protect(src, [](backup* p) {
+      return unmark_ptr(p); }); }
   
   PARLAY_INLINE
   static void protect(backup* src) {
@@ -117,12 +118,12 @@ struct big_atomic {
     return std::pair<T,tag>(unmark_ptr(p)->value, to_tag(p));
   }
 
-  PARLAY_INLINE bool lv(tag expected_tag) {
+  PARLAY_INLINE bool vl(tag expected_tag) {
     backup* p = indirect.load();
     if (is_seqnum(expected_tag)) [[likely]] { // i.e. a seqnum
       auto ver = seqnum.load(std::memory_order_acquire);
       return (!is_marked(p) && ver == expected_tag);
-      } else return (p == to_ptr(expected_tag));
+    } else return (unmark_ptr(p) == unmark_ptr(to_ptr(expected_tag)));
   }
 
   PARLAY_INLINE bool sc(tag expected_tag, const T& desired) {
@@ -143,7 +144,8 @@ struct big_atomic {
     auto new_p = mark_ptr(ptr);
     auto old_p = p;
 
-    if ((indirect.load(std::memory_order_relaxed) == p &&
+    p = indirect.load(std::memory_order_relaxed);
+    if ((p == old_p &&
          indirect.compare_exchange_strong(p, new_p))
         || (p == indirect.load(std::memory_order_relaxed) &&
             p == unmark_ptr(old_p) &&

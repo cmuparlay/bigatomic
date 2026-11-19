@@ -122,7 +122,7 @@ struct big_atomic {
     return std::pair<T,tag>(unmark_ptr(p)->value, to_tag(p));
   }
 
-  PARLAY_INLINE bool lv(tag expected_tag) {
+  PARLAY_INLINE bool vl(tag expected_tag) {
     backup* p = indirect.load();
     if (is_seqnum(expected_tag)) [[likely]] { // i.e. a seqnum
       auto ver = seqnum.load(std::memory_order_acquire);
@@ -150,7 +150,7 @@ struct big_atomic {
 
     p = indirect.load(std::memory_order_relaxed);
     if ((p == old_p &&
-         indirect.compare_exchange_strong(old_p, new_p))
+         indirect.compare_exchange_strong(p, new_p))
         || (p == indirect.load(std::memory_order_relaxed) &&
             p == unmark_ptr(old_p) &&
             indirect.compare_exchange_strong(p, new_p))) {

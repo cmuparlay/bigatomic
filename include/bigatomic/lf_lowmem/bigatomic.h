@@ -148,7 +148,7 @@ private:
 
   PARLAY_INLINE T load() { return ll().first; }
 
-  PARLAY_INLINE bool lv(tag expected_tag) {
+  PARLAY_INLINE bool vl(tag expected_tag) {
     tag hdr = header.load(std::memory_order_acquire);
     if (is_seqnum(expected_tag)) [[likely]] {
       return hdr == expected_tag;

@@ -60,7 +60,7 @@ public:
     return std::pair<V,tag>(old_v->value, old_v);
   }
 
-  PARLAY_INLINE bool lv(tag tg) {
+  PARLAY_INLINE bool vl(tag tg) {
     return ptr.load() == tg;
   }
 
